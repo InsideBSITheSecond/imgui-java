@@ -250,40 +250,6 @@ public final class ImGuiIO extends ImGuiStruct {
     @BindingField
     public String BackendRendererName;
 
-    // Optional: Access OS clipboard
-    // (default to use native Win32 clipIsMouseDraggingboard on Windows, otherwise uses a private clipboard. Override to access OS clipboard on other architectures)
-
-    /*JNI
-        jobject _setClipboardTextCallback = NULL;
-        jobject _getClipboardTextCallback = NULL;
-
-        void setClipboardTextStub(void* userData, const char* text) {
-            Jni::CallImStrConsumer(Jni::GetEnv(), _setClipboardTextCallback, text);
-        }
-
-        const char* getClipboardTextStub(void* user_data) {
-            JNIEnv* env = Jni::GetEnv();
-            jstring jstr = Jni::CallImStrSupplier(env, _getClipboardTextCallback);
-            return env->GetStringUTFChars(jstr, 0);
-        }
-     */
-
-    public native void setSetClipboardTextFn(ImStrConsumer setClipboardTextCallback); /*
-        if (_setClipboardTextCallback != NULL) {
-            env->DeleteGlobalRef(_setClipboardTextCallback);
-        }
-        _setClipboardTextCallback = env->NewGlobalRef(setClipboardTextCallback);
-        THIS->SetClipboardTextFn = setClipboardTextStub;
-    */
-
-    public native void setGetClipboardTextFn(ImStrSupplier getClipboardTextCallback); /*
-        if (_getClipboardTextCallback != NULL) {
-            env->DeleteGlobalRef(_getClipboardTextCallback);
-        }
-        _getClipboardTextCallback = env->NewGlobalRef(getClipboardTextCallback);
-        THIS->GetClipboardTextFn = getClipboardTextStub;
-    */
-
     //------------------------------------------------------------------
     // Input - Call before calling NewFrame()
     //------------------------------------------------------------------
@@ -361,12 +327,6 @@ public final class ImGuiIO extends ImGuiStruct {
      */
     @BindingMethod
     public native void SetAppAcceptingEvents(boolean acceptingEvents);
-
-    /**
-     * [Internal] Clear the text input buffer manually
-     */
-    @BindingMethod
-    public native void ClearInputCharacters();
 
     /**
      * [Internal] Release all keys
@@ -461,33 +421,11 @@ public final class ImGuiIO extends ImGuiStruct {
     public int MetricsActiveWindows;
 
     /**
-     * Number of active allocations, updated by MemAlloc/MemFree based on current context. May be off if you have multiple imgui contexts.
-     */
-    @BindingField
-    public int MetricsActiveAllocations;
-
-    /**
      * Mouse delta. Note that this is zero if either current or previous position are invalid (-FLT_MAX,-FLT_MAX), so a disappearing/reappearing mouse won't have a huge delta.
      */
     @BindingField
     public ImVec2 MouseDelta;
 
-    /**
-     * Map of indices into the KeysDown[512] entries array which represent your "native" keyboard state.
-     */
-    @BindingField
-    @TypeArray(type = "int", size = "ImGuiKey_COUNT")
-    @Deprecated
-    public int[] KeyMap;
-
-    /**
-     * Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys).
-     * This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-     */
-    @BindingField
-    @TypeArray(type = "boolean", size = "ImGuiKey_COUNT")
-    @Deprecated
-    public boolean[] KeysDown;
 
     //------------------------------------------------------------------
     // [Internal] Dear ImGui will maintain those fields. Forward compatibility not guaranteed!
@@ -551,13 +489,6 @@ public final class ImGuiIO extends ImGuiStruct {
     @BindingField
     public boolean KeySuper;
 
-    /**
-     * Gamepad inputs. Cleared back to zero by EndFrame(). Keyboard keys will be auto-mapped and be written here by NewFrame().
-     */
-    @BindingField
-    @TypeArray(type = "float", size = "512")
-    public float[] NavInputs;
-
     // Other state maintained from data above + IO function calls
 
     /**
@@ -565,13 +496,6 @@ public final class ImGuiIO extends ImGuiStruct {
      */
     @BindingField
     public int KeyMods;
-
-    /**
-     * Key state for all known keys. Use IsKeyXXX() functions to access this.
-     */
-    @BindingField
-    @TypeArray(type = "ImGuiKeyData", size = "ImGuiKey_KeysData_SIZE")
-    public ImGuiKeyData[] KeysData;
 
     /**
      * Alternative to WantCaptureMouse: (WantCaptureMouse == true {@code &&} WantCaptureMouseUnlessPopupClose == false) when a click over void is expected to close a popup.
@@ -676,14 +600,6 @@ public final class ImGuiIO extends ImGuiStruct {
     @TypeArray(type = "float", size = "5")
     public float[] MouseDragMaxDistanceSqr;
 
-    @BindingField
-    @TypeArray(type = "float", size = "ImGuiNavInput_COUNT")
-    public float[] NavInputsDownDuration;
-
-    @BindingField
-    @TypeArray(type = "float", size = "ImGuiNavInput_COUNT")
-    public float[] NavInputsDownDurationPrev;
-
     /**
      * Touch/Pen pressure (0.0f to 1.0f, should be {@code >}0.0f only when MouseDown[0] == true). Helper storage currently unused by Dear ImGui.
      */
@@ -701,18 +617,6 @@ public final class ImGuiIO extends ImGuiStruct {
      */
     @BindingField(accessors = BindingField.Accessor.GETTER)
     public boolean AppAcceptingEvents;
-
-    /**
-     * -1: unknown, 0: using AddKeyEvent(), 1: using legacy io.KeysDown[]
-     */
-    @BindingField
-    public short BackendUsingLegacyKeyArrays;
-
-    /**
-     * 0: using AddKeyAnalogEvent(), 1: writing to legacy io.NavInputs[] directly
-     */
-    @BindingField
-    public boolean BackendUsingLegacyNavInputArray;
 
     /**
      * For AddInputCharacterUTF16

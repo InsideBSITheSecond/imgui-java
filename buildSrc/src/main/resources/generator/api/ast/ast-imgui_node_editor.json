@@ -1,6 +1,6 @@
 {
   "info" : {
-    "source" : "include/imgui-node-editor/imgui_node_editor.h",
+    "source" : "include/imgui-node-editor/NodeEditor/Include/imgui_node_editor.h",
     "hash" : "0f066843f1362eeb6d7ee7b7f4fad24f",
     "url" : "https://github.com/thedmd/imgui-node-editor",
     "revision" : "d79ebdeb2375fa6c1f88a40e52e7d08c8d472b62"

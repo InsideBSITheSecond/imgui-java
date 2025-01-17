@@ -1,6 +1,6 @@
 [submodule "include/imgui"]
 	path = include/imgui
-	url = https://github.com/ocornut/imgui
+	url = https://github.com/thedmd/imgui
 [submodule "include/imnodes"]
 	path = include/imnodes
 	url = https://github.com/Nelarius/imnodes
@@ -12,13 +12,13 @@
 	url = https://github.com/epezent/implot.git
 [submodule "include/ImGuiColorTextEdit"]
 	path = include/ImGuiColorTextEdit
-	url = https://github.com/BalazsJako/ImGuiColorTextEdit
+	url = https://github.com/InsideBSITheSecond/ImGuiColorTextEdit
 [submodule "include/ImGuiFileDialog"]
 	path = include/ImGuiFileDialog
 	url = https://github.com/aiekick/ImGuiFileDialog
 [submodule "include/imgui-node-editor"]
 	path = include/imgui-node-editor
-	url = https://github.com/thedmd/imgui-node-editor
+	url = https://github.com/InsideBSITheSecond/imgui-node-editor
 [submodule "include/imgui_club"]
 	path = include/imgui_club
 	url = https://github.com/ocornut/imgui_club

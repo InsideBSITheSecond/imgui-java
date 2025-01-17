@@ -9,6 +9,9 @@ import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.OptArg;
 import imgui.binding.annotation.ReturnValue;
+import imgui.extension.implot.flag.ImPlotColormapScaleFlags;
+import imgui.extension.implot.flag.ImPlotHistogramFlags;
+import imgui.extension.implot.flag.ImPlotTextFlags;
 import imgui.internal.ImGuiContext;
 import imgui.type.ImBoolean;
 import imgui.type.ImDouble;
@@ -636,65 +639,6 @@ public final class ImPlot {
                                        double barWidth,
                                        @OptArg int offset);
 
-    // values
-
-    /**
-     * Plots a horizontal bar graph. #bar_height and #y0 are in Y units.
-     */
-    @BindingMethod
-    public static native void PlotBarsH(String labelId,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                        @ArgValue(callValue = "LEN(values)") Void count,
-                                        @OptArg double barHeight,
-                                        @OptArg double y0,
-                                        @OptArg int offset);
-
-    /**
-     * Plots a horizontal bar graph. #bar_height and #y0 are in Y units.
-     */
-    @BindingMethod
-    public static native void PlotBarsH(String labelId,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                        int count,
-                                        @OptArg double barHeight,
-                                        @OptArg double y0,
-                                        @OptArg int offset);
-
-    // xs,ys
-
-    /**
-     * Plots a horizontal bar graph. #bar_height and #y0 are in Y units.
-     */
-    @BindingMethod
-    public static native void PlotBarsH(String labelId,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                        @ArgValue(callValue = "LEN(xs)") Void count,
-                                        @ArgValue(callValue = "0.67") Void barHeight,
-                                        @OptArg int offset);
-
-    /**
-     * Plots a horizontal bar graph. #bar_height and #y0 are in Y units.
-     */
-    @BindingMethod
-    public static native void PlotBarsH(String labelId,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                        @ArgValue(callValue = "LEN(xs)") Void count,
-                                        double barHeight,
-                                        @OptArg int offset);
-
-    /**
-     * Plots a horizontal bar graph. #bar_height and #y0 are in Y units.
-     */
-    @BindingMethod
-    public static native void PlotBarsH(String labelId,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                        @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                        int count,
-                                        double barHeight,
-                                        @OptArg int offset);
-
     /**
      * Plots a group of vertical bars. #values is a row-major matrix with #item_count rows and #group_count cols. #label_ids should have #item_count elements.
      */
@@ -708,18 +652,6 @@ public final class ImPlot {
                                             @OptArg int flags);
 
     /**
-     * Plots a group of horizontal bars. #values is a row-major matrix with #item_count rows and #group_count cols. #label_ids should have #item_count elements.
-     */
-    @BindingMethod
-    public static native void PlotBarGroupsH(String[] labelIds,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                             int itemCount,
-                                             int groupCount,
-                                             @OptArg double groupHeight,
-                                             @OptArg double y0,
-                                             @OptArg int flags);
-
-    /**
      * Plots vertical error bar. The label_id should be the same as the label_id of the associated line or bar plot.
      */
     @BindingMethod
@@ -762,39 +694,6 @@ public final class ImPlot {
                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void pos,
                                             int count,
                                             @OptArg int offset);
-
-    /**
-     * Plots horizontal error bars. The label_id should be the same as the label_id of the associated line or bar plot.
-     */
-    @BindingMethod
-    public static native void PlotErrorBarsH(String labelId,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void err,
-                                             @ArgValue(callValue = "LEN(xs)") Void count);
-
-    /**
-     * Plots horizontal error bars. The label_id should be the same as the label_id of the associated line or bar plot.
-     */
-    @BindingMethod
-    public static native void PlotErrorBarsH(String labelId,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void err,
-                                             int count,
-                                             @OptArg int offset);
-
-    /**
-     * Plots horizontal error bars. The label_id should be the same as the label_id of the associated line or bar plot.
-     */
-    @BindingMethod
-    public static native void PlotErrorBarsH(String labelId,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void neg,
-                                             @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void pos,
-                                             int count,
-                                             @OptArg int offset);
 
     // values
 
@@ -850,63 +749,26 @@ public final class ImPlot {
      * Plots infinite vertical or horizontal lines (e.g. for references or asymptotes).
      */
     @BindingMethod
-    public static native void PlotVLines(String labelId,
-                                         @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                         @ArgValue(callValue = "LEN(xs)") Void count);
-
-    /**
-     * Plots infinite vertical or horizontal lines (e.g. for references or asymptotes).
-     */
-    @BindingMethod
-    public static native void PlotVLines(String labelId,
-                                         @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
+    public static native void PlotInfLines(String labelId,
+                                         @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
                                          int count,
-                                         @OptArg int offset);
+                                         int flags,
+                                         int offset,
+                                         int stride);
 
-    /**
-     * Plots infinite vertical or horizontal lines (e.g. for references or asymptotes).
-     */
-    @BindingMethod
-    public static native void PlotHLines(String labelId,
-                                         @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                         @ArgValue(callValue = "LEN(ys)") Void count);
-
-    /**
-     * Plots infinite vertical or horizontal lines (e.g. for references or asymptotes).
-     */
-    @BindingMethod
-    public static native void PlotHLines(String labelId,
-                                         @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                         int count,
-                                         @OptArg int offset);
-
-    /**
-     * Plots a pie chart. If the sum of values{@code >}1 or normalize is true, each value will be normalized. Center and radius are in plot units. #label_fmt can be set to NULL for no labels.
-     */
-    @BindingMethod
-    public static native void PlotPieChart(String[] labelIds,
-                                           @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                           @ArgValue(callValue = "LEN(values)") Void count,
-                                           double x,
-                                           double y,
-                                           double radius,
-                                           @OptArg(callValue = "false") boolean normalize,
-                                           @OptArg(callValue = "\"%.1f\"") String labelFmt,
-                                           @OptArg double angle0);
-
-    /**
-     * Plots a pie chart. If the sum of values{@code >}1 or normalize is true, each value will be normalized. Center and radius are in plot units. #label_fmt can be set to NULL for no labels.
-     */
-    @BindingMethod
-    public static native void PlotPieChart(String[] labelIds,
-                                           @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                           int count,
-                                           double x,
-                                           double y,
-                                           double radius,
-                                           @OptArg(callValue = "false") boolean normalize,
-                                           @OptArg(callValue = "\"%.1f\"") String labelFmt,
-                                           @OptArg double angle0);
+    //
+    // Plots a pie chart. If the sum of values{@code >}1 or normalize is true, each value will be normalized. Center and radius are in plot units. #label_fmt can be set to NULL for no labels.
+    //
+//    @BindingMethod
+//    public static native void PlotPieChart(String[] labelIds,
+//                                           @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
+//                                           @ArgValue(callValue = "LEN(values)") Void count,
+//                                           double x,
+//                                           double y,
+//                                           double radius,
+//                                           @OptArg(callValue = "\"%.1f\"") String labelFmt,
+//                                           @OptArg double angle0,
+//                                           @OptArg(callValue = "false") int flags);
 
     /**
      * Plots a 2D heatmap chart. Values are expected to be in row-major order. Leave #scale_min and scale_max both at 0 for automatic color scaling, or set them to a predefined range. #label_fmt can be set to NULL for no labels.
@@ -931,28 +793,10 @@ public final class ImPlot {
     public static native double PlotHistogram(String labelId,
                                               @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
                                               @ArgValue(callValue = "LEN(values)") Void count,
-                                              @OptArg(callValue = "ImPlotBin_Sturges") int bins,
-                                              @OptArg boolean cumulative,
-                                              @OptArg boolean density,
-                                              @OptArg(callValue = "ImPlotRange()") ImPlotRange range,
-                                              @OptArg(callValue = "true") boolean outliers,
-                                              @OptArg double barScale);
-
-    /**
-     * Plots a horizontal histogram. #bins can be a positive integer or an ImPlotBin_ method. If #cumulative is true, each bin contains its count plus the counts of all previous bins.
-     * If #density is true, the PDF is visualized. If both are true, the CDF is visualized. If #range is left unspecified, the min/max of #values will be used as the range.
-     * If #range is specified, outlier values outside of the range are not binned. However, outliers still count toward normalizing and cumulative counts unless #outliers is false. The largest bin count or density is returned.
-     */
-    @BindingMethod
-    public static native double PlotHistogram(String labelId,
-                                              @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void values,
-                                              int count,
-                                              int bins,
-                                              @OptArg boolean cumulative,
-                                              @OptArg boolean density,
-                                              @OptArg(callValue = "ImPlotRange()") ImPlotRange range,
-                                              @OptArg(callValue = "true") boolean outliers,
-                                              @OptArg double barScale);
+                                              @ArgValue(callValue = "ImPlotBin_Sturges") int bins,
+                                              @ArgValue double barScale,
+                                              @ArgValue(callValue = "ImPlotRange()") ImPlotRange range,
+                                              @ArgValue(callValue = "true") ImPlotHistogramFlags flags);
 
     /**
      * Plots two dimensional, bivariate histogram as a heatmap. #x_bins and #y_bins can be a positive integer or an ImPlotBin. If #density is true, the PDF is visualized.
@@ -964,27 +808,10 @@ public final class ImPlot {
                                                 @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
                                                 @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
                                                 @ArgValue(callValue = "LEN(xs)") Void count,
-                                                @OptArg int xBins,
-                                                @OptArg int yBins,
-                                                @OptArg(callValue = "false") boolean density,
-                                                @OptArg(callValue = "ImPlotRect()") ImPlotRect range,
-                                                @OptArg boolean outliers);
-
-    /**
-     * Plots two dimensional, bivariate histogram as a heatmap. #x_bins and #y_bins can be a positive integer or an ImPlotBin. If #density is true, the PDF is visualized.
-     * If #range is left unspecified, the min/max of #xs an #ys will be used as the ranges. If #range is specified, outlier values outside of range are not binned.
-     * However, outliers still count toward the normalizing count for density plots unless #outliers is false. The largest bin count or density is returned.
-     */
-    @BindingMethod
-    public static native double PlotHistogram2D(String labelId,
-                                                @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void xs,
-                                                @ArgVariant(type = {"short[]", "int[]", "long[]", "float[]", "double[]"}) Void ys,
-                                                int count,
-                                                int xBins,
-                                                int yBins,
-                                                @OptArg(callValue = "false") boolean density,
-                                                @OptArg(callValue = "ImPlotRect()") ImPlotRect range,
-                                                @OptArg boolean outliers);
+                                                @ArgValue int xBins,
+                                                @ArgValue int yBins,
+                                                @ArgValue(callValue = "ImPlotRect()") ImPlotRect range,
+                                                @ArgValue(callValue = "true") ImPlotHistogramFlags flags);
 
     /**
      * Plots digital data. Digital plots do not respond to y drag or zoom, and are always referenced to the bottom of the plot.
@@ -1024,8 +851,8 @@ public final class ImPlot {
     public static native void PlotText(String text,
                                        double x,
                                        double y,
-                                       @OptArg(callValue = "false") boolean vertical,
-                                       @OptArg ImVec2 pixOffset);
+                                       @ArgValue ImVec2 pixOffset,
+                                       @ArgValue(callValue = "false") ImPlotTextFlags flags);
 
     /**
      * Plots a dummy item (i.e. adds a legend entry colored by ImPlotCol_Line)
@@ -1554,7 +1381,7 @@ public final class ImPlot {
      * Shows a vertical color scale with linear spaced ticks using the specified color map. Use double hashes to hide label (e.g. "##NoLabel").
      */
     @BindingMethod
-    public static native void ColormapScale(String label, double scaleMin, double scaleMax, @OptArg(callValue = "ImVec2(0,0)") ImVec2 size, @OptArg(callValue = "IMPLOT_AUTO") int cmap, @OptArg String format);
+    public static native void ColormapScale(String label, double scaleMin, double scaleMax, @ArgValue(callValue = "ImVec2(0,0)") ImVec2 size, @ArgValue String format, @ArgValue(callValue = "true") ImPlotColormapScaleFlags flags, @ArgValue(callValue = "IMPLOT_AUTO") int cmap);
 
     /**
      * Shows a horizontal slider with a colormap gradient background.

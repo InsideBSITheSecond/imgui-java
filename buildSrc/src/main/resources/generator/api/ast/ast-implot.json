@@ -637,6 +637,141 @@
     } ]
   }, {
     "@type" : "AstEnumDecl",
+    "name" : "ImPlotHistogramFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Options for DragPoint, DragLine, DragRect"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_None",
+      "docComment" : "default",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_Horizontal",
+      "docComment" : "histogram bars will be rendered horizontally (not supported by PlotHistogram2D)",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 1,
+      "value" : "1 << 10",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_Cumulative",
+      "docComment" : "each bin will contain its count plus the counts of all previous bins (not supported by PlotHistogram2D)",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 2,
+      "value" : "1 << 11",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_Density",
+      "docComment" : "counts will be normalized, i.e. the PDF will be visualized, or the CDF will be visualized if Cumulative is also set",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 3,
+      "value" : "1 << 12",
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_NoOutliers",
+      "docComment" : "exclude values outside the specifed histogram range from the count toward normalizing and cumulative counts",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 4,
+      "value" : "1 << 13",
+      "evaluatedValue" : 8
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotHistogramFlags_ColMajor",
+      "docComment" : "data will be read in column major order (not supported by PlotHistogram)",
+      "qualType" : "ImPlotHistogramFlags_",
+      "order" : 5,
+      "value" : "1 << 14",
+      "evaluatedValue" : 16
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImPlotColormapScaleFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Options for DragPoint, DragLine, DragRect"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotColormapScaleFlags_None",
+      "docComment" : "default",
+      "qualType" : "ImPlotColormapScaleFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotColormapScaleFlags_NoLabel",
+      "docComment" : "the colormap axis label will not be displayed",
+      "qualType" : "ImPlotColormapScaleFlags_",
+      "order" : 1,
+      "value" : "1 << 0",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotColormapScaleFlags_Opposite",
+      "docComment" : "render the colormap label and tick labels on the opposite side",
+      "qualType" : "ImPlotColormapScaleFlags_",
+      "order" : 2,
+      "value" : "1 << 1",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotColormapScaleFlags_Invert",
+      "docComment" : "invert the colormap bar and axis scale (this only affects rendering; if you only want to reverse the scale mapping, make scale_min > scale_max)",
+      "qualType" : "ImPlotColormapScaleFlags_",
+      "order" : 3,
+      "value" : "1 << 2",
+      "evaluatedValue" : 4
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImPlotTextFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Options for DragPoint, DragLine, DragRect"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotTextFlags_None",
+      "docComment" : "default",
+      "qualType" : "ImPlotTextFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImPlotTextFlags_Vertical",
+      "docComment" : "text will be rendered vertically",
+      "qualType" : "ImPlotTextFlags_",
+      "order" : 1,
+      "value" : "1 << 10",
+      "evaluatedValue" : 1
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
     "name" : "ImPlotBarGroupsFlags_",
     "decls" : [ {
       "@type" : "AstFullComment",
@@ -4647,53 +4782,6 @@
           "decls" : [ {
             "@type" : "AstTextComment",
             "text" : " Sample a color from the current colormap given t between 0 and 1."
-          } ]
-        } ]
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "ColormapScale",
-      "resultType" : "void",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "label",
-        "qualType" : "const char *",
-        "desugaredQualType" : "const char *"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "scale_min",
-        "qualType" : "double",
-        "desugaredQualType" : "double"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "scale_max",
-        "qualType" : "double",
-        "desugaredQualType" : "double"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "size",
-        "qualType" : "const int &",
-        "desugaredQualType" : "const int &",
-        "defaultValue" : "ImVec2(0,0)"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "cmap",
-        "qualType" : "ImPlotColormap",
-        "desugaredQualType" : "int",
-        "defaultValue" : "IMPLOT_AUTO"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "format",
-        "qualType" : "const char *",
-        "desugaredQualType" : "const char *",
-        "defaultValue" : "\"%g\""
-      }, {
-        "@type" : "AstFullComment",
-        "decls" : [ {
-          "@type" : "AstParagraphComment",
-          "decls" : [ {
-            "@type" : "AstTextComment",
-            "text" : " Shows a vertical color scale with linear spaced ticks using the specified color map. Use double hashes to hide label (e.g. \"##NoLabel\")."
           } ]
         } ]
       } ]

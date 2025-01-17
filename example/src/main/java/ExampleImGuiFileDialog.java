@@ -39,7 +39,8 @@ public class ExampleImGuiFileDialog {
             }
 
             if (ImGui.button("Browse File")) {
-                ImGuiFileDialog.openModal("browse-key", "Choose File", ".java", ".", callback, 250, 1, 42, ImGuiFileDialogFlags.None);
+                // FIXME
+                //ImGuiFileDialog.openModal("browse-key", "Choose File", ".java", ".", callback, 250, 1, 42, ImGuiFileDialogFlags.None);
             }
 
             if (ImGuiFileDialog.display("browse-key", ImGuiFileDialogFlags.None, 200, 400, 800, 600)) {
@@ -51,7 +52,7 @@ public class ExampleImGuiFileDialog {
             }
 
             if (ImGui.button("Browse Folder")) {
-                ImGuiFileDialog.openDialog("browse-folder-key", "Choose Folder", null, ".", "", callback, 1, 7L, ImGuiFileDialogFlags.None);
+                ImGuiFileDialog.openDialog("browse-folder-key", "Choose Folder", null, 0);
             }
 
             if (ImGuiFileDialog.display("browse-folder-key", ImGuiFileDialogFlags.None, 200, 400, 800, 600)) {

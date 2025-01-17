@@ -829,8 +829,8 @@ public class ImGuiImplGlfw {
         data.time = 0.0;
         data.wantUpdateMonitors = true;
 
-        io.setGetClipboardTextFn(getClipboardTextFn());
-        io.setSetClipboardTextFn(setClipboardTextFn());
+        //io.setGetClipboardTextFn(getClipboardTextFn());
+        //io.setSetClipboardTextFn(setClipboardTextFn());
 
         // Create mouse cursors
         // (By design, on X11 cursors are user configurable and some cursors may be missing. When a cursor doesn't exist,

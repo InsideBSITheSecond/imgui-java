@@ -102,7 +102,7 @@ public final class ImGuiButtonFlags {
     public static final int FlattenChildren = 2048;
 
     /**
-     * require previous frame HoveredId to either match id or be null before being usable, use along with SetItemAllowOverlap()
+     * require previous frame HoveredId to either match id or be null before being usable, use along with SetNextItemAllowOverlap()
      *
      * <p>Definition: {@code 1 << 12}
      */

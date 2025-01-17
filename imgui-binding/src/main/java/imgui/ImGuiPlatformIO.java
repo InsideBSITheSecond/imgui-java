@@ -1,13 +1,7 @@
 package imgui;
 
 import imgui.binding.ImGuiStruct;
-import imgui.callback.ImPlatformFuncViewport;
-import imgui.callback.ImPlatformFuncViewportFloat;
-import imgui.callback.ImPlatformFuncViewportImVec2;
-import imgui.callback.ImPlatformFuncViewportString;
-import imgui.callback.ImPlatformFuncViewportSuppBoolean;
-import imgui.callback.ImPlatformFuncViewportSuppFloat;
-import imgui.callback.ImPlatformFuncViewportSuppImVec2;
+import imgui.callback.*;
 
 /**
  * -----------------------------------------------------------------------------
@@ -537,4 +531,22 @@ public final class ImGuiPlatformIO extends ImGuiStruct {
     private native long nGetViewports(int idx); /*
         return (uintptr_t)IMGUI_PLATFORM_IO->Viewports[idx];
     */
+
+    // Optional: Access OS clipboard
+    // (default to use native Win32 clipIsMouseDraggingboard on Windows, otherwise uses a private clipboard. Override to access OS clipboard on other architectures)
+
+    /*JNI
+        jobject _setClipboardTextCallback = NULL;
+        jobject _getClipboardTextCallback = NULL;
+
+        void setClipboardTextStub(ImGuiContext* ctx, const char* text) {
+            Jni::CallImStrConsumer(Jni::GetEnv(), _setClipboardTextCallback, text);
+        }
+
+        const char* getClipboardTextStub(ImGuiContext* ctx) {
+            JNIEnv* env = Jni::GetEnv();
+            jstring jstr = Jni::CallImStrSupplier(env, _getClipboardTextCallback);
+            return env->GetStringUTFChars(jstr, 0);
+        }
+     */
 }

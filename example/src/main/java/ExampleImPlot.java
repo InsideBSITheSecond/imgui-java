@@ -54,10 +54,10 @@ public class ExampleImPlot {
                     ImPlot.endPlot();
                 }
 
-                if (ImPlot.beginPlot("Example Piechart")) {
+                /*if (ImPlot.beginPlot("Example Piechart")) {
                     ImPlot.plotPieChart(new String[]{"1", "2", "3", "4", "5", "6"}, xs, .5, .5, .4);
                     ImPlot.endPlot();
-                }
+                }*/
 
                 if (ImPlot.beginPlot("Example Heatmap")) {
                     ImPlot.plotHeatmap("Heatmap", new int[]{1, 3, 6, 2, 8, 5, 4, 3}, 2, 4, 0, 0, "%d", new ImPlotPoint(0, 0), new ImPlotPoint(10, 10));

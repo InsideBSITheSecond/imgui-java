@@ -10,6 +10,10 @@ import imgui.binding.annotation.ArgValue;
 import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.OptArg;
+import imgui.flag.ImGuiButtonFlags;
+import imgui.flag.ImGuiDir;
+import imgui.internal.flag.ImGuiFocusRequestFlags;
+import imgui.internal.flag.ImGuiItemFlags;
 import imgui.type.ImBoolean;
 import imgui.type.ImFloat;
 import imgui.type.ImInt;
@@ -93,7 +97,7 @@ public final class ImGui extends imgui.ImGui {
     public static native void FocusWindow(ImGuiWindow window);
 
     @BindingMethod
-    public static native void FocusTopMostWindowUnderOne(ImGuiWindow underThisWindow, ImGuiWindow ignoreWindow);
+    public static native void FocusTopMostWindowUnderOne(ImGuiWindow underThisWindow, ImGuiWindow ignoreWindow, ImGuiViewport filterViewport, int flags);
 
     @BindingMethod
     public static native void BringWindowToFocusFront(ImGuiWindow window);
@@ -244,7 +248,7 @@ public final class ImGui extends imgui.ImGui {
     // TODO: ItemAdd
 
     @BindingMethod
-    public static native boolean ItemHoverable(ImRect bb, int id);
+    public static native boolean ItemHoverable(ImRect bb, int id, @ArgValue(reinterpretCast = "ImGuiItemFlags") int flags);
 
     @BindingMethod
     public static native boolean IsClippedEx(ImRect bb, int id);
@@ -263,9 +267,6 @@ public final class ImGui extends imgui.ImGui {
 
     @BindingMethod
     public static native boolean IsItemToggledSelection();
-
-    @BindingMethod
-    public static native ImVec2 GetContentRegionMaxAbs();
 
     // TODO: ShrinkWidths
 
@@ -324,7 +325,7 @@ public final class ImGui extends imgui.ImGui {
      * Create 2 child nodes in this parent node.
      */
     @BindingMethod
-    public static native int DockBuilderSplitNode(int nodeId, int splitDir, float sizeRatioForNodeAtDir, @ArgValue(reinterpretCast = "ImGuiID*") ImInt outIdAtDir, @ArgValue(reinterpretCast = "ImGuiID*") ImInt outIdAtOppositeDir);
+    public static native int DockBuilderSplitNode(int nodeId, @ArgValue(staticCast = "ImGuiDir") int splitDir, float sizeRatioForNodeAtDir, @ArgValue(reinterpretCast = "ImGuiID*") ImInt outIdAtDir, @ArgValue(reinterpretCast = "ImGuiID*") ImInt outIdAtOppositeDir);
 
     // TODO DockBuilderCopyDockSpace, DockBuilderCopyNode
 
@@ -353,7 +354,7 @@ public final class ImGui extends imgui.ImGui {
     public static native void Scrollbar(@ArgValue(staticCast = "ImGuiAxis") int axis);
 
     @BindingMethod
-    public static native boolean ImageButtonEx(@ArgValue(callPrefix = "(ImGuiID)") int id, @ArgValue(callPrefix = "(ImTextureID)(uintptr_t)") long userTextureId, ImVec2 size, ImVec2 uv0, ImVec2 uv1, ImVec2 padding, ImVec4 bgCol, ImVec4 tintCol);
+    public static native boolean ImageButtonEx(@ArgValue(callPrefix = "(ImGuiID)") int id, @ArgValue(callPrefix = "(ImTextureID)(uintptr_t)") long userTextureId, ImVec2 size, ImVec2 uv0, ImVec2 uv1, ImVec4 bgCol, ImVec4 tintCol, int flags);
 
     @BindingMethod
     public static native void SeparatorEx(@ArgValue(staticCast = "ImGuiSeparatorFlags_") int imGuiSeparatorFlags);
