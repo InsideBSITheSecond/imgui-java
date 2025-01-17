@@ -1,6 +1,7 @@
 package imgui;
 
 import imgui.binding.ImGuiStructDestroyable;
+import imgui.flag.ImGuiDir;
 
 /**
  * You may modify the ImGui::GetStyle() main instance during initialization and before NewFrame().
@@ -303,37 +304,21 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowTitleAlign = value;
     */
 
-    /**
-     * Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
-     */
-    public int getWindowMenuButtonPosition() {
-        return nGetWindowMenuButtonPosition();
-    }
-
-    /**
-     * Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
-     */
-    public void setWindowMenuButtonPosition(final int value) {
-        nSetWindowMenuButtonPosition(value);
-    }
-
-    private native int nGetWindowMenuButtonPosition(); /*
-        return THIS->WindowMenuButtonPosition;
-    */
-
-    private native void nSetWindowMenuButtonPosition(int value); /*
-        THIS->WindowMenuButtonPosition = value;
-    */
+    // FIXME
+    //public int WindowMenuButtonPosition;
 
     /**
      * Radius of child window corners rounding. Set to 0.0f to have rectangular windows.
+     */
+    /**
+     * Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
      */
     public float getChildRounding() {
         return nGetChildRounding();
     }
 
     /**
-     * Radius of child window corners rounding. Set to 0.0f to have rectangular windows.
+     * Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
      */
     public void setChildRounding(final float value) {
         nSetChildRounding(value);
@@ -990,30 +975,14 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->TabMinWidthForCloseButton = value;
     */
 
-    /**
-     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
-     */
-    public int getColorButtonPosition() {
-        return nGetColorButtonPosition();
-    }
-
-    /**
-     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
-     */
-    public void setColorButtonPosition(final int value) {
-        nSetColorButtonPosition(value);
-    }
-
-    private native int nGetColorButtonPosition(); /*
-        return THIS->ColorButtonPosition;
-    */
-
-    private native void nSetColorButtonPosition(int value); /*
-        THIS->ColorButtonPosition = value;
-    */
+    // FIXME
+    //public int ColorButtonPosition;
 
     /**
      * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     */
+    /**
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public ImVec2 getButtonTextAlign() {
         final ImVec2 dst = new ImVec2();
@@ -1022,35 +991,35 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
     }
 
     /**
-     * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public float getButtonTextAlignX() {
         return nGetButtonTextAlignX();
     }
 
     /**
-     * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public float getButtonTextAlignY() {
         return nGetButtonTextAlignY();
     }
 
     /**
-     * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public void getButtonTextAlign(final ImVec2 dst) {
         nGetButtonTextAlign(dst);
     }
 
     /**
-     * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public void setButtonTextAlign(final ImVec2 value) {
         nSetButtonTextAlign(value.x, value.y);
     }
 
     /**
-     * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
+     * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
     public void setButtonTextAlign(final float valueX, final float valueY) {
         nSetButtonTextAlign(valueX, valueY);

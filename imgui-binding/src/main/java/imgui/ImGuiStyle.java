@@ -5,6 +5,7 @@ import imgui.binding.annotation.BindingField;
 import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.TypeArray;
+import imgui.flag.ImGuiDir;
 
 /**
  * You may modify the ImGui::GetStyle() main instance during initialization and before NewFrame().
@@ -81,8 +82,9 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
     /**
      * Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
      */
-    @BindingField
-    public int WindowMenuButtonPosition;
+    // FIXME
+    //@BindingField
+    //public int WindowMenuButtonPosition;
 
     /**
      * Radius of child window corners rounding. Set to 0.0f to have rectangular windows.
@@ -215,8 +217,9 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
     /**
      * Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
      */
-    @BindingField
-    public int ColorButtonPosition;
+    // FIXME
+    //@BindingField
+    //public int ColorButtonPosition;
 
     /**
      * Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).

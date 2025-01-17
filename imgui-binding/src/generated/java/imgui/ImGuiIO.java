@@ -931,40 +931,6 @@ public final class ImGuiIO extends ImGuiStruct {
         if (value != NULL) env->ReleaseStringUTFChars(obj_value, value);
     */
 
-    // Optional: Access OS clipboard
-    // (default to use native Win32 clipIsMouseDraggingboard on Windows, otherwise uses a private clipboard. Override to access OS clipboard on other architectures)
-
-    /*JNI
-        jobject _setClipboardTextCallback = NULL;
-        jobject _getClipboardTextCallback = NULL;
-
-        void setClipboardTextStub(void* userData, const char* text) {
-            Jni::CallImStrConsumer(Jni::GetEnv(), _setClipboardTextCallback, text);
-        }
-
-        const char* getClipboardTextStub(void* user_data) {
-            JNIEnv* env = Jni::GetEnv();
-            jstring jstr = Jni::CallImStrSupplier(env, _getClipboardTextCallback);
-            return env->GetStringUTFChars(jstr, 0);
-        }
-     */
-
-    public native void setSetClipboardTextFn(ImStrConsumer setClipboardTextCallback); /*
-        if (_setClipboardTextCallback != NULL) {
-            env->DeleteGlobalRef(_setClipboardTextCallback);
-        }
-        _setClipboardTextCallback = env->NewGlobalRef(setClipboardTextCallback);
-        THIS->SetClipboardTextFn = setClipboardTextStub;
-    */
-
-    public native void setGetClipboardTextFn(ImStrSupplier getClipboardTextCallback); /*
-        if (_getClipboardTextCallback != NULL) {
-            env->DeleteGlobalRef(_getClipboardTextCallback);
-        }
-        _getClipboardTextCallback = env->NewGlobalRef(getClipboardTextCallback);
-        THIS->GetClipboardTextFn = getClipboardTextStub;
-    */
-
     //------------------------------------------------------------------
     // Input - Call before calling NewFrame()
     //------------------------------------------------------------------
@@ -1114,17 +1080,6 @@ public final class ImGuiIO extends ImGuiStruct {
 
     private native void nSetAppAcceptingEvents(boolean acceptingEvents); /*
         THIS->SetAppAcceptingEvents(acceptingEvents);
-    */
-
-    /**
-     * [Internal] Clear the text input buffer manually
-     */
-    public void clearInputCharacters() {
-        nClearInputCharacters();
-    }
-
-    private native void nClearInputCharacters(); /*
-        THIS->ClearInputCharacters();
     */
 
     /**
@@ -1425,28 +1380,6 @@ public final class ImGuiIO extends ImGuiStruct {
     */
 
     /**
-     * Number of active allocations, updated by MemAlloc/MemFree based on current context. May be off if you have multiple imgui contexts.
-     */
-    public int getMetricsActiveAllocations() {
-        return nGetMetricsActiveAllocations();
-    }
-
-    /**
-     * Number of active allocations, updated by MemAlloc/MemFree based on current context. May be off if you have multiple imgui contexts.
-     */
-    public void setMetricsActiveAllocations(final int value) {
-        nSetMetricsActiveAllocations(value);
-    }
-
-    private native int nGetMetricsActiveAllocations(); /*
-        return THIS->MetricsActiveAllocations;
-    */
-
-    private native void nSetMetricsActiveAllocations(int value); /*
-        THIS->MetricsActiveAllocations = value;
-    */
-
-    /**
      * Mouse delta. Note that this is zero if either current or previous position are invalid (-FLT_MAX,-FLT_MAX), so a disappearing/reappearing mouse won't have a huge delta.
      */
     public ImVec2 getMouseDelta() {
@@ -1507,125 +1440,6 @@ public final class ImGuiIO extends ImGuiStruct {
         THIS->MouseDelta = value;
     */
 
-    /**
-     * Map of indices into the KeysDown[512] entries array which represent your "native" keyboard state.
-     */
-    @Deprecated
-    public int[] getKeyMap() {
-        return nGetKeyMap();
-    }
-
-    /**
-     * Map of indices into the KeysDown[512] entries array which represent your "native" keyboard state.
-     */
-    @Deprecated
-    public int getKeyMap(final int idx) {
-        return nGetKeyMap(idx);
-    }
-
-    /**
-     * Map of indices into the KeysDown[512] entries array which represent your "native" keyboard state.
-     */
-    @Deprecated
-    public void setKeyMap(final int[] value) {
-        nSetKeyMap(value);
-    }
-
-    /**
-     * Map of indices into the KeysDown[512] entries array which represent your "native" keyboard state.
-     */
-    @Deprecated
-    public void setKeyMap(final int idx, final int value) {
-        nSetKeyMap(idx, value);
-    }
-
-    @Deprecated
-    private native int[] nGetKeyMap(); /*
-        jint jBuf[ImGuiKey_COUNT];
-        for (int i = 0; i < ImGuiKey_COUNT; i++)
-            jBuf[i] = THIS->KeyMap[i];
-        jintArray result = env->NewIntArray(ImGuiKey_COUNT);
-        env->SetIntArrayRegion(result, 0, ImGuiKey_COUNT, jBuf);
-        return result;
-    */
-
-    @Deprecated
-    private native int nGetKeyMap(int idx); /*
-        return THIS->KeyMap[idx];
-    */
-
-    @Deprecated
-    private native void nSetKeyMap(int[] value); /*
-        for (int i = 0; i < ImGuiKey_COUNT; i++)
-            THIS->KeyMap[i] = value[i];
-    */
-
-    @Deprecated
-    private native int nSetKeyMap(int idx, int value); /*
-        THIS->KeyMap[idx] = value;
-    */
-
-    /**
-     * Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys).
-     * This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-     */
-    @Deprecated
-    public boolean[] getKeysDown() {
-        return nGetKeysDown();
-    }
-
-    /**
-     * Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys).
-     * This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-     */
-    @Deprecated
-    public boolean getKeysDown(final int idx) {
-        return nGetKeysDown(idx);
-    }
-
-    /**
-     * Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys).
-     * This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-     */
-    @Deprecated
-    public void setKeysDown(final boolean[] value) {
-        nSetKeysDown(value);
-    }
-
-    /**
-     * Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys).
-     * This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-     */
-    @Deprecated
-    public void setKeysDown(final int idx, final boolean value) {
-        nSetKeysDown(idx, value);
-    }
-
-    @Deprecated
-    private native boolean[] nGetKeysDown(); /*
-        jboolean jBuf[ImGuiKey_COUNT];
-        for (int i = 0; i < ImGuiKey_COUNT; i++)
-            jBuf[i] = THIS->KeysDown[i];
-        jbooleanArray result = env->NewBooleanArray(ImGuiKey_COUNT);
-        env->SetBooleanArrayRegion(result, 0, ImGuiKey_COUNT, jBuf);
-        return result;
-    */
-
-    @Deprecated
-    private native boolean nGetKeysDown(int idx); /*
-        return THIS->KeysDown[idx];
-    */
-
-    @Deprecated
-    private native void nSetKeysDown(boolean[] value); /*
-        for (int i = 0; i < ImGuiKey_COUNT; i++)
-            THIS->KeysDown[i] = value[i];
-    */
-
-    @Deprecated
-    private native boolean nSetKeysDown(int idx, boolean value); /*
-        THIS->KeysDown[idx] = value;
-    */
 
     //------------------------------------------------------------------
     // [Internal] Dear ImGui will maintain those fields. Forward compatibility not guaranteed!
@@ -1904,56 +1718,6 @@ public final class ImGuiIO extends ImGuiStruct {
         THIS->KeySuper = value;
     */
 
-    /**
-     * Gamepad inputs. Cleared back to zero by EndFrame(). Keyboard keys will be auto-mapped and be written here by NewFrame().
-     */
-    public float[] getNavInputs() {
-        return nGetNavInputs();
-    }
-
-    /**
-     * Gamepad inputs. Cleared back to zero by EndFrame(). Keyboard keys will be auto-mapped and be written here by NewFrame().
-     */
-    public float getNavInputs(final int idx) {
-        return nGetNavInputs(idx);
-    }
-
-    /**
-     * Gamepad inputs. Cleared back to zero by EndFrame(). Keyboard keys will be auto-mapped and be written here by NewFrame().
-     */
-    public void setNavInputs(final float[] value) {
-        nSetNavInputs(value);
-    }
-
-    /**
-     * Gamepad inputs. Cleared back to zero by EndFrame(). Keyboard keys will be auto-mapped and be written here by NewFrame().
-     */
-    public void setNavInputs(final int idx, final float value) {
-        nSetNavInputs(idx, value);
-    }
-
-    private native float[] nGetNavInputs(); /*
-        jfloat jBuf[512];
-        for (int i = 0; i < 512; i++)
-            jBuf[i] = THIS->NavInputs[i];
-        jfloatArray result = env->NewFloatArray(512);
-        env->SetFloatArrayRegion(result, 0, 512, jBuf);
-        return result;
-    */
-
-    private native float nGetNavInputs(int idx); /*
-        return THIS->NavInputs[idx];
-    */
-
-    private native void nSetNavInputs(float[] value); /*
-        for (int i = 0; i < 512; i++)
-            THIS->NavInputs[i] = value[i];
-    */
-
-    private native float nSetNavInputs(int idx, float value); /*
-        THIS->NavInputs[idx] = value;
-    */
-
     // Other state maintained from data above + IO function calls
 
     /**
@@ -1976,28 +1740,6 @@ public final class ImGuiIO extends ImGuiStruct {
 
     private native void nSetKeyMods(int value); /*
         THIS->KeyMods = value;
-    */
-
-    /**
-     * Key state for all known keys. Use IsKeyXXX() functions to access this.
-     */
-    public ImGuiKeyData[] getKeysData() {
-        return nGetKeysData();
-    }
-
-    /**
-     * Key state for all known keys. Use IsKeyXXX() functions to access this.
-     */
-    public void setKeysData(final ImGuiKeyData[] value) {
-        nSetKeysData(value);
-    }
-
-    private native ImGuiKeyData[] nGetKeysData(); /*
-        return Jni::NewImGuiKeyDataArray(env, THIS->KeysData, ImGuiKey_KeysData_SIZE);
-    */
-
-    private native void nSetKeysData(ImGuiKeyData[] value); /*
-        Jni::ImGuiKeyDataArrayCpy(env, value, THIS->KeysData, ImGuiKey_KeysData_SIZE);
     */
 
     /**
@@ -2677,82 +2419,6 @@ public final class ImGuiIO extends ImGuiStruct {
         THIS->MouseDragMaxDistanceSqr[idx] = value;
     */
 
-    public float[] getNavInputsDownDuration() {
-        return nGetNavInputsDownDuration();
-    }
-
-    public float getNavInputsDownDuration(final int idx) {
-        return nGetNavInputsDownDuration(idx);
-    }
-
-    public void setNavInputsDownDuration(final float[] value) {
-        nSetNavInputsDownDuration(value);
-    }
-
-    public void setNavInputsDownDuration(final int idx, final float value) {
-        nSetNavInputsDownDuration(idx, value);
-    }
-
-    private native float[] nGetNavInputsDownDuration(); /*
-        jfloat jBuf[ImGuiNavInput_COUNT];
-        for (int i = 0; i < ImGuiNavInput_COUNT; i++)
-            jBuf[i] = THIS->NavInputsDownDuration[i];
-        jfloatArray result = env->NewFloatArray(ImGuiNavInput_COUNT);
-        env->SetFloatArrayRegion(result, 0, ImGuiNavInput_COUNT, jBuf);
-        return result;
-    */
-
-    private native float nGetNavInputsDownDuration(int idx); /*
-        return THIS->NavInputsDownDuration[idx];
-    */
-
-    private native void nSetNavInputsDownDuration(float[] value); /*
-        for (int i = 0; i < ImGuiNavInput_COUNT; i++)
-            THIS->NavInputsDownDuration[i] = value[i];
-    */
-
-    private native float nSetNavInputsDownDuration(int idx, float value); /*
-        THIS->NavInputsDownDuration[idx] = value;
-    */
-
-    public float[] getNavInputsDownDurationPrev() {
-        return nGetNavInputsDownDurationPrev();
-    }
-
-    public float getNavInputsDownDurationPrev(final int idx) {
-        return nGetNavInputsDownDurationPrev(idx);
-    }
-
-    public void setNavInputsDownDurationPrev(final float[] value) {
-        nSetNavInputsDownDurationPrev(value);
-    }
-
-    public void setNavInputsDownDurationPrev(final int idx, final float value) {
-        nSetNavInputsDownDurationPrev(idx, value);
-    }
-
-    private native float[] nGetNavInputsDownDurationPrev(); /*
-        jfloat jBuf[ImGuiNavInput_COUNT];
-        for (int i = 0; i < ImGuiNavInput_COUNT; i++)
-            jBuf[i] = THIS->NavInputsDownDurationPrev[i];
-        jfloatArray result = env->NewFloatArray(ImGuiNavInput_COUNT);
-        env->SetFloatArrayRegion(result, 0, ImGuiNavInput_COUNT, jBuf);
-        return result;
-    */
-
-    private native float nGetNavInputsDownDurationPrev(int idx); /*
-        return THIS->NavInputsDownDurationPrev[idx];
-    */
-
-    private native void nSetNavInputsDownDurationPrev(float[] value); /*
-        for (int i = 0; i < ImGuiNavInput_COUNT; i++)
-            THIS->NavInputsDownDurationPrev[i] = value[i];
-    */
-
-    private native float nSetNavInputsDownDurationPrev(int idx, float value); /*
-        THIS->NavInputsDownDurationPrev[idx] = value;
-    */
-
     /**
      * Touch/Pen pressure (0.0f to 1.0f, should be {@code >}0.0f only when MouseDown[0] == true). Helper storage currently unused by Dear ImGui.
      */
@@ -2795,50 +2461,6 @@ public final class ImGuiIO extends ImGuiStruct {
 
     private native boolean nGetAppAcceptingEvents(); /*
         return THIS->AppAcceptingEvents;
-    */
-
-    /**
-     * -1: unknown, 0: using AddKeyEvent(), 1: using legacy io.KeysDown[]
-     */
-    public short getBackendUsingLegacyKeyArrays() {
-        return nGetBackendUsingLegacyKeyArrays();
-    }
-
-    /**
-     * -1: unknown, 0: using AddKeyEvent(), 1: using legacy io.KeysDown[]
-     */
-    public void setBackendUsingLegacyKeyArrays(final short value) {
-        nSetBackendUsingLegacyKeyArrays(value);
-    }
-
-    private native short nGetBackendUsingLegacyKeyArrays(); /*
-        return THIS->BackendUsingLegacyKeyArrays;
-    */
-
-    private native void nSetBackendUsingLegacyKeyArrays(short value); /*
-        THIS->BackendUsingLegacyKeyArrays = value;
-    */
-
-    /**
-     * 0: using AddKeyAnalogEvent(), 1: writing to legacy io.NavInputs[] directly
-     */
-    public boolean getBackendUsingLegacyNavInputArray() {
-        return nGetBackendUsingLegacyNavInputArray();
-    }
-
-    /**
-     * 0: using AddKeyAnalogEvent(), 1: writing to legacy io.NavInputs[] directly
-     */
-    public void setBackendUsingLegacyNavInputArray(final boolean value) {
-        nSetBackendUsingLegacyNavInputArray(value);
-    }
-
-    private native boolean nGetBackendUsingLegacyNavInputArray(); /*
-        return THIS->BackendUsingLegacyNavInputArray;
-    */
-
-    private native void nSetBackendUsingLegacyNavInputArray(boolean value); /*
-        THIS->BackendUsingLegacyNavInputArray = value;
     */
 
     /**

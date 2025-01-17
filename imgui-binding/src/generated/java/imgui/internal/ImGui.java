@@ -6,6 +6,10 @@ import imgui.ImGuiPlatformMonitor;
 import imgui.ImGuiViewport;
 import imgui.ImVec2;
 import imgui.ImVec4;
+import imgui.flag.ImGuiButtonFlags;
+import imgui.flag.ImGuiDir;
+import imgui.internal.flag.ImGuiFocusRequestFlags;
+import imgui.internal.flag.ImGuiItemFlags;
 import imgui.type.ImBoolean;
 import imgui.type.ImFloat;
 import imgui.type.ImInt;
@@ -279,12 +283,12 @@ public final class ImGui extends imgui.ImGui {
         ImGui::FocusWindow(reinterpret_cast<ImGuiWindow*>(window));
     */
 
-    public static void focusTopMostWindowUnderOne(final ImGuiWindow underThisWindow, final ImGuiWindow ignoreWindow) {
-        nFocusTopMostWindowUnderOne(underThisWindow.ptr, ignoreWindow.ptr);
+    public static void focusTopMostWindowUnderOne(final ImGuiWindow underThisWindow, final ImGuiWindow ignoreWindow, final ImGuiViewport filterViewport, final int flags) {
+        nFocusTopMostWindowUnderOne(underThisWindow.ptr, ignoreWindow.ptr, filterViewport.ptr, flags);
     }
 
-    private static native void nFocusTopMostWindowUnderOne(long underThisWindow, long ignoreWindow); /*
-        ImGui::FocusTopMostWindowUnderOne(reinterpret_cast<ImGuiWindow*>(underThisWindow), reinterpret_cast<ImGuiWindow*>(ignoreWindow));
+    private static native void nFocusTopMostWindowUnderOne(long underThisWindow, long ignoreWindow, long filterViewport, int flags); /*
+        ImGui::FocusTopMostWindowUnderOne(reinterpret_cast<ImGuiWindow*>(underThisWindow), reinterpret_cast<ImGuiWindow*>(ignoreWindow), reinterpret_cast<ImGuiViewport*>(filterViewport), flags);
     */
 
     public static void bringWindowToFocusFront(final ImGuiWindow window) {
@@ -785,16 +789,16 @@ public final class ImGui extends imgui.ImGui {
 
     // TODO: ItemAdd
 
-    public static boolean itemHoverable(final ImRect bb, final int id) {
-        return nItemHoverable(bb.min.x, bb.min.y, bb.max.x, bb.max.y, id);
+    public static boolean itemHoverable(final ImRect bb, final int id, final int flags) {
+        return nItemHoverable(bb.min.x, bb.min.y, bb.max.x, bb.max.y, id, flags);
     }
 
-    public static boolean itemHoverable(final float bbMinX, final float bbMinY, final float bbMaxX, final float bbMaxY, final int id) {
-        return nItemHoverable(bbMinX, bbMinY, bbMaxX, bbMaxY, id);
+    public static boolean itemHoverable(final float bbMinX, final float bbMinY, final float bbMaxX, final float bbMaxY, final int id, final int flags) {
+        return nItemHoverable(bbMinX, bbMinY, bbMaxX, bbMaxY, id, flags);
     }
 
-    private static native boolean nItemHoverable(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id); /*
-        return ImGui::ItemHoverable(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id);
+    private static native boolean nItemHoverable(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int flags); /*
+        return ImGui::ItemHoverable(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, reinterpret_cast<ImGuiItemFlags>(flags));
     */
 
     public static boolean isClippedEx(final ImRect bb, final int id) {
@@ -894,36 +898,6 @@ public final class ImGui extends imgui.ImGui {
 
     private static native boolean nIsItemToggledSelection(); /*
         return ImGui::IsItemToggledSelection();
-    */
-
-    public static ImVec2 getContentRegionMaxAbs() {
-        final ImVec2 dst = new ImVec2();
-        nGetContentRegionMaxAbs(dst);
-        return dst;
-    }
-
-    public static float getContentRegionMaxAbsX() {
-        return nGetContentRegionMaxAbsX();
-    }
-
-    public static float getContentRegionMaxAbsY() {
-        return nGetContentRegionMaxAbsY();
-    }
-
-    public static void getContentRegionMaxAbs(final ImVec2 dst) {
-        nGetContentRegionMaxAbs(dst);
-    }
-
-    private static native void nGetContentRegionMaxAbs(ImVec2 dst); /*
-        Jni::ImVec2Cpy(env, ImGui::GetContentRegionMaxAbs(), dst);
-    */
-
-    private static native float nGetContentRegionMaxAbsX(); /*
-        return ImGui::GetContentRegionMaxAbs().x;
-    */
-
-    private static native float nGetContentRegionMaxAbsY(); /*
-        return ImGui::GetContentRegionMaxAbs().y;
     */
 
     // TODO: ShrinkWidths
@@ -1080,7 +1054,7 @@ public final class ImGui extends imgui.ImGui {
     private static native int nDockBuilderSplitNode(int nodeId, int splitDir, float sizeRatioForNodeAtDir, int[] obj_outIdAtDir, int[] obj_outIdAtOppositeDir); /*MANUAL
         auto outIdAtDir = obj_outIdAtDir == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_outIdAtDir, JNI_FALSE);
         auto outIdAtOppositeDir = obj_outIdAtOppositeDir == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_outIdAtOppositeDir, JNI_FALSE);
-        auto _result = ImGui::DockBuilderSplitNode(nodeId, splitDir, sizeRatioForNodeAtDir, reinterpret_cast<ImGuiID*>((outIdAtDir != NULL ? &outIdAtDir[0] : NULL)), reinterpret_cast<ImGuiID*>((outIdAtOppositeDir != NULL ? &outIdAtOppositeDir[0] : NULL)));
+        auto _result = ImGui::DockBuilderSplitNode(nodeId, static_cast<ImGuiDir>(splitDir), sizeRatioForNodeAtDir, reinterpret_cast<ImGuiID*>((outIdAtDir != NULL ? &outIdAtDir[0] : NULL)), reinterpret_cast<ImGuiID*>((outIdAtOppositeDir != NULL ? &outIdAtOppositeDir[0] : NULL)));
         if (outIdAtDir != NULL) env->ReleasePrimitiveArrayCritical(obj_outIdAtDir, outIdAtDir, JNI_FALSE);
         if (outIdAtOppositeDir != NULL) env->ReleasePrimitiveArrayCritical(obj_outIdAtOppositeDir, outIdAtOppositeDir, JNI_FALSE);
         return _result;
@@ -1253,22 +1227,21 @@ public final class ImGui extends imgui.ImGui {
         ImGui::Scrollbar(static_cast<ImGuiAxis>(axis));
     */
 
-    public static boolean imageButtonEx(final int id, final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final ImVec2 padding, final ImVec4 bgCol, final ImVec4 tintCol) {
-        return nImageButtonEx(id, userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, padding.x, padding.y, bgCol.x, bgCol.y, bgCol.z, bgCol.w, tintCol.x, tintCol.y, tintCol.z, tintCol.w);
+    public static boolean imageButtonEx(final int id, final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final ImVec4 bgCol, final ImVec4 tintCol, final int flags) {
+        return nImageButtonEx(id, userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, bgCol.x, bgCol.y, bgCol.z, bgCol.w, tintCol.x, tintCol.y, tintCol.z, tintCol.w, flags);
     }
 
-    public static boolean imageButtonEx(final int id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final float paddingX, final float paddingY, final float bgColX, final float bgColY, final float bgColZ, final float bgColW, final float tintColX, final float tintColY, final float tintColZ, final float tintColW) {
-        return nImageButtonEx(id, userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, paddingX, paddingY, bgColX, bgColY, bgColZ, bgColW, tintColX, tintColY, tintColZ, tintColW);
+    public static boolean imageButtonEx(final int id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final float bgColX, final float bgColY, final float bgColZ, final float bgColW, final float tintColX, final float tintColY, final float tintColZ, final float tintColW, final int flags) {
+        return nImageButtonEx(id, userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, bgColX, bgColY, bgColZ, bgColW, tintColX, tintColY, tintColZ, tintColW, flags);
     }
 
-    private static native boolean nImageButtonEx(int id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, float paddingX, float paddingY, float bgColX, float bgColY, float bgColZ, float bgColW, float tintColX, float tintColY, float tintColZ, float tintColW); /*MANUAL
+    private static native boolean nImageButtonEx(int id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, float bgColX, float bgColY, float bgColZ, float bgColW, float tintColX, float tintColY, float tintColZ, float tintColW, int flags); /*MANUAL
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImVec2 uv0 = ImVec2(uv0X, uv0Y);
         ImVec2 uv1 = ImVec2(uv1X, uv1Y);
-        ImVec2 padding = ImVec2(paddingX, paddingY);
         ImVec4 bgCol = ImVec4(bgColX, bgColY, bgColZ, bgColW);
         ImVec4 tintCol = ImVec4(tintColX, tintColY, tintColZ, tintColW);
-        auto _result = ImGui::ImageButtonEx((ImGuiID)id, (ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, padding, bgCol, tintCol);
+        auto _result = ImGui::ImageButtonEx((ImGuiID)id, (ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, bgCol, tintCol, flags);
         return _result;
     */
 

@@ -22,4 +22,4 @@ shift 2
 # "$@" passes any additional arguments (like -D for macro definitions).
 # "$input_file" is the C++ source file to process.
 # The output is redirected and appended to the specified output file.
-clang++ -Xclang -ast-dump=json -fsyntax-only -fparse-all-comments -fmerge-all-constants "$@" "$input_file" >> "$output_file"
+clang++ -Xclang -ast-dump=json -fsyntax-only -fparse-all-comments -fopenmp -fmerge-all-constants "$@" "$input_file" >> "$output_file"

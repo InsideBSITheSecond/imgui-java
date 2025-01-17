@@ -248,7 +248,7 @@ public class ImGui {
      * Create Stack Tool window. hover items with mouse to query information about the source of their unique ID.
      */
     @BindingMethod
-    public static native void ShowStackToolWindow(@OptArg ImBoolean pOpen);
+    public static native void ShowIDStackToolWindow(@OptArg ImBoolean pOpen);
 
     /**
      * Create About window. display Dear ImGui version, credits and build/system information.
@@ -529,24 +529,6 @@ public class ImGui {
     @BindingMethod
     public static native ImVec2 GetContentRegionAvail();
 
-    /**
-     * Current content boundaries (typically window boundaries including scrolling, or current column boundaries), in windows coordinates
-     */
-    @BindingMethod
-    public static native ImVec2 GetContentRegionMax();
-
-    /**
-     * Content boundaries min for the full window (roughly (0,0)-Scroll), in window coordinates
-     */
-    @BindingMethod
-    public static native ImVec2 GetWindowContentRegionMin();
-
-    /**
-     * Content boundaries max for the full window (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     */
-    @BindingMethod
-    public static native ImVec2 GetWindowContentRegionMax();
-
     // Windows Scrolling
 
     /**
@@ -655,25 +637,6 @@ public class ImGui {
 
     @BindingMethod
     public static native void PopStyleVar(@OptArg int count);
-
-    /**
-     * Allow focusing using TAB/Shift-TAB, enabled by default but you can disable it for certain widgets
-     */
-    @BindingMethod
-    public static native void PushAllowKeyboardFocus(boolean allowKeyboardFocus);
-
-    @BindingMethod
-    public static native void PopAllowKeyboardFocus();
-
-    /**
-     * In 'repeat' mode, Button*() functions return repeated true in a typematic manner (using io.KeyRepeatDelay/io.KeyRepeatRate setting).
-     * Note that you can call IsItemActive() after any Button() to tell if the button is held in the current frame.
-     */
-    @BindingMethod
-    public static native void PushButtonRepeat(boolean repeat);
-
-    @BindingMethod
-    public static native void PopButtonRepeat();
 
     // Parameters stacks (current window)
 
@@ -1041,7 +1004,7 @@ public class ImGui {
      * Square button with an arrow shape
      */
     @BindingMethod
-    public static native boolean ArrowButton(String strId, int dir);
+    public static native boolean ArrowButton(String strId, @ArgValue(staticCast = "ImGuiDir") int dir);
 
     @BindingMethod
     public static native void Image(@ArgValue(callPrefix = "(ImTextureID)(uintptr_t)") long userTextureId, ImVec2 size, @OptArg ImVec2 uv0, @OptArg ImVec2 uv1, @OptArg ImVec4 tintCol, @OptArg ImVec4 borderCol);
@@ -1050,7 +1013,7 @@ public class ImGui {
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
     @BindingMethod
-    public static native boolean ImageButton(@ArgValue(callPrefix = "(ImTextureID)(uintptr_t)") long userTextureId, ImVec2 size, @OptArg ImVec2 uv0, @OptArg ImVec2 uv1, @OptArg(callValue = "-1") int framePadding, @OptArg ImVec4 bgCol, @OptArg ImVec4 tintCol);
+    public static native boolean ImageButton(String id, @ArgValue(callPrefix = "(ImTextureID)(uintptr_t)") long userTextureId, ImVec2 size, @OptArg ImVec2 uv0, @OptArg ImVec2 uv1, @OptArg ImVec4 bgCol, @OptArg ImVec4 tintCol);
 
     public static boolean checkbox(String label, boolean active) {
         return nCheckbox(label, active);
@@ -1637,7 +1600,7 @@ public class ImGui {
      * ~ Indent()+PushId(). Already called by TreeNode() when returning true, but you can call TreePush/TreePop yourself if desired.
      */
     @BindingMethod
-    public static native void TreePush(@OptArg @ArgValue(callPrefix = "(void*)") long ptrId);
+    public static native void TreePush(@ArgValue(callPrefix = "(void*)") long ptrId);
 
     /**
      * ~ Unindent()+PopId()
@@ -2140,7 +2103,7 @@ public class ImGui {
     public static native int DockSpace(int imGuiID, @OptArg(callValue = "ImVec2(0,0)") ImVec2 size, @OptArg(callValue = "0") int imGuiDockNodeFlags, @OptArg ImGuiWindowClass windowClass);
 
     @BindingMethod
-    public static native int DockSpaceOverViewport(@OptArg ImGuiViewport viewport, @OptArg(callValue = "0") int imGuiDockNodeFlags, @OptArg ImGuiWindowClass windowClass);
+    public static native int DockSpaceOverViewport(int imGuiID, @OptArg ImGuiViewport viewport, @OptArg(callValue = "0") int imGuiDockNodeFlags, @OptArg ImGuiWindowClass windowClass);
 
     /**
      * Set next window dock id
@@ -2517,7 +2480,7 @@ public class ImGui {
      * Allow last item to be overlapped by a subsequent item. sometimes useful with invisible buttons, selectables, etc. to catch unused area.
      */
     @BindingMethod
-    public static native void SetItemAllowOverlap();
+    public static native void SetNextItemAllowOverlap();
 
     // Viewports
     // - Currently represents the Platform Window created by the application which is hosting our Dear ImGui windows.
@@ -2592,18 +2555,6 @@ public class ImGui {
     @BindingMethod
     public static native ImGuiStorage GetStateStorage();
 
-    /**
-     * Helper to create a child window / scrolling region that looks like a normal widget frame
-     */
-    @BindingMethod
-    public static native boolean BeginChildFrame(int id, ImVec2 size, @OptArg int imGuiWindowFlags);
-
-    /**
-     * Always call EndChildFrame() regardless of BeginChildFrame() return values (which indicates a collapsed/clipped window)
-     */
-    @BindingMethod
-    public static native void EndChildFrame();
-
     // Text Utilities
 
     @BindingMethod
@@ -2639,13 +2590,6 @@ public class ImGui {
     // With IMGUI_DISABLE_OBSOLETE_KEYIO: (this is the way forward)
     //   - Any use of 'ImGuiKey' will assert when key < 512 will be passed, previously reserved as native/user keys indices
     //   - GetKeyIndex() is pass-through and therefore deprecated (gone if IMGUI_DISABLE_OBSOLETE_KEYIO is defined)
-
-    /**
-     * Map ImGuiKey_* values into user's key index. == io.KeyMap[key]
-     */
-    @BindingMethod
-    @Deprecated
-    public static native int GetKeyIndex(@ArgValue(staticCast = "ImGuiKey") int key);
 
     /**
      * Is key being held. == io.KeysDown[user_key_index].
@@ -2877,4 +2821,19 @@ public class ImGui {
      */
     @BindingMethod
     public static native ImGuiViewport FindViewportByPlatformHandle(@ArgValue(callPrefix = "(void*)") long platformHandle);
+
+    @BindingMethod
+    public static native void BeginHorizontal(String id, ImVec2 size, float align);
+
+    @BindingMethod
+    public static native void EndHorizontal();
+
+    @BindingMethod
+    public static native void BeginVertical(int id, ImVec2 size, float align);
+
+    @BindingMethod
+    public static native void EndVertical();
+
+    @BindingMethod
+    public static native void Spring(float weight, float spacing);
 }

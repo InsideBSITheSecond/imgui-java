@@ -1,4 +1,5 @@
 import imgui.ImGui;
+import imgui.ImVec2;
 import imgui.app.Application;
 import imgui.type.ImBoolean;
 
@@ -20,6 +21,18 @@ public class Extra {
 
     public static void show(final Application app) {
         ImGui.colorEdit3("Background Color", app.getColorBg().data);
+
+        //ImGui.beginHorizontal("uwu", new ImVec2(25, 25), 1.f);
+        ImGui.textUnformatted("Left");
+        float middleWeight = 1.f;
+        //ImGui.spring(middleWeight, -1.f);
+        ImGui.textUnformatted("Middle");
+        //ImGui.spring(1.0f - middleWeight, -1.f);
+        ImGui.textUnformatted("Right");
+        //ImGui.endHorizontal();
+
+        //ImGui.textUnformatted("uwu");
+
         ImGui.checkbox("Show Demo Window", SHOW_DEMO_WINDOW);
         ImGui.checkbox("Show ImNodes Demo Window", SHOW_IMNODES_DEMO_WINDOW);
         ImGui.checkbox("Show imgui-node-editor Demo Window", SHOW_IMGUI_NODE_EDITOR_DEMO_WINDOW);

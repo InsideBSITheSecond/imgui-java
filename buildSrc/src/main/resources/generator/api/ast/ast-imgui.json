@@ -230,7 +230,7 @@
       } ]
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "ShowStackToolWindow",
+      "name" : "ShowIDStackToolWindow",
       "resultType" : "void",
       "decls" : [ {
         "@type" : "AstParmVarDecl",
@@ -850,18 +850,6 @@
       } ]
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "GetContentRegionMax",
-      "resultType" : "ImVec2"
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "GetWindowContentRegionMin",
-      "resultType" : "ImVec2"
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "GetWindowContentRegionMax",
-      "resultType" : "ImVec2"
-    }, {
-      "@type" : "AstFunctionDecl",
       "name" : "GetScrollX",
       "resultType" : "float",
       "decls" : [ {
@@ -1067,34 +1055,6 @@
       } ]
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "PushAllowKeyboardFocus",
-      "resultType" : "void",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "allow_keyboard_focus",
-        "qualType" : "bool",
-        "desugaredQualType" : "bool"
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "PopAllowKeyboardFocus",
-      "resultType" : "void"
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "PushButtonRepeat",
-      "resultType" : "void",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "repeat",
-        "qualType" : "bool",
-        "desugaredQualType" : "bool"
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "PopButtonRepeat",
-      "resultType" : "void"
-    }, {
-      "@type" : "AstFunctionDecl",
       "name" : "PushItemWidth",
       "resultType" : "void",
       "decls" : [ {
@@ -1241,7 +1201,7 @@
             "text" : " - Attention! We currently have inconsistencies between window-local and absolute positions we will aim to fix with future API:"
           }, {
             "@type" : "AstTextComment",
-            "text" : "    Window-local coordinates:   SameLine(), GetCursorPos(), SetCursorPos(), GetCursorStartPos(), GetContentRegionMax(), GetWindowContentRegion*(), PushTextWrapPos()"
+            "text" : "    Window-local coordinates:   SameLine(), GetCursorPos(), SetCursorPos(), GetCursorStartPos(), GetWindowContentRegion*(), PushTextWrapPos()"
           }, {
             "@type" : "AstTextComment",
             "text" : "    Absolute coordinate:        GetCursorScreenPos(), SetCursorScreenPos(), all ImDrawList:: functions."
@@ -1893,6 +1853,12 @@
       "resultType" : "bool",
       "decls" : [ {
         "@type" : "AstParmVarDecl",
+        "name" : "str_id",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *",
+        "defaultValue" : "-1"
+      }, {
+        "@type" : "AstParmVarDecl",
         "name" : "user_texture_id",
         "qualType" : "ImTextureID",
         "desugaredQualType" : "void *"
@@ -1913,12 +1879,6 @@
         "qualType" : "const ImVec2 &",
         "desugaredQualType" : "const ImVec2 &",
         "defaultValue" : "ImVec2(1,1)"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "frame_padding",
-        "qualType" : "int",
-        "desugaredQualType" : "int",
-        "defaultValue" : "-1"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "bg_col",
@@ -5869,6 +5829,12 @@
       "resultType" : "ImGuiID",
       "decls" : [ {
         "@type" : "AstParmVarDecl",
+        "name" : "id",
+        "qualType" : "ImGuiID",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      }, {
+        "@type" : "AstParmVarDecl",
         "name" : "viewport",
         "qualType" : "const ImGuiViewport *",
         "desugaredQualType" : "const ImGuiViewport *",
@@ -6296,7 +6262,7 @@
       "resultType" : "ImVec2"
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "SetItemAllowOverlap",
+      "name" : "SetNextItemAllowOverlap",
       "resultType" : "void"
     }, {
       "@type" : "AstFunctionDecl",
@@ -6429,31 +6395,6 @@
       "@type" : "AstFunctionDecl",
       "name" : "GetStateStorage",
       "resultType" : "ImGuiStorage *"
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "BeginChildFrame",
-      "resultType" : "bool",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "id",
-        "qualType" : "ImGuiID",
-        "desugaredQualType" : "unsigned int"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "size",
-        "qualType" : "const ImVec2 &",
-        "desugaredQualType" : "const ImVec2 &"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "flags",
-        "qualType" : "ImGuiWindowFlags",
-        "desugaredQualType" : "int",
-        "defaultValue" : "0"
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "EndChildFrame",
-      "resultType" : "void"
     }, {
       "@type" : "AstFunctionDecl",
       "name" : "CalcTextSize",
@@ -7177,6 +7118,55 @@
         "qualType" : "void *",
         "desugaredQualType" : "void *"
       } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "BeginHorizontal",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "str_id",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "size",
+        "qualType" : "ImVec2",
+        "desugaredQualType" : "ImVec2"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "align",
+        "qualType" : "float",
+        "desugaredQualType" : "float"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "BeginHorizontal",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "str_id",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "x",
+        "qualType" : "float",
+        "desugaredQualType" : "float"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "y",
+        "qualType" : "float",
+        "desugaredQualType" : "float"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "align",
+        "qualType" : "float",
+        "desugaredQualType" : "float"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "EndHorizontal",
+      "resultType" : "void"
     } ]
   }, {
     "@type" : "AstEnumDecl",
@@ -12438,16 +12428,6 @@
       "desugaredQualType" : "void *"
     }, {
       "@type" : "AstFieldDecl",
-      "name" : "GetClipboardTextFn",
-      "qualType" : "const char *(*)(void *)",
-      "desugaredQualType" : "const char *(*)(void *)"
-    }, {
-      "@type" : "AstFieldDecl",
-      "name" : "SetClipboardTextFn",
-      "qualType" : "void (*)(void *, const char *)",
-      "desugaredQualType" : "void (*)(void *, const char *)"
-    }, {
-      "@type" : "AstFieldDecl",
       "name" : "ClipboardUserData",
       "qualType" : "void *",
       "desugaredQualType" : "void *"
@@ -12638,10 +12618,6 @@
       } ]
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "ClearInputCharacters",
-      "resultType" : "void"
-    }, {
-      "@type" : "AstFunctionDecl",
       "name" : "ClearInputKeys",
       "resultType" : "void"
     }, {
@@ -12702,11 +12678,6 @@
     }, {
       "@type" : "AstFieldDecl",
       "name" : "MetricsActiveWindows",
-      "qualType" : "int",
-      "desugaredQualType" : "int"
-    }, {
-      "@type" : "AstFieldDecl",
-      "name" : "MetricsActiveAllocations",
       "qualType" : "int",
       "desugaredQualType" : "int"
     }, {
@@ -12862,11 +12833,6 @@
     }, {
       "@type" : "AstFieldDecl",
       "name" : "NavInputsDownDuration",
-      "qualType" : "float[20]",
-      "desugaredQualType" : "float[20]"
-    }, {
-      "@type" : "AstFieldDecl",
-      "name" : "NavInputsDownDurationPrev",
       "qualType" : "float[20]",
       "desugaredQualType" : "float[20]"
     }, {
@@ -17038,11 +17004,6 @@
       "desugaredQualType" : "unsigned short"
     }, {
       "@type" : "AstFieldDecl",
-      "name" : "DotChar",
-      "qualType" : "ImWchar",
-      "desugaredQualType" : "unsigned short"
-    }, {
-      "@type" : "AstFieldDecl",
       "name" : "DirtyLookupTables",
       "qualType" : "bool",
       "desugaredQualType" : "bool"
@@ -17888,16 +17849,6 @@
           "@type" : "AstTextComment",
           "text" : "-----------------------------------------------------------------------------"
         } ]
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "GetKeyIndex",
-      "resultType" : "int",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "key",
-        "qualType" : "ImGuiKey",
-        "desugaredQualType" : "int"
       } ]
     } ]
   }, {

@@ -49,7 +49,7 @@ public final class ImGuiFileDialog {
      * @param vFlags             ImGuiFileDialogFlags
      */
     @BindingMethod
-    public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vPath, String vFileName, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
+    public static native void OpenDialog(String vKey, String vTitle, String vFilters, @ArgValue(reinterpretCast = "const IGFD::FileDialogConfig&") long vUserDatas);
 
     /**
      * Open simple dialog (path and filename are obtained from filePathName)
@@ -62,8 +62,8 @@ public final class ImGuiFileDialog {
      * @param vUserDatas         user datas (can be retrieved in pane)
      * @param vFlags             ImGuiFileDialogFlags
      */
-    @BindingMethod
-    public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vFilePathName, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
+    //@BindingMethod
+    //public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vFilePathName, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
 
     /**
      * Open dialog with custom right pane (path and fileName can be specified)
@@ -78,8 +78,8 @@ public final class ImGuiFileDialog {
      * @param vUserDatas         user datas (can be retrieved in pane)
      * @param vFlags             ImGuiFileDialogFlags
      */
-    @BindingMethod
-    public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vPath, String vFileName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
+    //@BindingMethod
+    //public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vPath, String vFileName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
 
     /**
      * Open dialog with custom right pane (path and filename are obtained from filePathName)
@@ -93,8 +93,8 @@ public final class ImGuiFileDialog {
      * @param vUserDatas         user datas (can be retrieved in pane)
      * @param vFlags             ImGuiFileDialogFlags
      */
-    @BindingMethod
-    public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vFilePathName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
+    //@BindingMethod
+    //public static native void OpenDialog(String vKey, String vTitle, String vFilters, String vFilePathName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
 
 
     /**
@@ -103,63 +103,10 @@ public final class ImGuiFileDialog {
      * @param vKey               key dialog
      * @param vTitle             title
      * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param vPath              path
-     * @param vFileName          default file name
-     * @param vCountSelectionMax count selection max
-     * @param vUserDatas         user datas (can be retrieved in pane)
-     * @param vFlags             ImGuiFileDialogFlags
+     * @param vConfig            config
      */
-    @BindingMethod
-    public static native void OpenModal(String vKey, String vTitle, String vFilters, String vPath, String vFileName, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
-
-    /**
-     * open simple modal (path and filename are obtained from filePathName)
-     *
-     * @param vKey               key dialog
-     * @param vTitle             title
-     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param vFilePathName      file path name (will be decomposed in path and fileName)
-     * @param vCountSelectionMax count selection max
-     * @param vUserDatas         user datas (can be retrieved in pane)
-     * @param vFlags             ImGuiFileDialogFlags
-     */
-    @BindingMethod
-    public static native void OpenModal(String vKey, String vTitle, String vFilters, String vFilePathName, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
-
-    //, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth
-
-    /**
-     * Open modal with custom right pane (path and fileName can be specified)
-     *
-     * @param vKey               key dialog
-     * @param vTitle             title
-     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param vPath              path
-     * @param vFileName          default file name
-     * @param vSidePane          side pane
-     * @param vSidePaneWidth     side pane width
-     * @param vCountSelectionMax count selection max
-     * @param vUserDatas         user datas (can be retrieved in pane)
-     * @param vFlags             ImGuiFileDialogFlags
-     */
-    @BindingMethod
-    public static native void OpenModal(String vKey, String vTitle, String vFilters, String vPath, String vFileName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
-
-    /**
-     * Open modal with custom right pane (path and filename are obtained from filePathName)
-     *
-     * @param vKey               key dialog
-     * @param vTitle             title
-     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param vFilePathName      file path name (will be decomposed in path and fileName)
-     * @param vSidePane          side pane
-     * @param vSidePaneWidth     side pane width
-     * @param vCountSelectionMax count selection max
-     * @param vUserDatas         user datas (can be retrieved in pane)
-     * @param vFlags             ImGuiFileDialogFlags
-     */
-    @BindingMethod
-    public static native void OpenModal(String vKey, String vTitle, String vFilters, String vFilePathName, @ArgValue(callValue = "PaneFunCallback(env, vSidePane)") ImGuiFileDialogPaneFun vSidePane, @OptArg(callValue = "250.0f") float vSidePaneWidth, @OptArg int vCountSelectionMax, @OptArg @ArgValue(reinterpretCast = "void*") long vUserDatas, @OptArg int vFlags);
+    //@BindingMethod
+    //public static native void OpenModal(String vKey, String vTitle, String vFilters, FileDialogConfig vConfig);
 
     /**
      * Display / Close dialog form

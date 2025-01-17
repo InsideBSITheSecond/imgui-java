@@ -366,24 +366,24 @@ public class ImGui {
     /**
      * Create Stack Tool window. hover items with mouse to query information about the source of their unique ID.
      */
-    public static void showStackToolWindow() {
-        nShowStackToolWindow();
+    public static void showIDStackToolWindow() {
+        nShowIDStackToolWindow();
     }
 
     /**
      * Create Stack Tool window. hover items with mouse to query information about the source of their unique ID.
      */
-    public static void showStackToolWindow(final ImBoolean pOpen) {
-        nShowStackToolWindow(pOpen != null ? pOpen.getData() : null);
+    public static void showIDStackToolWindow(final ImBoolean pOpen) {
+        nShowIDStackToolWindow(pOpen != null ? pOpen.getData() : null);
     }
 
-    private static native void nShowStackToolWindow(); /*
-        ImGui::ShowStackToolWindow();
+    private static native void nShowIDStackToolWindow(); /*
+        ImGui::ShowIDStackToolWindow();
     */
 
-    private static native void nShowStackToolWindow(boolean[] pOpen); /*MANUAL
+    private static native void nShowIDStackToolWindow(boolean[] pOpen); /*MANUAL
         auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
-        ImGui::ShowStackToolWindow((pOpen != NULL ? &pOpen[0] : NULL));
+        ImGui::ShowIDStackToolWindow((pOpen != NULL ? &pOpen[0] : NULL));
         if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
@@ -1535,132 +1535,6 @@ public class ImGui {
         return ImGui::GetContentRegionAvail().y;
     */
 
-    /**
-     * Current content boundaries (typically window boundaries including scrolling, or current column boundaries), in windows coordinates
-     */
-    public static ImVec2 getContentRegionMax() {
-        final ImVec2 dst = new ImVec2();
-        nGetContentRegionMax(dst);
-        return dst;
-    }
-
-    /**
-     * Current content boundaries (typically window boundaries including scrolling, or current column boundaries), in windows coordinates
-     */
-    public static float getContentRegionMaxX() {
-        return nGetContentRegionMaxX();
-    }
-
-    /**
-     * Current content boundaries (typically window boundaries including scrolling, or current column boundaries), in windows coordinates
-     */
-    public static float getContentRegionMaxY() {
-        return nGetContentRegionMaxY();
-    }
-
-    /**
-     * Current content boundaries (typically window boundaries including scrolling, or current column boundaries), in windows coordinates
-     */
-    public static void getContentRegionMax(final ImVec2 dst) {
-        nGetContentRegionMax(dst);
-    }
-
-    private static native void nGetContentRegionMax(ImVec2 dst); /*
-        Jni::ImVec2Cpy(env, ImGui::GetContentRegionMax(), dst);
-    */
-
-    private static native float nGetContentRegionMaxX(); /*
-        return ImGui::GetContentRegionMax().x;
-    */
-
-    private static native float nGetContentRegionMaxY(); /*
-        return ImGui::GetContentRegionMax().y;
-    */
-
-    /**
-     * Content boundaries min for the full window (roughly (0,0)-Scroll), in window coordinates
-     */
-    public static ImVec2 getWindowContentRegionMin() {
-        final ImVec2 dst = new ImVec2();
-        nGetWindowContentRegionMin(dst);
-        return dst;
-    }
-
-    /**
-     * Content boundaries min for the full window (roughly (0,0)-Scroll), in window coordinates
-     */
-    public static float getWindowContentRegionMinX() {
-        return nGetWindowContentRegionMinX();
-    }
-
-    /**
-     * Content boundaries min for the full window (roughly (0,0)-Scroll), in window coordinates
-     */
-    public static float getWindowContentRegionMinY() {
-        return nGetWindowContentRegionMinY();
-    }
-
-    /**
-     * Content boundaries min for the full window (roughly (0,0)-Scroll), in window coordinates
-     */
-    public static void getWindowContentRegionMin(final ImVec2 dst) {
-        nGetWindowContentRegionMin(dst);
-    }
-
-    private static native void nGetWindowContentRegionMin(ImVec2 dst); /*
-        Jni::ImVec2Cpy(env, ImGui::GetWindowContentRegionMin(), dst);
-    */
-
-    private static native float nGetWindowContentRegionMinX(); /*
-        return ImGui::GetWindowContentRegionMin().x;
-    */
-
-    private static native float nGetWindowContentRegionMinY(); /*
-        return ImGui::GetWindowContentRegionMin().y;
-    */
-
-    /**
-     * Content boundaries max for the full window (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     */
-    public static ImVec2 getWindowContentRegionMax() {
-        final ImVec2 dst = new ImVec2();
-        nGetWindowContentRegionMax(dst);
-        return dst;
-    }
-
-    /**
-     * Content boundaries max for the full window (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     */
-    public static float getWindowContentRegionMaxX() {
-        return nGetWindowContentRegionMaxX();
-    }
-
-    /**
-     * Content boundaries max for the full window (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     */
-    public static float getWindowContentRegionMaxY() {
-        return nGetWindowContentRegionMaxY();
-    }
-
-    /**
-     * Content boundaries max for the full window (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     */
-    public static void getWindowContentRegionMax(final ImVec2 dst) {
-        nGetWindowContentRegionMax(dst);
-    }
-
-    private static native void nGetWindowContentRegionMax(ImVec2 dst); /*
-        Jni::ImVec2Cpy(env, ImGui::GetWindowContentRegionMax(), dst);
-    */
-
-    private static native float nGetWindowContentRegionMaxX(); /*
-        return ImGui::GetWindowContentRegionMax().x;
-    */
-
-    private static native float nGetWindowContentRegionMaxY(); /*
-        return ImGui::GetWindowContentRegionMax().y;
-    */
-
     // Windows Scrolling
 
     /**
@@ -1936,45 +1810,6 @@ public class ImGui {
 
     private static native void nPopStyleVar(int count); /*
         ImGui::PopStyleVar(count);
-    */
-
-    /**
-     * Allow focusing using TAB/Shift-TAB, enabled by default but you can disable it for certain widgets
-     */
-    public static void pushAllowKeyboardFocus(final boolean allowKeyboardFocus) {
-        nPushAllowKeyboardFocus(allowKeyboardFocus);
-    }
-
-    private static native void nPushAllowKeyboardFocus(boolean allowKeyboardFocus); /*
-        ImGui::PushAllowKeyboardFocus(allowKeyboardFocus);
-    */
-
-    public static void popAllowKeyboardFocus() {
-        nPopAllowKeyboardFocus();
-    }
-
-    private static native void nPopAllowKeyboardFocus(); /*
-        ImGui::PopAllowKeyboardFocus();
-    */
-
-    /**
-     * In 'repeat' mode, Button*() functions return repeated true in a typematic manner (using io.KeyRepeatDelay/io.KeyRepeatRate setting).
-     * Note that you can call IsItemActive() after any Button() to tell if the button is held in the current frame.
-     */
-    public static void pushButtonRepeat(final boolean repeat) {
-        nPushButtonRepeat(repeat);
-    }
-
-    private static native void nPushButtonRepeat(boolean repeat); /*
-        ImGui::PushButtonRepeat(repeat);
-    */
-
-    public static void popButtonRepeat() {
-        nPopButtonRepeat();
-    }
-
-    private static native void nPopButtonRepeat(); /*
-        ImGui::PopButtonRepeat();
     */
 
     // Parameters stacks (current window)
@@ -3014,7 +2849,7 @@ public class ImGui {
 
     private static native boolean nArrowButton(String obj_strId, int dir); /*MANUAL
         auto strId = obj_strId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_strId, JNI_FALSE);
-        auto _result = ImGui::ArrowButton(strId, dir);
+        auto _result = ImGui::ArrowButton(strId, static_cast<ImGuiDir>(dir));
         if (strId != NULL) env->ReleaseStringUTFChars(obj_strId, strId);
         return _result;
     */
@@ -3097,156 +2932,120 @@ public class ImGui {
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size) {
-        return nImageButton(userTextureId, size.x, size.y);
+    public static boolean imageButton(final String id, final long userTextureId, final ImVec2 size) {
+        return nImageButton(id, userTextureId, size.x, size.y);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY) {
-        return nImageButton(userTextureId, sizeX, sizeY);
+    public static boolean imageButton(final String id, final long userTextureId, final float sizeX, final float sizeY) {
+        return nImageButton(id, userTextureId, sizeX, sizeY);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y);
+    public static boolean imageButton(final String id, final long userTextureId, final ImVec2 size, final ImVec2 uv0) {
+        return nImageButton(id, userTextureId, size.x, size.y, uv0.x, uv0.y);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y);
+    public static boolean imageButton(final String id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y) {
+        return nImageButton(id, userTextureId, sizeX, sizeY, uv0X, uv0Y);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y);
+    public static boolean imageButton(final String id, final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1) {
+        return nImageButton(id, userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y);
+    public static boolean imageButton(final String id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y) {
+        return nImageButton(id, userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final int framePadding) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, framePadding);
+    public static boolean imageButton(final String id, final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final ImVec4 bgCol) {
+        return nImageButton(id, userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, bgCol.x, bgCol.y, bgCol.z, bgCol.w);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final int framePadding) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, framePadding);
+    public static boolean imageButton(final String id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final float bgColX, final float bgColY, final float bgColZ, final float bgColW) {
+        return nImageButton(id, userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, bgColX, bgColY, bgColZ, bgColW);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final int framePadding, final ImVec4 bgCol) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, framePadding, bgCol.x, bgCol.y, bgCol.z, bgCol.w);
+    public static boolean imageButton(final String id, final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final ImVec4 bgCol, final ImVec4 tintCol) {
+        return nImageButton(id, userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, bgCol.x, bgCol.y, bgCol.z, bgCol.w, tintCol.x, tintCol.y, tintCol.z, tintCol.w);
     }
 
     /**
      * {@code <0} framePadding uses default frame padding settings. 0 for no padding
      */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final int framePadding, final float bgColX, final float bgColY, final float bgColZ, final float bgColW) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, framePadding, bgColX, bgColY, bgColZ, bgColW);
+    public static boolean imageButton(final String id, final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final float bgColX, final float bgColY, final float bgColZ, final float bgColW, final float tintColX, final float tintColY, final float tintColZ, final float tintColW) {
+        return nImageButton(id, userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, bgColX, bgColY, bgColZ, bgColW, tintColX, tintColY, tintColZ, tintColW);
     }
 
-    /**
-     * {@code <0} framePadding uses default frame padding settings. 0 for no padding
-     */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final int framePadding, final ImVec4 bgCol, final ImVec4 tintCol) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, framePadding, bgCol.x, bgCol.y, bgCol.z, bgCol.w, tintCol.x, tintCol.y, tintCol.z, tintCol.w);
-    }
-
-    /**
-     * {@code <0} framePadding uses default frame padding settings. 0 for no padding
-     */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final int framePadding, final float bgColX, final float bgColY, final float bgColZ, final float bgColW, final float tintColX, final float tintColY, final float tintColZ, final float tintColW) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, framePadding, bgColX, bgColY, bgColZ, bgColW, tintColX, tintColY, tintColZ, tintColW);
-    }
-
-    /**
-     * {@code <0} framePadding uses default frame padding settings. 0 for no padding
-     */
-    public static boolean imageButton(final long userTextureId, final ImVec2 size, final ImVec2 uv0, final ImVec2 uv1, final ImVec4 bgCol, final ImVec4 tintCol) {
-        return nImageButton(userTextureId, size.x, size.y, uv0.x, uv0.y, uv1.x, uv1.y, bgCol.x, bgCol.y, bgCol.z, bgCol.w, tintCol.x, tintCol.y, tintCol.z, tintCol.w);
-    }
-
-    /**
-     * {@code <0} framePadding uses default frame padding settings. 0 for no padding
-     */
-    public static boolean imageButton(final long userTextureId, final float sizeX, final float sizeY, final float uv0X, final float uv0Y, final float uv1X, final float uv1Y, final float bgColX, final float bgColY, final float bgColZ, final float bgColW, final float tintColX, final float tintColY, final float tintColZ, final float tintColW) {
-        return nImageButton(userTextureId, sizeX, sizeY, uv0X, uv0Y, uv1X, uv1Y, bgColX, bgColY, bgColZ, bgColW, tintColX, tintColY, tintColZ, tintColW);
-    }
-
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY); /*MANUAL
+    private static native boolean nImageButton(String obj_id, long userTextureId, float sizeX, float sizeY); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size);
+        auto _result = ImGui::ImageButton(id, (ImTextureID)(uintptr_t)userTextureId, size);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
         return _result;
     */
 
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y); /*MANUAL
+    private static native boolean nImageButton(String obj_id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImVec2 uv0 = ImVec2(uv0X, uv0Y);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0);
+        auto _result = ImGui::ImageButton(id, (ImTextureID)(uintptr_t)userTextureId, size, uv0);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
         return _result;
     */
 
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y); /*MANUAL
+    private static native boolean nImageButton(String obj_id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImVec2 uv0 = ImVec2(uv0X, uv0Y);
         ImVec2 uv1 = ImVec2(uv1X, uv1Y);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1);
+        auto _result = ImGui::ImageButton(id, (ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
         return _result;
     */
 
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, int framePadding); /*MANUAL
-        ImVec2 size = ImVec2(sizeX, sizeY);
-        ImVec2 uv0 = ImVec2(uv0X, uv0Y);
-        ImVec2 uv1 = ImVec2(uv1X, uv1Y);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, framePadding);
-        return _result;
-    */
-
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, int framePadding, float bgColX, float bgColY, float bgColZ, float bgColW); /*MANUAL
+    private static native boolean nImageButton(String obj_id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, float bgColX, float bgColY, float bgColZ, float bgColW); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImVec2 uv0 = ImVec2(uv0X, uv0Y);
         ImVec2 uv1 = ImVec2(uv1X, uv1Y);
         ImVec4 bgCol = ImVec4(bgColX, bgColY, bgColZ, bgColW);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, framePadding, bgCol);
+        auto _result = ImGui::ImageButton(id, (ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, bgCol);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
         return _result;
     */
 
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, int framePadding, float bgColX, float bgColY, float bgColZ, float bgColW, float tintColX, float tintColY, float tintColZ, float tintColW); /*MANUAL
+    private static native boolean nImageButton(String obj_id, long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, float bgColX, float bgColY, float bgColZ, float bgColW, float tintColX, float tintColY, float tintColZ, float tintColW); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImVec2 uv0 = ImVec2(uv0X, uv0Y);
         ImVec2 uv1 = ImVec2(uv1X, uv1Y);
         ImVec4 bgCol = ImVec4(bgColX, bgColY, bgColZ, bgColW);
         ImVec4 tintCol = ImVec4(tintColX, tintColY, tintColZ, tintColW);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, framePadding, bgCol, tintCol);
-        return _result;
-    */
-
-    private static native boolean nImageButton(long userTextureId, float sizeX, float sizeY, float uv0X, float uv0Y, float uv1X, float uv1Y, float bgColX, float bgColY, float bgColZ, float bgColW, float tintColX, float tintColY, float tintColZ, float tintColW); /*MANUAL
-        ImVec2 size = ImVec2(sizeX, sizeY);
-        ImVec2 uv0 = ImVec2(uv0X, uv0Y);
-        ImVec2 uv1 = ImVec2(uv1X, uv1Y);
-        ImVec4 bgCol = ImVec4(bgColX, bgColY, bgColZ, bgColW);
-        ImVec4 tintCol = ImVec4(tintColX, tintColY, tintColZ, tintColW);
-        auto _result = ImGui::ImageButton((ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, -1, bgCol, tintCol);
+        auto _result = ImGui::ImageButton(id, (ImTextureID)(uintptr_t)userTextureId, size, uv0, uv1, bgCol, tintCol);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
         return _result;
     */
 
@@ -9272,20 +9071,9 @@ public class ImGui {
     /**
      * ~ Indent()+PushId(). Already called by TreeNode() when returning true, but you can call TreePush/TreePop yourself if desired.
      */
-    public static void treePush() {
-        nTreePush();
-    }
-
-    /**
-     * ~ Indent()+PushId(). Already called by TreeNode() when returning true, but you can call TreePush/TreePop yourself if desired.
-     */
     public static void treePush(final long ptrId) {
         nTreePush(ptrId);
     }
-
-    private static native void nTreePush(); /*
-        ImGui::TreePush();
-    */
 
     private static native void nTreePush(long ptrId); /*
         ImGui::TreePush((void*)ptrId);
@@ -11521,44 +11309,44 @@ public class ImGui {
         return _result;
     */
 
-    public static int dockSpaceOverViewport() {
-        return nDockSpaceOverViewport();
+    public static int dockSpaceOverViewport(final int imGuiID) {
+        return nDockSpaceOverViewport(imGuiID);
     }
 
-    public static int dockSpaceOverViewport(final ImGuiViewport viewport) {
-        return nDockSpaceOverViewport(viewport.ptr);
+    public static int dockSpaceOverViewport(final int imGuiID, final ImGuiViewport viewport) {
+        return nDockSpaceOverViewport(imGuiID, viewport.ptr);
     }
 
-    public static int dockSpaceOverViewport(final ImGuiViewport viewport, final int imGuiDockNodeFlags) {
-        return nDockSpaceOverViewport(viewport.ptr, imGuiDockNodeFlags);
+    public static int dockSpaceOverViewport(final int imGuiID, final ImGuiViewport viewport, final int imGuiDockNodeFlags) {
+        return nDockSpaceOverViewport(imGuiID, viewport.ptr, imGuiDockNodeFlags);
     }
 
-    public static int dockSpaceOverViewport(final ImGuiViewport viewport, final int imGuiDockNodeFlags, final ImGuiWindowClass windowClass) {
-        return nDockSpaceOverViewport(viewport.ptr, imGuiDockNodeFlags, windowClass.ptr);
+    public static int dockSpaceOverViewport(final int imGuiID, final ImGuiViewport viewport, final int imGuiDockNodeFlags, final ImGuiWindowClass windowClass) {
+        return nDockSpaceOverViewport(imGuiID, viewport.ptr, imGuiDockNodeFlags, windowClass.ptr);
     }
 
-    public static int dockSpaceOverViewport(final ImGuiViewport viewport, final ImGuiWindowClass windowClass) {
-        return nDockSpaceOverViewport(viewport.ptr, windowClass.ptr);
+    public static int dockSpaceOverViewport(final int imGuiID, final ImGuiViewport viewport, final ImGuiWindowClass windowClass) {
+        return nDockSpaceOverViewport(imGuiID, viewport.ptr, windowClass.ptr);
     }
 
-    private static native int nDockSpaceOverViewport(); /*
-        return ImGui::DockSpaceOverViewport();
+    private static native int nDockSpaceOverViewport(int imGuiID); /*
+        return ImGui::DockSpaceOverViewport(imGuiID);
     */
 
-    private static native int nDockSpaceOverViewport(long viewport); /*
-        return ImGui::DockSpaceOverViewport(reinterpret_cast<ImGuiViewport*>(viewport));
+    private static native int nDockSpaceOverViewport(int imGuiID, long viewport); /*
+        return ImGui::DockSpaceOverViewport(imGuiID, reinterpret_cast<ImGuiViewport*>(viewport));
     */
 
-    private static native int nDockSpaceOverViewport(long viewport, int imGuiDockNodeFlags); /*
-        return ImGui::DockSpaceOverViewport(reinterpret_cast<ImGuiViewport*>(viewport), imGuiDockNodeFlags);
+    private static native int nDockSpaceOverViewport(int imGuiID, long viewport, int imGuiDockNodeFlags); /*
+        return ImGui::DockSpaceOverViewport(imGuiID, reinterpret_cast<ImGuiViewport*>(viewport), imGuiDockNodeFlags);
     */
 
-    private static native int nDockSpaceOverViewport(long viewport, int imGuiDockNodeFlags, long windowClass); /*
-        return ImGui::DockSpaceOverViewport(reinterpret_cast<ImGuiViewport*>(viewport), imGuiDockNodeFlags, reinterpret_cast<ImGuiWindowClass*>(windowClass));
+    private static native int nDockSpaceOverViewport(int imGuiID, long viewport, int imGuiDockNodeFlags, long windowClass); /*
+        return ImGui::DockSpaceOverViewport(imGuiID, reinterpret_cast<ImGuiViewport*>(viewport), imGuiDockNodeFlags, reinterpret_cast<ImGuiWindowClass*>(windowClass));
     */
 
-    private static native int nDockSpaceOverViewport(long viewport, long windowClass); /*
-        return ImGui::DockSpaceOverViewport(reinterpret_cast<ImGuiViewport*>(viewport), 0, reinterpret_cast<ImGuiWindowClass*>(windowClass));
+    private static native int nDockSpaceOverViewport(int imGuiID, long viewport, long windowClass); /*
+        return ImGui::DockSpaceOverViewport(imGuiID, reinterpret_cast<ImGuiViewport*>(viewport), 0, reinterpret_cast<ImGuiWindowClass*>(windowClass));
     */
 
     /**
@@ -12343,12 +12131,12 @@ public class ImGui {
     /**
      * Allow last item to be overlapped by a subsequent item. sometimes useful with invisible buttons, selectables, etc. to catch unused area.
      */
-    public static void setItemAllowOverlap() {
-        nSetItemAllowOverlap();
+    public static void setNextItemAllowOverlap() {
+        nSetNextItemAllowOverlap();
     }
 
-    private static native void nSetItemAllowOverlap(); /*
-        ImGui::SetItemAllowOverlap();
+    private static native void nSetNextItemAllowOverlap(); /*
+        ImGui::SetNextItemAllowOverlap();
     */
 
     // Viewports
@@ -12517,57 +12305,6 @@ public class ImGui {
 
     private static native long nGetStateStorage(); /*
         return (uintptr_t)ImGui::GetStateStorage();
-    */
-
-    /**
-     * Helper to create a child window / scrolling region that looks like a normal widget frame
-     */
-    public static boolean beginChildFrame(final int id, final ImVec2 size) {
-        return nBeginChildFrame(id, size.x, size.y);
-    }
-
-    /**
-     * Helper to create a child window / scrolling region that looks like a normal widget frame
-     */
-    public static boolean beginChildFrame(final int id, final float sizeX, final float sizeY) {
-        return nBeginChildFrame(id, sizeX, sizeY);
-    }
-
-    /**
-     * Helper to create a child window / scrolling region that looks like a normal widget frame
-     */
-    public static boolean beginChildFrame(final int id, final ImVec2 size, final int imGuiWindowFlags) {
-        return nBeginChildFrame(id, size.x, size.y, imGuiWindowFlags);
-    }
-
-    /**
-     * Helper to create a child window / scrolling region that looks like a normal widget frame
-     */
-    public static boolean beginChildFrame(final int id, final float sizeX, final float sizeY, final int imGuiWindowFlags) {
-        return nBeginChildFrame(id, sizeX, sizeY, imGuiWindowFlags);
-    }
-
-    private static native boolean nBeginChildFrame(int id, float sizeX, float sizeY); /*MANUAL
-        ImVec2 size = ImVec2(sizeX, sizeY);
-        auto _result = ImGui::BeginChildFrame(id, size);
-        return _result;
-    */
-
-    private static native boolean nBeginChildFrame(int id, float sizeX, float sizeY, int imGuiWindowFlags); /*MANUAL
-        ImVec2 size = ImVec2(sizeX, sizeY);
-        auto _result = ImGui::BeginChildFrame(id, size, imGuiWindowFlags);
-        return _result;
-    */
-
-    /**
-     * Always call EndChildFrame() regardless of BeginChildFrame() return values (which indicates a collapsed/clipped window)
-     */
-    public static void endChildFrame() {
-        nEndChildFrame();
-    }
-
-    private static native void nEndChildFrame(); /*
-        ImGui::EndChildFrame();
     */
 
     // Text Utilities
@@ -12808,18 +12545,6 @@ public class ImGui {
     // With IMGUI_DISABLE_OBSOLETE_KEYIO: (this is the way forward)
     //   - Any use of 'ImGuiKey' will assert when key < 512 will be passed, previously reserved as native/user keys indices
     //   - GetKeyIndex() is pass-through and therefore deprecated (gone if IMGUI_DISABLE_OBSOLETE_KEYIO is defined)
-
-    /**
-     * Map ImGuiKey_* values into user's key index. == io.KeyMap[key]
-     */
-    @Deprecated
-    public static int getKeyIndex(final int key) {
-        return nGetKeyIndex(key);
-    }
-
-    private static native int nGetKeyIndex(int key); /*
-        return ImGui::GetKeyIndex(static_cast<ImGuiKey>(key));
-    */
 
     /**
      * Is key being held. == io.KeysDown[user_key_index].
@@ -13550,5 +13275,57 @@ public class ImGui {
 
     private static native long nFindViewportByPlatformHandle(long platformHandle); /*
         return (uintptr_t)ImGui::FindViewportByPlatformHandle((void*)platformHandle);
+    */
+
+    public static void beginHorizontal(final String id, final ImVec2 size, final float align) {
+        nBeginHorizontal(id, size.x, size.y, align);
+    }
+
+    public static void beginHorizontal(final String id, final float sizeX, final float sizeY, final float align) {
+        nBeginHorizontal(id, sizeX, sizeY, align);
+    }
+
+    private static native void nBeginHorizontal(String id, float sizeX, float sizeY, float align); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        ImVec2 size = ImVec2(sizeX, sizeY);
+        ImGui::BeginHorizontal(id, size, align);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+    */
+
+    public static void endHorizontal() {
+        nEndHorizontal();
+    }
+
+    private static native void nEndHorizontal(); /*
+        ImGui::EndHorizontal();
+    */
+
+    public static void beginVertical(final int id, final ImVec2 size, final float align) {
+        nBeginVertical(id, size.x, size.y, align);
+    }
+
+    public static void beginVertical(final int id, final float sizeX, final float sizeY, final float align) {
+        nBeginVertical(id, sizeX, sizeY, align);
+    }
+
+    private static native void nBeginVertical(int id, float sizeX, float sizeY, float align); /*MANUAL
+        ImVec2 size = ImVec2(sizeX, sizeY);
+        ImGui::BeginVertical(id, size, align);
+    */
+
+    public static void endVertical() {
+        nEndVertical();
+    }
+
+    private static native void nEndVertical(); /*
+        ImGui::EndVertical();
+    */
+
+    public static void spring(final float weight, final float spacing) {
+        nSpring(weight, spacing);
+    }
+
+    private static native void nSpring(float weight, float spacing); /*
+        ImGui::Spring(weight, spacing);
     */
 }
