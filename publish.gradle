@@ -22,11 +22,11 @@ ext.configurePublishing = { packageName, packageDesc, packageVersion ->
                 }
             }
         }
-        /*publications {
+        publications {
             gpr(MavenPublication) {
                 from(components.java)
             }
-        }*/
+        }
 
         /*repositories {
             maven {
