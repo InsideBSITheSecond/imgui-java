@@ -174,21 +174,26 @@ jobs:
           zip -rj out/archives/native-libraries out/artifacts/native-libraries
           zip -rj out/archives/java-libraries out/artifacts/java-libraries
 
-      - name: Publish
+#      - name: Publish
+#        env:
+#          NEXUS_UPD_ID: ${{ secrets.RELEASE_NEXUS_UPD_ID }}
+#          NEXUS_UPD_PASS: ${{ secrets.RELEASE_NEXUS_UPD_PASS }}
+#          SIGNING_KEY_ID: ${{ secrets.RELEASE_SIGNING_KEY_ID }}
+#          SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
+#          SIGNING_KEY_PASS: ${{ secrets.RELEASE_SIGNING_KEY_PASS }}
+#        run: |
+#          chmod +x ./buildSrc/scripts/publish.sh
+#          buildSrc/scripts/publish.sh
+
+      - name: Publish package
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
         env:
-          NEXUS_UPD_ID: ${{ secrets.RELEASE_NEXUS_UPD_ID }}
-          NEXUS_UPD_PASS: ${{ secrets.RELEASE_NEXUS_UPD_PASS }}
-          SIGNING_KEY_ID: ${{ secrets.RELEASE_SIGNING_KEY_ID }}
-          SIGNING_KEY: ${{ secrets.RELEASE_SIGNING_KEY }}
-          SIGNING_KEY_PASS: ${{ secrets.RELEASE_SIGNING_KEY_PASS }}
-        run: |
-          chmod +x ./buildSrc/scripts/publish.sh
-          buildSrc/scripts/publish.sh
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           draft: true
           prerelease: false
