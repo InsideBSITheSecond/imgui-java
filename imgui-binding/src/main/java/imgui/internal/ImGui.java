@@ -248,7 +248,7 @@ public final class ImGui extends imgui.ImGui {
     // TODO: ItemAdd
 
     @BindingMethod
-    public static native boolean ItemHoverable(ImRect bb, int id, @ArgValue(reinterpretCast = "ImGuiItemFlags") int flags);
+    public static native boolean ItemHoverable(ImRect bb, int id, int flags);
 
     @BindingMethod
     public static native boolean IsClippedEx(ImRect bb, int id);

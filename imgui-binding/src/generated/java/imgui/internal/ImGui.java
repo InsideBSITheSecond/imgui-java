@@ -798,7 +798,7 @@ public final class ImGui extends imgui.ImGui {
     }
 
     private static native boolean nItemHoverable(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int flags); /*
-        return ImGui::ItemHoverable(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, reinterpret_cast<ImGuiItemFlags>(flags));
+        return ImGui::ItemHoverable(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, flags);
     */
 
     public static boolean isClippedEx(final ImRect bb, final int id) {
