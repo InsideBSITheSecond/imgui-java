@@ -186,7 +186,7 @@ jobs:
 #          buildSrc/scripts/publish.sh
 
       - name: Publish package
-        run: ./gradlew publish
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
