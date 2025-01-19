@@ -13300,17 +13300,19 @@ public class ImGui {
         ImGui::EndHorizontal();
     */
 
-    public static void beginVertical(final int id, final ImVec2 size, final float align) {
+    public static void beginVertical(final String id, final ImVec2 size, final float align) {
         nBeginVertical(id, size.x, size.y, align);
     }
 
-    public static void beginVertical(final int id, final float sizeX, final float sizeY, final float align) {
+    public static void beginVertical(final String id, final float sizeX, final float sizeY, final float align) {
         nBeginVertical(id, sizeX, sizeY, align);
     }
 
-    private static native void nBeginVertical(int id, float sizeX, float sizeY, float align); /*MANUAL
+    private static native void nBeginVertical(String id, float sizeX, float sizeY, float align); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImGui::BeginVertical(id, size, align);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
     */
 
     public static void endVertical() {

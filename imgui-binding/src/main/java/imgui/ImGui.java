@@ -2829,7 +2829,7 @@ public class ImGui {
     public static native void EndHorizontal();
 
     @BindingMethod
-    public static native void BeginVertical(int id, ImVec2 size, float align);
+    public static native void BeginVertical(String id, ImVec2 size, float align);
 
     @BindingMethod
     public static native void EndVertical();

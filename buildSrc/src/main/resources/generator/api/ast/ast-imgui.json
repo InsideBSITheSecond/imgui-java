@@ -7131,16 +7131,44 @@
         "@type" : "AstParmVarDecl",
         "name" : "size",
         "qualType" : "ImVec2",
-        "desugaredQualType" : "ImVec2"
+        "desugaredQualType" : "ImVec2",
+        "defaultValue" : "ImVec2(0, 0)"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "align",
         "qualType" : "float",
-        "desugaredQualType" : "float"
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
       } ]
     }, {
       "@type" : "AstFunctionDecl",
       "name" : "BeginHorizontal",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "id",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "size",
+        "qualType" : "ImVec2",
+        "desugaredQualType" : "ImVec2",
+        "defaultValue" : "ImVec2(0, 0)"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "align",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "EndHorizontal",
+      "resultType" : "void"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "BeginVertical",
       "resultType" : "void",
       "decls" : [ {
         "@type" : "AstParmVarDecl",
@@ -7149,24 +7177,60 @@
         "desugaredQualType" : "const char *"
       }, {
         "@type" : "AstParmVarDecl",
-        "name" : "x",
-        "qualType" : "float",
-        "desugaredQualType" : "float"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "y",
-        "qualType" : "float",
-        "desugaredQualType" : "float"
+        "name" : "size",
+        "qualType" : "ImVec2",
+        "desugaredQualType" : "ImVec2",
+        "defaultValue" : "ImVec2(0, 0)"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "align",
         "qualType" : "float",
-        "desugaredQualType" : "float"
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
       } ]
     }, {
       "@type" : "AstFunctionDecl",
-      "name" : "EndHorizontal",
+      "name" : "BeginVertical",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "id",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "size",
+        "qualType" : "ImVec2",
+        "desugaredQualType" : "ImVec2",
+        "defaultValue" : "ImVec2(0, 0)"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "align",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "EndVertical",
       "resultType" : "void"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "Spring",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "weight",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "1.0f"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "spacing",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
+      } ]
     } ]
   }, {
     "@type" : "AstEnumDecl",
