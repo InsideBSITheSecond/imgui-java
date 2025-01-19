@@ -13277,6 +13277,18 @@ public class ImGui {
         return (uintptr_t)ImGui::FindViewportByPlatformHandle((void*)platformHandle);
     */
 
+    public static void beginHorizontal(final String id) {
+        nBeginHorizontal(id);
+    }
+
+    public static void beginHorizontal(final String id, final ImVec2 size) {
+        nBeginHorizontal(id, size.x, size.y);
+    }
+
+    public static void beginHorizontal(final String id, final float sizeX, final float sizeY) {
+        nBeginHorizontal(id, sizeX, sizeY);
+    }
+
     public static void beginHorizontal(final String id, final ImVec2 size, final float align) {
         nBeginHorizontal(id, size.x, size.y, align);
     }
@@ -13284,6 +13296,19 @@ public class ImGui {
     public static void beginHorizontal(final String id, final float sizeX, final float sizeY, final float align) {
         nBeginHorizontal(id, sizeX, sizeY, align);
     }
+
+    private static native void nBeginHorizontal(String id); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        ImGui::BeginHorizontal(id);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+    */
+
+    private static native void nBeginHorizontal(String id, float sizeX, float sizeY); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        ImVec2 size = ImVec2(sizeX, sizeY);
+        ImGui::BeginHorizontal(id, size);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+    */
 
     private static native void nBeginHorizontal(String id, float sizeX, float sizeY, float align); /*MANUAL
         auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
@@ -13300,6 +13325,18 @@ public class ImGui {
         ImGui::EndHorizontal();
     */
 
+    public static void beginVertical(final String id) {
+        nBeginVertical(id);
+    }
+
+    public static void beginVertical(final String id, final ImVec2 size) {
+        nBeginVertical(id, size.x, size.y);
+    }
+
+    public static void beginVertical(final String id, final float sizeX, final float sizeY) {
+        nBeginVertical(id, sizeX, sizeY);
+    }
+
     public static void beginVertical(final String id, final ImVec2 size, final float align) {
         nBeginVertical(id, size.x, size.y, align);
     }
@@ -13307,6 +13344,19 @@ public class ImGui {
     public static void beginVertical(final String id, final float sizeX, final float sizeY, final float align) {
         nBeginVertical(id, sizeX, sizeY, align);
     }
+
+    private static native void nBeginVertical(String id); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        ImGui::BeginVertical(id);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+    */
+
+    private static native void nBeginVertical(String id, float sizeX, float sizeY); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        ImVec2 size = ImVec2(sizeX, sizeY);
+        ImGui::BeginVertical(id, size);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+    */
 
     private static native void nBeginVertical(String id, float sizeX, float sizeY, float align); /*MANUAL
         auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
@@ -13323,9 +13373,25 @@ public class ImGui {
         ImGui::EndVertical();
     */
 
+    public static void spring() {
+        nSpring();
+    }
+
+    public static void spring(final float weight) {
+        nSpring(weight);
+    }
+
     public static void spring(final float weight, final float spacing) {
         nSpring(weight, spacing);
     }
+
+    private static native void nSpring(); /*
+        ImGui::Spring();
+    */
+
+    private static native void nSpring(float weight); /*
+        ImGui::Spring(weight);
+    */
 
     private static native void nSpring(float weight, float spacing); /*
         ImGui::Spring(weight, spacing);

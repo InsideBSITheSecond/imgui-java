@@ -2823,17 +2823,17 @@ public class ImGui {
     public static native ImGuiViewport FindViewportByPlatformHandle(@ArgValue(callPrefix = "(void*)") long platformHandle);
 
     @BindingMethod
-    public static native void BeginHorizontal(String id, ImVec2 size, float align);
+    public static native void BeginHorizontal(String id, @OptArg ImVec2 size, @OptArg float align);
 
     @BindingMethod
     public static native void EndHorizontal();
 
     @BindingMethod
-    public static native void BeginVertical(String id, ImVec2 size, float align);
+    public static native void BeginVertical(String id, @OptArg ImVec2 size, @OptArg float align);
 
     @BindingMethod
     public static native void EndVertical();
 
     @BindingMethod
-    public static native void Spring(float weight, float spacing);
+    public static native void Spring(@OptArg float weight, @OptArg float spacing);
 }
