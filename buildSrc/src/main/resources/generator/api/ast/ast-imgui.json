@@ -10710,8 +10710,8 @@
       "docComment" : "Docking enable flags.",
       "qualType" : "ImGuiConfigFlags_",
       "order" : 7,
-      "value" : "1 << 6",
-      "evaluatedValue" : 64
+      "value" : "1 << 7",
+      "evaluatedValue" : 128
     }, {
       "@type" : "AstEnumConstantDecl",
       "name" : "ImGuiConfigFlags_ViewportsEnable",

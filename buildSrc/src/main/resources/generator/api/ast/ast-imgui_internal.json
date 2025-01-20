@@ -19039,7 +19039,7 @@
       "qualType" : "ImGuiConfigFlags_",
       "order" : 7,
       "value" : "egular",
-      "evaluatedValue" : 64
+      "evaluatedValue" : 128
     }, {
       "@type" : "AstEnumConstantDecl",
       "name" : "ImGuiConfigFlags_ViewportsEnable",
