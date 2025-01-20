@@ -1,11 +1,12 @@
 package imgui;
 
 import imgui.binding.ImGuiStruct;
-import imgui.binding.annotation.ArgValue;
+import imgui.binding.annotation.TypeArray;
+import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.BindingField;
 import imgui.binding.annotation.BindingMethod;
-import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.OptArg;
+import imgui.binding.annotation.ArgValue;
 
 /**
  * Draw command list
@@ -28,6 +29,26 @@ public final class ImDrawList extends ImGuiStruct {
         #include "_common.h"
         #define THIS ((ImDrawList*)STRUCT_PTR)
      */
+
+//    @BindingField
+//    @TypeArray(type = "ImVec2", size = "")
+//    public ImVec2[] _Path;
+
+    /**
+     *
+     *
+     */
+    public native ImVec2[] getPathData(); /*
+        return Jni::NewImVec2Array(env, THIS->_Path.Data, THIS->_Path.size());
+    */
+
+    /**
+     *
+     *
+     */
+    public native int getPathSize(); /*
+        return THIS->_Path.size();
+    */
 
     /**
      * Flags, you may poke into these to adjust anti-aliasing settings per-primitive.

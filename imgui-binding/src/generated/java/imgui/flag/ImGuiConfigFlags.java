@@ -58,9 +58,9 @@ public final class ImGuiConfigFlags {
     /**
      * Docking enable flags.
      *
-     * <p>Definition: {@code 1 << 6}
+     * <p>Definition: {@code 1 << 7}
      */
-    public static final int DockingEnable = 64;
+    public static final int DockingEnable = 128;
 
     /**
      * Viewport enable flags (require both ImGuiBackendFlags_PlatformHasViewports + ImGuiBackendFlags_RendererHasViewports set by the respective backends)

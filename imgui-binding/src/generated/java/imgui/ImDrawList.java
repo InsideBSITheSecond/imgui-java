@@ -23,6 +23,24 @@ public final class ImDrawList extends ImGuiStruct {
         #define THIS ((ImDrawList*)STRUCT_PTR)
      */
 
+//    public ImVec2[] _Path;
+
+    /**
+     *
+     *
+     */
+    public native ImVec2[] getPathData(); /*
+        return Jni::NewImVec2Array(env, THIS->_Path.Data, THIS->_Path.size());
+    */
+
+    /**
+     *
+     *
+     */
+    public native int getPathSize(); /*
+        return THIS->_Path.size();
+    */
+
     /**
      * Flags, you may poke into these to adjust anti-aliasing settings per-primitive.
      */
