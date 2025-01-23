@@ -2,6 +2,7 @@ package imgui.internal;
 
 import imgui.binding.ImGuiStruct;
 import imgui.binding.annotation.BindingField;
+import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 
 @BindingSource
@@ -16,6 +17,9 @@ public class ImGuiWindow extends ImGuiStruct {
         #include "_internal.h"
         #define THIS ((ImGuiWindow*)STRUCT_PTR)
      */
+
+    @BindingMethod
+    public native int GetID(String id);
 
     /**
      * Is scrollbar visible?

@@ -12502,6 +12502,29 @@
       "resultType" : "void"
     } ]
   }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiWindow",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " sizeof() 156~192"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "GetID",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "str",
+        "qualType" : "const char*",
+        "desugaredQualType" : "String"
+      } ]
+    } ]
+  }, {
     "@type" : "AstEnumDecl",
     "name" : "ImGuiWindowDockStyleCol",
     "decls" : [ {

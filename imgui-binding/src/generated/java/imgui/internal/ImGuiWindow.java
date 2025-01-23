@@ -14,6 +14,17 @@ public class ImGuiWindow extends ImGuiStruct {
         #define THIS ((ImGuiWindow*)STRUCT_PTR)
      */
 
+    public int getID(final String id) {
+        return nGetID(id);
+    }
+
+    private native int nGetID(String obj_id); /*MANUAL
+        auto id = obj_id == NULL ? NULL : (char*)env->GetStringUTFChars(obj_id, JNI_FALSE);
+        auto _result = THIS->GetID(id);
+        if (id != NULL) env->ReleaseStringUTFChars(obj_id, id);
+        return _result;
+    */
+
     /**
      * Is scrollbar visible?
      */
