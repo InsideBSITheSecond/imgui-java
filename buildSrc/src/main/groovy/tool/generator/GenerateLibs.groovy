@@ -126,7 +126,7 @@ class GenerateLibs extends DefaultTask {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
             win64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
-            win64.linkerFlags += "-lpthread"
+            win64.linkerFlags += " -lpthread"
             buildTargets += win64
         }
 
