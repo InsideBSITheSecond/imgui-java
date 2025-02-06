@@ -121,7 +121,7 @@ dc74f5430338a6568e4df3559abfa94634d7f790  imgui-binding/src/main/java/imgui/flag
 e6e0cf0f1a5b03b2c6b6f8115454e43da7e3793c  imgui-binding/src/main/java/imgui/flag/ImGuiCond.java
 b76d8296fcda68447942c64fb9aa2814e56ee603  imgui-binding/src/main/java/imgui/flag/ImGuiConfigFlags.java
 9a44afa60eab3b242066c510591c3bc9f7930258  imgui-binding/src/main/java/imgui/flag/ImGuiDataType.java
-0edb21815a7d9121b6b60b52eb1365b1aa3cf276  imgui-binding/src/main/java/imgui/flag/ImGuiDir.java
+f310f7b4608c07005130b712c19f3ed9ea8bc129  imgui-binding/src/main/java/imgui/flag/ImGuiDir.java
 353130a2081d3b47ce8b32a4c4daa20973004275  imgui-binding/src/main/java/imgui/flag/ImGuiDockNodeFlags.java
 42e70f57aa598bbfaafac4c8affe4c19f3c5fb13  imgui-binding/src/main/java/imgui/flag/ImGuiDragDropFlags.java
 e8fe3f98453c5973e8900db66fb269dde332571f  imgui-binding/src/main/java/imgui/flag/ImGuiFocusedFlags.java
@@ -310,7 +310,7 @@ e1f06da8bf0d31e97ad64feaf7b3e16763a6cccb  imgui-binding/src/generated/java/imgui
 a31bea89e086d04923a7b7a6d15e3af0d7a1ccc3  imgui-binding/src/generated/java/imgui/flag/ImGuiCond.java
 372aac56a548078befa76d564c4d8d410aad8480  imgui-binding/src/generated/java/imgui/flag/ImGuiConfigFlags.java
 67b23de18e752928270372a23fb0fa6b8173fa5f  imgui-binding/src/generated/java/imgui/flag/ImGuiDataType.java
-df0a4993e907323b3025b5c17b6b18452f21b9e0  imgui-binding/src/generated/java/imgui/flag/ImGuiDir.java
+40e447c81d2c6780184b6a8b5dbb3768b2a49d71  imgui-binding/src/generated/java/imgui/flag/ImGuiDir.java
 16b0173938a0f8dad35a78c8a546ae0e6ad02117  imgui-binding/src/generated/java/imgui/flag/ImGuiDockNodeFlags.java
 f9c4de5c36a371164dbc08e198fdfb02486786f9  imgui-binding/src/generated/java/imgui/flag/ImGuiDragDropFlags.java
 8591f02e79ee0a326d34d25021f4b96c39ffa47c  imgui-binding/src/generated/java/imgui/flag/ImGuiFocusedFlags.java
