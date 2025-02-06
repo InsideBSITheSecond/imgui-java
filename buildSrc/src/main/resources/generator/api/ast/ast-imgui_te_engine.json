@@ -1,0 +1,1302 @@
+{
+  "info" : {
+    "source" : "include/imgui_test_engine/imgui_test_engine/imgui_te_engine.h",
+    "hash" : "ec35bd1f19ab3f2b2b2c3c3cbaafa784",
+    "url" : "https://github.com/ocornut/imgui_test_engine",
+    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+  },
+  "decls" : [ {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiCaptureArgs",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Our types"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiWindow",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " External types"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiTest",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Forward Declarations"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiCaptureFlags_",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_None",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 0,
+      "value" : "u",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_StitchAll",
+      "docComment" : "Capture entire window scroll area (by scrolling and taking multiple screenshot). Only works for a single window.",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 1,
+      "value" : "puts (",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_IncludeOtherWindows",
+      "docComment" : "Disable hiding other windows (when CaptureAddWindow has been called by default other windows are hidden)",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 2,
+      "value" : "uiTest",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_IncludeTooltipsAndPopups",
+      "docComment" : "Expand capture area to automatically include visible popups and tooltips (use with ImGuiCaptureflags_HideOtherWindows)",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 3,
+      "value" : "uiTest",
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_HideMouseCursor",
+      "docComment" : "Hide render software mouse cursor during capture.",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 4,
+      "value" : "TestVe",
+      "evaluatedValue" : 8
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_Instant",
+      "docComment" : "Perform capture on very same frame. Only works when capturing a rectangular region. Unsupported features: content stitching, window hiding, window relocation.",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 5,
+      "value" : "------",
+      "evaluatedValue" : 16
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureFlags_NoSave",
+      "docComment" : "Do not save output image.",
+      "qualType" : "ImGuiCaptureFlags_",
+      "order" : 6,
+      "value" : " int\n{",
+      "evaluatedValue" : 32
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestActiveFunc",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Stored in ImGuiTestContext: where we are currently running GuiFunc or TestFunc"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestActiveFunc_None",
+      "qualType" : "ImGuiTestActiveFunc",
+      "order" : 0,
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestActiveFunc_GuiFunc",
+      "qualType" : "ImGuiTestActiveFunc",
+      "order" : 1,
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestActiveFunc_TestFunc",
+      "qualType" : "ImGuiTestActiveFunc",
+      "order" : 2,
+      "evaluatedValue" : 2
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestRunSpeed",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunSpeed_Fast",
+      "docComment" : "Run tests as fast as possible (teleport mouse, skip delays, etc.)",
+      "qualType" : "ImGuiTestRunSpeed",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunSpeed_Normal",
+      "docComment" : "Run tests at human watchable speed (for debugging)",
+      "qualType" : "ImGuiTestRunSpeed",
+      "order" : 1,
+      "value" : "1",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunSpeed_Cinematic",
+      "docComment" : "Run tests with pauses between actions (for e.g. tutorials)",
+      "qualType" : "ImGuiTestRunSpeed",
+      "order" : 2,
+      "value" : "2",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunSpeed_COUNT",
+      "qualType" : "ImGuiTestRunSpeed",
+      "order" : 3,
+      "evaluatedValue" : 3
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiCaptureArgs",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Defines input and output arguments for capture process."
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " When capturing from tests you can usually use the ImGuiTestContext::CaptureXXX() helpers functions."
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InFlags",
+      "qualType" : "ImGuiCaptureFlags",
+      "desugaredQualType" : "unsigned int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InCaptureWindows",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InCaptureRect",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InPadding",
+      "qualType" : "float",
+      "desugaredQualType" : "float"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InOutputFile",
+      "qualType" : "char[256]",
+      "desugaredQualType" : "char[256]"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InOutputImageBuf",
+      "qualType" : "ImGuiCaptureImageBuf *",
+      "desugaredQualType" : "ImGuiCaptureImageBuf *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InRecordFPSTarget",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InSizeAlign",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "OutImageSize",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestVerboseLevel",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Silent",
+      "docComment" : "-v0",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Error",
+      "docComment" : "-v1",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 1,
+      "value" : "1",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Warning",
+      "docComment" : "-v2",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 2,
+      "value" : "2",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Info",
+      "docComment" : "-v3",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 3,
+      "value" : "3",
+      "evaluatedValue" : 3
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Debug",
+      "docComment" : "-v4",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 4,
+      "value" : "4",
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_Trace",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 5,
+      "value" : "5",
+      "evaluatedValue" : 5
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestVerboseLevel_COUNT",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "order" : 6,
+      "evaluatedValue" : 6
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestStatus",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Test status (stored in ImGuiTest)"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Unknown",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Success",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 1,
+      "value" : "1",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Queued",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 2,
+      "value" : "2",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Running",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 3,
+      "value" : "3",
+      "evaluatedValue" : 3
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Error",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 4,
+      "value" : "4",
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_Suspended",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 5,
+      "value" : "5",
+      "evaluatedValue" : 5
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestStatus_COUNT",
+      "qualType" : "ImGuiTestStatus",
+      "order" : 6,
+      "evaluatedValue" : 6
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestGroup",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Test group: this is mostly used to categorize tests in our testing UI. (Stored in ImGuiTest)"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestGroup_Unknown",
+      "qualType" : "ImGuiTestGroup",
+      "order" : 0,
+      "value" : "-1",
+      "evaluatedValue" : -1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestGroup_Tests",
+      "qualType" : "ImGuiTestGroup",
+      "order" : 1,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestGroup_Perfs",
+      "qualType" : "ImGuiTestGroup",
+      "order" : 2,
+      "value" : "1",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestGroup_COUNT",
+      "qualType" : "ImGuiTestGroup",
+      "order" : 3,
+      "evaluatedValue" : 2
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Flags (stored in ImGuiTest)"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestFlags_None",
+      "qualType" : "ImGuiTestFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestFlags_NoGuiWarmUp",
+      "docComment" : "Disable running the GUI func for 2 frames before starting test code. For tests which absolutely need to start before GuiFunc.",
+      "qualType" : "ImGuiTestFlags_",
+      "order" : 1,
+      "value" : "1 << 0",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestFlags_NoAutoFinish",
+      "docComment" : "By default, tests with no TestFunc (only a GuiFunc) will end after warmup. Setting this require test to call ctx->Finish().",
+      "qualType" : "ImGuiTestFlags_",
+      "order" : 2,
+      "value" : "1 << 1",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestFlags_NoRecoveryWarnings",
+      "docComment" : "Disable state recovery warnings (missing End/Pop calls etc.) for tests which may rely on those.",
+      "qualType" : "ImGuiTestFlags_",
+      "order" : 3,
+      "value" : "1 << 2",
+      "evaluatedValue" : 4
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiCaptureStatus",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureStatus_InProgress",
+      "qualType" : "ImGuiCaptureStatus",
+      "order" : 0,
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureStatus_Done",
+      "qualType" : "ImGuiCaptureStatus",
+      "order" : 1,
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiCaptureStatus_Error",
+      "qualType" : "ImGuiCaptureStatus",
+      "order" : 2,
+      "evaluatedValue" : 2
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiCaptureWindowData",
+    "decls" : [ {
+      "@type" : "AstFieldDecl",
+      "name" : "Window",
+      "qualType" : "ImGuiWindow *",
+      "desugaredQualType" : "ImGuiWindow *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "BackupRect",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "PosDuringCapture",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestCheckFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Flags for IM_CHECK* macros."
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestCheckFlags_None",
+      "qualType" : "ImGuiTestCheckFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestCheckFlags_SilentSuccess",
+      "qualType" : "ImGuiTestCheckFlags_",
+      "order" : 1,
+      "value" : "1 << 0",
+      "evaluatedValue" : 1
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestLogFlags_",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Flags for ImGuiTestContext::Log* functions."
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestLogFlags_None",
+      "qualType" : "ImGuiTestLogFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestLogFlags_NoHeader",
+      "docComment" : "Do not display frame count and depth padding",
+      "qualType" : "ImGuiTestLogFlags_",
+      "order" : 1,
+      "value" : "1 << 0",
+      "evaluatedValue" : 1
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImGuiTestRunFlags_",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_None",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 0,
+      "value" : "0",
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_GuiFuncDisable",
+      "docComment" : "Used internally to temporarily disable the GUI func (at the end of a test, etc)",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 1,
+      "value" : "1 << 0",
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_GuiFuncOnly",
+      "docComment" : "Set when user selects \"Run GUI func\"",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 2,
+      "value" : "1 << 1",
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_NoSuccessMsg",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 3,
+      "value" : "1 << 2",
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_EnableRawInputs",
+      "docComment" : "Disable input submission to let test submission raw input event (in order to test e.g. IO queue)",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 4,
+      "value" : "1 << 3",
+      "evaluatedValue" : 8
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_RunFromGui",
+      "docComment" : "Test ran manually from GUI, will disable watchdog.",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 5,
+      "value" : "1 << 4",
+      "evaluatedValue" : 16
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_RunFromCommandLine",
+      "docComment" : "Test queued from command-line.",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 6,
+      "value" : "1 << 5",
+      "evaluatedValue" : 32
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_NoError",
+      "docComment" : "Flags for ImGuiTestContext::RunChildTest()",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 7,
+      "value" : "1 << 10",
+      "evaluatedValue" : 1024
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_ShareVars",
+      "docComment" : "Share generic vars and custom vars between child and parent tests (custom vars need to be same type)",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 8,
+      "value" : "1 << 11",
+      "evaluatedValue" : 2048
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImGuiTestRunFlags_ShareTestContext",
+      "docComment" : "Share ImGuiTestContext instead of creating a new one (unsure what purpose this may be useful for yet)",
+      "qualType" : "ImGuiTestRunFlags_",
+      "order" : 9,
+      "value" : "1 << 12",
+      "evaluatedValue" : 4096
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngineHook_ItemAdd",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "id",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "bb",
+      "qualType" : "const int &",
+      "desugaredQualType" : "const int &"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "item_data",
+      "qualType" : "const int *",
+      "desugaredQualType" : "const int *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Hooks for core imgui/ library (generally called via macros)"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngineHook_ItemAdd",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "bb",
+      "qualType" : "const int &",
+      "desugaredQualType" : "const int &"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "id",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngineHook_ItemInfo",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "id",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "label",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "flags",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngineHook_Log",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "fmt",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_FindItemDebugLabel",
+    "resultType" : "const char *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "id",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_Check",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "file",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "func",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "flags",
+      "qualType" : "ImGuiTestCheckFlags",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "result",
+      "qualType" : "bool",
+      "desugaredQualType" : "bool"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "expr",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions (generally called via IM_CHECK() macros)"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_CheckStrOp",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "file",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "func",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "flags",
+      "qualType" : "ImGuiTestCheckFlags",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "op",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "lhs_var",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "lhs_value",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "rhs_var",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "rhs_value",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_result",
+      "qualType" : "bool *",
+      "desugaredQualType" : "bool *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_Error",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "file",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "func",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "flags",
+      "qualType" : "ImGuiTestCheckFlags",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "fmt",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_AssertLog",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "expr",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "file",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "function",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_DestroyContext",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_Start",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "ui_ctx",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_Stop",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_PostSwap",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_UnregisterTest",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "test",
+      "qualType" : "ImGuiTest *",
+      "desugaredQualType" : "ImGuiTest *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_QueueTest",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "test",
+      "qualType" : "ImGuiTest *",
+      "desugaredQualType" : "ImGuiTest *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "run_flags",
+      "qualType" : "ImGuiTestRunFlags",
+      "desugaredQualType" : "int",
+      "defaultValue" : "0"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions: Main"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_QueueTests",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "group",
+      "qualType" : "ImGuiTestGroup",
+      "desugaredQualType" : "ImGuiTestGroup"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "filter",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "="
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "run_flags",
+      "qualType" : "ImGuiTestRunFlags",
+      "desugaredQualType" : "int",
+      "defaultValue" : "0"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_TryAbortEngine",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_AbortCurrentTest",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_IsTestQueueEmpty",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions: Status Queries"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " FIXME: Clarify API to avoid function calls vs raw bools in ImGuiTestEngineIO"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_IsUsingSimulatedInputs",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_GetResult",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "count_tested",
+      "qualType" : "int &",
+      "desugaredQualType" : "int &"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "success_count",
+      "qualType" : "int &",
+      "desugaredQualType" : "int &"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_GetTestList",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_tests",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_GetTestQueue",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_tests",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_InstallDefaultCrashHandler",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions: Crash Handling"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Ensure past test results are properly exported even if application crash during a test."
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_CrashHandler",
+    "resultType" : "IMGUI_API"
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiTestItemInfo",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Information about a given item or window, result of an ItemInfo() or WindowInfo() query"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "ID",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "DebugLabel",
+      "qualType" : "char[32]",
+      "desugaredQualType" : "char[32]"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Window",
+      "qualType" : "ImGuiWindow *",
+      "desugaredQualType" : "ImGuiWindow *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "NavLayer",
+      "qualType" : "unsigned int",
+      "desugaredQualType" : "unsigned int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Depth",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "TimestampMain",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "TimestampStatus",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "ParentID",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "RectFull",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "RectClipped",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "InFlags",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "StatusFlags",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestLog",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "IsEmpty",
+    "resultType" : "bool"
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "Clear",
+    "resultType" : "void"
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ExtractLinesForVerboseLevels",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "level_min",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "desugaredQualType" : "ImGuiTestVerboseLevel"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "level_max",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "desugaredQualType" : "ImGuiTestVerboseLevel"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_buffer",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Extract log contents filtered per log-level."
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Output:"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - If 'buffer != NULL': all extracted lines are appended to 'buffer'. Use 'buffer->c_str()' on your side to obtain the text."
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - Return value: number of lines extracted (should be equivalent to number of '"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "' inside buffer->c_str())."
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - You may call the function with buffer == NULL to only obtain a count without getting the data."
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Verbose levels are inclusive:"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - To get ONLY Error:                     Use level_min == ImGuiTestVerboseLevel_Error, level_max = ImGuiTestVerboseLevel_Error"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - To get ONLY Error and Warnings:        Use level_min == ImGuiTestVerboseLevel_Error, level_max = ImGuiTestVerboseLevel_Warning"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " - To get All Errors, Warnings, Debug...  Use level_min == ImGuiTestVerboseLevel_Error, level_max = ImGuiTestVerboseLevel_Trace"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "UpdateLineOffsets",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine_io",
+      "qualType" : "ImGuiTestEngineIO *",
+      "desugaredQualType" : "ImGuiTestEngineIO *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "level",
+      "qualType" : "ImGuiTestVerboseLevel",
+      "desugaredQualType" : "ImGuiTestVerboseLevel"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "start",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " [Internal]"
+        } ]
+      } ]
+    } ]
+  } ]
+}

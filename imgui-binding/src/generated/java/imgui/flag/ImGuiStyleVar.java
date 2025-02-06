@@ -125,19 +125,64 @@ public final class ImGuiStyleVar {
     public static final int GrabRounding = 21;
 
     /**
+     * float     LayoutAlign
+     */
+    public static final int LayoutAlign = 22;
+
+    /**
      * float     TabRounding
      */
-    public static final int TabRounding = 22;
+    public static final int TabRounding = 23;
+
+    /**
+     * float     TabBorderSize
+     */
+    public static final int TabBorderSize = 24;
+
+    /**
+     * float     TabBarBorderSize
+     */
+    public static final int TabBarBorderSize = 25;
+
+    /**
+     * float     TableAngledHeadersAngle
+     */
+    public static final int TableAngledHeadersAngle = 26;
+
+    /**
+     * ImVec2  TableAngledHeadersTextAlign
+     */
+    public static final int TableAngledHeadersTextAlign = 27;
 
     /**
      * ImVec2    ButtonTextAlign
      */
-    public static final int ButtonTextAlign = 23;
+    public static final int ButtonTextAlign = 28;
 
     /**
      * ImVec2    SelectableTextAlign
      */
-    public static final int SelectableTextAlign = 24;
+    public static final int SelectableTextAlign = 29;
 
-    public static final int COUNT = 25;
+    /**
+     * float     SeparatorTextBorderSize
+     */
+    public static final int SeparatorTextBorderSize = 30;
+
+    /**
+     * ImVec2    SeparatorTextAlign
+     */
+    public static final int SeparatorTextAlign = 31;
+
+    /**
+     * ImVec2    SeparatorTextPadding
+     */
+    public static final int SeparatorTextPadding = 32;
+
+    /**
+     * float     DockingSeparatorSize
+     */
+    public static final int DockingSeparatorSize = 33;
+
+    public static final int COUNT = 34;
 }

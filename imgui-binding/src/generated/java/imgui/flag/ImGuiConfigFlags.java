@@ -14,14 +14,14 @@ public final class ImGuiConfigFlags {
     public static final int None = 0;
 
     /**
-     * Master keyboard navigation enable flag. NewFrame() will automatically fill io.NavInputs[] based on io.AddKeyEvent() calls
+     * Master keyboard navigation enable flag. Enable full Tabbing + directional arrows + space/enter to activate.
      *
      * <p>Definition: {@code 1 << 0}
      */
     public static final int NavEnableKeyboard = 1;
 
     /**
-     * Master gamepad navigation enable flag. This is mostly to instruct your imgui backend to fill io.NavInputs[]. Backend also needs to set ImGuiBackendFlags_HasGamepad.
+     * Master gamepad navigation enable flag. Backend also needs to set ImGuiBackendFlags_HasGamepad.
      *
      * <p>Definition: {@code 1 << 1}
      */
@@ -42,7 +42,7 @@ public final class ImGuiConfigFlags {
     public static final int NavNoCaptureKeyboard = 8;
 
     /**
-     * Instruct imgui to clear mouse position/buttons in NewFrame(). This allows ignoring the mouse information set by the backend.
+     * Instruct dear imgui to disable mouse inputs and interactions.
      *
      * <p>Definition: {@code 1 << 4}
      */
@@ -54,6 +54,13 @@ public final class ImGuiConfigFlags {
      * <p>Definition: {@code 1 << 5}
      */
     public static final int NoMouseCursorChange = 32;
+
+    /**
+     * Instruct dear imgui to disable keyboard inputs and interactions. This is done by ignoring keyboard events and clearing existing states.
+     *
+     * <p>Definition: {@code 1 << 6}
+     */
+    public static final int NoKeyboard = 64;
 
     /**
      * Docking enable flags.

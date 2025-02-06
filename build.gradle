@@ -65,5 +65,11 @@ tasks.register('generateAst', GenerateAst) {
             file('include/implot/implot.h'),
             file('include/imgui-node-editor/imgui_node_editor.h'),
             file('include/ImGuiColorTextEdit/TextEditor.h'),
+
+            file('include/imgui_test_engine/imgui_test_engine/imgui_te_engine.h'),
+            file('include/imgui_test_engine/imgui_test_engine/imgui_te_ui.h'),
+            file('include/imgui_test_engine/imgui_test_engine/imgui_te_utils.h'),
+            file('include/imgui_test_engine/imgui_test_engine/thirdparty/stb/imstb_image_write.h'),
+            file('include/imgui_test_engine/imgui_test_engine/thirdparty/Str/Str.h'),
     ]
 }

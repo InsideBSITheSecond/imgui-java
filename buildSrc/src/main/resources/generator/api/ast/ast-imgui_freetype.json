@@ -1,9 +1,9 @@
 {
   "info" : {
     "source" : "include/imgui/misc/freetype/imgui_freetype.h",
-    "hash" : "5976473c3ad2fbe2f0386eaa9019d4e0",
-    "url" : "https://github.com/ocornut/imgui",
-    "revision" : "9cd9c2eff99877a3f10a7f9c2a3a5b9c15ea36c6"
+    "hash" : "b08898b2e1013c180b4ee5b2846938bf",
+    "url" : "https://github.com/thedmd/imgui",
+    "revision" : "f348e93d8694239d84830aed367628607b0a3c09"
   },
   "decls" : [ {
     "@type" : "AstRecordDecl",
@@ -151,7 +151,7 @@
         "name" : "user_data",
         "qualType" : "void *",
         "desugaredQualType" : "void *",
-        "defaultValue" : "="
+        "defaultValue" : "nullptr"
       }, {
         "@type" : "AstFullComment",
         "decls" : [ {
@@ -164,22 +164,6 @@
             "text" : " However, as FreeType does lots of allocations we provide a way for the user to redirect it to a separate memory heap if desired."
           } ]
         } ]
-      } ]
-    }, {
-      "@type" : "AstFunctionDecl",
-      "name" : "BuildFontAtlas",
-      "resultType" : "bool",
-      "decls" : [ {
-        "@type" : "AstParmVarDecl",
-        "name" : "atlas",
-        "qualType" : "ImFontAtlas *",
-        "desugaredQualType" : "ImFontAtlas *"
-      }, {
-        "@type" : "AstParmVarDecl",
-        "name" : "flags",
-        "qualType" : "unsigned int",
-        "desugaredQualType" : "unsigned int",
-        "defaultValue" : "0"
       } ]
     } ]
   } ]

@@ -1,0 +1,590 @@
+{
+  "info" : {
+    "source" : "include/imgui_test_engine/imgui_test_engine/thirdparty/Str/Str.h",
+    "hash" : "5531603458677f958f6acb65796e98f4",
+    "url" : "https://github.com/ocornut/imgui_test_engine",
+    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+  },
+  "decls" : [ {
+    "@type" : "AstRecordDecl",
+    "name" : "Str",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " This is the base class that you can pass around"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Footprint is 8-bytes (32-bits arch) or 16-bytes (64-bits arch)"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Data",
+      "qualType" : "char *",
+      "desugaredQualType" : "char *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Capacity",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "LocalBufSize",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Owned",
+      "qualType" : "unsigned int",
+      "desugaredQualType" : "unsigned int"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "c_str",
+      "resultType" : "char *"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "c_str",
+      "resultType" : "const char *"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "empty",
+      "resultType" : "bool"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "length",
+      "resultType" : "int"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "capacity",
+      "resultType" : "int"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "owned",
+      "resultType" : "bool"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "set_ref",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "src",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "setf",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "setfv",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "args",
+        "qualType" : "__va_list_tag *",
+        "desugaredQualType" : "__va_list_tag *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "setf_nogrow",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "setfv_nogrow",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "args",
+        "qualType" : "__va_list_tag *",
+        "desugaredQualType" : "__va_list_tag *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "append",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "c",
+        "qualType" : "char",
+        "desugaredQualType" : "char"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "append",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "s",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "s_end",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *",
+        "defaultValue" : "NULL"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "appendf",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "appendfv",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "args",
+        "qualType" : "__va_list_tag *",
+        "desugaredQualType" : "__va_list_tag *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "append_from",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "idx",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "c",
+        "qualType" : "char",
+        "desugaredQualType" : "char"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "append_from",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "idx",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "s",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "s_end",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *",
+        "defaultValue" : "NULL"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "appendf_from",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "idx",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "appendfv_from",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "idx",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "fmt",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "args",
+        "qualType" : "__va_list_tag *",
+        "desugaredQualType" : "__va_list_tag *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "clear",
+      "resultType" : "void"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "reserve",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "cap",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "reserve_discard",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "cap",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "shrink_to_fit",
+      "resultType" : "void"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "set",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "src",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "set",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "src",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "src_end",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "set",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "src",
+        "qualType" : "const Str &",
+        "desugaredQualType" : "const Str &"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "set",
+      "resultType" : "void",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "src",
+        "qualType" : "const std::string &",
+        "desugaredQualType" : "const std::string &"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "local_buf",
+      "resultType" : "char *"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "local_buf",
+      "resultType" : "const char *"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "is_using_local_buf",
+      "resultType" : "bool"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "set",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "set",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "src_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "set",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const Str &",
+      "desugaredQualType" : "const Str &"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "set",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const std::string &",
+      "desugaredQualType" : "const std::string &"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "set_ref",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "StrRef",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Literal/reference string"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str16",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[16]",
+      "desugaredQualType" : "char[16]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str30",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[30]",
+      "desugaredQualType" : "char[30]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str64",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[64]",
+      "desugaredQualType" : "char[64]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str128",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[128]",
+      "desugaredQualType" : "char[128]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str256",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[256]",
+      "desugaredQualType" : "char[256]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str512",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring types for common sizes here"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "local_buf",
+      "qualType" : "char[512]",
+      "desugaredQualType" : "char[512]"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str16f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str30f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str64f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str128f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str256f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "Str512f",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Declaring helper constructors to pass in format strings in one statement"
+        } ]
+      } ]
+    } ]
+  } ]
+}

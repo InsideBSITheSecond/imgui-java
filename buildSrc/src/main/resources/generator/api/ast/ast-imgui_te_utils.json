@@ -1,0 +1,990 @@
+{
+  "info" : {
+    "source" : "include/imgui_test_engine/imgui_test_engine/imgui_te_utils.h",
+    "hash" : "e8f0e2bca4c0ad39c4de261525a6b1ec",
+    "url" : "https://github.com/ocornut/imgui_test_engine",
+    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+  },
+  "decls" : [ {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImHashDecoratedPath",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "str",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "str_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "NULL"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "seed",
+      "qualType" : "int",
+      "desugaredQualType" : "int",
+      "defaultValue" : "0"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Hashing Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFindNextDecoratedPartInPath",
+    "resultType" : "const char *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "str",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "str_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "NULL"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFileExist",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "filename",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " File/Directory Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFileDelete",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "filename",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFileCreateDirectoryChain",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "path_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "NULL"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFileFindInParents",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "sub_path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "max_parent_count",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "output",
+      "qualType" : "Str *",
+      "desugaredQualType" : "Str *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImFileLoadSourceBlurb",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "filename",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line_no_start",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "line_no_end",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_buf",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImPathFindFilename",
+    "resultType" : "const char *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "path_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "NULL"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Those are strictly string manipulation functions"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImPathFindExtension",
+    "resultType" : "const char *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "path_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *",
+      "defaultValue" : "NULL"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImPathFixSeparatorsForCurrentOS",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "buf",
+      "qualType" : "char *",
+      "desugaredQualType" : "char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImStrReplace",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "s",
+      "qualType" : "Str *",
+      "desugaredQualType" : "Str *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "find",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "repl",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " String Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImStrchrRangeWithEscaping",
+    "resultType" : "const char *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "str",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "str_end",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "find_c",
+      "qualType" : "char",
+      "desugaredQualType" : "char"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImStrXmlEscape",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "s",
+      "qualType" : "Str *",
+      "desugaredQualType" : "Str *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImStrBase64Encode",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "src",
+      "qualType" : "const unsigned char *",
+      "desugaredQualType" : "const unsigned char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "dst",
+      "qualType" : "char *",
+      "desugaredQualType" : "char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "length",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImParseExtractArgcArgvFromCommandLine",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_argc",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_argv",
+      "qualType" : "const char ***",
+      "desugaredQualType" : "const char ***"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "cmd_line",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Parsing Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImParseFindIniSection",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ini_config",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "header",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "result",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImTimeGetInMicroseconds",
+    "resultType" : "uint64_t",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Time Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImTimestampToISO8601",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "timestamp",
+      "qualType" : "uint64_t",
+      "desugaredQualType" : "unsigned long"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "out_date",
+      "qualType" : "Str *",
+      "desugaredQualType" : "Str *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImThreadSleepInMilliseconds",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "ms",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Threading Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImThreadSetCurrentThreadDescription",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "description",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImBuildInfo",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " All the pointers are expect to be literals/persistent"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Type",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Cpu",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "OS",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Compiler",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Date",
+      "qualType" : "char[32]",
+      "desugaredQualType" : "char[32]"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Time",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImBuildGetCompilationInfo",
+    "resultType" : "const ImBuildInfo *"
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImBuildFindGitBranchName",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "git_repo_path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "branch_name",
+      "qualType" : "Str *",
+      "desugaredQualType" : "Str *"
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImOsConsoleStream",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Operating System Helpers"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleStream_StandardOutput",
+      "qualType" : "ImOsConsoleStream",
+      "order" : 0,
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleStream_StandardError",
+      "qualType" : "ImOsConsoleStream",
+      "order" : 1,
+      "evaluatedValue" : 1
+    } ]
+  }, {
+    "@type" : "AstEnumDecl",
+    "name" : "ImOsConsoleTextColor",
+    "decls" : [ {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_Black",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 0,
+      "evaluatedValue" : 0
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_White",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 1,
+      "evaluatedValue" : 1
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_BrightWhite",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 2,
+      "evaluatedValue" : 2
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_BrightRed",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 3,
+      "evaluatedValue" : 3
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_BrightGreen",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 4,
+      "evaluatedValue" : 4
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_BrightBlue",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 5,
+      "evaluatedValue" : 5
+    }, {
+      "@type" : "AstEnumConstantDecl",
+      "name" : "ImOsConsoleTextColor_BrightYellow",
+      "qualType" : "ImOsConsoleTextColor",
+      "order" : 6,
+      "evaluatedValue" : 6
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsCreateProcess",
+    "resultType" : "bool",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "cmd_line",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsPOpen",
+    "resultType" : "FILE *",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "cmd_line",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "mode",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsPClose",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "fp",
+      "qualType" : "FILE *",
+      "desugaredQualType" : "FILE *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsOpenInShell",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "path",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsIsDebuggerPresent",
+    "resultType" : "bool"
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsOutputDebugString",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "message",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImOsConsoleSetTextColor",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "stream",
+      "qualType" : "ImOsConsoleStream",
+      "desugaredQualType" : "ImOsConsoleStream"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "color",
+      "qualType" : "ImOsConsoleTextColor",
+      "desugaredQualType" : "ImOsConsoleTextColor"
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiTable",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Tables functions"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "TableGetHeaderID",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "table",
+      "qualType" : "ImGuiTable *",
+      "desugaredQualType" : "ImGuiTable *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "column",
+      "qualType" : "const char *",
+      "desugaredQualType" : "const char *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "instance_no",
+      "qualType" : "int",
+      "desugaredQualType" : "int",
+      "defaultValue" : "0"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "TableGetHeaderID",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "table",
+      "qualType" : "ImGuiTable *",
+      "desugaredQualType" : "ImGuiTable *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "column_n",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "instance_no",
+      "qualType" : "int",
+      "desugaredQualType" : "int",
+      "defaultValue" : "0"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "TableDiscardInstanceAndSettings",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "table_id",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "DrawDataVerifyMatchingBufferCount",
+    "resultType" : "void",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "draw_data",
+      "qualType" : "int *",
+      "desugaredQualType" : "int *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " DrawData functions"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiCsvParser",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : " Helper: Simple/dumb CSV parser"
+        }, {
+          "@type" : "AstTextComment",
+          "text" : "-----------------------------------------------------------------------------"
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Columns",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFieldDecl",
+      "name" : "Rows",
+      "qualType" : "int",
+      "desugaredQualType" : "int"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "Load",
+      "resultType" : "bool",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "file_name",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "Clear",
+      "resultType" : "void"
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "GetCell",
+      "resultType" : "const char *",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "row",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "col",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      } ]
+    } ]
+  }, {
+    "@type" : "AstNamespaceDecl",
+    "name" : "ImGui",
+    "decls" : [ {
+      "@type" : "AstFunctionDecl",
+      "name" : "ItemErrorFrame",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "col",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "TableGetInstanceID",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "table",
+        "qualType" : "ImGuiTable *",
+        "desugaredQualType" : "ImGuiTable *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "instance_no",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "InputText",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "label",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "str",
+        "qualType" : "Str *",
+        "desugaredQualType" : "Str *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "flags",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "callback",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "NULL"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "user_data",
+        "qualType" : "void *",
+        "desugaredQualType" : "void *",
+        "defaultValue" : "NULL"
+      }, {
+        "@type" : "AstFullComment",
+        "decls" : [ {
+          "@type" : "AstParagraphComment",
+          "decls" : [ {
+            "@type" : "AstTextComment",
+            "text" : " Str support for InputText()"
+          } ]
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "InputTextWithHint",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "label",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "hint",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "str",
+        "qualType" : "Str *",
+        "desugaredQualType" : "Str *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "flags",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "callback",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "NULL"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "user_data",
+        "qualType" : "void *",
+        "desugaredQualType" : "void *",
+        "defaultValue" : "NULL"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "InputTextMultiline",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "label",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "str",
+        "qualType" : "Str *",
+        "desugaredQualType" : "Str *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "size",
+        "qualType" : "const int &",
+        "desugaredQualType" : "const int &",
+        "defaultValue" : "ImVec2(0, 0)"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "flags",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "callback",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "NULL"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "user_data",
+        "qualType" : "void *",
+        "desugaredQualType" : "void *",
+        "defaultValue" : "NULL"
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "Splitter",
+      "resultType" : "int",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "id",
+        "qualType" : "const char *",
+        "desugaredQualType" : "const char *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "value_1",
+        "qualType" : "float *",
+        "desugaredQualType" : "float *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "value_2",
+        "qualType" : "float *",
+        "desugaredQualType" : "float *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "axis",
+        "qualType" : "int",
+        "desugaredQualType" : "int"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "anchor",
+        "qualType" : "int",
+        "desugaredQualType" : "int",
+        "defaultValue" : "0"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "min_size_0",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "min_size_1",
+        "qualType" : "float",
+        "desugaredQualType" : "float",
+        "defaultValue" : "-1.0f"
+      }, {
+        "@type" : "AstFullComment",
+        "decls" : [ {
+          "@type" : "AstParagraphComment",
+          "decls" : [ {
+            "@type" : "AstTextComment",
+            "text" : " Splitter"
+          } ]
+        } ]
+      } ]
+    }, {
+      "@type" : "AstFunctionDecl",
+      "name" : "TabBarGetTabName",
+      "resultType" : "const int *",
+      "decls" : [ {
+        "@type" : "AstParmVarDecl",
+        "name" : "tab_bar",
+        "qualType" : "ImGuiTabBar *",
+        "desugaredQualType" : "ImGuiTabBar *"
+      }, {
+        "@type" : "AstParmVarDecl",
+        "name" : "tab",
+        "qualType" : "ImGuiTabItem *",
+        "desugaredQualType" : "ImGuiTabItem *"
+      } ]
+    } ]
+  } ]
+}

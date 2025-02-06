@@ -21,7 +21,11 @@ class GenerateLibs extends DefaultTask {
         'include/ImGuiColorTextEdit',
         'include/ImGuiFileDialog',
         'include/imgui_club/imgui_memory_editor',
-        'include/imgui-knobs'
+        'include/imgui-knobs',
+
+        'include/imgui_test_engine/imgui_test_engine',
+        'include/imgui_test_engine/imgui_test_engine/thirdparty/stb',
+        'include/imgui_test_engine/imgui_test_engine/thirdparty/Str',
     ]
 
     @Internal
@@ -98,6 +102,18 @@ class GenerateLibs extends DefaultTask {
 
         // Copy dirent for ImGuiFileDialog
         project.copy { CopySpec spec ->
+            spec.from(project.rootProject.file('include/imgui_test_engine/imgui_test_engine/thirdparty/Str')) { CopySpec s -> s.include('*.h', '*.cpp', '*.inl') }
+            spec.into(jniDir + '/thirdparty/Str')
+        }
+
+        // Copy dirent for ImGuiFileDialog
+        project.copy { CopySpec spec ->
+            spec.from(project.rootProject.file('include/imgui_test_engine/imgui_test_engine/thirdparty/stb')) { CopySpec s -> s.include('*.h', '*.cpp', '*.inl') }
+            spec.into(jniDir + '/thirdparty/stb')
+        }
+
+        // Copy dirent for ImGuiFileDialog
+        project.copy { CopySpec spec ->
             spec.from(project.rootProject.file('include/ImGuiFileDialog/dirent')) { CopySpec s -> s.include('*.h', '*.cpp', '*.inl') }
             spec.into(jniDir + '/dirent')
         }
@@ -109,12 +125,14 @@ class GenerateLibs extends DefaultTask {
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
+            win64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
             buildTargets += win64
         }
 
         if (forLinux) {
             def linux64 = BuildTarget.newDefaultTarget(Os.Linux, Architecture.Bitness._64)
             addFreeTypeIfEnabled(linux64)
+            linux64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
             buildTargets += linux64
         }
 

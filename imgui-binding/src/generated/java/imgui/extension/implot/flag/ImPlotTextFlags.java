@@ -17,5 +17,5 @@ public class ImPlotTextFlags {
      *
      * <p>Definition: {@code 1 << 10}
      */
-    public static final int Vertical = 1;
+    public static final int Vertical = 1024;
 }

@@ -362,119 +362,119 @@ public class ImGuiImplGlfw {
     protected int glfwKeyToImGuiKey(final int glfwKey) {
         switch (glfwKey) {
             case GLFW_KEY_TAB:
-                return ImGuiKey.Tab;
+                return ImGuiKey._Tab;
             case GLFW_KEY_LEFT:
-                return ImGuiKey.LeftArrow;
+                return ImGuiKey._LeftArrow;
             case GLFW_KEY_RIGHT:
-                return ImGuiKey.RightArrow;
+                return ImGuiKey._RightArrow;
             case GLFW_KEY_UP:
-                return ImGuiKey.UpArrow;
+                return ImGuiKey._UpArrow;
             case GLFW_KEY_DOWN:
-                return ImGuiKey.DownArrow;
+                return ImGuiKey._DownArrow;
             case GLFW_KEY_PAGE_UP:
-                return ImGuiKey.PageUp;
+                return ImGuiKey._PageUp;
             case GLFW_KEY_PAGE_DOWN:
-                return ImGuiKey.PageDown;
+                return ImGuiKey._PageDown;
             case GLFW_KEY_HOME:
-                return ImGuiKey.Home;
+                return ImGuiKey._Home;
             case GLFW_KEY_END:
-                return ImGuiKey.End;
+                return ImGuiKey._End;
             case GLFW_KEY_INSERT:
-                return ImGuiKey.Insert;
+                return ImGuiKey._Insert;
             case GLFW_KEY_DELETE:
-                return ImGuiKey.Delete;
+                return ImGuiKey._Delete;
             case GLFW_KEY_BACKSPACE:
-                return ImGuiKey.Backspace;
+                return ImGuiKey._Backspace;
             case GLFW_KEY_SPACE:
-                return ImGuiKey.Space;
+                return ImGuiKey._Space;
             case GLFW_KEY_ENTER:
-                return ImGuiKey.Enter;
+                return ImGuiKey._Enter;
             case GLFW_KEY_ESCAPE:
-                return ImGuiKey.Escape;
+                return ImGuiKey._Escape;
             case GLFW_KEY_APOSTROPHE:
-                return ImGuiKey.Apostrophe;
+                return ImGuiKey._Apostrophe;
             case GLFW_KEY_COMMA:
-                return ImGuiKey.Comma;
+                return ImGuiKey._Comma;
             case GLFW_KEY_MINUS:
-                return ImGuiKey.Minus;
+                return ImGuiKey._Minus;
             case GLFW_KEY_PERIOD:
-                return ImGuiKey.Period;
+                return ImGuiKey._Period;
             case GLFW_KEY_SLASH:
-                return ImGuiKey.Slash;
+                return ImGuiKey._Slash;
             case GLFW_KEY_SEMICOLON:
-                return ImGuiKey.Semicolon;
+                return ImGuiKey._Semicolon;
             case GLFW_KEY_EQUAL:
-                return ImGuiKey.Equal;
+                return ImGuiKey._Equal;
             case GLFW_KEY_LEFT_BRACKET:
-                return ImGuiKey.LeftBracket;
+                return ImGuiKey._LeftBracket;
             case GLFW_KEY_BACKSLASH:
-                return ImGuiKey.Backslash;
+                return ImGuiKey._Backslash;
             case GLFW_KEY_RIGHT_BRACKET:
-                return ImGuiKey.RightBracket;
+                return ImGuiKey._RightBracket;
             case GLFW_KEY_GRAVE_ACCENT:
-                return ImGuiKey.GraveAccent;
+                return ImGuiKey._GraveAccent;
             case GLFW_KEY_CAPS_LOCK:
-                return ImGuiKey.CapsLock;
+                return ImGuiKey._CapsLock;
             case GLFW_KEY_SCROLL_LOCK:
-                return ImGuiKey.ScrollLock;
+                return ImGuiKey._ScrollLock;
             case GLFW_KEY_NUM_LOCK:
-                return ImGuiKey.NumLock;
+                return ImGuiKey._NumLock;
             case GLFW_KEY_PRINT_SCREEN:
-                return ImGuiKey.PrintScreen;
+                return ImGuiKey._PrintScreen;
             case GLFW_KEY_PAUSE:
-                return ImGuiKey.Pause;
+                return ImGuiKey._Pause;
             case GLFW_KEY_KP_0:
-                return ImGuiKey.Keypad0;
+                return ImGuiKey._Keypad0;
             case GLFW_KEY_KP_1:
-                return ImGuiKey.Keypad1;
+                return ImGuiKey._Keypad1;
             case GLFW_KEY_KP_2:
-                return ImGuiKey.Keypad2;
+                return ImGuiKey._Keypad2;
             case GLFW_KEY_KP_3:
-                return ImGuiKey.Keypad3;
+                return ImGuiKey._Keypad3;
             case GLFW_KEY_KP_4:
-                return ImGuiKey.Keypad4;
+                return ImGuiKey._Keypad4;
             case GLFW_KEY_KP_5:
-                return ImGuiKey.Keypad5;
+                return ImGuiKey._Keypad5;
             case GLFW_KEY_KP_6:
-                return ImGuiKey.Keypad6;
+                return ImGuiKey._Keypad6;
             case GLFW_KEY_KP_7:
-                return ImGuiKey.Keypad7;
+                return ImGuiKey._Keypad7;
             case GLFW_KEY_KP_8:
-                return ImGuiKey.Keypad8;
+                return ImGuiKey._Keypad8;
             case GLFW_KEY_KP_9:
-                return ImGuiKey.Keypad9;
+                return ImGuiKey._Keypad9;
             case GLFW_KEY_KP_DECIMAL:
-                return ImGuiKey.KeypadDecimal;
+                return ImGuiKey._KeypadDecimal;
             case GLFW_KEY_KP_DIVIDE:
-                return ImGuiKey.KeypadDivide;
+                return ImGuiKey._KeypadDivide;
             case GLFW_KEY_KP_MULTIPLY:
-                return ImGuiKey.KeypadMultiply;
+                return ImGuiKey._KeypadMultiply;
             case GLFW_KEY_KP_SUBTRACT:
-                return ImGuiKey.KeypadSubtract;
+                return ImGuiKey._KeypadSubtract;
             case GLFW_KEY_KP_ADD:
-                return ImGuiKey.KeypadAdd;
+                return ImGuiKey._KeypadAdd;
             case GLFW_KEY_KP_ENTER:
-                return ImGuiKey.KeypadEnter;
+                return ImGuiKey._KeypadEnter;
             case GLFW_KEY_KP_EQUAL:
-                return ImGuiKey.KeypadEqual;
+                return ImGuiKey._KeypadEqual;
             case GLFW_KEY_LEFT_SHIFT:
-                return ImGuiKey.LeftShift;
+                return ImGuiKey._LeftShift;
             case GLFW_KEY_LEFT_CONTROL:
-                return ImGuiKey.LeftCtrl;
+                return ImGuiKey._LeftCtrl;
             case GLFW_KEY_LEFT_ALT:
-                return ImGuiKey.LeftAlt;
+                return ImGuiKey._LeftAlt;
             case GLFW_KEY_LEFT_SUPER:
-                return ImGuiKey.LeftSuper;
+                return ImGuiKey._LeftSuper;
             case GLFW_KEY_RIGHT_SHIFT:
-                return ImGuiKey.RightShift;
+                return ImGuiKey._RightShift;
             case GLFW_KEY_RIGHT_CONTROL:
-                return ImGuiKey.RightCtrl;
+                return ImGuiKey._RightCtrl;
             case GLFW_KEY_RIGHT_ALT:
-                return ImGuiKey.RightAlt;
+                return ImGuiKey._RightAlt;
             case GLFW_KEY_RIGHT_SUPER:
-                return ImGuiKey.RightSuper;
+                return ImGuiKey._RightSuper;
             case GLFW_KEY_MENU:
-                return ImGuiKey.Menu;
+                return ImGuiKey._Menu;
             case GLFW_KEY_0:
                 return ImGuiKey._0;
             case GLFW_KEY_1:
@@ -496,83 +496,83 @@ public class ImGuiImplGlfw {
             case GLFW_KEY_9:
                 return ImGuiKey._9;
             case GLFW_KEY_A:
-                return ImGuiKey.A;
+                return ImGuiKey._A;
             case GLFW_KEY_B:
-                return ImGuiKey.B;
+                return ImGuiKey._B;
             case GLFW_KEY_C:
-                return ImGuiKey.C;
+                return ImGuiKey._C;
             case GLFW_KEY_D:
-                return ImGuiKey.D;
+                return ImGuiKey._D;
             case GLFW_KEY_E:
-                return ImGuiKey.E;
+                return ImGuiKey._E;
             case GLFW_KEY_F:
-                return ImGuiKey.F;
+                return ImGuiKey._F;
             case GLFW_KEY_G:
-                return ImGuiKey.G;
+                return ImGuiKey._G;
             case GLFW_KEY_H:
-                return ImGuiKey.H;
+                return ImGuiKey._H;
             case GLFW_KEY_I:
-                return ImGuiKey.I;
+                return ImGuiKey._I;
             case GLFW_KEY_J:
-                return ImGuiKey.J;
+                return ImGuiKey._J;
             case GLFW_KEY_K:
-                return ImGuiKey.K;
+                return ImGuiKey._K;
             case GLFW_KEY_L:
-                return ImGuiKey.L;
+                return ImGuiKey._L;
             case GLFW_KEY_M:
-                return ImGuiKey.M;
+                return ImGuiKey._M;
             case GLFW_KEY_N:
-                return ImGuiKey.N;
+                return ImGuiKey._N;
             case GLFW_KEY_O:
-                return ImGuiKey.O;
+                return ImGuiKey._O;
             case GLFW_KEY_P:
-                return ImGuiKey.P;
+                return ImGuiKey._P;
             case GLFW_KEY_Q:
-                return ImGuiKey.Q;
+                return ImGuiKey._Q;
             case GLFW_KEY_R:
-                return ImGuiKey.R;
+                return ImGuiKey._R;
             case GLFW_KEY_S:
-                return ImGuiKey.S;
+                return ImGuiKey._S;
             case GLFW_KEY_T:
-                return ImGuiKey.T;
+                return ImGuiKey._T;
             case GLFW_KEY_U:
-                return ImGuiKey.U;
+                return ImGuiKey._U;
             case GLFW_KEY_V:
-                return ImGuiKey.V;
+                return ImGuiKey._V;
             case GLFW_KEY_W:
-                return ImGuiKey.W;
+                return ImGuiKey._W;
             case GLFW_KEY_X:
-                return ImGuiKey.X;
+                return ImGuiKey._X;
             case GLFW_KEY_Y:
-                return ImGuiKey.Y;
+                return ImGuiKey._Y;
             case GLFW_KEY_Z:
-                return ImGuiKey.Z;
+                return ImGuiKey._Z;
             case GLFW_KEY_F1:
-                return ImGuiKey.F1;
+                return ImGuiKey._F1;
             case GLFW_KEY_F2:
-                return ImGuiKey.F2;
+                return ImGuiKey._F2;
             case GLFW_KEY_F3:
-                return ImGuiKey.F3;
+                return ImGuiKey._F3;
             case GLFW_KEY_F4:
-                return ImGuiKey.F4;
+                return ImGuiKey._F4;
             case GLFW_KEY_F5:
-                return ImGuiKey.F5;
+                return ImGuiKey._F5;
             case GLFW_KEY_F6:
-                return ImGuiKey.F6;
+                return ImGuiKey._F6;
             case GLFW_KEY_F7:
-                return ImGuiKey.F7;
+                return ImGuiKey._F7;
             case GLFW_KEY_F8:
-                return ImGuiKey.F8;
+                return ImGuiKey._F8;
             case GLFW_KEY_F9:
-                return ImGuiKey.F9;
+                return ImGuiKey._F9;
             case GLFW_KEY_F10:
-                return ImGuiKey.F10;
+                return ImGuiKey._F10;
             case GLFW_KEY_F11:
-                return ImGuiKey.F11;
+                return ImGuiKey._F11;
             case GLFW_KEY_F12:
-                return ImGuiKey.F12;
+                return ImGuiKey._F12;
             default:
-                return ImGuiKey.None;
+                return ImGuiKey._None;
         }
     }
 
@@ -594,10 +594,10 @@ public class ImGuiImplGlfw {
 
     protected void updateKeyModifiers(final int mods) {
         final ImGuiIO io = ImGui.getIO();
-        io.addKeyEvent(ImGuiKey.ModCtrl, (mods & GLFW_MOD_CONTROL) != 0);
-        io.addKeyEvent(ImGuiKey.ModShift, (mods & GLFW_MOD_SHIFT) != 0);
-        io.addKeyEvent(ImGuiKey.ModAlt, (mods & GLFW_MOD_ALT) != 0);
-        io.addKeyEvent(ImGuiKey.ModSuper, (mods & GLFW_MOD_SUPER) != 0);
+        io.addKeyEvent(ImGuiKey._ModCtrl, (mods & GLFW_MOD_CONTROL) != 0);
+        io.addKeyEvent(ImGuiKey._ModShift, (mods & GLFW_MOD_SHIFT) != 0);
+        io.addKeyEvent(ImGuiKey._ModAlt, (mods & GLFW_MOD_ALT) != 0);
+        io.addKeyEvent(ImGuiKey._ModSuper, (mods & GLFW_MOD_SUPER) != 0);
     }
 
     public void mouseButtonCallback(final long window, final int button, final int action, final int mods) {
@@ -1041,30 +1041,30 @@ public class ImGuiImplGlfw {
         }
 
         io.addBackendFlags(ImGuiBackendFlags.HasGamepad);
-        mapButton.run(ImGuiKey.GamepadStart, GLFW_GAMEPAD_BUTTON_START, 7);
-        mapButton.run(ImGuiKey.GamepadBack, GLFW_GAMEPAD_BUTTON_BACK, 6);
-        mapButton.run(ImGuiKey.GamepadFaceDown, GLFW_GAMEPAD_BUTTON_A, 0);     // Xbox A, PS Cross
-        mapButton.run(ImGuiKey.GamepadFaceRight, GLFW_GAMEPAD_BUTTON_B, 1);     // Xbox B, PS Circle
-        mapButton.run(ImGuiKey.GamepadFaceLeft, GLFW_GAMEPAD_BUTTON_X, 2);     // Xbox X, PS Square
-        mapButton.run(ImGuiKey.GamepadFaceUp, GLFW_GAMEPAD_BUTTON_Y, 3);     // Xbox Y, PS Triangle
-        mapButton.run(ImGuiKey.GamepadDpadLeft, GLFW_GAMEPAD_BUTTON_DPAD_LEFT, 13);
-        mapButton.run(ImGuiKey.GamepadDpadRight, GLFW_GAMEPAD_BUTTON_DPAD_RIGHT, 11);
-        mapButton.run(ImGuiKey.GamepadDpadUp, GLFW_GAMEPAD_BUTTON_DPAD_UP, 10);
-        mapButton.run(ImGuiKey.GamepadDpadDown, GLFW_GAMEPAD_BUTTON_DPAD_DOWN, 12);
-        mapButton.run(ImGuiKey.GamepadL1, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, 4);
-        mapButton.run(ImGuiKey.GamepadR1, GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER, 5);
-        mapAnalog.run(ImGuiKey.GamepadL2, GLFW_GAMEPAD_AXIS_LEFT_TRIGGER, 4, -0.75f, +1.0f);
-        mapAnalog.run(ImGuiKey.GamepadR2, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER, 5, -0.75f, +1.0f);
-        mapButton.run(ImGuiKey.GamepadL3, GLFW_GAMEPAD_BUTTON_LEFT_THUMB, 8);
-        mapButton.run(ImGuiKey.GamepadR3, GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, 9);
-        mapAnalog.run(ImGuiKey.GamepadLStickLeft, GLFW_GAMEPAD_AXIS_LEFT_X, 0, -0.25f, -1.0f);
-        mapAnalog.run(ImGuiKey.GamepadLStickRight, GLFW_GAMEPAD_AXIS_LEFT_X, 0, +0.25f, +1.0f);
-        mapAnalog.run(ImGuiKey.GamepadLStickUp, GLFW_GAMEPAD_AXIS_LEFT_Y, 1, -0.25f, -1.0f);
-        mapAnalog.run(ImGuiKey.GamepadLStickDown, GLFW_GAMEPAD_AXIS_LEFT_Y, 1, +0.25f, +1.0f);
-        mapAnalog.run(ImGuiKey.GamepadRStickLeft, GLFW_GAMEPAD_AXIS_RIGHT_X, 2, -0.25f, -1.0f);
-        mapAnalog.run(ImGuiKey.GamepadRStickRight, GLFW_GAMEPAD_AXIS_RIGHT_X, 2, +0.25f, +1.0f);
-        mapAnalog.run(ImGuiKey.GamepadRStickUp, GLFW_GAMEPAD_AXIS_RIGHT_Y, 3, -0.25f, -1.0f);
-        mapAnalog.run(ImGuiKey.GamepadRStickDown, GLFW_GAMEPAD_AXIS_RIGHT_Y, 3, +0.25f, +1.0f);
+        mapButton.run(ImGuiKey._GamepadStart, GLFW_GAMEPAD_BUTTON_START, 7);
+        mapButton.run(ImGuiKey._GamepadBack, GLFW_GAMEPAD_BUTTON_BACK, 6);
+        mapButton.run(ImGuiKey._GamepadFaceDown, GLFW_GAMEPAD_BUTTON_A, 0);     // Xbox A, PS Cross
+        mapButton.run(ImGuiKey._GamepadFaceRight, GLFW_GAMEPAD_BUTTON_B, 1);     // Xbox B, PS Circle
+        mapButton.run(ImGuiKey._GamepadFaceLeft, GLFW_GAMEPAD_BUTTON_X, 2);     // Xbox X, PS Square
+        mapButton.run(ImGuiKey._GamepadFaceUp, GLFW_GAMEPAD_BUTTON_Y, 3);     // Xbox Y, PS Triangle
+        mapButton.run(ImGuiKey._GamepadDpadLeft, GLFW_GAMEPAD_BUTTON_DPAD_LEFT, 13);
+        mapButton.run(ImGuiKey._GamepadDpadRight, GLFW_GAMEPAD_BUTTON_DPAD_RIGHT, 11);
+        mapButton.run(ImGuiKey._GamepadDpadUp, GLFW_GAMEPAD_BUTTON_DPAD_UP, 10);
+        mapButton.run(ImGuiKey._GamepadDpadDown, GLFW_GAMEPAD_BUTTON_DPAD_DOWN, 12);
+        mapButton.run(ImGuiKey._GamepadL1, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, 4);
+        mapButton.run(ImGuiKey._GamepadR1, GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER, 5);
+        mapAnalog.run(ImGuiKey._GamepadL2, GLFW_GAMEPAD_AXIS_LEFT_TRIGGER, 4, -0.75f, +1.0f);
+        mapAnalog.run(ImGuiKey._GamepadR2, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER, 5, -0.75f, +1.0f);
+        mapButton.run(ImGuiKey._GamepadL3, GLFW_GAMEPAD_BUTTON_LEFT_THUMB, 8);
+        mapButton.run(ImGuiKey._GamepadR3, GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, 9);
+        mapAnalog.run(ImGuiKey._GamepadLStickLeft, GLFW_GAMEPAD_AXIS_LEFT_X, 0, -0.25f, -1.0f);
+        mapAnalog.run(ImGuiKey._GamepadLStickRight, GLFW_GAMEPAD_AXIS_LEFT_X, 0, +0.25f, +1.0f);
+        mapAnalog.run(ImGuiKey._GamepadLStickUp, GLFW_GAMEPAD_AXIS_LEFT_Y, 1, -0.25f, -1.0f);
+        mapAnalog.run(ImGuiKey._GamepadLStickDown, GLFW_GAMEPAD_AXIS_LEFT_Y, 1, +0.25f, +1.0f);
+        mapAnalog.run(ImGuiKey._GamepadRStickLeft, GLFW_GAMEPAD_AXIS_RIGHT_X, 2, -0.25f, -1.0f);
+        mapAnalog.run(ImGuiKey._GamepadRStickRight, GLFW_GAMEPAD_AXIS_RIGHT_X, 2, +0.25f, +1.0f);
+        mapAnalog.run(ImGuiKey._GamepadRStickUp, GLFW_GAMEPAD_AXIS_RIGHT_Y, 3, -0.25f, -1.0f);
+        mapAnalog.run(ImGuiKey._GamepadRStickDown, GLFW_GAMEPAD_AXIS_RIGHT_Y, 3, +0.25f, +1.0f);
     }
 
     protected void updateMonitors() {

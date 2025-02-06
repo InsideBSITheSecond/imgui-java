@@ -11,6 +11,6 @@ public final class ImGuiKey {
     private ImGuiKey() {
     }
 
-    @BindingAstEnum(file = "ast-imgui.json", qualType = "ImGuiKey_")
+    @BindingAstEnum(file = "ast-imgui.json", qualType = "ImGuiKey")
     public Void __;
 }

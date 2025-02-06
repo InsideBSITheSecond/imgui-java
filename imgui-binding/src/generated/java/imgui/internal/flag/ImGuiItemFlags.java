@@ -10,70 +10,44 @@ public final class ImGuiItemFlags {
     }
 
     /**
-     * Definition: {@code 0}
+     * (Default)
+     *
+     * <p>Definition: {@code i}
      */
     public static final int None = 0;
 
     /**
-     * false     // Disable keyboard tabbing (FIXME: should merge with _NoNav)
+     * false    // Disable keyboard tabbing. This is a "lighter" version of ImGuiItemFlags_NoNav.
      *
-     * <p>Definition: {@code 1 << 0}
+     * <p>Definition: {@code DrawLi}
      */
     public static final int NoTabStop = 1;
 
     /**
-     * false     // Button() will return true multiple times based on io.KeyRepeatDelay and io.KeyRepeatRate settings.
+     * false    // Disable any form of focusing (keyboard/gamepad directional navigation and SetKeyboardFocusHere() calls).
      *
-     * <p>Definition: {@code 1 << 1}
+     * <p>Definition: {@code ve = P}
      */
-    public static final int ButtonRepeat = 2;
+    public static final int NoNav = 2;
 
     /**
-     * false     // Disable interactions but doesn't affect visuals. See BeginDisabled()/EndDisabled(). See github.com/ocornut/imgui/issues/211
+     * false    // Disable item being a candidate for default focus (e.g. used by title bar items).
      *
-     * <p>Definition: {@code 1 << 2}
+     * <p>Definition: {@code curren}
      */
-    public static final int Disabled = 4;
+    public static final int NoNavDefaultFocus = 4;
 
     /**
-     * false     // Disable keyboard/gamepad directional navigation (FIXME: should merge with _NoTabStop)
+     * false    // Any button-like behavior will have repeat mode enabled (based on io.KeyRepeatDelay and io.KeyRepeatRate values). Note that you can also call IsItemActive() after any button to tell if it is being held.
      *
-     * <p>Definition: {@code 1 << 3}
+     * <p>Definition: {@code off_mi}
      */
-    public static final int NoNav = 8;
+    public static final int ButtonRepeat = 8;
 
     /**
-     * false     // Disable item being a candidate for default focus (e.g. used by title bar items)
+     * true     // MenuItem()/Selectable() automatically close their parent popup window.
      *
-     * <p>Definition: {@code 1 << 4}
+     * <p>Definition: {@code s(Work}
      */
-    public static final int NoNavDefaultFocus = 16;
-
-    /**
-     * false     // Disable MenuItem/Selectable() automatically closing their popup window
-     *
-     * <p>Definition: {@code 1 << 5}
-     */
-    public static final int SelectableDontClosePopup = 32;
-
-    /**
-     * false     // [BETA] Represent a mixed/indeterminate value, generally multi-selection where values differ. Currently only supported by Checkbox() (later should support all sorts of widgets)
-     *
-     * <p>Definition: {@code 1 << 6}
-     */
-    public static final int MixedValue = 64;
-
-    /**
-     * false     // [ALPHA] Allow hovering interactions but underlying value is not changed.
-     *
-     * <p>Definition: {@code 1 << 7}
-     */
-    public static final int ReadOnly = 128;
-
-    /**
-     * false     // [WIP] Auto-activate input mode when tab focused. Currently only used and supported by a few items before it becomes a generic feature.
-     *
-     * <p>Definition: {@code 1 << 8}
-     */
-    public static final int Inputable = 256;
+    public static final int AutoClosePopups = 16;
 }

@@ -14,14 +14,14 @@ public final class ImGuiSelectableFlags {
     public static final int None = 0;
 
     /**
-     * Clicking this don't close parent popup window
+     * Clicking this doesn't close parent popup window (overrides ImGuiItemFlags_AutoClosePopups)
      *
      * <p>Definition: {@code 1 << 0}
      */
-    public static final int DontClosePopups = 1;
+    public static final int NoAutoClosePopups = 1;
 
     /**
-     * Selectable frame can span all columns (text will still fit in current column)
+     * Frame will span all columns of its container table (text will still fit in current column)
      *
      * <p>Definition: {@code 1 << 1}
      */
@@ -45,6 +45,20 @@ public final class ImGuiSelectableFlags {
      * (WIP) Hit testing to allow subsequent widgets to overlap this one
      *
      * <p>Definition: {@code 1 << 4}
+     */
+    public static final int AllowOverlap = 16;
+
+    /**
+     * Renamed in 1.91.0
+     *
+     * <p>Definition: {@code ImGuiSelectableFlags_NoAutoClosePopups}
+     */
+    public static final int DontClosePopups = 1;
+
+    /**
+     * Renamed in 1.89.7
+     *
+     * <p>Definition: {@code ImGuiSelectableFlags_AllowOverlap}
      */
     public static final int AllowItemOverlap = 16;
 }

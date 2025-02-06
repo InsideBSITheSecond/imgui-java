@@ -25,3 +25,6 @@
 [submodule "include/imgui-knobs"]
 	path = include/imgui-knobs
 	url = https://github.com/altschuler/imgui-knobs
+[submodule "include/imgui_test_engine"]
+	path = include/imgui_test_engine
+	url = https://github.com/ocornut/imgui_test_engine

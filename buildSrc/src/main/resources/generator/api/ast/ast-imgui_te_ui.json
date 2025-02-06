@@ -1,0 +1,46 @@
+{
+  "info" : {
+    "source" : "include/imgui_test_engine/imgui_test_engine/imgui_te_ui.h",
+    "hash" : "df0ae1c27a21418797432e62e0d4c071",
+    "url" : "https://github.com/ocornut/imgui_test_engine",
+    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+  },
+  "decls" : [ {
+    "@type" : "AstRecordDecl",
+    "name" : "ImGuiTestEngine",
+    "decls" : [ {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Forward declarations"
+        } ]
+      } ]
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_ShowTestEngineWindows",
+    "resultType" : "int",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    }, {
+      "@type" : "AstParmVarDecl",
+      "name" : "p_open",
+      "qualType" : "bool *",
+      "desugaredQualType" : "bool *"
+    }, {
+      "@type" : "AstFullComment",
+      "decls" : [ {
+        "@type" : "AstParagraphComment",
+        "decls" : [ {
+          "@type" : "AstTextComment",
+          "text" : " Functions"
+        } ]
+      } ]
+    } ]
+  } ]
+}
