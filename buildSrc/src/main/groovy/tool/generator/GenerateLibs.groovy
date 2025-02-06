@@ -138,11 +138,15 @@ class GenerateLibs extends DefaultTask {
         }
 
         if (forMac) {
-            buildTargets += createMacTarget(Architecture.x86)
+            def mac = createMacTarget(Architecture.x86)
+            mac.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            buildTargets += mac
         }
 
         if (forMacArm64) {
-            buildTargets += createMacTarget(Architecture.ARM)
+            def macArm64 = createMacTarget(Architecture.ARM)
+            macArm64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            buildTargets += macArm64
         }
 
         new AntScriptGenerator().generate(buildConfig, buildTargets)
