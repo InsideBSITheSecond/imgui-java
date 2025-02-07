@@ -60,6 +60,7 @@ case "$VTYPE" in
         ;;
     linux)
         echo "Running Gradle task for Linux..."
+        echo "pwd: $(pwd)"
         ./gradlew imgui-binding:generateLibs -Denvs=linux -Dfreetype=true
         if [ $? -ne 0 ]; then
             echo "Gradle task for Linux failed"
