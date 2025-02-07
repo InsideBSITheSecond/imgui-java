@@ -180,7 +180,7 @@ class GenerateLibs extends DefaultTask {
             // Step 2: Build using CMake
             println "Building native libraries with Ninja..."
             def cmakeBuild = new ProcessBuilder("cmake", "--build", tmpDir, "--parallel")
-                .directory(new File(jniDir))
+                .directory(new File(project.buildDir.path))
                 .redirectErrorStream(true)
                 .start()
             cmakeBuild.inputStream.eachLine { println it }
