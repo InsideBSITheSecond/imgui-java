@@ -55,6 +55,7 @@ class GenerateLibs extends DefaultTask {
         println "Build targets: $buildEnvs"
         println "Local: $isLocal"
         println "FreeType: $withFreeType"
+        println "Directory: $rootDir"
         println '====================================='
 
         if (!buildEnvs) {
@@ -162,13 +163,13 @@ class GenerateLibs extends DefaultTask {
             println "Running CMake configuration..."
             def cmakeConfigure;
             if (withFreeType)
-                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype=true", "-B", tmpDir, "-G", "Ninja")
+                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype="+withFreeType, "-Dlocal="+isLocal, "-B", tmpDir, "-G", "Ninja")
                 .directory(new File(jniDir))
                 .redirectErrorStream(true)
                 .start()
             else
                 cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
-                    .directory(new File(project.buildDir.path))
+                    .directory(new File(jniDir))
                     .redirectErrorStream(true)
                     .start()
             cmakeConfigure.inputStream.eachLine { println it }

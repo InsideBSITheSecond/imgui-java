@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 project(imgui-java-Linux-64 LANGUAGES C CXX)
 
 option(freetype "Enable FreeType support" false) #TODO check freetype shenanigans (check options)
+option(local "Local build" false) #TODO check freetype shenanigans (check options)
 
-message("ROOT DIRECTORY:")
-message("${CMAKE_SOURCE_DIR}")
+message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
+message("FREETYPE: ${freetype}")
+message("LOCAL: ${local}")
 
 # Set output directories
 set(LIBS_DIR "${CMAKE_SOURCE_DIR}/../libsNative/linux64")
@@ -40,13 +42,13 @@ target_link_options(imgui-java64 PRIVATE ${LINKER_FLAGS})
 set_target_properties(imgui-java64 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBS_DIR} LIBRARY_OUTPUT_DIRECTORY ${LIBS_DIR})
 
 if (freetype)
-    set(FREETYPE_VENDOR_DIR "build/vendor/freetype")
+    set(FREETYPE_VENDOR_DIR "${CMAKE_SOURCE_DIR}/misc/freetype")
 
     if (NOT EXISTS "${FREETYPE_VENDOR_DIR}")
         message(FATAL_ERROR "${FREETYPE_VENDOR_DIR} doesn't exist! Run 'buildSrc/scripts/vendor_freetype.sh' for your platform beforehand!")
     endif()
 
-    include_directories("${FREETYPE_VENDOR_DIR}/include")
+    include_directories("${FREETYPE_VENDOR_DIR}")
     target_link_directories(imgui-java64 PRIVATE "${FREETYPE_VENDOR_DIR}/lib")
     target_link_libraries(imgui-java64 PRIVATE freetype)
 
