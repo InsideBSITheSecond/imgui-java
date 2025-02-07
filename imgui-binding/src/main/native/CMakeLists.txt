@@ -40,7 +40,7 @@ target_link_options(imgui-java64 PRIVATE ${LINKER_FLAGS})
 set_target_properties(imgui-java64 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBS_DIR} LIBRARY_OUTPUT_DIRECTORY ${LIBS_DIR})
 
 if (freetype)
-    set(FREETYPE_VENDOR_DIR "${CMAKE_SOURCE_DIR}/../../../build/vendor/freetype")
+    set(FREETYPE_VENDOR_DIR "build/vendor/freetype")
 
     if (NOT EXISTS "${FREETYPE_VENDOR_DIR}")
         message(FATAL_ERROR "${FREETYPE_VENDOR_DIR} doesn't exist! Run 'buildSrc/scripts/vendor_freetype.sh' for your platform beforehand!")
