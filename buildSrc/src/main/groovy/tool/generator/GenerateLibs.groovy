@@ -168,7 +168,7 @@ class GenerateLibs extends DefaultTask {
                 .start()
             else
                 cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
-                    .directory(new File(jniDir))
+                    .directory(new File(project.buildDir.path))
                     .redirectErrorStream(true)
                     .start()
             cmakeConfigure.inputStream.eachLine { println it }
