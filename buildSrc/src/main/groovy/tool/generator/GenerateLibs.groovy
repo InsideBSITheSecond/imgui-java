@@ -160,10 +160,17 @@ class GenerateLibs extends DefaultTask {
         try {
             // Step 1: Run CMake configuration
             println "Running CMake configuration..."
-            def cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
+            def cmakeConfigure;
+            if (withFreeType)
+                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype=true", "-B", tmpDir, "-G", "Ninja")
                 .directory(new File(jniDir))
                 .redirectErrorStream(true)
                 .start()
+            else
+                cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
+                    .directory(new File(jniDir))
+                    .redirectErrorStream(true)
+                    .start()
             cmakeConfigure.inputStream.eachLine { println it }
             def configureExitCode = cmakeConfigure.waitFor()
             if (configureExitCode != 0) {
