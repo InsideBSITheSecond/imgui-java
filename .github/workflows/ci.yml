@@ -84,6 +84,7 @@ jobs:
         run: sudo apt install mingw-w64
 
       - name: Build
+        uses: seanmiddleditch/gha-setup-ninja@master
         run: |
           chmod +x buildSrc/scripts/build.sh
           buildSrc/scripts/build.sh ${{ matrix.target.type }}
