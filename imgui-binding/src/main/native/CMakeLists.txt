@@ -3,6 +3,9 @@ project(imgui-java-Linux-64 LANGUAGES C CXX)
 
 option(freetype "Enable FreeType support" false) #TODO check freetype shenanigans (check options)
 
+message("ROOT DIRECTORY:")
+message("${CMAKE_SOURCE_DIR}")
+
 # Set output directories
 set(LIBS_DIR "${CMAKE_SOURCE_DIR}/../libsNative/linux64")
 set(LIB_NAME "libimgui-java64.so")
