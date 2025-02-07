@@ -84,6 +84,12 @@ class GenerateLibs extends DefaultTask {
             spec.into(jniDir)
         }
 
+        // Copy CMakeLists.txt
+        project.copy { CopySpec spec ->
+            spec.from(project.rootProject.file('imgui-binding/src/main/native/CMakeLists.txt'))
+            spec.into(jniDir)
+        }
+
         if (withFreeType) {
             project.copy { CopySpec spec ->
                 spec.from(project.rootProject.file('include/imgui/misc/freetype')) { CopySpec it -> it.include('*.h', '*.cpp') }
@@ -125,36 +131,67 @@ class GenerateLibs extends DefaultTask {
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
-            win64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
-            win64.linkerFlags += " -pthread"
+            //win64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            //win64.linkerFlags += " -pthread"
             buildTargets += win64
         }
 
         if (forLinux) {
             def linux64 = BuildTarget.newDefaultTarget(Os.Linux, Architecture.Bitness._64)
             addFreeTypeIfEnabled(linux64)
-            linux64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            //linux64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
             buildTargets += linux64
         }
 
         if (forMac) {
             def mac = createMacTarget(Architecture.x86)
-            mac.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            //mac.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
             buildTargets += mac
         }
 
         if (forMacArm64) {
             def macArm64 = createMacTarget(Architecture.ARM)
-            macArm64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            //macArm64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
             buildTargets += macArm64
         }
 
         new AntScriptGenerator().generate(buildConfig, buildTargets)
 
+        try {
+            // Step 1: Run CMake configuration
+            println "Running CMake configuration..."
+            def cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
+                .directory(new File(jniDir))
+                .redirectErrorStream(true)
+                .start()
+            cmakeConfigure.inputStream.eachLine { println it }
+            def configureExitCode = cmakeConfigure.waitFor()
+            if (configureExitCode != 0) {
+                throw new RuntimeException("CMake configuration failed with exit code $configureExitCode")
+            }
+
+            // Step 2: Build using CMake
+            println "Building native libraries with Ninja..."
+            def cmakeBuild = new ProcessBuilder("cmake", "--build", tmpDir, "--parallel")
+                .directory(new File(jniDir))
+                .redirectErrorStream(true)
+                .start()
+            cmakeBuild.inputStream.eachLine { println it }
+            def buildExitCode = cmakeBuild.waitFor()
+            if (buildExitCode != 0) {
+                throw new RuntimeException("CMake build failed with exit code $buildExitCode")
+            }
+
+            println "Native libraries built successfully!"
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to build JNI libraries: ${e.message}", e)
+        }
+
         // Generate native libraries
         // Comment/uncomment lines with OS you need.
 
-        def commonParams = ['-v', '-Dhas-compiler=true', '-Drelease=true', 'clean', 'postcompile'] as String[]
+        /*def commonParams = ['-v', '-Dhas-compiler=true', '-Drelease=true', 'clean', 'postcompile'] as String[]
 
         if (forWindows)
             BuildExecutor.executeAnt(jniDir + '/build-windows64.xml', commonParams)
@@ -165,7 +202,7 @@ class GenerateLibs extends DefaultTask {
         if (forMacArm64)
             BuildExecutor.executeAnt(jniDir + '/build-macosxarm64.xml', commonParams)
 
-        BuildExecutor.executeAnt(jniDir + '/build.xml', '-v', 'pack-natives')
+        BuildExecutor.executeAnt(jniDir + '/build.xml', '-v', 'pack-natives')*/
 
         if (forWindows)
             checkLibExist("windows64/imgui-java64.dll")
