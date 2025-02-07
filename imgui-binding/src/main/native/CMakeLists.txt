@@ -34,6 +34,26 @@ target_link_options(imgui-java64 PRIVATE ${LINKER_FLAGS})
 # Set output location
 set_target_properties(imgui-java64 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBS_DIR} LIBRARY_OUTPUT_DIRECTORY ${LIBS_DIR})
 
+# Function to add FreeType if enabled
+function(add_freetype_if_enabled target)
+    if (NOT WITH_FREETYPE)
+        return()
+    endif()
+
+    set(FREETYPE_VENDOR_DIR "${CMAKE_SOURCE_DIR}/build/vendor/freetype")
+
+    if (NOT EXISTS "${FREETYPE_VENDOR_DIR}")
+        message(FATAL_ERROR "${FREETYPE_VENDOR_DIR} doesn't exist! Run 'buildSrc/scripts/vendor_freetype.sh' for your platform beforehand!")
+    endif()
+
+    target_include_directories(${target} PRIVATE "${FREETYPE_VENDOR_DIR}/include")
+    target_link_directories(${target} PRIVATE "${FREETYPE_VENDOR_DIR}/lib")
+    target_link_libraries(${target} PRIVATE freetype)
+endfunction()
+
+# Enable FreeType support if the flag is set
+add_freetype_if_enabled(imgui-java64)
+
 # Strip debug symbols in Release mode
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_custom_command(TARGET imgui-java64 POST_BUILD COMMAND strip --strip-unneeded "$<TARGET_FILE:imgui-java64>")

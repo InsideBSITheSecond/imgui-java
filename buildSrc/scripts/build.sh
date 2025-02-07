@@ -41,7 +41,7 @@ check_file_exists() {
 case "$VTYPE" in
     windows)
         echo "Running Gradle task for Windows..."
-        ./gradlew imgui-binding:generateLibs -Denvs=windows -Dfreetype=false
+        ./gradlew imgui-binding:generateLibs -Denvs=windows -Dfreetype=true
         if [ $? -ne 0 ]; then
             echo "Gradle task for Windows failed"
             exit 1
@@ -60,7 +60,7 @@ case "$VTYPE" in
         ;;
     linux)
         echo "Running Gradle task for Linux..."
-        ./gradlew imgui-binding:generateLibs -Denvs=linux -Dfreetype=false
+        ./gradlew imgui-binding:generateLibs -Denvs=linux -Dfreetype=true
         if [ $? -ne 0 ]; then
             echo "Gradle task for Linux failed"
             exit 1
