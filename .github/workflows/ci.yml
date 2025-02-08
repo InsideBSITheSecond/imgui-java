@@ -83,7 +83,7 @@ jobs:
         if: matrix.target.type == 'windows'
         run: |
           sudo apt install mingw-w64
-          sudo mingw-get upgrade "mingwrt=3.20.*"
+          mingw-get upgrade "mingwrt=3.20.*"
 
       - name: Build
         run: |
