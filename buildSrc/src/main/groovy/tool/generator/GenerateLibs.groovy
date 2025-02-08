@@ -62,8 +62,8 @@ class GenerateLibs extends DefaultTask {
             throw new IllegalStateException('No build targets')
         }
 
-        new File(jniDir).deleteDir()
-        new File(tmpDir).deleteDir()
+        /*new File(jniDir).deleteDir()
+        new File(tmpDir).deleteDir()*/
         new File("$rootDir/$libsDirName").deleteDir()
 
         // Generate h/cpp files for JNI
@@ -92,6 +92,11 @@ class GenerateLibs extends DefaultTask {
         }
 
         if (withFreeType) {
+            project.copy { CopySpec spec ->
+                spec.from(project.rootProject.file('include/imgui/misc/freetype/include')) { CopySpec it -> it.include('*.h', '*.cpp') }
+                spec.into("$jniDir/misc/freetype")
+            }
+
             project.copy { CopySpec spec ->
                 spec.from(project.rootProject.file('include/imgui/misc/freetype')) { CopySpec it -> it.include('*.h', '*.cpp') }
                 spec.into("$jniDir/misc/freetype")
