@@ -81,7 +81,9 @@ jobs:
 
       - name: Install Dependencies (for Windows build)
         if: matrix.target.type == 'windows'
-        run: sudo apt install mingw-w64
+        run: |
+          sudo apt install mingw-w64
+          sudo mingw-get upgrade "mingwrt=3.20.*"
 
       - name: Build
         run: |
