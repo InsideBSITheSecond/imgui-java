@@ -49,6 +49,7 @@ if (freetype)
     endif()
 
     include_directories("${FREETYPE_VENDOR_DIR}")
+    include_directories("${FREETYPE_VENDOR_DIR}/include")
     target_link_directories(imgui-java64 PRIVATE "${FREETYPE_VENDOR_DIR}/lib")
     target_link_libraries(imgui-java64 PRIVATE freetype)
 
