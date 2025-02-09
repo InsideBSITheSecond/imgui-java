@@ -168,7 +168,7 @@ class GenerateLibs extends DefaultTask {
             println "Running CMake configuration..."
             def cmakeConfigure;
             if (withFreeType)
-                cmakeConfigure = new ProcessBuilder("cmake", "-DFT2_BUILD_LIBRARY", "-Dfreetype="+withFreeType, isLocal ? "-Dlocal="+isLocal : "", "-B", tmpDir, "-G", "Ninja")
+                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype="+withFreeType, isLocal ? "-Dlocal="+isLocal : "", "-B", tmpDir, "-G", "Ninja")
                 .directory(new File(jniDir))
                 .redirectErrorStream(true)
                 .start()
