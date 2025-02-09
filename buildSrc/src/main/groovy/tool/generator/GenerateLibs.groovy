@@ -62,8 +62,8 @@ class GenerateLibs extends DefaultTask {
             throw new IllegalStateException('No build targets')
         }
 
-        /*new File(jniDir).deleteDir()
-        new File(tmpDir).deleteDir()*/
+        //new File(jniDir).deleteDir()
+        //new File(tmpDir).deleteDir()
         new File("$rootDir/$libsDirName").deleteDir()
 
         // Generate h/cpp files for JNI
@@ -168,7 +168,7 @@ class GenerateLibs extends DefaultTask {
             println "Running CMake configuration..."
             def cmakeConfigure;
             if (withFreeType)
-                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype="+withFreeType, "-Dlocal="+isLocal, "-B", tmpDir, "-G", "Ninja")
+                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype="+withFreeType, isLocal ? "-Dlocal="+isLocal : "", "-B", tmpDir, "-G", "Ninja")
                 .directory(new File(jniDir))
                 .redirectErrorStream(true)
                 .start()
