@@ -16,7 +16,7 @@ set(LIB_NAME "libimgui-java64.so")
 set(C_CXX_FLAGS -Wall -O2 -mfpmath=sse -msse -fmessage-length=0 -m64 -fPIC)
 set(C_FLAGS "${C_CXX_FLAGS}")
 set(CXX_FLAGS "${C_CXX_FLAGS}" -DIMGUI_ENABLE_TEST_ENGINE)
-set(LINKER_FLAGS -shared -m64 -Wl,-wrap,memcpy)
+set(LINKER_FLAGS -shared -m64 --no-pie -Wl,-wrap,memcpy)
 
 # Set include directories
 include_directories(jni-headers jni-headers/linux .)

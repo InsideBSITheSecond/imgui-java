@@ -26,8 +26,8 @@ echo "[BUILD] Vendor FreeType script completed successfully"
 
 echo "[BUILD] Copying freetype in build directory"
 mkdir -p /tmp/imgui/jni/misc/freetype
-cp -r build/vendor/freetype/include /tmp/imgui/jni/misc/freetype
-cp -r build/vendor/freetype/lib /tmp/imgui/jni/misc/freetype
+echo directory: $(pwd)
+cp -r build/vendor/freetype/include /tmp/imgui/jni/misc/freetype/include/
 
 # Create the destination directory for imgui libraries
 echo "[BUILD] Creating destination directory for imgui libraries..."
