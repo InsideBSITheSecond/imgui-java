@@ -85,8 +85,8 @@ jobs:
           gcc -v
           sudo apt install mingw-w64
 
-      - name: SSH
-        uses: valeriangalliat/action-sshd-cloudflared@v1
+      #- name: SSH
+      #  uses: valeriangalliat/action-sshd-cloudflared@v1
 
       - name: Build
         run: |
