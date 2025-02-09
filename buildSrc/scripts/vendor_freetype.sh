@@ -81,7 +81,7 @@ mkdir -p lib tmp
 # Determine build process based on vendor type
 case "$VTYPE" in
     windows)
-        build_freetype "" "--host=x86_64-w64-mingw32 --prefix=/usr/x86_64-w64-mingw32" "lib/libfreetype.a"
+        build_freetype "-DFT2_BUILD_LIBRARY" "--host=x86_64-w64-mingw32 --prefix=/usr/x86_64-w64-mingw32" "lib/libfreetype.a"
         ;;
     linux)
         build_freetype "-fPIC" "" "lib/libfreetype.a"
