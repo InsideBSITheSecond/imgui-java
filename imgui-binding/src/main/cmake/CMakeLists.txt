@@ -20,7 +20,7 @@ message("OUT: ${OUT_DIR} -> ${libName}")
 set(C_CXX_FLAGS -Wall -O2 -mfpmath=sse -msse -fmessage-length=0 -m64 -fPIC)
 set(C_FLAGS "${C_CXX_FLAGS}")
 set(CXX_FLAGS "${C_CXX_FLAGS}" -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY)
-set(LINKER_FLAGS -shared -m64 --no-pie)
+set(LINKER_FLAGS -shared -m64 --no-pie -lpthread)
 
 # https://stackoverflow.com/questions/65494567/linking-c-library-with-a-c-dll-unresolved-external-symbol-mingw-vsnprintf
 
