@@ -145,6 +145,8 @@ class GenerateLibs extends DefaultTask {
             addFreeTypeIfEnabled(win64)
             libPath += "windows64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
+            cArgs = "-DccxxAdd=-pthread"
+            lArgs = "-DlAdd=--no-pie -lpthread"
             buildTargets += win64
         }
 
@@ -153,6 +155,7 @@ class GenerateLibs extends DefaultTask {
             addFreeTypeIfEnabled(linux64)
             libPath += "linux64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=LinuxX64-TC.cmake"
+            lArgs = "-DlAdd=--no-pie"
             buildTargets += linux64
         }
 
@@ -160,8 +163,8 @@ class GenerateLibs extends DefaultTask {
             def mac = createMacTarget(Architecture.x86)
             libPath += "macosx64/"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
-			cArgs = "-DC_CXX_FLAGS=\"-Wall -O2 -fmessage-length=0 -m64 -fPIC -pthread\""
-            lArgs = "-DLINKER_FLAGS=\"-shared -m64 -fno-pie -lpthread\""
+			cArgs = "-DccxxAdd=-pthread -mfpmath=sse -msse"
+            lArgs = "-DlAdd=-fno-pie -lpthread"
             buildTargets += mac
         }
 
@@ -169,8 +172,8 @@ class GenerateLibs extends DefaultTask {
             def macArm64 = createMacTarget(Architecture.ARM)
             libPath += "macosx64/"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
-            cArgs = "-DC_CXX_FLAGS=\"-Wall -O2 -fmessage-length=0 -m64 -fPIC -pthread\""
-            lArgs = "-DLINKER_FLAGS=\"-shared -m64 -fno-pie -lpthread\""
+            cArgs = "-DccxxAdd=-pthread -mfpmath=sse -msse"
+            lArgs = "-DlAdd=-fno-pie -lpthread"
             buildTargets += macArm64
         }
 
