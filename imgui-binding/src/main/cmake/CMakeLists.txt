@@ -4,19 +4,25 @@ project(imgui-java-Linux-64 LANGUAGES C CXX)
 option(freetype "Enable FreeType support" false) #TODO check freetype shenanigans (check options)
 option(local "Local build" false) #TODO check freetype shenanigans (check options)
 
+set(libDir "../libsNative/linux64" CACHE STRING "Output Lib Directory")
+set(libName "imgui-java64.so" CACHE STRING "Output Lib Name")
+
+# Set output directories
+set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
+
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
 message("FREETYPE: ${freetype}")
 message("LOCAL: ${local}")
+message("OUT: ${OUT_DIR} -> ${libName}")
 
-# Set output directories
-set(LIBS_DIR "${CMAKE_SOURCE_DIR}/../libsNative/linux64")
-set(LIB_NAME "libimgui-java64.so")
 
 # Set compiler options
 set(C_CXX_FLAGS -Wall -O2 -mfpmath=sse -msse -fmessage-length=0 -m64 -fPIC)
 set(C_FLAGS "${C_CXX_FLAGS}")
 set(CXX_FLAGS "${C_CXX_FLAGS}" -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY)
-set(LINKER_FLAGS -shared -m64 --no-pie -Wl,-wrap,memcpy)
+set(LINKER_FLAGS -shared -m64 --no-pie)
+
+# https://stackoverflow.com/questions/65494567/linking-c-library-with-a-c-dll-unresolved-external-symbol-mingw-vsnprintf
 
 # Set include directories
 include_directories(jni-headers jni-headers/linux .)
@@ -39,7 +45,7 @@ set_target_properties(imgui-java64 PROPERTIES OUTPUT_NAME "imgui-java64")
 target_link_options(imgui-java64 PRIVATE ${LINKER_FLAGS})
 
 # Set output location
-set_target_properties(imgui-java64 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBS_DIR} LIBRARY_OUTPUT_DIRECTORY ${LIBS_DIR})
+set_target_properties(imgui-java64 PROPERTIES OUTPUT_NAME ${libName} RUNTIME_OUTPUT_DIRECTORY ${OUT_DIR} LIBRARY_OUTPUT_DIRECTORY ${OUT_DIR})
 
 if (freetype)
     set(FREETYPE_VENDOR_DIR "${CMAKE_SOURCE_DIR}/misc/freetype")
