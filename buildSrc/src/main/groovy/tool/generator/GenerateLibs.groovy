@@ -137,14 +137,14 @@ class GenerateLibs extends DefaultTask {
         def libPath = "../"+libsDirName+"/"
         def libName = "imgui-java64"
         def toolChain = ""
-        def args = ""
+        def cArgs = ""
+        def lArgs = ""
 
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
             libPath += "windows64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
-			args = "-DC_CXX_FLAGS+=\"-mfpmath=sse -msse\""
             buildTargets += win64
         }
 
@@ -153,7 +153,6 @@ class GenerateLibs extends DefaultTask {
             addFreeTypeIfEnabled(linux64)
             libPath += "linux64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=LinuxX64-TC.cmake"
-			args = "-DC_CXX_FLAGS+=\"-mfpmath=sse -msse\""
             buildTargets += linux64
         }
 
@@ -161,7 +160,8 @@ class GenerateLibs extends DefaultTask {
             def mac = createMacTarget(Architecture.x86)
             libPath += "macosx64/"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
-			args = "-DC_CXX_FLAGS+=\"\""
+			cArgs = "-DC_CXX_FLAGS=\"-Wall -O2 -fmessage-length=0 -m64 -fPIC -pthread\""
+            lArgs = "-DLINKER_FLAGS=\"-shared -m64 -fno-pie -lpthread\""
             buildTargets += mac
         }
 
@@ -169,7 +169,8 @@ class GenerateLibs extends DefaultTask {
             def macArm64 = createMacTarget(Architecture.ARM)
             libPath += "macosx64/"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
-			args = "-DC_CXX_FLAGS+=\"\""
+            cArgs = "-DC_CXX_FLAGS=\"-Wall -O2 -fmessage-length=0 -m64 -fPIC -pthread\""
+            lArgs = "-DLINKER_FLAGS=\"-shared -m64 -fno-pie -lpthread\""
             buildTargets += macArm64
         }
 
@@ -181,7 +182,8 @@ class GenerateLibs extends DefaultTask {
 
             def cmakeConfigure = new ProcessBuilder("cmake",
                 toolChain,
-				args,
+				cArgs,
+                lArgs,
                 "-Dfreetype="+withFreeType,
                 isLocal ? "-Dlocal="+isLocal : "",
                 "-DlibDir="+libPath,

@@ -17,7 +17,7 @@ message("OUT: ${OUT_DIR} -> ${libName}")
 
 
 # Set compiler options
-set(C_CXX_FLAGS -Wall -O2 -fmessage-length=0 -m64 -fPIC -pthread)
+set(C_CXX_FLAGS -Wall -mfpmath=sse -msse -O2 -fmessage-length=0 -m64 -fPIC -pthread)
 set(C_FLAGS "${C_CXX_FLAGS}")
 set(CXX_FLAGS "${C_CXX_FLAGS}" -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY)
 set(LINKER_FLAGS -shared -m64 --no-pie -lpthread)
