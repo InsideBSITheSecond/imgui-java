@@ -10,18 +10,26 @@ set(libName "imgui-java64.so" CACHE STRING "Output Lib Name")
 # Set output directories
 set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
 
+# Set compiler options
+set(C_CXX_FLAGS "${CMAKE_C_CXX_FLAGS}")
+string(APPEND C_CXX_FLAGS "${ccxxAdd} -Wall -O2 -fmessage-length=0 -m64 -fPIC")
+
+set(CMAKE_C_FLAGS "${C_CXX_FLAGS} ${cAdd}")
+
+set(CMAKE_CXX_FLAGS "${C_CXX_FLAGS}")
+string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY")
+
+set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS}")
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -m64")
+
+
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
 message("FREETYPE: ${freetype}")
 message("LOCAL: ${local}")
 message("OUT: ${OUT_DIR} -> ${libName}")
-
-
-# Set compiler options
-set(C_CXX_FLAGS -Wall -mfpmath=sse -msse -O2 -fmessage-length=0 -m64 -fPIC -pthread)
-set(C_FLAGS "${C_CXX_FLAGS}")
-set(CXX_FLAGS "${C_CXX_FLAGS}" -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY)
-set(LINKER_FLAGS -shared -m64 --no-pie -lpthread)
-
+message("C_FLAGS: ${CMAKE_C_FLAGS}")
+message("CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+message("LINKER_FLAGS: ${CMAKE_SHARED_LINKER_FLAGS}")
 # https://stackoverflow.com/questions/65494567/linking-c-library-with-a-c-dll-unresolved-external-symbol-mingw-vsnprintf
 
 # Set include directories
@@ -37,12 +45,10 @@ list(FILTER CPP_SOURCES EXCLUDE REGEX "CMakeFiles/.*")
 
 # Compile object files
 add_library(imgui_java_objs OBJECT ${C_SOURCES} ${CPP_SOURCES})
-target_compile_options(imgui_java_objs PRIVATE "$<$<COMPILE_LANGUAGE:C>:${C_FLAGS}>" "$<$<COMPILE_LANGUAGE:CXX>:${CXX_FLAGS}>")
 
 # Create shared library
 add_library(imgui-java64 SHARED $<TARGET_OBJECTS:imgui_java_objs>)
 set_target_properties(imgui-java64 PROPERTIES OUTPUT_NAME "imgui-java64")
-target_link_options(imgui-java64 PRIVATE ${LINKER_FLAGS})
 
 # Set output location
 set_target_properties(imgui-java64 PROPERTIES OUTPUT_NAME ${libName} RUNTIME_OUTPUT_DIRECTORY ${OUT_DIR} LIBRARY_OUTPUT_DIRECTORY ${OUT_DIR})
