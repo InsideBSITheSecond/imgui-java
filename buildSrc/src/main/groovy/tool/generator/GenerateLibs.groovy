@@ -136,13 +136,15 @@ class GenerateLibs extends DefaultTask {
 
         def libPath = "../"+libsDirName+"/"
         def libName = "imgui-java64"
-        def toolchainFile = ""
+        def toolChain = ""
+        def args = ""
 
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
             libPath += "windows64"
-            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
+            toolChain = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
+			args = "-DC_CXX_FLAGS+=\"-mfpmath=sse -msse\""
             buildTargets += win64
         }
 
@@ -150,21 +152,24 @@ class GenerateLibs extends DefaultTask {
             def linux64 = BuildTarget.newDefaultTarget(Os.Linux, Architecture.Bitness._64)
             addFreeTypeIfEnabled(linux64)
             libPath += "linux64"
-            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=LinuxX64-TC.cmake"
+            toolChain = "-DCMAKE_TOOLCHAIN_FILE=LinuxX64-TC.cmake"
+			args = "-DC_CXX_FLAGS+=\"-mfpmath=sse -msse\""
             buildTargets += linux64
         }
 
         if (forMac) {
             def mac = createMacTarget(Architecture.x86)
             libPath += "macosx64/"
-            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
+            toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
+			args = "-DC_CXX_FLAGS+=\"\""
             buildTargets += mac
         }
 
         if (forMacArm64) {
             def macArm64 = createMacTarget(Architecture.ARM)
             libPath += "macosx64/"
-            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
+            toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
+			args = "-DC_CXX_FLAGS+=\"\""
             buildTargets += macArm64
         }
 
@@ -175,7 +180,8 @@ class GenerateLibs extends DefaultTask {
             println "Running CMake configuration..."
 
             def cmakeConfigure = new ProcessBuilder("cmake",
-                toolchainFile,
+                toolChain,
+				args,
                 "-Dfreetype="+withFreeType,
                 isLocal ? "-Dlocal="+isLocal : "",
                 "-DlibDir="+libPath,
