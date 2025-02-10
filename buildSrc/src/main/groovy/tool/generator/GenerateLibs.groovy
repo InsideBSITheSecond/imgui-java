@@ -85,9 +85,9 @@ class GenerateLibs extends DefaultTask {
             spec.into(jniDir)
         }
 
-        // Copy CMakeLists.txt
+        // Copy Cmake files
         project.copy { CopySpec spec ->
-            spec.from(project.rootProject.file('imgui-binding/src/main/native/CMakeLists.txt'))
+            spec.from(project.rootProject.file('imgui-binding/src/main/cmake'))
             spec.into(jniDir)
         }
 
@@ -134,30 +134,37 @@ class GenerateLibs extends DefaultTask {
         def buildConfig = new BuildConfig('imgui-java', tmpDir, libsDirName, jniDir)
         BuildTarget[] buildTargets = []
 
+        def libPath = "../"+libsDirName+"/"
+        def libName = "imgui-java64"
+        def toolchainFile = ""
+
         if (forWindows) {
             def win64 = BuildTarget.newDefaultTarget(Os.Windows, Architecture.Bitness._64)
             addFreeTypeIfEnabled(win64)
-            //win64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
-            //win64.linkerFlags += " -pthread"
+            libPath += "windows64"
+            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
             buildTargets += win64
         }
 
         if (forLinux) {
             def linux64 = BuildTarget.newDefaultTarget(Os.Linux, Architecture.Bitness._64)
             addFreeTypeIfEnabled(linux64)
-            //linux64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            libPath += "linux64"
+            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=LinuxX64-TC.cmake"
             buildTargets += linux64
         }
 
         if (forMac) {
             def mac = createMacTarget(Architecture.x86)
-            //mac.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            libPath += "macosx64/"
+            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
             buildTargets += mac
         }
 
         if (forMacArm64) {
             def macArm64 = createMacTarget(Architecture.ARM)
-            //macArm64.cppFlags += " -DIMGUI_ENABLE_TEST_ENGINE"
+            libPath += "macosx64/"
+            toolchainFile = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
             buildTargets += macArm64
         }
 
@@ -166,17 +173,19 @@ class GenerateLibs extends DefaultTask {
         try {
             // Step 1: Run CMake configuration
             println "Running CMake configuration..."
-            def cmakeConfigure;
-            if (withFreeType)
-                cmakeConfigure = new ProcessBuilder("cmake", "-Dfreetype="+withFreeType, isLocal ? "-Dlocal="+isLocal : "", "-B", tmpDir, "-G", "Ninja")
-                .directory(new File(jniDir))
-                .redirectErrorStream(true)
-                .start()
-            else
-                cmakeConfigure = new ProcessBuilder("cmake", "-B", tmpDir, "-G", "Ninja")
+
+            def cmakeConfigure = new ProcessBuilder("cmake",
+                toolchainFile,
+                "-Dfreetype="+withFreeType,
+                isLocal ? "-Dlocal="+isLocal : "",
+                "-DlibDir="+libPath,
+                "-DlibName="+libName,
+                "-B", tmpDir,
+                "-G", "Ninja")
                     .directory(new File(jniDir))
                     .redirectErrorStream(true)
                     .start()
+
             cmakeConfigure.inputStream.eachLine { println it }
             def configureExitCode = cmakeConfigure.waitFor()
             if (configureExitCode != 0) {
@@ -218,7 +227,7 @@ class GenerateLibs extends DefaultTask {
         BuildExecutor.executeAnt(jniDir + '/build.xml', '-v', 'pack-natives')*/
 
         if (forWindows)
-            checkLibExist("windows64/imgui-java64.dll")
+            checkLibExist("windows64/libimgui-java64.dll")
         if (forLinux)
             checkLibExist("linux64/libimgui-java64.so")
         if (forMac)
