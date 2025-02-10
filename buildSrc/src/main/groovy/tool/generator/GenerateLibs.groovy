@@ -181,7 +181,7 @@ class GenerateLibs extends DefaultTask {
                 "-DlibDir="+libPath,
                 "-DlibName="+libName,
                 "-B", tmpDir,
-                "-G", "Ninja")
+                !forMac || !forMacArm64 ? "-G" : "", !forMac || !forMacArm64 ? "Ninja" : "")
                     .directory(new File(jniDir))
                     .redirectErrorStream(true)
                     .start()
