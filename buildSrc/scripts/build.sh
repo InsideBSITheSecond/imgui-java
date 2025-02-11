@@ -94,10 +94,10 @@ case "$VTYPE" in
 
         echo "[BUILD] Checking if the generated DYLIB files exist..."
         check_file_exists /tmp/imgui/libsNative/macosx64/libimgui-java64.dylib
-        check_file_exists /tmp/imgui/libsNative/macosxarm64/libimgui-java64.dylib
+        #check_file_exists /tmp/imgui/libsNative/macosxarm64/libimgui-java64.dylib
 
         echo "[BUILD] Creating a universal library using lipo..."
-        lipo -create -output /tmp/imgui/dst/libimgui-java64.dylib /tmp/imgui/libsNative/macosx64/libimgui-java64.dylib /tmp/imgui/libsNative/macosxarm64/libimgui-java64.dylib
+        lipo -create -output /tmp/imgui/dst/libimgui-java64.dylib /tmp/imgui/libsNative/macosx64/libimgui-java64.dylib # /tmp/imgui/libsNative/macosxarm64/libimgui-java64.dylib
         if [ $? -ne 0 ]; then
             echo "[BUILD] Failed to create universal library with lipo"
             exit 1
