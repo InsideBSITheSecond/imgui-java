@@ -54,10 +54,10 @@ case "$VTYPE" in
         fi
 
         echo "[BUILD] Checking if the generated DLL exists..."
-        check_file_exists /tmp/imgui/libsNative/windows64/imgui-java64.dll
+        check_file_exists /tmp/imgui/libsNative/windows64/libimgui-java64.dll
 
         echo "[BUILD] Copying the generated DLL to the destination directory..."
-        cp /tmp/imgui/libsNative/windows64/imgui-java64.dll /tmp/imgui/dst/imgui-java64.dll
+        cp /tmp/imgui/libsNative/windows64/libimgui-java64.dll /tmp/imgui/dst/libimgui-java64.dll
         if [ $? -ne 0 ]; then
             echo "[BUILD] Failed to copy DLL to /tmp/imgui/dst/imgui-java64.dll"
             exit 1
