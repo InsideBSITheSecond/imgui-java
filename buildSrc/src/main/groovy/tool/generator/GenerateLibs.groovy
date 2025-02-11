@@ -235,8 +235,6 @@ class GenerateLibs extends DefaultTask {
             checkLibExist("linux64/libimgui-java64.so")
         if (forMac)
             checkLibExist("macosx64/libimgui-java64.dylib")
-        if (forMacArm64)
-            checkLibExist("macosxarm64/libimgui-java64.dylib")
     }
 
     void checkLibExist(String libName) {
