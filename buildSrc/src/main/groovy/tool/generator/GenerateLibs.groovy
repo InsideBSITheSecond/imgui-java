@@ -169,15 +169,6 @@ class GenerateLibs extends DefaultTask {
             buildTargets += mac
         }
 
-        if (forMacArm64) {
-            def macArm64 = createMacTarget(Architecture.ARM)
-            libPath += "macosx64"
-            toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
-            cArgs = "-DcxxAdd=-std=c++14"
-            lArgs = "-DlAdd=-fno-pie"
-            buildTargets += macArm64
-        }
-
         new AntScriptGenerator().generate(buildConfig, buildTargets)
 
         try {
