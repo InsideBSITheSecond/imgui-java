@@ -162,7 +162,7 @@ class GenerateLibs extends DefaultTask {
 
         if (forMac) {
             def mac = createMacTarget(Architecture.x86)
-            libPath += "macosx64/"
+            libPath += "macosx64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
             cArgs = "-DccxxAdd=-std=c++14"
             lArgs = "-DlAdd=-fno-pie"
@@ -171,7 +171,7 @@ class GenerateLibs extends DefaultTask {
 
         if (forMacArm64) {
             def macArm64 = createMacTarget(Architecture.ARM)
-            libPath += "macosx64/"
+            libPath += "macosx64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=MacOSX64-TC.cmake"
             cArgs = "-DcxxAdd=-std=c++14"
             lArgs = "-DlAdd=-fno-pie"
