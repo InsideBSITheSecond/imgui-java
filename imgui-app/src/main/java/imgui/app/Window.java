@@ -139,7 +139,7 @@ public abstract class Window {
     protected void initImGui(final Configuration config) {
         ImGui.createContext();
         testEngine = TestEngine.CreateContext();
-        System.out.println(Long.toHexString(testEngine.ptr));
+        System.out.println(Long.toHexString(testEngine.ptr)); //h
     }
 
     /**
