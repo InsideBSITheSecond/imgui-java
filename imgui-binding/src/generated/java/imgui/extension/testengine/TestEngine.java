@@ -120,7 +120,7 @@ public class TestEngine extends ImGuiStruct {
 
         // Register the test using your native macro.
         ImGuiTest* t = IM_REGISTER_TEST(engine, container->Category.c_str(), container->Name.c_str());
-        printf("Got strings: %s %s\n", container->Category, container->Name);
+        printf("Got strings: %s %s\n", container->Category.c_str(), container->Name.c_str());
         fflush(stdout);
 
         // Store the global callback pointer in the test's user variables.
