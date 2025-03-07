@@ -1,4 +1,4 @@
-ab9b05aa957dc1aa684762329564071763df2066  imgui-binding/src/main/cmake/CMakeLists.txt
+4ab3ee72deede70d2e5bb20e91d0d91216bf0dda  imgui-binding/src/main/cmake/CMakeLists.txt
 620c5ed77f893193c1381fe2855a595ea977d56b  imgui-binding/src/main/cmake/LinuxX64-TC.cmake
 fe1bf6848a7c7cb0f4ac3106d78f3f8cc1f8603e  imgui-binding/src/main/cmake/MacOSX64-TC.cmake
 2d8bf95cdc901a4af71811ecea996d187cb3a2ef  imgui-binding/src/main/cmake/WindowsX64-TC.cmake
@@ -107,8 +107,14 @@ b69d169d2970aea776faf0a99145b5e7cb8e8ab3  imgui-binding/src/main/java/imgui/exte
 4ca9cd2ffc62c2f7b6e38b8e8af27323dbcfecb3  imgui-binding/src/main/java/imgui/extension/nodeditor/flag/NodeEditorPinKind.java
 e9be903fdb64babdf86e15d9e7d33639c29371b2  imgui-binding/src/main/java/imgui/extension/nodeditor/flag/NodeEditorStyleColor.java
 62bad3c0b68f6602686b932fa70c7fd6dde78a14  imgui-binding/src/main/java/imgui/extension/nodeditor/flag/NodeEditorStyleVar.java
-d19480c452314cb33037fd2e382525b7cc3c17d8  imgui-binding/src/main/java/imgui/extension/testengine/ImGuiTestEngine.java
-c3f334a457268af798503698150cf8668fe50758  imgui-binding/src/main/java/imgui/extension/testengine/TestEngine.java
+b2ae31fc05e1519a25c816175ecf833f41d0a2b1  imgui-binding/src/main/java/imgui/extension/testengine/ImGuiTestRef.java
+b3927d9d5af6824722b84049e88c7b03460e2909  imgui-binding/src/main/java/imgui/extension/testengine/TestContext.java
+3b32041d9b9f203e44175afe04ee3f0d8dd1800d  imgui-binding/src/main/java/imgui/extension/testengine/TestEngine.java
+282fc26dcd7da30c77c7b48262f3485e4dc07a7a  imgui-binding/src/main/java/imgui/extension/testengine/TestEngineIO.java
+7b207a5e3954a4aaf9b32909eb7f5f2fe5de8f0c  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestCallback.java
+55e2ffad0dcf6747666e10973314f088a9e2ee7b  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestOpFlags.java
+0bbbc5b124aaf30b6422d5dde679676875bd7c4c  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestRunSpeed.java
+db0f83589414333ba714516c13fdffdd2a386db2  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestVerboseLevel.java
 711bbdf9883cb3a20062f36c625d8c2045f99263  imgui-binding/src/main/java/imgui/extension/texteditor/TextEditor.java
 6abe2a8bf249757dd8f7c9d11982081ed725b54d  imgui-binding/src/main/java/imgui/extension/texteditor/TextEditorCoordinates.java
 e6be138bb6398083ebd7dd728639386b3f791acc  imgui-binding/src/main/java/imgui/extension/texteditor/TextEditorLanguageDefinition.java
@@ -175,6 +181,7 @@ c765e6eadf81568364ece65bdc87541130ebc57f  imgui-binding/src/main/java/imgui/lwjg
 1ec8254b8d7023c1b9db85f57cd020f142f05574  imgui-binding/src/main/java/imgui/type/ImShort.java
 0ed3ce650328c595f6c374c889320a15e0f894d9  imgui-binding/src/main/java/imgui/type/ImString.java
 ebaeae97db5cdc8316de13ba2ea1afaf3c8a8fef  imgui-binding/src/main/native/_common.h
+4ddda8f006e4c7981c1eeab58f18f46651905da7  imgui-binding/src/main/native/_imgui_te.h
 1a369653b8eab4be880b1bd2125a26a6f17e800c  imgui-binding/src/main/native/_imguifiledialog.h
 305e792b8c65c2b2f4446f35e3b7f25186f15aed  imgui-binding/src/main/native/_imguiknobs.h
 6ffad4359f5e844be5edd743edebfd622f78fc00  imgui-binding/src/main/native/_imguizmo.h
@@ -296,8 +303,14 @@ be6d044a49743d72ad2a6eb80b855378001b1616  imgui-binding/src/generated/java/imgui
 b71268a7e3f1f5151195ee7bbb1536a52ebbd68d  imgui-binding/src/generated/java/imgui/extension/nodeditor/flag/NodeEditorPinKind.java
 e62fdff842b8c99bf2246646cbc37dc48f0f37a3  imgui-binding/src/generated/java/imgui/extension/nodeditor/flag/NodeEditorStyleColor.java
 253a8d56f18b8055382d3cbf32fdf8c0d9150a0b  imgui-binding/src/generated/java/imgui/extension/nodeditor/flag/NodeEditorStyleVar.java
-d19480c452314cb33037fd2e382525b7cc3c17d8  imgui-binding/src/generated/java/imgui/extension/testengine/ImGuiTestEngine.java
-5206102dfa9488345e60594f888276643e9bf7f1  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngine.java
+b2ae31fc05e1519a25c816175ecf833f41d0a2b1  imgui-binding/src/generated/java/imgui/extension/testengine/ImGuiTestRef.java
+15ff413cb2dd3e5607e667882c3e45a500270e6e  imgui-binding/src/generated/java/imgui/extension/testengine/TestContext.java
+8c43f3d34de91639f9ab87507b7929ea88e5790b  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngine.java
+6a49ef06ee78c6d74acb30fe10837ef8bab87c41  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngineIO.java
+7b207a5e3954a4aaf9b32909eb7f5f2fe5de8f0c  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestCallback.java
+0062ec32c6f26665e8f7b3634239b551118abcb0  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestOpFlags.java
+086731a18a3efad66a910b2f7647eaaf2e543bfe  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestRunSpeed.java
+6df054f82ba9bad12c6ea8fd7af728cfe1fa66ac  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestVerboseLevel.java
 5816aaea7d786f6071478532ea17c4832143fe16  imgui-binding/src/generated/java/imgui/extension/texteditor/TextEditor.java
 6abe2a8bf249757dd8f7c9d11982081ed725b54d  imgui-binding/src/generated/java/imgui/extension/texteditor/TextEditorCoordinates.java
 f31bec71f9468bfb03efa09af0d5e3a9b5a5bf56  imgui-binding/src/generated/java/imgui/extension/texteditor/TextEditorLanguageDefinition.java
