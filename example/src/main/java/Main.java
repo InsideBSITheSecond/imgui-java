@@ -4,9 +4,15 @@ import imgui.ImGui;
 import imgui.ImGuiIO;
 import imgui.app.Application;
 import imgui.app.Configuration;
+import imgui.extension.testengine.TestContext;
+import imgui.extension.testengine.TestEngine;
+import imgui.extension.testengine.TestEngineIO;
+import imgui.extension.testengine.flag.TestVerboseLevel;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.flag.ImGuiInputTextFlags;
 import imgui.flag.ImGuiWindowFlags;
+import imgui.type.ImBoolean;
+import imgui.type.ImInt;
 import imgui.type.ImString;
 
 import java.io.IOException;
@@ -36,6 +42,77 @@ public class Main extends Application {
         io.setConfigViewportsNoTaskBarIcon(true);
 
         initFonts(io);
+
+        final TestEngineIO testIo = testEngine.getIO();
+        //final TestEngineIO testIo = ImTestEngine.GetIO(testEngine);
+        System.out.println(testIo.getConfigVerboseLevel());
+        testIo.setConfigVerboseLevel(TestVerboseLevel.Info);
+        System.out.println(testIo.getConfigVerboseLevel());
+
+        System.out.println(testIo.getConfigVerboseLevelOnError());
+        testIo.setConfigVerboseLevelOnError(TestVerboseLevel.Debug);
+        System.out.println(testIo.getConfigVerboseLevelOnError());
+
+        System.out.println(Long.toHexString(testEngine.ptr));
+        TestEngine.Start(testEngine, ImGui.getCurrentContext());
+
+        final ImBoolean b = new ImBoolean(false);
+        TestEngine.registerTest(testEngine, "demo_tests", "test1", contextPtr -> {
+            // GUI Function
+            ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
+            ImGui.text("Hello, automation world");
+            ImGui.button("Click Me");
+            if (ImGui.treeNode("Node")) {
+                ImGui.checkbox("Checkbox", b);
+                ImGui.treePop();
+            }
+            ImGui.end();
+        }, contextPtr -> {
+            // Test Function
+            TestContext ctx = new TestContext(contextPtr);
+            ctx.setRef("Test Window");
+            ctx.itemClick("Click Me");
+            ctx.itemOpen("Node");
+            ctx.itemCheck("Node/Checkbox");
+            ctx.itemUncheck("Node/Checkbox");
+        });
+
+        final int[] myInt = {42};
+        TestEngine.registerTest(testEngine, "demo_tests", "test2", contextPtr -> {
+            ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
+            ImGui.sliderInt("Slider", myInt, 0, 1000);
+        }, contextPtr -> {
+            TestContext ctx = new TestContext(contextPtr);
+            ctx.setRef("Test Window");
+
+            TestEngine.checkEq(myInt[0], 42);
+            ctx.itemInputValue("Slider", 123);
+            TestEngine.checkEq(myInt[0], 123);
+        });
+
+        TestEngine.registerTest(testEngine, "demo_tests", "open_metrics", contextPtr -> {
+
+        }, contextPtr -> {
+            TestContext ctx = new TestContext(contextPtr);
+            ctx.setRef("Dear ImGui Demo");
+            ctx.menuCheck("Tools/Metrics\\/Debugger");
+        });
+
+        TestEngine.registerTest(testEngine, "demo_tests", "capture_screenshots", contextPtr -> {
+
+        }, contextPtr -> {
+            TestContext ctx = new TestContext(contextPtr);
+            TestEngine.checkEq(42, 69);
+        });
+
+        TestEngine.registerTest(testEngine, "demo_tests", "capture_video", contextPtr -> {
+
+        }, contextPtr -> {
+            TestContext ctx = new TestContext(contextPtr);
+            TestEngine.checkEq(42, 69);
+        });
+
+        //TestEngine.InstallDefaultCrashHandler();
     }
 
     /**

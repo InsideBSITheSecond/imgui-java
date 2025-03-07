@@ -324,7 +324,7 @@
         "@type" : "AstFieldDecl",
         "name" : "mChar",
         "qualType" : "Char",
-        "desugaredQualType" : "int"
+        "desugaredQualType" : "unsigned char"
       }, {
         "@type" : "AstFieldDecl",
         "name" : "mColorIndex",
@@ -1511,8 +1511,8 @@
     }, {
       "@type" : "AstFieldDecl",
       "name" : "mStartTime",
-      "qualType" : "int",
-      "desugaredQualType" : "int"
+      "qualType" : "uint64_t",
+      "desugaredQualType" : "unsigned long"
     }, {
       "@type" : "AstFieldDecl",
       "name" : "mLastClick",
