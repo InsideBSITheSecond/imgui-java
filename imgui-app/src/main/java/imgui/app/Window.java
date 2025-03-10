@@ -139,7 +139,7 @@ public abstract class Window {
     protected void initImGui(final Configuration config) {
         ImGui.createContext();
         testEngine = TestEngine.CreateContext();
-        System.out.println(Long.toHexString(testEngine.ptr)); //h
+        System.out.println(Long.toHexString(testEngine.ptr)); // uwu
     }
 
     /**
@@ -221,7 +221,7 @@ public abstract class Window {
         renderBuffer();
 
         // Post-swap handler is REQUIRED in order to support screen capture
-        //TestEngine.PostSwap(testEngine);
+        TestEngine.PostSwap(testEngine);
     }
 
     /**
