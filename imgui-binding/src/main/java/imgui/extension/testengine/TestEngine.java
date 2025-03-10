@@ -57,12 +57,14 @@ public class TestEngine extends ImGuiStruct {
             bool attached = false;
 
             // Attach the current thread if necessary.
+            printf("start unsafe\n"); fflush(stdout);
             if (jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
                 printf("attaching thread now\n"); fflush(stdout);
                 jvm->AttachCurrentThread(reinterpret_cast<void**>(&env), nullptr);
                 attached = true;
                 printf("attached thread\n"); fflush(stdout);
             }
+            printf("end unsafe\n"); fflush(stdout);
 
             // Get the callback object's class.
             jclass callbackClass = env->GetObjectClass(callback);
@@ -73,17 +75,22 @@ public class TestEngine extends ImGuiStruct {
                 printf("calling callback now\n"); fflush(stdout);
                 env->CallVoidMethod(callback, runMethod, reinterpret_cast<jlong>(ctx));
                 printf("callback was called\n"); fflush(stdout);
-            }
+            } else {
+                printf("callback not found\n"); fflush(stdout); }
+
             if (env->ExceptionCheck()) {
                 printf("exception detected\n"); fflush(stdout);
                 env->ExceptionDescribe();
                 env->ExceptionClear();
-            }
+            } else {
+                printf("no exception\n"); fflush(stdout); }
+
             // Detach the thread if we attached it here.
             if (attached) {
                 printf("detaching thread\n"); fflush(stdout);
                 jvm->DetachCurrentThread();
             }
+            printf("reached generic callback handler end\n"); fflush(stdout);
         }
 
         // Function for GUI callbacks.
@@ -94,6 +101,7 @@ public class TestEngine extends ImGuiStruct {
                 return;
             printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
             callJavaCallback(container->GuiFunc, ctx);
+            printf("gui callback was called with success\n"); fflush(stdout);
         }
 
         // Function for Test callbacks.
@@ -104,6 +112,7 @@ public class TestEngine extends ImGuiStruct {
                 return;
             printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
             callJavaCallback(container->TestFunc, ctx);
+            printf("test callback was called with success\n"); fflush(stdout);
         }
     */
 
