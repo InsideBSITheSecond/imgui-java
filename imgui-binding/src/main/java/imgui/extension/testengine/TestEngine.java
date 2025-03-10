@@ -96,23 +96,23 @@ public class TestEngine extends ImGuiStruct {
         // Function for GUI callbacks.
         static void callJavaGuiCallback(ImGuiTestContext* ctx) {
             // Retrieve the Java callback from the test's user data.
-            CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
-            if (!container || !container->GuiFunc)
-                return;
-            printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
-            callJavaCallback(container->GuiFunc, ctx);
-            printf("gui callback was called with success\n\n"); fflush(stdout);
+            //CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
+            //if (!container || !container->GuiFunc)
+            //    return;
+            //printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
+            //callJavaCallback(container->GuiFunc, ctx);
+            printf("gui callback did nothing\n\n"); fflush(stdout);
         }
 
         // Function for Test callbacks.
         static void callJavaTestCallback(ImGuiTestContext* ctx) {
             // Retrieve the Java callback from the test's user data.
-            CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
-            if (!container || !container->TestFunc)
-                return;
-            printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
-            callJavaCallback(container->TestFunc, ctx);
-            printf("test callback was called with success\n\n"); fflush(stdout);
+            //CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
+            //if (!container || !container->TestFunc)
+            //    return;
+            //printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
+            //callJavaCallback(container->TestFunc, ctx);
+            printf("test callback did nothing\n\n"); fflush(stdout);
         }
     */
 
