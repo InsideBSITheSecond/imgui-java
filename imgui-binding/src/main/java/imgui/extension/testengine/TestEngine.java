@@ -86,10 +86,10 @@ public class TestEngine extends ImGuiStruct {
                 printf("no exception\n"); fflush(stdout); }
 
             // Detach the thread if we attached it here.
-            if (attached) {
-                printf("detaching thread\n"); fflush(stdout);
-                jvm->DetachCurrentThread();
-            }
+            //if (attached) {
+            //    printf("detaching thread\n"); fflush(stdout);
+            //    jvm->DetachCurrentThread();
+            //}
             printf("reached generic callback handler end\n"); fflush(stdout);
         }
 
