@@ -46,8 +46,10 @@ public class TestEngine extends ImGuiStruct {
 
         // Shared helper: a static, non-capturing function that does the common work.
         static void callJavaCallback(jobject callback, ImGuiTestContext* ctx) {
-            if (!callback)
+            if (!callback) {
+                printf("callback is null\n"); fflush(stdout);
                 return;
+            }
 
             // Retrieve the JavaVM pointer.
             JavaVM* jvm = getJavaVM();
@@ -56,8 +58,10 @@ public class TestEngine extends ImGuiStruct {
 
             // Attach the current thread if necessary.
             if (jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+                printf("attaching thread now\n"); fflush(stdout);
                 jvm->AttachCurrentThread(reinterpret_cast<void**>(&env), nullptr);
                 attached = true;
+                printf("attached thread\n"); fflush(stdout);
             }
 
             // Get the callback object's class.
@@ -66,14 +70,18 @@ public class TestEngine extends ImGuiStruct {
             jmethodID runMethod = env->GetMethodID(callbackClass, "run", "(J)V");
             if (runMethod) {
                 // Call the Java callback, passing the test context pointer as a long.
+                printf("calling callback now\n"); fflush(stdout);
                 env->CallVoidMethod(callback, runMethod, reinterpret_cast<jlong>(ctx));
+                printf("callback was called\n"); fflush(stdout);
             }
             if (env->ExceptionCheck()) {
+                printf("exception detected\n"); fflush(stdout);
                 env->ExceptionDescribe();
                 env->ExceptionClear();
             }
             // Detach the thread if we attached it here.
             if (attached) {
+                printf("detaching thread\n"); fflush(stdout);
                 jvm->DetachCurrentThread();
             }
         }
@@ -84,7 +92,7 @@ public class TestEngine extends ImGuiStruct {
             CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
             if (!container || !container->GuiFunc)
                 return;
-
+            printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
             callJavaCallback(container->GuiFunc, ctx);
         }
 
@@ -94,7 +102,7 @@ public class TestEngine extends ImGuiStruct {
             CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
             if (!container || !container->TestFunc)
                 return;
-
+            printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
             callJavaCallback(container->TestFunc, ctx);
         }
     */
