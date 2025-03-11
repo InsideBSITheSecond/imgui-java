@@ -18,6 +18,8 @@ import org.lwjgl.system.MemoryUtil;
 import java.nio.IntBuffer;
 import java.util.Objects;
 
+import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
+
 /**
  * Low-level abstraction, which creates application window and starts the main loop.
  * It's recommended to use {@link Application}, but this class could be extended directly as well.
@@ -69,7 +71,16 @@ public abstract class Window {
      * @param config configuration object with basic window information
      */
     protected void initWindow(final Configuration config) {
-        GLFWErrorCallback.createPrint(System.err).set();
+        //GLFWErrorCallback.createPrint(System.err).set();
+        glfwSetErrorCallback((error, description) -> {
+            String msg = MemoryUtil.memUTF8(description);
+            // If it’s the window positioning error, ignore it.
+            if (msg.contains("Wayland: The platform does not")) {
+                return;
+            }
+            // Otherwise, print the error.
+            System.err.println("GLFW Error: " + msg);
+        });
 
         if (!GLFW.glfwInit()) {
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -248,7 +259,7 @@ public abstract class Window {
         Callbacks.glfwFreeCallbacks(handle);
         GLFW.glfwDestroyWindow(handle);
         GLFW.glfwTerminate();
-        Objects.requireNonNull(GLFW.glfwSetErrorCallback(null)).free();
+        Objects.requireNonNull(glfwSetErrorCallback(null)).free();
     }
 
     /**

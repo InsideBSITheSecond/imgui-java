@@ -44,16 +44,17 @@ public class ImGui {
 
         if (libPath != null) {
             System.load(Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString());
-            System.out.println(String.format("loaded imgui library from %s", Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString()));
+            System.out.println(String.format("1 - loaded imgui library from %s", Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString()));
         } else {
             try {
                 System.loadLibrary(libName);
-                System.out.println(String.format("loaded imgui library from %s", libName));
+                System.out.println(String.format("2 - loaded imgui library from %s", libName));
             } catch (Exception | Error e) {
                 final String extractedLibAbsPath = tryLoadFromClasspath(fullLibName);
+                System.out.println(e.toString());
                 if (extractedLibAbsPath != null) {
                     System.load(extractedLibAbsPath);
-                    System.out.println(String.format("loaded imgui library from %s", extractedLibAbsPath));
+                    System.out.println(String.format("3 - loaded imgui library from %s", extractedLibAbsPath));
                 } else {
                     throw e;
                 }
