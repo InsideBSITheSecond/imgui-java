@@ -7,7 +7,6 @@ import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
@@ -73,7 +72,7 @@ public abstract class Window {
     protected void initWindow(final Configuration config) {
         //GLFWErrorCallback.createPrint(System.err).set();
         glfwSetErrorCallback((error, description) -> {
-            String msg = MemoryUtil.memUTF8(description);
+            final String msg = MemoryUtil.memUTF8(description);
             // If it’s the window positioning error, ignore it.
             if (msg.contains("Wayland: The platform does not")) {
                 return;
