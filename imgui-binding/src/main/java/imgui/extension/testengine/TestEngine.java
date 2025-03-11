@@ -101,7 +101,7 @@ public class TestEngine extends ImGuiStruct {
             //    return;
             //printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
             //callJavaCallback(container->GuiFunc, ctx);
-            printf("gui callback did nothing\n\n"); fflush(stdout);
+            printf("gui callback did nothing but say uwu :3\n\n"); fflush(stdout);
         }
 
         // Function for Test callbacks.
@@ -112,7 +112,7 @@ public class TestEngine extends ImGuiStruct {
             //    return;
             //printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
             //callJavaCallback(container->TestFunc, ctx);
-            printf("test callback did nothing\n\n"); fflush(stdout);
+            printf("test callback did nothing but say uwu :3\n\n"); fflush(stdout);
         }
     */
 
