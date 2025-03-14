@@ -8,7 +8,7 @@ public class TestEngineIO extends ImGuiStruct {
 
     /*JNI
         #include "_common.h"
-        #include "_imgui_te.h"
+        #include "jni_testengine.h"
         #define THIS ((ImGuiTestEngineIO*)STRUCT_PTR)
      */
 

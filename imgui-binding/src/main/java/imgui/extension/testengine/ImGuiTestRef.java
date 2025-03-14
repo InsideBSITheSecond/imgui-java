@@ -9,7 +9,7 @@ public class ImGuiTestRef extends ImGuiStruct {
 
     /*JNI
         #include "_common.h"
-        #include "_imgui_te.h"
+        #include "jni_testengine.h"
 
         #define THIS ((ImGuiTestRef*)STRUCT_PTR)
      */
