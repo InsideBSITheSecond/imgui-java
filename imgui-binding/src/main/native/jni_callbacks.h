@@ -1,6 +1,7 @@
 #pragma once
 
 #include "jni.h"
+#include "jni_testengine.h"
 
 namespace Jni
 {
@@ -27,4 +28,8 @@ namespace Jni
     jfloat CallImPlatformFuncViewportSuppFloat(JNIEnv* env, jobject func, jobject vp);
 
     void CallImGuiFileDialogPaneFun(JNIEnv* env, jobject func, const char* filter, long user_datas, bool canWeContinue);
+
+    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx);
+
+    void CallTestEngineTestFun(JNIEnv* env, jobject fun, ImGuiTestContext* ctx);
 }

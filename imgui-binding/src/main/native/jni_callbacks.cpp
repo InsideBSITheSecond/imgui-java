@@ -94,4 +94,12 @@ namespace Jni
     void CallImGuiFileDialogPaneFun(JNIEnv* env, jobject func, const char* filter, long user_datas, bool canWeContinue) {
         env->CallVoidMethod(func, jImGuiFileDialogPaneFunMID, env->NewStringUTF(filter), user_datas, canWeContinue);
     }
+
+    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* user_datas) {
+
+    }
+
+    void CallTestEngineTestFun(JNIEnv* env, jobject func, ImGuiTestContext* user_datas) {
+
+    }
 }

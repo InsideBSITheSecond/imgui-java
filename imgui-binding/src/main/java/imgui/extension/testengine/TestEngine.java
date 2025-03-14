@@ -5,7 +5,9 @@ import imgui.binding.annotation.BindingField;
 import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.ReturnValue;
-import imgui.extension.testengine.callback.TestCallback;
+import imgui.binding.annotation.ArgValue;
+import imgui.extension.testengine.callback.TestEngineGuiFun;
+import imgui.extension.testengine.callback.TestEngineTestFun;
 import imgui.internal.ImGuiContext;
 
 @BindingSource
@@ -16,146 +18,44 @@ public class TestEngine extends ImGuiStruct {
 
     /*JNI
         #include "_common.h"
-        #include "_imgui_te.h"
-        #include <string>
-        #include <jni.h>
+        #include "jni_testengine.h"
+
         #define THIS ((ImGuiTestEngine*)STRUCT_PTR)
 
-        // Global variable to store the JavaVM pointer.
-        static JavaVM* gJavaVM = nullptr;
+        static auto guiCallback(JNIEnv* env, jobject fn) {
+            static jobject cb = NULL;
+            if (cb != NULL) { env->DeleteGlobalRef(cb); }
+            cb = env->NewGlobalRef(fn);
 
-        // Called when the native library is loaded.
-        // Save the JavaVM pointer so it can be used later.
-        JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
-            gJavaVM = vm;
-            return JNI_VERSION_1_6;
+            return [](ImGuiTestContext* ctx) {
+                if (cb != NULL) {
+                    Jni::CallTestEngineGuiFun(Jni::GetEnv(), cb, ctx);
+                }
+            };
         }
 
-        // Helper function to retrieve the stored JavaVM pointer.
-        JavaVM* getJavaVM() {
-            return gJavaVM;
-        }
+        static auto testCallback(JNIEnv* env, jobject fn) {
+            static jobject cb = NULL;
+            if (cb != NULL) { env->DeleteGlobalRef(cb); }
+            cb = env->NewGlobalRef(fn);
 
-        struct CallbackContainer {
-            std::string     Category;
-            std::string     Name;
-            jobject           GuiFunc;
-            jobject           TestFunc;
-            void*           UserData;
-        };
-
-        // Shared helper: a static, non-capturing function that does the common work.
-        static void callJavaCallback(jobject callback, ImGuiTestContext* ctx) {
-            if (!callback) {
-                printf("callback is null\n"); fflush(stdout);
-                return;
-            }
-
-            // Retrieve the JavaVM pointer.
-            JavaVM* jvm = getJavaVM();
-            JNIEnv* env = nullptr;
-            bool attached = false;
-
-            // Attach the current thread if necessary.
-            printf("start unsafe\n"); fflush(stdout);
-            if (jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-                printf("attaching thread now\n"); fflush(stdout);
-                jvm->AttachCurrentThread(reinterpret_cast<void**>(&env), nullptr);
-                attached = true;
-                printf("attached thread\n"); fflush(stdout);
-            }
-            printf("end unsafe\n"); fflush(stdout);
-
-            // Get the callback object's class.
-            jclass callbackClass = env->GetObjectClass(callback);
-            // Look up the "run" method with signature (J)V.
-            jmethodID runMethod = env->GetMethodID(callbackClass, "run", "(J)V");
-            if (runMethod) {
-                // Call the Java callback, passing the test context pointer as a long.
-                printf("calling callback now\n"); fflush(stdout);
-                env->CallVoidMethod(callback, runMethod, reinterpret_cast<jlong>(ctx));
-                printf("callback was called\n"); fflush(stdout);
-            } else {
-                printf("callback not found\n"); fflush(stdout); }
-
-            if (env->ExceptionCheck()) {
-                printf("exception detected\n"); fflush(stdout);
-                env->ExceptionDescribe();
-                env->ExceptionClear();
-            } else {
-                printf("no exception\n"); fflush(stdout); }
-
-            // Detach the thread if we attached it here.
-            //if (attached) {
-            //    printf("detaching thread\n"); fflush(stdout);
-            //    jvm->DetachCurrentThread();
-            //}
-            printf("reached generic callback handler end\n"); fflush(stdout);
-        }
-
-        // Function for GUI callbacks.
-        static void callJavaGuiCallback(ImGuiTestContext* ctx) {
-            // Retrieve the Java callback from the test's user data.
-            //CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
-            //if (!container || !container->GuiFunc)
-            //    return;
-            //printf("trying to call generic jcallback handler for gui\n"); fflush(stdout);
-            //callJavaCallback(container->GuiFunc, ctx);
-            printf("gui callback did nothing but say uwu :3\n\n"); fflush(stdout);
-        }
-
-        // Function for Test callbacks.
-        static void callJavaTestCallback(ImGuiTestContext* ctx) {
-            // Retrieve the Java callback from the test's user data.
-            //CallbackContainer* container = reinterpret_cast<CallbackContainer*>(ctx->Test->UserData);
-            //if (!container || !container->TestFunc)
-            //    return;
-            //printf("trying to call generic jcallback handler for test\n"); fflush(stdout);
-            //callJavaCallback(container->TestFunc, ctx);
-            printf("test callback did nothing but say uwu :3\n\n"); fflush(stdout);
+            return [](ImGuiTestContext* ctx) {
+                if (cb != NULL) {
+                    Jni::CallTestEngineTestFun(Jni::GetEnv(), cb, ctx);
+                }
+            };
         }
     */
 
     // Test Registering
-
-    /**
-     * Registers a test by passing the callback to native C++ code.
-     */
-    public static void registerTest(TestEngine engine, String category, String testName, TestCallback guiCallback, TestCallback testCallback) {
-        registerTestNative(engine.ptr, category, testName, guiCallback, testCallback);
-    }
-
-    // Declare the native method
-    private static native void registerTestNative(long enginePtr, String categoryChars, String testNameChars, TestCallback guiCallback, TestCallback testCallback); /*
-        std::string category(categoryChars);
-        std::string testName(testNameChars);
-
-        // Convert engine pointer to the proper native type.
-        ImGuiTestEngine* engine = reinterpret_cast<ImGuiTestEngine*>(enginePtr);
-
-        // Create a global reference for the Java callback so it remains valid beyond this function call.
-        CallbackContainer* container = new CallbackContainer();
-        container->GuiFunc = env->NewGlobalRef(guiCallback);
-        container->TestFunc = env->NewGlobalRef(testCallback);
-        container->Category = category;
-        container->Name = testName;
-
-        // Register the test using your native macro.
-        ImGuiTest* t = IM_REGISTER_TEST(engine, container->Category.c_str(), container->Name.c_str());
-        printf("Got strings: %s %s\n", container->Category.c_str(), container->Name.c_str());
-        fflush(stdout);
-
-        // Store the global callback pointer in the test's user variables.
-        t->UserData = container;
-
-        // Assign the GuiFunc to our non-capturing static function.
-        t->GuiFunc = callJavaGuiCallback;
-        t->TestFunc = callJavaTestCallback;
-
-        // Optionally, you could store globalCallback elsewhere for cleanup when the test is unregistered.
+    public static void RegisterTest(String category, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb) { ImGuiTestEngine_RegisterTest(category, name, vGuiCb, vTestCb); }
+    private static native void ImGuiTestEngine_RegisterTest(String category, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb); /*
+        Jni::RegisterTest(env, category, name, guiCallback(env, vGuiCb), testCallback(env, vTestCb));
     */
 
+
     // Global Functions
+
 
     public static TestEngine CreateContext() {
         return new TestEngine(ImGuiTestEngine_CreateContext());

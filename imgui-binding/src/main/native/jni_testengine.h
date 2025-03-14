@@ -1,6 +1,6 @@
 #pragma once
 
-#include "_common.h"
+#include "jni.h"
 #include "imgui_te_context.h"
 #include "imgui_te_coroutine.h"
 #include "imgui_te_engine.h"
@@ -10,3 +10,8 @@
 #include "imgui_te_ui.h"
 #include "imgui_te_utils.h"
 #include "imgui_te_internal.h"
+
+namespace Jni
+{
+    void RegisterTest(JNIEnv* env, char* category, char* name, ImGuiTestGuiFunc* guiFunc, ImGuiTestTestFunc* testFunc);
+}
