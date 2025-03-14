@@ -18,7 +18,7 @@ public class TestContext extends ImGuiStruct {
 
     /*JNI
         #include "_common.h"
-        #include "_imgui_te.h"
+        #include "jni_testengine.h"
 
         #define THIS ((ImGuiTestContext*)STRUCT_PTR)
      */
