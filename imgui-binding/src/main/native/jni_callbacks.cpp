@@ -13,6 +13,8 @@ jmethodID jImPlatformFuncViewportSuppImVec2GetMID;
 jmethodID jImPlatformFuncViewportSuppBooleanGetMID;
 jmethodID jImPlatformFuncViewportSuppFloatGetMID;
 jmethodID jImGuiFileDialogPaneFunMID;
+jmethodID jTestEngineGuiFunMID;
+jmethodID jTestEngineTestFunMID;
 
 namespace Jni
 {
@@ -49,6 +51,12 @@ namespace Jni
 
         jclass jImGuiFileDialogPaneFun = env->FindClass("imgui/extension/imguifiledialog/callback/ImGuiFileDialogPaneFun");
         jImGuiFileDialogPaneFunMID = env->GetMethodID(jImGuiFileDialogPaneFun, "accept", "(Ljava/lang/String;JZ)V");
+
+        jclass jTestEngineGuiFun = env->FindClass("imgui/extension/testengine/callback/TestEngineGuiFun");
+        jTestEngineGuiFunMID = env->GetMethodID(jTestEngineGuiFun, "run", "(Limgui/extension/testengine/TestContext;)V");
+
+        jclass jTestEngineTestFun = env->FindClass("imgui/extension/testengine/callback/TestEngineTestFun");
+        jTestEngineTestFunMID = env->GetMethodID(jTestEngineTestFun, "run", "(Limgui/extension/testengine/TestContext;)V");
     }
 
     void CallImListClipperCallback(JNIEnv* env, jobject consumer, int index) {
@@ -95,11 +103,13 @@ namespace Jni
         env->CallVoidMethod(func, jImGuiFileDialogPaneFunMID, env->NewStringUTF(filter), user_datas, canWeContinue);
     }
 
-    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* user_datas) {
-
+    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
+        printf("attempting to call java callback\n"); fflush(stdout);
+        env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
     }
 
-    void CallTestEngineTestFun(JNIEnv* env, jobject func, ImGuiTestContext* user_datas) {
-
+    void CallTestEngineTestFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
+        printf("attempting to call java callback\n"); fflush(stdout);
+        env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
     }
 }
