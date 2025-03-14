@@ -23,37 +23,41 @@ public class TestEngine extends ImGuiStruct {
         #define THIS ((ImGuiTestEngine*)STRUCT_PTR)
 
         static auto guiCallback(JNIEnv* env, jobject fn) {
-            static jobject cb = NULL;
-            if (cb != NULL) { env->DeleteGlobalRef(cb); }
-            cb = env->NewGlobalRef(fn);
+            static jobject cbg = NULL;
+            if (cbg != NULL) { env->DeleteGlobalRef(cbg); }
+            cbg = env->NewGlobalRef(fn);
 
             printf("Wrapping gui callback in C++ lambda\n"); fflush(stdout);
 
             return [](ImGuiTestContext* ctx) {
-                if (cb != NULL) {
-                    Jni::CallTestEngineGuiFun(Jni::GetEnv(), cb, ctx);
+                if (cbg != NULL) {
+                    printf("Attempting to callback java guiFun from C++ lambda\n"); fflush(stdout);
+                    Jni::CallTestEngineGuiFun(Jni::GetEnv(), cbg, ctx);
+                    printf("GuiFun callback succeeded\n"); fflush(stdout);
                 }
             };
         }
 
         static auto testCallback(JNIEnv* env, jobject fn) {
-            static jobject cb = NULL;
-            if (cb != NULL) { env->DeleteGlobalRef(cb); }
-            cb = env->NewGlobalRef(fn);
+            static jobject cbt = NULL;
+            if (cbt != NULL) { env->DeleteGlobalRef(cbt); }
+            cbt = env->NewGlobalRef(fn);
 
             printf("Wrapping test callback in C++ lambda\n"); fflush(stdout);
 
             return [](ImGuiTestContext* ctx) {
-                if (cb != NULL) {
-                    Jni::CallTestEngineTestFun(Jni::GetEnv(), cb, ctx);
+                if (cbt != NULL) {
+                    printf("Attempting to callback java testFun from C++ lambda\n"); fflush(stdout);
+                    Jni::CallTestEngineTestFun(Jni::GetEnv(), cbt, ctx);
+                    printf("TestFun callback succeeded\n"); fflush(stdout);
                 }
             };
         }
     */
 
     // Test Registering
-    public static void RegisterTest(String category, TestEngine engine, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb) { ImGuiTestEngine_RegisterTest(category, engine, name, vGuiCb, vTestCb); }
-    private static native void ImGuiTestEngine_RegisterTest(String category, TestEngine engine, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb); /*
+    public static void RegisterTest(TestEngine engine, String category, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb) { ImGuiTestEngine_RegisterTest(engine.ptr, category, name, vGuiCb, vTestCb); }
+    private static native void ImGuiTestEngine_RegisterTest(long engine, String category, String name, TestEngineGuiFun vGuiCb, TestEngineTestFun vTestCb); /*
         Jni::RegisterTest(env, reinterpret_cast<ImGuiTestEngine*>(engine), category, name, guiCallback(env, vGuiCb), testCallback(env, vTestCb));
     */
 

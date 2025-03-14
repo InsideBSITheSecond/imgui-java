@@ -9,7 +9,7 @@ namespace Jni
         ImGuiTest* t = NULL;
         t = IM_REGISTER_TEST(e, category, name);
         t->GuiFunc = guiFunc;
-        t->TestFunc = testFunc;
+        //t->TestFunc = testFunc;
 
         printf("Test %s - %s registered\n", category, name); fflush(stdout);
     }

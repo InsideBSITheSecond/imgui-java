@@ -104,12 +104,12 @@ namespace Jni
     }
 
     void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
-        printf("attempting to call java callback\n"); fflush(stdout);
+        printf("Attempting to call java callback\n"); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
     }
 
     void CallTestEngineTestFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
-        printf("attempting to call java callback\n"); fflush(stdout);
+        printf("Attempting to call java callback\n"); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
     }
 }
