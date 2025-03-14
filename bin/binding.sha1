@@ -109,7 +109,7 @@ e9be903fdb64babdf86e15d9e7d33639c29371b2  imgui-binding/src/main/java/imgui/exte
 62bad3c0b68f6602686b932fa70c7fd6dde78a14  imgui-binding/src/main/java/imgui/extension/nodeditor/flag/NodeEditorStyleVar.java
 d796c82a065a6e11a1a0270b2e23426bdf05fb8b  imgui-binding/src/main/java/imgui/extension/testengine/ImGuiTestRef.java
 0bd2d40ff06d5f32cc624a0915e0cf191cd42f8a  imgui-binding/src/main/java/imgui/extension/testengine/TestContext.java
-ad30fb402f312756b8914ad1b2cb0ccbfb2aa1c6  imgui-binding/src/main/java/imgui/extension/testengine/TestEngine.java
+0f9753ca5c2e34ffb6c96a94a57bad50d3ddc339  imgui-binding/src/main/java/imgui/extension/testengine/TestEngine.java
 525c2d1fa882026f0522947ec823c78d2eaca7e2  imgui-binding/src/main/java/imgui/extension/testengine/TestEngineIO.java
 2d9bba2d74f843fa790ccf81d8b73af19b65181c  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
 93abaeb3e49c41ca83e58f039af91d900a14eae3  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineTestFun.java
@@ -197,7 +197,7 @@ f2db8453ac6843e846822b878c52bb31e2d336b9  imgui-binding/src/main/native/jni_asse
 957ce75266115c2c0b2bef67941bdf454befcd6c  imgui-binding/src/main/native/jni_assertion.h
 ef606408ac1c27bdf9048daa121e457acc587543  imgui-binding/src/main/native/jni_binding_struct.cpp
 c2032cef3c7576a8f8191877b530d04c67d1c28b  imgui-binding/src/main/native/jni_binding_struct.h
-23588e237838fe9195e24f48959ebfd93b65d426  imgui-binding/src/main/native/jni_callbacks.cpp
+cf21f365dacfe95a676297feea8c3113d6b6d59d  imgui-binding/src/main/native/jni_callbacks.cpp
 8aa124784b893a1c59990e2462c94801eb352e58  imgui-binding/src/main/native/jni_callbacks.h
 f94e999ce7b59ca2bf05cef05139dd12625f857f  imgui-binding/src/main/native/jni_common.cpp
 3e9d74ed21956e54ee645d76452b18bffcd15409  imgui-binding/src/main/native/jni_common.h
@@ -207,7 +207,7 @@ f94e999ce7b59ca2bf05cef05139dd12625f857f  imgui-binding/src/main/native/jni_comm
 2b226731cc6f238000a2137bdb79fcdafdf34aed  imgui-binding/src/main/native/jni_internal.h
 5e4b43e3c7f87f5fc106626a9407f88974a8d455  imgui-binding/src/main/native/jni_jvm.cpp
 87083f9f1c0b677c9f7a385c67b54ea50726d19d  imgui-binding/src/main/native/jni_jvm.h
-ec3ed75070d53c6d01dd915f89e7a128c1ee0fb5  imgui-binding/src/main/native/jni_testengine.cpp
+04ba5204c1f4f67aec93847c446df3040109c416  imgui-binding/src/main/native/jni_testengine.cpp
 2510e9bf70ab4eaa16bd4e303e1e16a8c5ee7c6f  imgui-binding/src/main/native/jni_testengine.h
 20e8e9302b80e59927ee2c771abf94ad680b0999  imgui-binding/src/main/native/jni_texteditor.cpp
 9d13e0ed0754904ce42b19db661bf3d20d9060c0  imgui-binding/src/main/native/jni_texteditor.h
@@ -308,7 +308,7 @@ e62fdff842b8c99bf2246646cbc37dc48f0f37a3  imgui-binding/src/generated/java/imgui
 253a8d56f18b8055382d3cbf32fdf8c0d9150a0b  imgui-binding/src/generated/java/imgui/extension/nodeditor/flag/NodeEditorStyleVar.java
 d796c82a065a6e11a1a0270b2e23426bdf05fb8b  imgui-binding/src/generated/java/imgui/extension/testengine/ImGuiTestRef.java
 08d35683bb24d6aa6b4a952d14304506efbff243  imgui-binding/src/generated/java/imgui/extension/testengine/TestContext.java
-7da51c29526bec3e6f6188e0c62b5413a83098dd  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngine.java
+d9e64177f73bfdd2982e7e2cd847bf9699ffb895  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngine.java
 1d4a03c56304c1d49b634ad9dbecba78efd6139c  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngineIO.java
 2d9bba2d74f843fa790ccf81d8b73af19b65181c  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
 93abaeb3e49c41ca83e58f039af91d900a14eae3  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineTestFun.java
