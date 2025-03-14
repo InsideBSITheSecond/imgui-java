@@ -111,8 +111,8 @@ d796c82a065a6e11a1a0270b2e23426bdf05fb8b  imgui-binding/src/main/java/imgui/exte
 0bd2d40ff06d5f32cc624a0915e0cf191cd42f8a  imgui-binding/src/main/java/imgui/extension/testengine/TestContext.java
 8d27d55e2dad5ea76d25131c1758972e8bdb1e48  imgui-binding/src/main/java/imgui/extension/testengine/TestEngine.java
 525c2d1fa882026f0522947ec823c78d2eaca7e2  imgui-binding/src/main/java/imgui/extension/testengine/TestEngineIO.java
-927b436b5821916af8abee73e8e43542a8faeee0  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
-b7724ac92578debb2f29640c21cbd6b47f4faf09  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineTestFun.java
+2d9bba2d74f843fa790ccf81d8b73af19b65181c  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
+93abaeb3e49c41ca83e58f039af91d900a14eae3  imgui-binding/src/main/java/imgui/extension/testengine/callback/TestEngineTestFun.java
 55e2ffad0dcf6747666e10973314f088a9e2ee7b  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestOpFlags.java
 0bbbc5b124aaf30b6422d5dde679676875bd7c4c  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestRunSpeed.java
 db0f83589414333ba714516c13fdffdd2a386db2  imgui-binding/src/main/java/imgui/extension/testengine/flag/TestVerboseLevel.java
@@ -207,7 +207,7 @@ f94e999ce7b59ca2bf05cef05139dd12625f857f  imgui-binding/src/main/native/jni_comm
 2b226731cc6f238000a2137bdb79fcdafdf34aed  imgui-binding/src/main/native/jni_internal.h
 5e4b43e3c7f87f5fc106626a9407f88974a8d455  imgui-binding/src/main/native/jni_jvm.cpp
 87083f9f1c0b677c9f7a385c67b54ea50726d19d  imgui-binding/src/main/native/jni_jvm.h
-aebf4c1888a0295e18dd079471ce059dfe41560c  imgui-binding/src/main/native/jni_testengine.cpp
+832f8ed787a288baac940f85861f2af914fb37ad  imgui-binding/src/main/native/jni_testengine.cpp
 dc717cd04e01729aae5be60472ef2990af0d1570  imgui-binding/src/main/native/jni_testengine.h
 20e8e9302b80e59927ee2c771abf94ad680b0999  imgui-binding/src/main/native/jni_texteditor.cpp
 9d13e0ed0754904ce42b19db661bf3d20d9060c0  imgui-binding/src/main/native/jni_texteditor.h
@@ -310,8 +310,8 @@ d796c82a065a6e11a1a0270b2e23426bdf05fb8b  imgui-binding/src/generated/java/imgui
 08d35683bb24d6aa6b4a952d14304506efbff243  imgui-binding/src/generated/java/imgui/extension/testengine/TestContext.java
 2d4105b385b3de02800c3e487f76bd3e817d975a  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngine.java
 1d4a03c56304c1d49b634ad9dbecba78efd6139c  imgui-binding/src/generated/java/imgui/extension/testengine/TestEngineIO.java
-927b436b5821916af8abee73e8e43542a8faeee0  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
-b7724ac92578debb2f29640c21cbd6b47f4faf09  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineTestFun.java
+2d9bba2d74f843fa790ccf81d8b73af19b65181c  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineGuiFun.java
+93abaeb3e49c41ca83e58f039af91d900a14eae3  imgui-binding/src/generated/java/imgui/extension/testengine/callback/TestEngineTestFun.java
 0062ec32c6f26665e8f7b3634239b551118abcb0  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestOpFlags.java
 086731a18a3efad66a910b2f7647eaaf2e543bfe  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestRunSpeed.java
 6df054f82ba9bad12c6ea8fd7af728cfe1fa66ac  imgui-binding/src/generated/java/imgui/extension/testengine/flag/TestVerboseLevel.java
