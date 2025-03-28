@@ -29,7 +29,7 @@ namespace Jni
 
     void CallImGuiFileDialogPaneFun(JNIEnv* env, jobject func, const char* filter, long user_datas, bool canWeContinue);
 
-    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx);
+    void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx);
 
-    void CallTestEngineTestFun(JNIEnv* env, jobject fun, ImGuiTestContext* ctx);
+    void CallTestEngineTestFun(JNIEnv* env, jobject fun, jobject ctx);
 }

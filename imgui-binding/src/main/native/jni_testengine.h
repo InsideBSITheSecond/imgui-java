@@ -13,5 +13,5 @@
 
 namespace Jni
 {
-    void RegisterTest(JNIEnv* env, ImGuiTestEngine* e, char* category, char* name, ImGuiTestGuiFunc* guiFunc, ImGuiTestTestFunc* testFunc);
+    //void RegisterTest(JNIEnv* env, ImGuiTestEngine* e, char* category, char* name, jobject* guiFunc, jobject* testFunc);
 }

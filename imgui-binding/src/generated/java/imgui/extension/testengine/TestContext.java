@@ -6,7 +6,7 @@ import imgui.extension.testengine.flag.TestOpFlags;
 import imgui.flag.ImGuiMouseButton;
 import imgui.internal.ImGuiWindow;
 
-public class TestContext extends ImGuiStruct {
+public final class TestContext extends ImGuiStruct {
     public TestContext(long ptr) {
         super(ptr);
     }

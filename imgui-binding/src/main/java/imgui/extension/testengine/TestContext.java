@@ -11,7 +11,7 @@ import imgui.flag.ImGuiMouseButton;
 import imgui.internal.ImGuiWindow;
 
 @BindingSource
-public class TestContext extends ImGuiStruct {
+public final class TestContext extends ImGuiStruct {
     public TestContext(long ptr) {
         super(ptr);
     }

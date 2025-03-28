@@ -103,13 +103,14 @@ namespace Jni
         env->CallVoidMethod(func, jImGuiFileDialogPaneFunMID, env->NewStringUTF(filter), user_datas, canWeContinue);
     }
 
-    void CallTestEngineGuiFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
-        printf("Attempting to call java callback\n"); fflush(stdout);
+    void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx) {
+        printf("Attempting to call java callback %p\n", jTestEngineGuiFunMID); fflush(stdout);
+        printf("Debug print %p\n", jImGuiFileDialogPaneFunMID); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
     }
 
-    void CallTestEngineTestFun(JNIEnv* env, jobject func, ImGuiTestContext* ctx) {
-        printf("Attempting to call java callback\n"); fflush(stdout);
+    void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
+        printf("Attempting to call java callback %p\n", jTestEngineTestFunMID); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
     }
 }
