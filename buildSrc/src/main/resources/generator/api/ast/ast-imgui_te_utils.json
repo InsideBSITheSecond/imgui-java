@@ -1,9 +1,9 @@
 {
   "info" : {
     "source" : "include/imgui_test_engine/imgui_test_engine/imgui_te_utils.h",
-    "hash" : "e8f0e2bca4c0ad39c4de261525a6b1ec",
+    "hash" : "1483452784be6bef747e8bb5aab12c3f",
     "url" : "https://github.com/ocornut/imgui_test_engine",
-    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+    "revision" : "2aeb41eece39e0abaf8fe98976ad06e0dba25bfb"
   },
   "decls" : [ {
     "@type" : "AstFunctionDecl",
@@ -19,7 +19,7 @@
       "name" : "str_end",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "NULL"
+      "defaultValue" : "nullptr"
     }, {
       "@type" : "AstParmVarDecl",
       "name" : "seed",
@@ -56,7 +56,7 @@
       "name" : "str_end",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "NULL"
+      "defaultValue" : "nullptr"
     } ]
   }, {
     "@type" : "AstFunctionDecl",
@@ -107,7 +107,7 @@
       "name" : "path_end",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "NULL"
+      "defaultValue" : "nullptr"
     } ]
   }, {
     "@type" : "AstFunctionDecl",
@@ -168,7 +168,7 @@
       "name" : "path_end",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "NULL"
+      "defaultValue" : "nullptr"
     }, {
       "@type" : "AstFullComment",
       "decls" : [ {
@@ -193,7 +193,7 @@
       "name" : "path_end",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "NULL"
+      "defaultValue" : "nullptr"
     } ]
   }, {
     "@type" : "AstFunctionDecl",
@@ -824,13 +824,13 @@
         "name" : "callback",
         "qualType" : "int",
         "desugaredQualType" : "int",
-        "defaultValue" : "NULL"
+        "defaultValue" : "= nullptr"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "user_data",
         "qualType" : "void *",
         "desugaredQualType" : "void *",
-        "defaultValue" : "NULL"
+        "defaultValue" : "nullptr"
       }, {
         "@type" : "AstFullComment",
         "decls" : [ {
@@ -871,13 +871,13 @@
         "name" : "callback",
         "qualType" : "int",
         "desugaredQualType" : "int",
-        "defaultValue" : "NULL"
+        "defaultValue" : "= nullptr"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "user_data",
         "qualType" : "void *",
         "desugaredQualType" : "void *",
-        "defaultValue" : "NULL"
+        "defaultValue" : "nullptr"
       } ]
     }, {
       "@type" : "AstFunctionDecl",
@@ -910,13 +910,13 @@
         "name" : "callback",
         "qualType" : "int",
         "desugaredQualType" : "int",
-        "defaultValue" : "NULL"
+        "defaultValue" : "= nullptr"
       }, {
         "@type" : "AstParmVarDecl",
         "name" : "user_data",
         "qualType" : "void *",
         "desugaredQualType" : "void *",
-        "defaultValue" : "NULL"
+        "defaultValue" : "nullptr"
       } ]
     }, {
       "@type" : "AstFunctionDecl",

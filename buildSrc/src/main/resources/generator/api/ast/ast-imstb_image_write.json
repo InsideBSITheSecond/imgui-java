@@ -3,6 +3,6 @@
     "source" : "include/imgui_test_engine/imgui_test_engine/thirdparty/stb/imstb_image_write.h",
     "hash" : "b2d977b95754cee35c6312f7a80fad99",
     "url" : "https://github.com/ocornut/imgui_test_engine",
-    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+    "revision" : "2aeb41eece39e0abaf8fe98976ad06e0dba25bfb"
   }
 }

@@ -1,9 +1,9 @@
 {
   "info" : {
     "source" : "include/imgui_test_engine/imgui_test_engine/imgui_te_engine.h",
-    "hash" : "ec35bd1f19ab3f2b2b2c3c3cbaafa784",
+    "hash" : "022e959e2603b36a049a85418ddb59e8",
     "url" : "https://github.com/ocornut/imgui_test_engine",
-    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+    "revision" : "2aeb41eece39e0abaf8fe98976ad06e0dba25bfb"
   },
   "decls" : [ {
     "@type" : "AstRecordDecl",
@@ -58,7 +58,7 @@
       "name" : "ImGuiCaptureFlags_None",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 0,
-      "value" : "u",
+      "value" : " ",
       "evaluatedValue" : 0
     }, {
       "@type" : "AstEnumConstantDecl",
@@ -66,7 +66,7 @@
       "docComment" : "Capture entire window scroll area (by scrolling and taking multiple screenshot). Only works for a single window.",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 1,
-      "value" : "puts (",
+      "value" : "s (wil",
       "evaluatedValue" : 1
     }, {
       "@type" : "AstEnumConstantDecl",
@@ -74,15 +74,15 @@
       "docComment" : "Disable hiding other windows (when CaptureAddWindow has been called by default other windows are hidden)",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 2,
-      "value" : "uiTest",
+      "value" : "estFla",
       "evaluatedValue" : 2
     }, {
       "@type" : "AstEnumConstantDecl",
-      "name" : "ImGuiCaptureFlags_IncludeTooltipsAndPopups",
-      "docComment" : "Expand capture area to automatically include visible popups and tooltips (use with ImGuiCaptureflags_HideOtherWindows)",
+      "name" : "ImGuiCaptureFlags_IncludePopups",
+      "docComment" : "Expand capture area to automatically include visible popups (Unused if ImGuiCaptureFlags_IncludeOtherWindows is set)",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 3,
-      "value" : "uiTest",
+      "value" : "estRun",
       "evaluatedValue" : 4
     }, {
       "@type" : "AstEnumConstantDecl",
@@ -90,7 +90,7 @@
       "docComment" : "Hide render software mouse cursor during capture.",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 4,
-      "value" : "TestVe",
+      "value" : "estVer",
       "evaluatedValue" : 8
     }, {
       "@type" : "AstEnumConstantDecl",
@@ -106,7 +106,7 @@
       "docComment" : "Do not save output image.",
       "qualType" : "ImGuiCaptureFlags_",
       "order" : 6,
-      "value" : " int\n{",
+      "value" : "int\n{\n",
       "evaluatedValue" : 32
     } ]
   }, {
@@ -431,7 +431,7 @@
     }, {
       "@type" : "AstEnumConstantDecl",
       "name" : "ImGuiTestFlags_NoRecoveryWarnings",
-      "docComment" : "Disable state recovery warnings (missing End/Pop calls etc.) for tests which may rely on those.",
+      "docComment" : "Error/recovery warnings (missing End/Pop calls etc.) will be displayed as normal debug entries, for tests which may rely on those.",
       "qualType" : "ImGuiTestFlags_",
       "order" : 3,
       "value" : "1 << 2",
@@ -940,6 +940,16 @@
     } ]
   }, {
     "@type" : "AstFunctionDecl",
+    "name" : "ImGuiTestEngine_UnregisterAllTests",
+    "resultType" : "IMGUI_API",
+    "decls" : [ {
+      "@type" : "AstParmVarDecl",
+      "name" : "engine",
+      "qualType" : "ImGuiTestEngine *",
+      "desugaredQualType" : "ImGuiTestEngine *"
+    } ]
+  }, {
+    "@type" : "AstFunctionDecl",
     "name" : "ImGuiTestEngine_QueueTest",
     "resultType" : "IMGUI_API",
     "decls" : [ {
@@ -987,7 +997,7 @@
       "name" : "filter",
       "qualType" : "const char *",
       "desugaredQualType" : "const char *",
-      "defaultValue" : "="
+      "defaultValue" : "nullptr"
     }, {
       "@type" : "AstParmVarDecl",
       "name" : "run_flags",
@@ -1182,7 +1192,7 @@
       "desugaredQualType" : "int"
     }, {
       "@type" : "AstFieldDecl",
-      "name" : "InFlags",
+      "name" : "ItemFlags",
       "qualType" : "int",
       "desugaredQualType" : "int"
     }, {
@@ -1244,7 +1254,7 @@
           "text" : " Output:"
         }, {
           "@type" : "AstTextComment",
-          "text" : " - If 'buffer != NULL': all extracted lines are appended to 'buffer'. Use 'buffer->c_str()' on your side to obtain the text."
+          "text" : " - If 'buffer != nullptr': all extracted lines are appended to 'buffer'. Use 'buffer->c_str()' on your side to obtain the text."
         }, {
           "@type" : "AstTextComment",
           "text" : " - Return value: number of lines extracted (should be equivalent to number of '"
@@ -1253,7 +1263,7 @@
           "text" : "' inside buffer->c_str())."
         }, {
           "@type" : "AstTextComment",
-          "text" : " - You may call the function with buffer == NULL to only obtain a count without getting the data."
+          "text" : " - You may call the function with buffer == nullptr to only obtain a count without getting the data."
         }, {
           "@type" : "AstTextComment",
           "text" : " Verbose levels are inclusive:"

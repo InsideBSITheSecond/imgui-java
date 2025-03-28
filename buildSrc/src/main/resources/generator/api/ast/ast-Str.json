@@ -1,9 +1,9 @@
 {
   "info" : {
     "source" : "include/imgui_test_engine/imgui_test_engine/thirdparty/Str/Str.h",
-    "hash" : "5531603458677f958f6acb65796e98f4",
+    "hash" : "7039f09fe9cddf0ad0e847a05da1b27b",
     "url" : "https://github.com/ocornut/imgui_test_engine",
-    "revision" : "ff0cca550ad6f8915219382ca0d82619f652fbf4"
+    "revision" : "2aeb41eece39e0abaf8fe98976ad06e0dba25bfb"
   },
   "decls" : [ {
     "@type" : "AstRecordDecl",
