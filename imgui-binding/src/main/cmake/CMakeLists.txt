@@ -12,7 +12,7 @@ set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
 
 # Set compiler options
 set(C_CXX_FLAGS "${CMAKE_C_CXX_FLAGS} ")
-string(APPEND C_CXX_FLAGS "${ccxxAdd} -Wall -O2 -fmessage-length=0 -m64 -fPIC")
+string(APPEND C_CXX_FLAGS "${ccxxAdd} -Wall -g -O0 -fmessage-length=0 -m64 -fPIC")
 
 set(CMAKE_C_FLAGS "${C_CXX_FLAGS} ${cAdd}")
 

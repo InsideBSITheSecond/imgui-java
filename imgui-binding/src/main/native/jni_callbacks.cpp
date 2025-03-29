@@ -112,5 +112,8 @@ namespace Jni
     void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
         printf("Attempting to call java callback %p\n", jTestEngineTestFunMID); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
+        if (env->ExceptionCheck()) {
+            env->ExceptionDescribe();
+        }
     }
 }

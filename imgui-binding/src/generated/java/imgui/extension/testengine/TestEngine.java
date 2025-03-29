@@ -9,18 +9,7 @@ import imgui.extension.testengine.callback.TestEngineTestFun;
 import imgui.internal.ImGuiContext;
 
 public class TestEngine extends ImGuiStruct {
-    private static final TestEngineGuiFun TMP_TESTGUI = new TestEngineGuiFun() {
-        @Override
-        public void run(TestContext ctx) {
-            System.out.println("default test gui");
-        }
-    };
-    private static final TestEngineTestFun TMP_TESTTEST = new TestEngineTestFun() {
-        @Override
-        public void run(TestContext ctx) {
-            System.out.println("default test test");
-        }
-    };
+    private static final TestContext TMP_CTX = new TestContext(0);
 
     public TestEngine(long ptr) { super(ptr); }
 
@@ -32,50 +21,14 @@ public class TestEngine extends ImGuiStruct {
 
         #define THIS ((ImGuiTestEngine*)STRUCT_PTR)
 
-        jobject jTmpTestGui = NULL;
-        jobject jTmpTestTest = NULL;
-
-
-//        static auto guiCallback(JNIEnv* env, jobject fn) {
-//            static jobject cbg = NULL;
-//            if (cbg != NULL) { env->DeleteGlobalRef(cbg); }
-//            cbg = env->NewGlobalRef(fn);
-//
-//            printf("Wrapping gui callback in C++ lambda\n"); fflush(stdout);
-//
-//            return [](jobject* ctx) {
-//                if (cbg != NULL) {
-//                    printf("Attempting to callback java guiFun from C++ lambda\n"); fflush(stdout);
-//                    Jni::CallTestEngineGuiFun(Jni::GetEnv(), cbg, ctx);
-//                    printf("GuiFun callback succeeded\n"); fflush(stdout);
-//                }
-//            };
-//        }
-//
-//        static auto testCallback(JNIEnv* env, jobject fn) {
-//            static jobject cbt = NULL;
-//            if (cbt != NULL) { env->DeleteGlobalRef(cbt); }
-//            cbt = env->NewGlobalRef(fn);
-//
-//            printf("Wrapping test callback in C++ lambda\n"); fflush(stdout);
-//
-//            return [](jobject* ctx) {
-//                if (cbt != NULL) {
-//                    printf("Attempting to callback java testFun from C++ lambda\n"); fflush(stdout);
-//                    Jni::CallTestEngineTestFun(Jni::GetEnv(), cbt, ctx);
-//                    printf("TestFun callback succeeded\n"); fflush(stdout);
-//                }
-//            };
-//        }
+        jobject jTmpCtx = NULL;
     */
 
     public static void init() {
-        nInit(TMP_TESTGUI, TMP_TESTTEST);
+        nInit(TMP_CTX);
     }
-
-    private static native void nInit(TestEngineGuiFun tmpTestGui, TestEngineTestFun tmpTestTest); /*
-        jTmpTestGui = env->NewGlobalRef(tmpTestGui);
-        jTmpTestTest = env->NewGlobalRef(tmpTestTest);
+    private static native void nInit(TestContext ctx); /*
+        jTmpCtx = env->NewGlobalRef(ctx);
     */
 
 
@@ -84,8 +37,8 @@ public class TestEngine extends ImGuiStruct {
         void testStubGuiCallback(ImGuiTestContext* tc) {
             if (testGuiCallback != NULL) {
                 JNIEnv* env = Jni::GetEnv();
-                env->SetLongField(jTmpTestGui, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
-                Jni::CallTestEngineGuiFun(env, testGuiCallback, jTmpTestGui);
+                env->SetLongField(jTmpCtx, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
+                Jni::CallTestEngineGuiFun(env, testGuiCallback, jTmpCtx);
             }
         }
 
@@ -93,8 +46,8 @@ public class TestEngine extends ImGuiStruct {
         void testStubTestCallback(ImGuiTestContext* tc) {
             if (testTestCallback != NULL) {
                 JNIEnv* env = Jni::GetEnv();
-                env->SetLongField(jTmpTestTest, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
-                Jni::CallTestEngineTestFun(env, testTestCallback, jTmpTestTest);
+                env->SetLongField(jTmpCtx, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
+                Jni::CallTestEngineTestFun(env, testTestCallback, jTmpCtx);
             }
         }
      */
@@ -114,15 +67,17 @@ public class TestEngine extends ImGuiStruct {
             env->DeleteGlobalRef(testTestCallback); }
         testTestCallback = env->NewGlobalRef(testFunc);
 
-        //IMGUI_PLATFORM_IO->GuiFunc = testStubGuiCallback;
+        // Copy the strings to persistent memory. (this isn't yet freed anywhere)
+        char* persistentCategory = strdup(category);
+        char* persistentName = strdup(name);
 
         ImGuiTest* t = NULL;
-        t = IM_REGISTER_TEST(THIS, category, name);
-        t->GuiFunc = testStubGuiCallback;
-        //t->TestFunc = testStubTestCallback;
+        t = IM_REGISTER_TEST(THIS, persistentCategory, persistentName);
+        t->GuiFunc = testStubGuiCallback; // called by main thread
+        t->TestFunc = testStubTestCallback; // called by coroutine thread
 
         printf("btw uwu\n");
-        printf("Test %s - %s registered\n", category, name); fflush(stdout);
+        printf("Test %s - %s registered (uwu)\n", persistentCategory, persistentName); fflush(stdout);
     */
 
 
@@ -155,8 +110,7 @@ public class TestEngine extends ImGuiStruct {
         ImGuiTestEngine_Start(engine.ptr, context.ptr);
     }
     private static native void ImGuiTestEngine_Start(long engine, long context); /*
-        printf("Engine pointer: %p\n", (void*)engine);
-        fflush(stdout);
+        printf("Engine pointer: %p\n", (void*)engine); fflush(stdout);
         ImGuiTestEngine_Start(reinterpret_cast<ImGuiTestEngine*>(engine), reinterpret_cast<ImGuiContext*>(context));
     */
 
