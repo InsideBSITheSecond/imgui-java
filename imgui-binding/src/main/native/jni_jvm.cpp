@@ -13,7 +13,6 @@ namespace Jni
     JNIEnv* GetEnv() {
         JNIEnv* env;
         jint res = jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_8);
-        printf("> env ");
         if (res == JNI_EDETACHED) {
             // Thread is not attached. Try to attach it.
             res = jvm->AttachCurrentThread(reinterpret_cast<void**>(&env), nullptr);
@@ -22,13 +21,14 @@ namespace Jni
                 // For example, you could throw a std::runtime_error:
                 throw std::runtime_error("Failed to attach current thread to JVM");
             }
+            printf("> env ");
             printf("(reattached) ");
+            printf("aquired.\n"); fflush(stdout);
         } else if (res == JNI_EVERSION) {
             // The requested JNI version is not supported.
             throw std::runtime_error("JNI version not supported");
         }
         // If res is JNI_OK, env is already valid.
-        printf("aquired.\n"); fflush(stdout);
         return env;
     }
 }
