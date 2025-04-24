@@ -61,59 +61,123 @@ namespace Jni
 
     void CallImListClipperCallback(JNIEnv* env, jobject consumer, int index) {
         env->CallVoidMethod(consumer, jImListClipperCallbackAcceptMID, index);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImStrConsumer(JNIEnv* env, jobject consumer, const char* str) {
         env->CallVoidMethod(consumer, jImStrConsumerAcceptMID, env->NewStringUTF(str));
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     jstring CallImStrSupplier(JNIEnv* env, jobject supplier) {
         return (jstring)env->CallObjectMethod(supplier, jImStrSupplierGetMID);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImPlatformFuncViewport(JNIEnv* env, jobject func, jobject vp) {
         env->CallVoidMethod(func, jImPlatformFuncViewportAcceptMID, vp);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImPlatformFuncViewportFloat(JNIEnv* env, jobject func, jobject vp, float f) {
         env->CallVoidMethod(func, jImPlatformFuncViewportFloatAcceptMID, vp, f);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImPlatformFuncViewportImVec2(JNIEnv* env, jobject func, jobject vp, jobject imVec2) {
         env->CallVoidMethod(func, jImPlatformFuncViewportImVec2AcceptMID, vp, imVec2);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImPlatformFuncViewportString(JNIEnv* env, jobject func, jobject vp, const char* str) {
         env->CallVoidMethod(func, jImPlatformFuncViewportStringAcceptMID, vp, env->NewStringUTF(str));
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallImPlatformFuncViewportSuppImVec2(JNIEnv* env, jobject func, jobject vp, jobject imVec2) {
         env->CallVoidMethod(func, jImPlatformFuncViewportSuppImVec2GetMID, vp, imVec2);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     jboolean CallImPlatformFuncViewportSuppBoolean(JNIEnv* env, jobject func, jobject vp) {
-        return (jboolean)env->CallBooleanMethod(func, jImPlatformFuncViewportSuppBooleanGetMID, vp);
+        jboolean b = (jboolean)env->CallBooleanMethod(func, jImPlatformFuncViewportSuppBooleanGetMID, vp);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
+        return b;
     }
 
     jfloat CallImPlatformFuncViewportSuppFloat(JNIEnv* env, jobject func, jobject vp) {
-        return (jfloat)env->CallFloatMethod(func, jImPlatformFuncViewportSuppFloatGetMID, vp);
+        jboolean b = (jfloat)env->CallFloatMethod(func, jImPlatformFuncViewportSuppFloatGetMID, vp);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
+        return b;
     }
 
     void CallImGuiFileDialogPaneFun(JNIEnv* env, jobject func, const char* filter, long user_datas, bool canWeContinue) {
         env->CallVoidMethod(func, jImGuiFileDialogPaneFunMID, env->NewStringUTF(filter), user_datas, canWeContinue);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx) {
         printf("Attempting to call java callback %p\n", jTestEngineGuiFunMID); fflush(stdout);
         printf("Debug print %p\n", jImGuiFileDialogPaneFunMID); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
+        if (env->ExceptionCheck()) {
+            // handle or at least clear it
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
         printf("Attempting to call java callback %p\n", jTestEngineTestFunMID); fflush(stdout);
         env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
         if (env->ExceptionCheck()) {
+            // handle or at least clear it
             env->ExceptionDescribe();
+            env->ExceptionClear();
         }
     }
 }

@@ -339,13 +339,84 @@ private fun convertManualJni(mOrig: CtMethod<*>, method: CtMethod<*>): CtMethod<
     val getLines = mutableListOf<String>()
     val releaseLines = mutableListOf<String>()
 
+    val primPtrCount = mNew.parameters.count { it.isPrimitivePtrType() }
+
     mNew.parameters.forEach { p ->
         var isConverted = false
 
         if (p.isPrimitivePtrType()) {
-            val typeCast = PRIMITIVE_PTR_TYPECAST_MAP[p.type.simpleName]
-            getLines += "auto ${p.simpleName} = obj_${p.simpleName} == NULL ? NULL : (${typeCast})env->GetPrimitiveArrayCritical(obj_${p.simpleName}, JNI_FALSE)"
-            releaseLines += "if (${p.simpleName} != NULL) env->ReleasePrimitiveArrayCritical(obj_${p.simpleName}, ${p.simpleName}, JNI_FALSE)"
+            val name    = p.simpleName               // e.g. "outHovered"
+            val arrayTy = p.type.simpleName          // e.g. "boolean[]", "int[]", …
+
+            when (arrayTy) {
+                "boolean[]" -> {
+                    val lenVar = "${name}Length"
+                    // 1) length
+                    getLines += "jsize $lenVar = obj_$name == NULL ? 0 : env->GetArrayLength(obj_$name);"
+                    // 2) raw jboolean* (cast from void*)
+                    if (primPtrCount == 1) {
+                        getLines += "jboolean* _raw_$name = obj_$name == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_$name, JNI_FALSE);"
+                    } else {
+                        getLines += "jboolean* _raw_$name = obj_$name == NULL ? nullptr : env->GetBooleanArrayElements(obj_$name, NULL);"
+                    }
+                    // 3) real bool[] buffer
+                    getLines += "bool $name[$lenVar];"
+                    getLines += """
+                    if (_raw_$name) {
+                        for (int i = 0; i < $lenVar; ++i)
+                            $name[i] = (_raw_$name[i] != 0);
+                    }
+                """.trimIndent()
+
+                    // release + copy-back
+                    if (primPtrCount == 1) {
+                        releaseLines += """
+                        if (_raw_$name) {
+                            for (int i = 0; i < $lenVar; ++i)
+                                _raw_$name[i] = $name[i] ? 1 : 0;
+                            env->ReleasePrimitiveArrayCritical(obj_$name, (void*)_raw_$name, JNI_FALSE);
+                        }
+                    """.trimIndent()
+                    } else {
+                        releaseLines += """
+                        if (_raw_$name) {
+                            for (int i = 0; i < $lenVar; ++i)
+                                _raw_$name[i] = $name[i] ? 1 : 0;
+                            env->ReleaseBooleanArrayElements(obj_$name, _raw_$name, 0);
+                        }
+                    """.trimIndent()
+                    }
+                }
+
+                else -> {
+                    // all other primitives
+                    val (getFn, relFn, elemTy) = when (arrayTy) {
+                        "byte[]"   -> Triple("GetByteArrayElements",   "ReleaseByteArrayElements",   "jbyte")
+                        "char[]"   -> Triple("GetCharArrayElements",   "ReleaseCharArrayElements",   "jchar")
+                        "short[]"  -> Triple("GetShortArrayElements",  "ReleaseShortArrayElements",  "jshort")
+                        "int[]"    -> Triple("GetIntArrayElements",    "ReleaseIntArrayElements",    "jint")
+                        "long[]"   -> Triple("GetLongArrayElements",   "ReleaseLongArrayElements",   "jlong")
+                        "float[]"  -> Triple("GetFloatArrayElements",  "ReleaseFloatArrayElements",  "jfloat")
+                        "double[]" -> Triple("GetDoubleArrayElements", "ReleaseDoubleArrayElements", "jdouble")
+                        else       -> error("Unsupported primitive-array: $arrayTy")
+                    }
+
+                    if (primPtrCount == 1) {
+                        getLines += "auto $name = obj_$name == NULL\n" +
+                                "    ? nullptr\n" +
+                                "    : ($elemTy*)env->GetPrimitiveArrayCritical(obj_$name, JNI_FALSE);"
+                        releaseLines += "if ($name)\n" +
+                                "    env->ReleasePrimitiveArrayCritical(obj_$name, (void*)$name, JNI_FALSE);"
+                    } else {
+                        getLines += "auto $name = obj_$name == NULL\n" +
+                                "    ? nullptr\n" +
+                                "    : ($elemTy*)env->${getFn}(obj_$name, NULL);"
+                        releaseLines += "if ($name)\n" +
+                                "    env->${relFn}(obj_$name, $name, 0);"
+                    }
+                }
+            }
+
             isConverted = true
         }
 

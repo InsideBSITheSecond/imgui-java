@@ -1052,11 +1052,17 @@ public final class ImGui extends imgui.ImGui {
     }
 
     private static native int nDockBuilderSplitNode(int nodeId, int splitDir, float sizeRatioForNodeAtDir, int[] obj_outIdAtDir, int[] obj_outIdAtOppositeDir); /*MANUAL
-        auto outIdAtDir = obj_outIdAtDir == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_outIdAtDir, JNI_FALSE);
-        auto outIdAtOppositeDir = obj_outIdAtOppositeDir == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_outIdAtOppositeDir, JNI_FALSE);
+        auto outIdAtDir = obj_outIdAtDir == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_outIdAtDir, NULL);;
+        auto outIdAtOppositeDir = obj_outIdAtOppositeDir == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_outIdAtOppositeDir, NULL);;
         auto _result = ImGui::DockBuilderSplitNode(nodeId, static_cast<ImGuiDir>(splitDir), sizeRatioForNodeAtDir, reinterpret_cast<ImGuiID*>((outIdAtDir != NULL ? &outIdAtDir[0] : NULL)), reinterpret_cast<ImGuiID*>((outIdAtOppositeDir != NULL ? &outIdAtOppositeDir[0] : NULL)));
-        if (outIdAtDir != NULL) env->ReleasePrimitiveArrayCritical(obj_outIdAtDir, outIdAtDir, JNI_FALSE);
-        if (outIdAtOppositeDir != NULL) env->ReleasePrimitiveArrayCritical(obj_outIdAtOppositeDir, outIdAtOppositeDir, JNI_FALSE);
+        if (outIdAtDir)
+            env->ReleaseIntArrayElements(obj_outIdAtDir, outIdAtDir, 0);;
+        if (outIdAtOppositeDir)
+            env->ReleaseIntArrayElements(obj_outIdAtOppositeDir, outIdAtOppositeDir, 0);;
         return _result;
     */
 
@@ -1310,20 +1316,60 @@ public final class ImGui extends imgui.ImGui {
     }
 
     private static native boolean nButtonBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, boolean[] obj_outHovered, boolean[] obj_outHeld); /*MANUAL
-        auto outHovered = obj_outHovered == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_outHovered, JNI_FALSE);
-        auto outHeld = obj_outHeld == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_outHeld, JNI_FALSE);
+        jsize outHoveredLength = obj_outHovered == NULL ? 0 : env->GetArrayLength(obj_outHovered);;
+        jboolean* _raw_outHovered = obj_outHovered == NULL ? nullptr : env->GetBooleanArrayElements(obj_outHovered, NULL);;
+        bool outHovered[outHoveredLength];;
+        if (_raw_outHovered) {
+            for (int i = 0; i < outHoveredLength; ++i)
+                outHovered[i] = (_raw_outHovered[i] != 0);
+        };
+        jsize outHeldLength = obj_outHeld == NULL ? 0 : env->GetArrayLength(obj_outHeld);;
+        jboolean* _raw_outHeld = obj_outHeld == NULL ? nullptr : env->GetBooleanArrayElements(obj_outHeld, NULL);;
+        bool outHeld[outHeldLength];;
+        if (_raw_outHeld) {
+            for (int i = 0; i < outHeldLength; ++i)
+                outHeld[i] = (_raw_outHeld[i] != 0);
+        };
         auto _result = ImGui::ButtonBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), (ImGuiID)id, (outHovered != NULL ? &outHovered[0] : NULL), (outHeld != NULL ? &outHeld[0] : NULL));
-        if (outHovered != NULL) env->ReleasePrimitiveArrayCritical(obj_outHovered, outHovered, JNI_FALSE);
-        if (outHeld != NULL) env->ReleasePrimitiveArrayCritical(obj_outHeld, outHeld, JNI_FALSE);
+        if (_raw_outHovered) {
+            for (int i = 0; i < outHoveredLength; ++i)
+                _raw_outHovered[i] = outHovered[i] ? 1 : 0;
+            env->ReleaseBooleanArrayElements(obj_outHovered, _raw_outHovered, 0);
+        };
+        if (_raw_outHeld) {
+            for (int i = 0; i < outHeldLength; ++i)
+                _raw_outHeld[i] = outHeld[i] ? 1 : 0;
+            env->ReleaseBooleanArrayElements(obj_outHeld, _raw_outHeld, 0);
+        };
         return _result;
     */
 
     private static native boolean nButtonBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, boolean[] obj_outHovered, boolean[] obj_outHeld, int imGuiButtonFlags); /*MANUAL
-        auto outHovered = obj_outHovered == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_outHovered, JNI_FALSE);
-        auto outHeld = obj_outHeld == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_outHeld, JNI_FALSE);
+        jsize outHoveredLength = obj_outHovered == NULL ? 0 : env->GetArrayLength(obj_outHovered);;
+        jboolean* _raw_outHovered = obj_outHovered == NULL ? nullptr : env->GetBooleanArrayElements(obj_outHovered, NULL);;
+        bool outHovered[outHoveredLength];;
+        if (_raw_outHovered) {
+            for (int i = 0; i < outHoveredLength; ++i)
+                outHovered[i] = (_raw_outHovered[i] != 0);
+        };
+        jsize outHeldLength = obj_outHeld == NULL ? 0 : env->GetArrayLength(obj_outHeld);;
+        jboolean* _raw_outHeld = obj_outHeld == NULL ? nullptr : env->GetBooleanArrayElements(obj_outHeld, NULL);;
+        bool outHeld[outHeldLength];;
+        if (_raw_outHeld) {
+            for (int i = 0; i < outHeldLength; ++i)
+                outHeld[i] = (_raw_outHeld[i] != 0);
+        };
         auto _result = ImGui::ButtonBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), (ImGuiID)id, (outHovered != NULL ? &outHovered[0] : NULL), (outHeld != NULL ? &outHeld[0] : NULL), static_cast<ImGuiButtonFlags>(imGuiButtonFlags));
-        if (outHovered != NULL) env->ReleasePrimitiveArrayCritical(obj_outHovered, outHovered, JNI_FALSE);
-        if (outHeld != NULL) env->ReleasePrimitiveArrayCritical(obj_outHeld, outHeld, JNI_FALSE);
+        if (_raw_outHovered) {
+            for (int i = 0; i < outHoveredLength; ++i)
+                _raw_outHovered[i] = outHovered[i] ? 1 : 0;
+            env->ReleaseBooleanArrayElements(obj_outHovered, _raw_outHovered, 0);
+        };
+        if (_raw_outHeld) {
+            for (int i = 0; i < outHeldLength; ++i)
+                _raw_outHeld[i] = outHeld[i] ? 1 : 0;
+            env->ReleaseBooleanArrayElements(obj_outHeld, _raw_outHeld, 0);
+        };
         return _result;
     */
 
@@ -1360,38 +1406,62 @@ public final class ImGui extends imgui.ImGui {
     }
 
     private static native boolean nSplitterBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int axis, float[] obj_size1, float[] obj_size2, float minSize1, float minSize2); /*MANUAL
-        auto size1 = obj_size1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size1, JNI_FALSE);
-        auto size2 = obj_size2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size2, JNI_FALSE);
+        auto size1 = obj_size1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size1, NULL);;
+        auto size2 = obj_size2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size2, NULL);;
         auto _result = ImGui::SplitterBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, static_cast<ImGuiAxis>(axis), (size1 != NULL ? &size1[0] : NULL), (size2 != NULL ? &size2[0] : NULL), minSize1, minSize2);
-        if (size1 != NULL) env->ReleasePrimitiveArrayCritical(obj_size1, size1, JNI_FALSE);
-        if (size2 != NULL) env->ReleasePrimitiveArrayCritical(obj_size2, size2, JNI_FALSE);
+        if (size1)
+            env->ReleaseFloatArrayElements(obj_size1, size1, 0);;
+        if (size2)
+            env->ReleaseFloatArrayElements(obj_size2, size2, 0);;
         return _result;
     */
 
     private static native boolean nSplitterBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int axis, float[] obj_size1, float[] obj_size2, float minSize1, float minSize2, float hoverExtend); /*MANUAL
-        auto size1 = obj_size1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size1, JNI_FALSE);
-        auto size2 = obj_size2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size2, JNI_FALSE);
+        auto size1 = obj_size1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size1, NULL);;
+        auto size2 = obj_size2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size2, NULL);;
         auto _result = ImGui::SplitterBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, static_cast<ImGuiAxis>(axis), (size1 != NULL ? &size1[0] : NULL), (size2 != NULL ? &size2[0] : NULL), minSize1, minSize2, hoverExtend);
-        if (size1 != NULL) env->ReleasePrimitiveArrayCritical(obj_size1, size1, JNI_FALSE);
-        if (size2 != NULL) env->ReleasePrimitiveArrayCritical(obj_size2, size2, JNI_FALSE);
+        if (size1)
+            env->ReleaseFloatArrayElements(obj_size1, size1, 0);;
+        if (size2)
+            env->ReleaseFloatArrayElements(obj_size2, size2, 0);;
         return _result;
     */
 
     private static native boolean nSplitterBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int axis, float[] obj_size1, float[] obj_size2, float minSize1, float minSize2, float hoverExtend, float hoverVisibilityDelay); /*MANUAL
-        auto size1 = obj_size1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size1, JNI_FALSE);
-        auto size2 = obj_size2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size2, JNI_FALSE);
+        auto size1 = obj_size1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size1, NULL);;
+        auto size2 = obj_size2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size2, NULL);;
         auto _result = ImGui::SplitterBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, static_cast<ImGuiAxis>(axis), (size1 != NULL ? &size1[0] : NULL), (size2 != NULL ? &size2[0] : NULL), minSize1, minSize2, hoverExtend, hoverVisibilityDelay);
-        if (size1 != NULL) env->ReleasePrimitiveArrayCritical(obj_size1, size1, JNI_FALSE);
-        if (size2 != NULL) env->ReleasePrimitiveArrayCritical(obj_size2, size2, JNI_FALSE);
+        if (size1)
+            env->ReleaseFloatArrayElements(obj_size1, size1, 0);;
+        if (size2)
+            env->ReleaseFloatArrayElements(obj_size2, size2, 0);;
         return _result;
     */
 
     private static native boolean nSplitterBehavior(float bbMinX, float bbMinY, float bbMaxX, float bbMaxY, int id, int axis, float[] obj_size1, float[] obj_size2, float minSize1, float minSize2, float hoverExtend, float hoverVisibilityDelay, int bgCol); /*MANUAL
-        auto size1 = obj_size1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size1, JNI_FALSE);
-        auto size2 = obj_size2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_size2, JNI_FALSE);
+        auto size1 = obj_size1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size1, NULL);;
+        auto size2 = obj_size2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_size2, NULL);;
         auto _result = ImGui::SplitterBehavior(ImRect(bbMinX, bbMinY, bbMaxX, bbMaxY), id, static_cast<ImGuiAxis>(axis), (size1 != NULL ? &size1[0] : NULL), (size2 != NULL ? &size2[0] : NULL), minSize1, minSize2, hoverExtend, hoverVisibilityDelay, bgCol);
-        if (size1 != NULL) env->ReleasePrimitiveArrayCritical(obj_size1, size1, JNI_FALSE);
-        if (size2 != NULL) env->ReleasePrimitiveArrayCritical(obj_size2, size2, JNI_FALSE);
+        if (size1)
+            env->ReleaseFloatArrayElements(obj_size1, size1, 0);;
+        if (size2)
+            env->ReleaseFloatArrayElements(obj_size2, size2, 0);;
         return _result;
     */
 

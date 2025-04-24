@@ -281,35 +281,50 @@ public final class ImPlot {
 
     private static native boolean nBeginSubplots(String obj_titleID, int rows, int cols, float sizeX, float sizeY, int flags, float[] obj_rowRatios); /*MANUAL
         auto titleID = obj_titleID == NULL ? NULL : (char*)env->GetStringUTFChars(obj_titleID, JNI_FALSE);
-        auto rowRatios = obj_rowRatios == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_rowRatios, JNI_FALSE);
+        auto rowRatios = obj_rowRatios == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_rowRatios, JNI_FALSE);;
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImPlot::BeginSubplots(titleID, rows, cols, size, flags, &rowRatios[0]);
         if (titleID != NULL) env->ReleaseStringUTFChars(obj_titleID, titleID);
-        if (rowRatios != NULL) env->ReleasePrimitiveArrayCritical(obj_rowRatios, rowRatios, JNI_FALSE);
+        if (rowRatios)
+            env->ReleasePrimitiveArrayCritical(obj_rowRatios, (void*)rowRatios, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nBeginSubplots(String obj_titleID, int rows, int cols, float sizeX, float sizeY, int flags, float[] obj_rowRatios, float[] obj_colRatios); /*MANUAL
         auto titleID = obj_titleID == NULL ? NULL : (char*)env->GetStringUTFChars(obj_titleID, JNI_FALSE);
-        auto rowRatios = obj_rowRatios == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_rowRatios, JNI_FALSE);
-        auto colRatios = obj_colRatios == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_colRatios, JNI_FALSE);
+        auto rowRatios = obj_rowRatios == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_rowRatios, NULL);;
+        auto colRatios = obj_colRatios == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_colRatios, NULL);;
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImPlot::BeginSubplots(titleID, rows, cols, size, flags, &rowRatios[0], &colRatios[0]);
         if (titleID != NULL) env->ReleaseStringUTFChars(obj_titleID, titleID);
-        if (rowRatios != NULL) env->ReleasePrimitiveArrayCritical(obj_rowRatios, rowRatios, JNI_FALSE);
-        if (colRatios != NULL) env->ReleasePrimitiveArrayCritical(obj_colRatios, colRatios, JNI_FALSE);
+        if (rowRatios)
+            env->ReleaseFloatArrayElements(obj_rowRatios, rowRatios, 0);;
+        if (colRatios)
+            env->ReleaseFloatArrayElements(obj_colRatios, colRatios, 0);;
         return _result;
     */
 
     private static native boolean nBeginSubplots(String obj_titleID, int rows, int cols, float sizeX, float sizeY, float[] obj_rowRatios, float[] obj_colRatios); /*MANUAL
         auto titleID = obj_titleID == NULL ? NULL : (char*)env->GetStringUTFChars(obj_titleID, JNI_FALSE);
-        auto rowRatios = obj_rowRatios == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_rowRatios, JNI_FALSE);
-        auto colRatios = obj_colRatios == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_colRatios, JNI_FALSE);
+        auto rowRatios = obj_rowRatios == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_rowRatios, NULL);;
+        auto colRatios = obj_colRatios == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_colRatios, NULL);;
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImPlot::BeginSubplots(titleID, rows, cols, size, ImPlotSubplotFlags_None, &rowRatios[0], &colRatios[0]);
         if (titleID != NULL) env->ReleaseStringUTFChars(obj_titleID, titleID);
-        if (rowRatios != NULL) env->ReleasePrimitiveArrayCritical(obj_rowRatios, rowRatios, JNI_FALSE);
-        if (colRatios != NULL) env->ReleasePrimitiveArrayCritical(obj_colRatios, colRatios, JNI_FALSE);
+        if (rowRatios)
+            env->ReleaseFloatArrayElements(obj_rowRatios, rowRatios, 0);;
+        if (colRatios)
+            env->ReleaseFloatArrayElements(obj_colRatios, colRatios, 0);;
         return _result;
     */
 
@@ -437,11 +452,17 @@ public final class ImPlot {
     }
 
     private static native void nSetupAxisLinks(int axis, double[] linkMin, double[] linkMax); /*MANUAL
-        auto linkMin = obj_linkMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_linkMin, JNI_FALSE);
-        auto linkMax = obj_linkMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_linkMax, JNI_FALSE);
+        auto linkMin = obj_linkMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_linkMin, NULL);;
+        auto linkMax = obj_linkMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_linkMax, NULL);;
         ImPlot::SetupAxisLinks(axis, (linkMin != NULL ? &linkMin[0] : NULL), (linkMax != NULL ? &linkMax[0] : NULL));
-        if (linkMin != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMin, linkMin, JNI_FALSE);
-        if (linkMax != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMax, linkMax, JNI_FALSE);
+        if (linkMin)
+            env->ReleaseDoubleArrayElements(obj_linkMin, linkMin, 0);;
+        if (linkMax)
+            env->ReleaseDoubleArrayElements(obj_linkMax, linkMax, 0);;
     */
 
     /**
@@ -493,13 +514,18 @@ public final class ImPlot {
     }
 
     private static native void nSetupAxisTicks(int axis, double[] values, int nTicks); /*MANUAL
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::SetupAxisTicks(axis, &values[0], nTicks);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nSetupAxisTicks(int axis, double[] values, int nTicks, String[] obj_labels, int labelsCount); /*MANUAL
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         const char* labels[labelsCount];
         for (int i = 0; i < labelsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labels, i);
@@ -507,7 +533,8 @@ public final class ImPlot {
             labels[i] = rawStr;
         };
         ImPlot::SetupAxisTicks(axis, &values[0], nTicks, labels);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         for (int i = 0; i < labelsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labels, i);
             env->ReleaseStringUTFChars(str, labels[i]);
@@ -515,7 +542,9 @@ public final class ImPlot {
     */
 
     private static native void nSetupAxisTicks(int axis, double[] values, int nTicks, String[] obj_labels, int labelsCount, boolean keepDefault); /*MANUAL
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         const char* labels[labelsCount];
         for (int i = 0; i < labelsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labels, i);
@@ -523,7 +552,8 @@ public final class ImPlot {
             labels[i] = rawStr;
         };
         ImPlot::SetupAxisTicks(axis, &values[0], nTicks, labels, keepDefault);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         for (int i = 0; i < labelsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labels, i);
             env->ReleaseStringUTFChars(str, labels[i]);
@@ -531,9 +561,12 @@ public final class ImPlot {
     */
 
     private static native void nSetupAxisTicks(int axis, double[] values, int nTicks, boolean keepDefault); /*MANUAL
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::SetupAxisTicks(axis, &values[0], nTicks, NULL, keepDefault);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -784,11 +817,17 @@ public final class ImPlot {
     }
 
     private static native void nSetNextAxisLinks(int axis, double[] linkMin, double[] linkMax); /*MANUAL
-        auto linkMin = obj_linkMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_linkMin, JNI_FALSE);
-        auto linkMax = obj_linkMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_linkMax, JNI_FALSE);
+        auto linkMin = obj_linkMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_linkMin, NULL);;
+        auto linkMax = obj_linkMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_linkMax, NULL);;
         ImPlot::SetNextAxisLinks(axis, (linkMin != NULL ? &linkMin[0] : NULL), (linkMax != NULL ? &linkMax[0] : NULL));
-        if (linkMin != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMin, linkMin, JNI_FALSE);
-        if (linkMax != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMax, linkMax, JNI_FALSE);
+        if (linkMin)
+            env->ReleaseDoubleArrayElements(obj_linkMin, linkMin, 0);;
+        if (linkMax)
+            env->ReleaseDoubleArrayElements(obj_linkMax, linkMax, 0);;
     */
 
     /**
@@ -927,34 +966,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -987,34 +1038,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1047,34 +1110,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1107,34 +1182,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1167,34 +1254,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1227,34 +1326,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, short[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1287,34 +1398,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, int[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1347,34 +1470,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, long[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1407,34 +1542,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, float[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1467,34 +1614,46 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotLine(String labelId, double[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotLine(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -1508,12 +1667,18 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1525,12 +1690,18 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1542,12 +1713,18 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1559,12 +1736,18 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1576,12 +1759,18 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1600,22 +1789,34 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotLine(String labelId, short[] xs, short[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1634,22 +1835,34 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotLine(String labelId, int[] xs, int[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1668,22 +1881,34 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotLine(String labelId, long[] xs, long[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1702,22 +1927,34 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotLine(String labelId, float[] xs, float[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -1736,22 +1973,34 @@ public final class ImPlot {
 
     private static native void nPlotLine(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotLine(String labelId, double[] xs, double[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotLine(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     // values
@@ -1786,34 +2035,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1846,34 +2107,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1906,34 +2179,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -1966,34 +2251,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2026,34 +2323,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2086,34 +2395,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, short[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2146,34 +2467,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, int[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2206,34 +2539,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, long[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2266,34 +2611,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, float[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2326,34 +2683,46 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotScatter(String labelId, double[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotScatter(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -2367,12 +2736,18 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2384,12 +2759,18 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2401,12 +2782,18 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2418,12 +2805,18 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2435,12 +2828,18 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2459,22 +2858,34 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotScatter(String labelId, short[] xs, short[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2493,22 +2904,34 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotScatter(String labelId, int[] xs, int[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2527,22 +2950,34 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotScatter(String labelId, long[] xs, long[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2561,22 +2996,34 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotScatter(String labelId, float[] xs, float[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -2595,22 +3042,34 @@ public final class ImPlot {
 
     private static native void nPlotScatter(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotScatter(String labelId, double[] xs, double[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotScatter(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     // values
@@ -2645,34 +3104,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2705,34 +3176,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2765,34 +3248,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2825,34 +3320,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2885,34 +3392,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], LEN(values), xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -2945,34 +3464,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, short[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3005,34 +3536,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, int[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3065,34 +3608,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, long[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3125,34 +3680,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, float[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3185,34 +3752,46 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, int count, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, int count, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStairs(String labelId, double[] values, int count, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStairs(labelId, &values[0], count, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -3226,12 +3805,18 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3243,12 +3828,18 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3260,12 +3851,18 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3277,12 +3874,18 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3294,12 +3897,18 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3318,22 +3927,34 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStairs(String labelId, short[] xs, short[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3352,22 +3973,34 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStairs(String labelId, int[] xs, int[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3386,22 +4019,34 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStairs(String labelId, long[] xs, long[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3420,22 +4065,34 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStairs(String labelId, float[] xs, float[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -3454,22 +4111,34 @@ public final class ImPlot {
 
     private static native void nPlotStairs(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStairs(String labelId, double[] xs, double[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStairs(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     // values
@@ -3511,42 +4180,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3586,42 +4270,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3661,42 +4360,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3736,42 +4450,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3811,42 +4540,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3886,42 +4630,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, short[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -3961,42 +4720,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, int[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -4036,42 +4810,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, long[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -4111,42 +4900,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, float[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -4186,42 +4990,57 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotShaded(String labelId, double[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotShaded(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -4249,32 +5068,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4300,32 +5137,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4351,32 +5206,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4402,32 +5275,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4453,32 +5344,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4504,32 +5413,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4555,32 +5482,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4606,32 +5551,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4657,32 +5620,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -4708,32 +5689,50 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     // xs,ys1,ys2
@@ -4747,14 +5746,23 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys1, short[] ys2); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseShortArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseShortArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4766,14 +5774,23 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys1, int[] ys2); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseIntArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseIntArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4785,14 +5802,23 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys1, long[] ys2); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseLongArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseLongArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4804,14 +5830,23 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys1, float[] ys2); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseFloatArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseFloatArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4823,14 +5858,23 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys1, double[] ys2); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseDoubleArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseDoubleArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4849,26 +5893,44 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys1, short[] ys2, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseShortArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseShortArrayElements(obj_ys2, ys2, 0);;
     */
 
     private static native void nPlotShaded(String labelId, short[] xs, short[] ys1, short[] ys2, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseShortArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseShortArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4887,26 +5949,44 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys1, int[] ys2, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseIntArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseIntArrayElements(obj_ys2, ys2, 0);;
     */
 
     private static native void nPlotShaded(String labelId, int[] xs, int[] ys1, int[] ys2, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseIntArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseIntArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4925,26 +6005,44 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys1, long[] ys2, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseLongArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseLongArrayElements(obj_ys2, ys2, 0);;
     */
 
     private static native void nPlotShaded(String labelId, long[] xs, long[] ys1, long[] ys2, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseLongArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseLongArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -4963,26 +6061,44 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys1, float[] ys2, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseFloatArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseFloatArrayElements(obj_ys2, ys2, 0);;
     */
 
     private static native void nPlotShaded(String labelId, float[] xs, float[] ys1, float[] ys2, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseFloatArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseFloatArrayElements(obj_ys2, ys2, 0);;
     */
 
     /**
@@ -5001,26 +6117,44 @@ public final class ImPlot {
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys1, double[] ys2, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseDoubleArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseDoubleArrayElements(obj_ys2, ys2, 0);;
     */
 
     private static native void nPlotShaded(String labelId, double[] xs, double[] ys1, double[] ys2, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys1 = obj_ys1 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys1, JNI_FALSE);
-        auto ys2 = obj_ys2 == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys2, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys1 = obj_ys1 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys1, NULL);;
+        auto ys2 = obj_ys2 == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys2, NULL);;
         ImPlot::PlotShaded(labelId, &xs[0], &ys1[0], &ys2[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys1 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys1, ys1, JNI_FALSE);
-        if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys1)
+            env->ReleaseDoubleArrayElements(obj_ys1, ys1, 0);;
+        if (ys2)
+            env->ReleaseDoubleArrayElements(obj_ys2, ys2, 0);;
     */
 
     // values
@@ -5055,34 +6189,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5115,34 +6261,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5175,34 +6333,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5235,34 +6405,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5295,34 +6477,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], LEN(values), barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5355,34 +6549,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, int count, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, short[] values, int count, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5415,34 +6621,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, int count, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, int[] values, int count, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5475,34 +6693,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, int count, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, long[] values, int count, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5535,34 +6765,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, int count, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, float[] values, int count, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -5595,34 +6837,46 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, int count, double barWidth, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBars(String labelId, double[] values, int count, double barWidth, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBars(labelId, &values[0], count, barWidth, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -5643,22 +6897,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5677,22 +6943,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5711,22 +6989,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5745,22 +7035,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5779,22 +7081,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), 0.67, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5813,22 +7127,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5847,22 +7173,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5881,22 +7219,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5915,22 +7265,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5949,22 +7311,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], LEN(xs), barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -5983,22 +7357,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, short[] xs, short[] ys, int count, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -6017,22 +7403,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, int[] xs, int[] ys, int count, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -6051,22 +7449,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, long[] xs, long[] ys, int count, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -6085,22 +7495,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, float[] xs, float[] ys, int count, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -6119,22 +7541,34 @@ public final class ImPlot {
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys, int count, double barWidth); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotBars(String labelId, double[] xs, double[] ys, int count, double barWidth, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotBars(labelId, &xs[0], &ys[0], count, barWidth, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -6172,13 +7606,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, short[] values, int itemCount, int groupCount, double groupWidth); /*MANUAL
@@ -6188,13 +7625,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, short[] values, int itemCount, int groupCount, double groupWidth, double x0); /*MANUAL
@@ -6204,13 +7644,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, short[] values, int itemCount, int groupCount, double groupWidth, double x0, int flags); /*MANUAL
@@ -6220,13 +7663,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0, flags);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -6264,13 +7710,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, int[] values, int itemCount, int groupCount, double groupWidth); /*MANUAL
@@ -6280,13 +7729,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, int[] values, int itemCount, int groupCount, double groupWidth, double x0); /*MANUAL
@@ -6296,13 +7748,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, int[] values, int itemCount, int groupCount, double groupWidth, double x0, int flags); /*MANUAL
@@ -6312,13 +7767,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0, flags);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -6356,13 +7814,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, long[] values, int itemCount, int groupCount, double groupWidth); /*MANUAL
@@ -6372,13 +7833,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, long[] values, int itemCount, int groupCount, double groupWidth, double x0); /*MANUAL
@@ -6388,13 +7852,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, long[] values, int itemCount, int groupCount, double groupWidth, double x0, int flags); /*MANUAL
@@ -6404,13 +7871,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0, flags);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -6448,13 +7918,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, float[] values, int itemCount, int groupCount, double groupWidth); /*MANUAL
@@ -6464,13 +7937,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, float[] values, int itemCount, int groupCount, double groupWidth, double x0); /*MANUAL
@@ -6480,13 +7956,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, float[] values, int itemCount, int groupCount, double groupWidth, double x0, int flags); /*MANUAL
@@ -6496,13 +7975,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0, flags);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -6540,13 +8022,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, double[] values, int itemCount, int groupCount, double groupWidth); /*MANUAL
@@ -6556,13 +8041,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, double[] values, int itemCount, int groupCount, double groupWidth, double x0); /*MANUAL
@@ -6572,13 +8060,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotBarGroups(String[] obj_labelIds, int labelIdsCount, double[] values, int itemCount, int groupCount, double groupWidth, double x0, int flags); /*MANUAL
@@ -6588,13 +8079,16 @@ public final class ImPlot {
             auto rawStr = (char*)env->GetStringUTFChars(str, JNI_FALSE);
             labelIds[i] = rawStr;
         };
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotBarGroups(labelIds, &values[0], itemCount, groupCount, groupWidth, x0, flags);
         for (int i = 0; i < labelIdsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_labelIds, i);
             env->ReleaseStringUTFChars(str, labelIds[i]);
         };
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -6606,14 +8100,23 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] err); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseShortArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6625,14 +8128,23 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] err); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseIntArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6644,14 +8156,23 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] err); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseLongArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6663,14 +8184,23 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] err); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseFloatArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6682,14 +8212,23 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] err); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseDoubleArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6708,26 +8247,44 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] err, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseShortArrayElements(obj_err, err, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] err, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseShortArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6746,26 +8303,44 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] err, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseIntArrayElements(obj_err, err, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] err, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseIntArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6784,26 +8359,44 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] err, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseLongArrayElements(obj_err, err, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] err, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseLongArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6822,26 +8415,44 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] err, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseFloatArrayElements(obj_err, err, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] err, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseFloatArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6860,26 +8471,44 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] err, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseDoubleArrayElements(obj_err, err, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] err, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto err = obj_err == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_err, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto err = obj_err == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_err, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &err[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (err)
+            env->ReleaseDoubleArrayElements(obj_err, err, 0);;
     */
 
     /**
@@ -6891,16 +8520,28 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] neg, short[] pos); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseShortArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseShortArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -6912,16 +8553,28 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] neg, int[] pos); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseIntArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseIntArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -6933,16 +8586,28 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] neg, long[] pos); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseLongArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseLongArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -6954,16 +8619,28 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] neg, float[] pos); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseFloatArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseFloatArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -6975,16 +8652,28 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] neg, double[] pos); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseDoubleArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseDoubleArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -7003,30 +8692,54 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] neg, short[] pos, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseShortArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseShortArrayElements(obj_pos, pos, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, short[] xs, short[] ys, short[] neg, short[] pos, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseShortArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseShortArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -7045,30 +8758,54 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] neg, int[] pos, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseIntArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseIntArrayElements(obj_pos, pos, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, int[] xs, int[] ys, int[] neg, int[] pos, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseIntArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseIntArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -7087,30 +8824,54 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] neg, long[] pos, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseLongArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseLongArrayElements(obj_pos, pos, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, long[] xs, long[] ys, long[] neg, long[] pos, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseLongArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseLongArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -7129,30 +8890,54 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] neg, float[] pos, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseFloatArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseFloatArrayElements(obj_pos, pos, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, float[] xs, float[] ys, float[] neg, float[] pos, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseFloatArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseFloatArrayElements(obj_pos, pos, 0);;
     */
 
     /**
@@ -7171,30 +8956,54 @@ public final class ImPlot {
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] neg, double[] pos, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseDoubleArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseDoubleArrayElements(obj_pos, pos, 0);;
     */
 
     private static native void nPlotErrorBars(String labelId, double[] xs, double[] ys, double[] neg, double[] pos, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
-        auto neg = obj_neg == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_neg, JNI_FALSE);
-        auto pos = obj_pos == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pos, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
+        auto neg = obj_neg == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_neg, NULL);;
+        auto pos = obj_pos == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_pos, NULL);;
         ImPlot::PlotErrorBars(labelId, &xs[0], &ys[0], &neg[0], &pos[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
-        if (neg != NULL) env->ReleasePrimitiveArrayCritical(obj_neg, neg, JNI_FALSE);
-        if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
+        if (neg)
+            env->ReleaseDoubleArrayElements(obj_neg, neg, 0);;
+        if (pos)
+            env->ReleaseDoubleArrayElements(obj_pos, pos, 0);;
     */
 
     // values
@@ -7236,42 +9045,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, short[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7311,42 +9135,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, int[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7386,42 +9225,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, long[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7461,42 +9315,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, float[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7536,42 +9405,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, double[] values); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], LEN(values), yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7611,42 +9495,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, short[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, short[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7686,42 +9585,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, int[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, int[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7761,42 +9675,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, long[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, long[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7836,42 +9765,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, float[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, float[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -7911,42 +9855,57 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, double[] values, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, int count, double yRef, double xscale); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, int count, double yRef, double xscale, double x0); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotStems(String labelId, double[] values, int count, double yRef, double xscale, double x0, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotStems(labelId, &values[0], count, yRef, xscale, x0, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     // xs,ys
@@ -7974,32 +9933,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8025,32 +10002,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8076,32 +10071,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8127,32 +10140,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8178,32 +10209,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], LEN(xs), yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8229,32 +10278,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, short[] xs, short[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8280,32 +10347,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, int[] xs, int[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8331,32 +10416,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, long[] xs, long[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8382,32 +10485,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, float[] xs, float[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8433,32 +10554,50 @@ public final class ImPlot {
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys, int count, double yRef); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotStems(String labelId, double[] xs, double[] ys, int count, double yRef, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotStems(labelId, &xs[0], &ys[0], count, yRef, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -8470,10 +10609,13 @@ public final class ImPlot {
 
     private static native void nPlotInfLines(String labelId, short[] values, int count, int flags, int offset, int stride); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotInfLines(labelId, &values[0], count, flags, offset, stride);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8485,10 +10627,13 @@ public final class ImPlot {
 
     private static native void nPlotInfLines(String labelId, int[] values, int count, int flags, int offset, int stride); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotInfLines(labelId, &values[0], count, flags, offset, stride);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8500,10 +10645,13 @@ public final class ImPlot {
 
     private static native void nPlotInfLines(String labelId, long[] values, int count, int flags, int offset, int stride); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotInfLines(labelId, &values[0], count, flags, offset, stride);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8515,10 +10663,13 @@ public final class ImPlot {
 
     private static native void nPlotInfLines(String labelId, float[] values, int count, int flags, int offset, int stride); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotInfLines(labelId, &values[0], count, flags, offset, stride);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8530,10 +10681,13 @@ public final class ImPlot {
 
     private static native void nPlotInfLines(String labelId, double[] values, int count, int flags, int offset, int stride); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotInfLines(labelId, &values[0], count, flags, offset, stride);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     //
@@ -8616,64 +10770,85 @@ public final class ImPlot {
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin, double scaleMax); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, short[] values, int rows, int cols, double scaleMin, double scaleMax, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, "%.1f", ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8748,64 +10923,85 @@ public final class ImPlot {
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin, double scaleMax); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, int[] values, int rows, int cols, double scaleMin, double scaleMax, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, "%.1f", ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -8880,64 +11076,85 @@ public final class ImPlot {
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin, double scaleMax); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, long[] values, int rows, int cols, double scaleMin, double scaleMax, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, "%.1f", ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -9012,64 +11229,85 @@ public final class ImPlot {
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin, double scaleMax); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, float[] values, int rows, int cols, double scaleMin, double scaleMax, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, "%.1f", ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -9144,64 +11382,85 @@ public final class ImPlot {
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin, double scaleMax); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin, double scaleMax, String labelFmt, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto labelFmt = obj_labelFmt == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelFmt, JNI_FALSE);
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, labelFmt, ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         if (labelFmt != NULL) env->ReleaseStringUTFChars(obj_labelFmt, labelFmt);
     */
 
     private static native void nPlotHeatmap(String labelId, double[] values, int rows, int cols, double scaleMin, double scaleMax, double boundsMinX, double boundsMinY, double boundsMaxX, double boundsMaxY); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         ImPlot::PlotHeatmap(labelId, &values[0], rows, cols, scaleMin, scaleMax, "%.1f", ImPlotPoint(boundsMinX, boundsMinY), ImPlotPoint(boundsMaxX, boundsMaxY));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
     */
 
     /**
@@ -9224,10 +11483,13 @@ public final class ImPlot {
 
     private static native double nPlotHistogram(String obj_labelId, short[] obj_values, int bins, double barScale, double rangeMin, double rangeMax, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jshort*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto _result = ImPlot::PlotHistogram(labelId, &values[0], LEN(values), ImPlotBin_Sturges, barScale, ImPlotRange(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         return _result;
     */
 
@@ -9251,10 +11513,13 @@ public final class ImPlot {
 
     private static native double nPlotHistogram(String obj_labelId, int[] obj_values, int bins, double barScale, double rangeMin, double rangeMax, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto _result = ImPlot::PlotHistogram(labelId, &values[0], LEN(values), ImPlotBin_Sturges, barScale, ImPlotRange(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         return _result;
     */
 
@@ -9278,10 +11543,13 @@ public final class ImPlot {
 
     private static native double nPlotHistogram(String obj_labelId, long[] obj_values, int bins, double barScale, double rangeMin, double rangeMax, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jlong*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto _result = ImPlot::PlotHistogram(labelId, &values[0], LEN(values), ImPlotBin_Sturges, barScale, ImPlotRange(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         return _result;
     */
 
@@ -9305,10 +11573,13 @@ public final class ImPlot {
 
     private static native double nPlotHistogram(String obj_labelId, float[] obj_values, int bins, double barScale, double rangeMin, double rangeMax, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto _result = ImPlot::PlotHistogram(labelId, &values[0], LEN(values), ImPlotBin_Sturges, barScale, ImPlotRange(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         return _result;
     */
 
@@ -9332,10 +11603,13 @@ public final class ImPlot {
 
     private static native double nPlotHistogram(String obj_labelId, double[] obj_values, int bins, double barScale, double rangeMin, double rangeMax, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto values = obj_values == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
+        auto values = obj_values == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
         auto _result = ImPlot::PlotHistogram(labelId, &values[0], LEN(values), ImPlotBin_Sturges, barScale, ImPlotRange(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
+        if (values)
+            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
         return _result;
     */
 
@@ -9359,12 +11633,18 @@ public final class ImPlot {
 
     private static native double nPlotHistogram2D(String obj_labelId, short[] obj_xs, short[] obj_ys, int xBins, int yBins, double rangeMinX, double rangeMinY, double rangeMaxX, double rangeMaxY, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         auto _result = ImPlot::PlotHistogram2D(labelId, &xs[0], &ys[0], LEN(xs), xBins, yBins, ImPlotRect(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
         return _result;
     */
 
@@ -9388,12 +11668,18 @@ public final class ImPlot {
 
     private static native double nPlotHistogram2D(String obj_labelId, int[] obj_xs, int[] obj_ys, int xBins, int yBins, double rangeMinX, double rangeMinY, double rangeMaxX, double rangeMaxY, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         auto _result = ImPlot::PlotHistogram2D(labelId, &xs[0], &ys[0], LEN(xs), xBins, yBins, ImPlotRect(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
         return _result;
     */
 
@@ -9417,12 +11703,18 @@ public final class ImPlot {
 
     private static native double nPlotHistogram2D(String obj_labelId, long[] obj_xs, long[] obj_ys, int xBins, int yBins, double rangeMinX, double rangeMinY, double rangeMaxX, double rangeMaxY, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         auto _result = ImPlot::PlotHistogram2D(labelId, &xs[0], &ys[0], LEN(xs), xBins, yBins, ImPlotRect(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
         return _result;
     */
 
@@ -9446,12 +11738,18 @@ public final class ImPlot {
 
     private static native double nPlotHistogram2D(String obj_labelId, float[] obj_xs, float[] obj_ys, int xBins, int yBins, double rangeMinX, double rangeMinY, double rangeMaxX, double rangeMaxY, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         auto _result = ImPlot::PlotHistogram2D(labelId, &xs[0], &ys[0], LEN(xs), xBins, yBins, ImPlotRect(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
         return _result;
     */
 
@@ -9475,12 +11773,18 @@ public final class ImPlot {
 
     private static native double nPlotHistogram2D(String obj_labelId, double[] obj_xs, double[] obj_ys, int xBins, int yBins, double rangeMinX, double rangeMinY, double rangeMaxX, double rangeMaxY, ImPlotHistogramFlags flags); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         auto _result = ImPlot::PlotHistogram2D(labelId, &xs[0], &ys[0], LEN(xs), xBins, yBins, ImPlotRect(), true);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
         return _result;
     */
 
@@ -9493,12 +11797,18 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, short[] xs, short[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9510,12 +11820,18 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, int[] xs, int[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9527,12 +11843,18 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, long[] xs, long[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9544,12 +11866,18 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, float[] xs, float[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9561,12 +11889,18 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, double[] xs, double[] ys); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], LEN(xs));
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9585,22 +11919,34 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, short[] xs, short[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotDigital(String labelId, short[] xs, short[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jshort*)env->GetShortArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseShortArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseShortArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9619,22 +11965,34 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, int[] xs, int[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotDigital(String labelId, int[] xs, int[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jint*)env->GetIntArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseIntArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseIntArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9653,22 +12011,34 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, long[] xs, long[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotDigital(String labelId, long[] xs, long[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jlong*)env->GetLongArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseLongArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseLongArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9687,22 +12057,34 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, float[] xs, float[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotDigital(String labelId, float[] xs, float[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jfloat*)env->GetFloatArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseFloatArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseFloatArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9721,22 +12103,34 @@ public final class ImPlot {
 
     private static native void nPlotDigital(String labelId, double[] xs, double[] ys, int count); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     private static native void nPlotDigital(String labelId, double[] xs, double[] ys, int count, int offset); /*MANUAL
         auto labelId = obj_labelId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_labelId, JNI_FALSE);
-        auto xs = obj_xs == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xs, JNI_FALSE);
-        auto ys = obj_ys == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_ys, JNI_FALSE);
+        auto xs = obj_xs == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xs, NULL);;
+        auto ys = obj_ys == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_ys, NULL);;
         ImPlot::PlotDigital(labelId, &xs[0], &ys[0], count, offset);
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
-        if (xs != NULL) env->ReleasePrimitiveArrayCritical(obj_xs, xs, JNI_FALSE);
-        if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
+        if (xs)
+            env->ReleaseDoubleArrayElements(obj_xs, xs, 0);;
+        if (ys)
+            env->ReleaseDoubleArrayElements(obj_ys, ys, 0);;
     */
 
     /**
@@ -9950,42 +12344,66 @@ public final class ImPlot {
     }
 
     private static native boolean nDragPoint(int id, double[] obj_x, double[] obj_y, float colX, float colY, float colZ, float colW); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_x, NULL);;
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_y, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragPoint(id, (x != NULL ? &x[0] : NULL), (y != NULL ? &y[0] : NULL), col);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (x)
+            env->ReleaseDoubleArrayElements(obj_x, x, 0);;
+        if (y)
+            env->ReleaseDoubleArrayElements(obj_y, y, 0);;
         return _result;
     */
 
     private static native boolean nDragPoint(int id, double[] obj_x, double[] obj_y, float colX, float colY, float colZ, float colW, float size); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_x, NULL);;
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_y, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragPoint(id, (x != NULL ? &x[0] : NULL), (y != NULL ? &y[0] : NULL), col, size);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (x)
+            env->ReleaseDoubleArrayElements(obj_x, x, 0);;
+        if (y)
+            env->ReleaseDoubleArrayElements(obj_y, y, 0);;
         return _result;
     */
 
     private static native boolean nDragPoint(int id, double[] obj_x, double[] obj_y, float colX, float colY, float colZ, float colW, float size, int flags); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_x, NULL);;
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_y, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragPoint(id, (x != NULL ? &x[0] : NULL), (y != NULL ? &y[0] : NULL), col, size, flags);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (x)
+            env->ReleaseDoubleArrayElements(obj_x, x, 0);;
+        if (y)
+            env->ReleaseDoubleArrayElements(obj_y, y, 0);;
         return _result;
     */
 
     private static native boolean nDragPoint(int id, double[] obj_x, double[] obj_y, float colX, float colY, float colZ, float colW, int flags); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_x, NULL);;
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_y, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragPoint(id, (x != NULL ? &x[0] : NULL), (y != NULL ? &y[0] : NULL), col, 4, flags);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (x)
+            env->ReleaseDoubleArrayElements(obj_x, x, 0);;
+        if (y)
+            env->ReleaseDoubleArrayElements(obj_y, y, 0);;
         return _result;
     */
 
@@ -10046,34 +12464,46 @@ public final class ImPlot {
     }
 
     private static native boolean nDragLineX(int id, double[] obj_x, float colX, float colY, float colZ, float colW); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineX(id, (x != NULL ? &x[0] : NULL), col);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
+        if (x)
+            env->ReleasePrimitiveArrayCritical(obj_x, (void*)x, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineX(int id, double[] obj_x, float colX, float colY, float colZ, float colW, float thickness); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineX(id, (x != NULL ? &x[0] : NULL), col, thickness);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
+        if (x)
+            env->ReleasePrimitiveArrayCritical(obj_x, (void*)x, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineX(int id, double[] obj_x, float colX, float colY, float colZ, float colW, float thickness, int flags); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineX(id, (x != NULL ? &x[0] : NULL), col, thickness, flags);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
+        if (x)
+            env->ReleasePrimitiveArrayCritical(obj_x, (void*)x, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineX(int id, double[] obj_x, float colX, float colY, float colZ, float colW, int flags); /*MANUAL
-        auto x = obj_x == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);
+        auto x = obj_x == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_x, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineX(id, (x != NULL ? &x[0] : NULL), col, 1, flags);
-        if (x != NULL) env->ReleasePrimitiveArrayCritical(obj_x, x, JNI_FALSE);
+        if (x)
+            env->ReleasePrimitiveArrayCritical(obj_x, (void*)x, JNI_FALSE);;
         return _result;
     */
 
@@ -10134,34 +12564,46 @@ public final class ImPlot {
     }
 
     private static native boolean nDragLineY(int id, double[] obj_y, float colX, float colY, float colZ, float colW); /*MANUAL
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineY(id, (y != NULL ? &y[0] : NULL), col);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (y)
+            env->ReleasePrimitiveArrayCritical(obj_y, (void*)y, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineY(int id, double[] obj_y, float colX, float colY, float colZ, float colW, float thickness); /*MANUAL
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineY(id, (y != NULL ? &y[0] : NULL), col, thickness);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (y)
+            env->ReleasePrimitiveArrayCritical(obj_y, (void*)y, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineY(int id, double[] obj_y, float colX, float colY, float colZ, float colW, float thickness, int flags); /*MANUAL
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineY(id, (y != NULL ? &y[0] : NULL), col, thickness, flags);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (y)
+            env->ReleasePrimitiveArrayCritical(obj_y, (void*)y, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nDragLineY(int id, double[] obj_y, float colX, float colY, float colZ, float colW, int flags); /*MANUAL
-        auto y = obj_y == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);
+        auto y = obj_y == NULL
+            ? nullptr
+            : (jdouble*)env->GetPrimitiveArrayCritical(obj_y, JNI_FALSE);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragLineY(id, (y != NULL ? &y[0] : NULL), col, 1, flags);
-        if (y != NULL) env->ReleasePrimitiveArrayCritical(obj_y, y, JNI_FALSE);
+        if (y)
+            env->ReleasePrimitiveArrayCritical(obj_y, (void*)y, JNI_FALSE);;
         return _result;
     */
 
@@ -10194,30 +12636,54 @@ public final class ImPlot {
     }
 
     private static native boolean nDragRect(int id, double[] obj_xMin, double[] obj_yMin, double[] obj_xMax, double[] obj_yMax, float colX, float colY, float colZ, float colW); /*MANUAL
-        auto xMin = obj_xMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xMin, JNI_FALSE);
-        auto yMin = obj_yMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_yMin, JNI_FALSE);
-        auto xMax = obj_xMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xMax, JNI_FALSE);
-        auto yMax = obj_yMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_yMax, JNI_FALSE);
+        auto xMin = obj_xMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xMin, NULL);;
+        auto yMin = obj_yMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_yMin, NULL);;
+        auto xMax = obj_xMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xMax, NULL);;
+        auto yMax = obj_yMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_yMax, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragRect(id, (xMin != NULL ? &xMin[0] : NULL), (yMin != NULL ? &yMin[0] : NULL), (xMax != NULL ? &xMax[0] : NULL), (yMax != NULL ? &yMax[0] : NULL), col);
-        if (xMin != NULL) env->ReleasePrimitiveArrayCritical(obj_xMin, xMin, JNI_FALSE);
-        if (yMin != NULL) env->ReleasePrimitiveArrayCritical(obj_yMin, yMin, JNI_FALSE);
-        if (xMax != NULL) env->ReleasePrimitiveArrayCritical(obj_xMax, xMax, JNI_FALSE);
-        if (yMax != NULL) env->ReleasePrimitiveArrayCritical(obj_yMax, yMax, JNI_FALSE);
+        if (xMin)
+            env->ReleaseDoubleArrayElements(obj_xMin, xMin, 0);;
+        if (yMin)
+            env->ReleaseDoubleArrayElements(obj_yMin, yMin, 0);;
+        if (xMax)
+            env->ReleaseDoubleArrayElements(obj_xMax, xMax, 0);;
+        if (yMax)
+            env->ReleaseDoubleArrayElements(obj_yMax, yMax, 0);;
         return _result;
     */
 
     private static native boolean nDragRect(int id, double[] obj_xMin, double[] obj_yMin, double[] obj_xMax, double[] obj_yMax, float colX, float colY, float colZ, float colW, int flags); /*MANUAL
-        auto xMin = obj_xMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xMin, JNI_FALSE);
-        auto yMin = obj_yMin == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_yMin, JNI_FALSE);
-        auto xMax = obj_xMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_xMax, JNI_FALSE);
-        auto yMax = obj_yMax == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_yMax, JNI_FALSE);
+        auto xMin = obj_xMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xMin, NULL);;
+        auto yMin = obj_yMin == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_yMin, NULL);;
+        auto xMax = obj_xMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_xMax, NULL);;
+        auto yMax = obj_yMax == NULL
+            ? nullptr
+            : (jdouble*)env->GetDoubleArrayElements(obj_yMax, NULL);;
         ImVec4 col = ImVec4(colX, colY, colZ, colW);
         auto _result = ImPlot::DragRect(id, (xMin != NULL ? &xMin[0] : NULL), (yMin != NULL ? &yMin[0] : NULL), (xMax != NULL ? &xMax[0] : NULL), (yMax != NULL ? &yMax[0] : NULL), col, flags);
-        if (xMin != NULL) env->ReleasePrimitiveArrayCritical(obj_xMin, xMin, JNI_FALSE);
-        if (yMin != NULL) env->ReleasePrimitiveArrayCritical(obj_yMin, yMin, JNI_FALSE);
-        if (xMax != NULL) env->ReleasePrimitiveArrayCritical(obj_xMax, xMax, JNI_FALSE);
-        if (yMax != NULL) env->ReleasePrimitiveArrayCritical(obj_yMax, yMax, JNI_FALSE);
+        if (xMin)
+            env->ReleaseDoubleArrayElements(obj_xMin, xMin, 0);;
+        if (yMin)
+            env->ReleaseDoubleArrayElements(obj_yMin, yMin, 0);;
+        if (xMax)
+            env->ReleaseDoubleArrayElements(obj_xMax, xMax, 0);;
+        if (yMax)
+            env->ReleaseDoubleArrayElements(obj_yMax, yMax, 0);;
         return _result;
     */
 
@@ -12091,19 +14557,25 @@ public final class ImPlot {
 
     private static native int nAddColormap(String obj_name, int[] obj_cols); /*MANUAL
         auto name = obj_name == NULL ? NULL : (char*)env->GetStringUTFChars(obj_name, JNI_FALSE);
-        auto cols = obj_cols == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_cols, JNI_FALSE);
+        auto cols = obj_cols == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_cols, JNI_FALSE);;
         auto _result = ImPlot::AddColormap(name, reinterpret_cast<ImU32*>(&cols[0]), env->GetArrayLength(obj_cols));
         if (name != NULL) env->ReleaseStringUTFChars(obj_name, name);
-        if (cols != NULL) env->ReleasePrimitiveArrayCritical(obj_cols, cols, JNI_FALSE);
+        if (cols)
+            env->ReleasePrimitiveArrayCritical(obj_cols, (void*)cols, JNI_FALSE);;
         return _result;
     */
 
     private static native int nAddColormap(String obj_name, int[] obj_cols, boolean qual); /*MANUAL
         auto name = obj_name == NULL ? NULL : (char*)env->GetStringUTFChars(obj_name, JNI_FALSE);
-        auto cols = obj_cols == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_cols, JNI_FALSE);
+        auto cols = obj_cols == NULL
+            ? nullptr
+            : (jint*)env->GetPrimitiveArrayCritical(obj_cols, JNI_FALSE);;
         auto _result = ImPlot::AddColormap(name, reinterpret_cast<ImU32*>(&cols[0]), env->GetArrayLength(obj_cols), qual);
         if (name != NULL) env->ReleaseStringUTFChars(obj_name, name);
-        if (cols != NULL) env->ReleasePrimitiveArrayCritical(obj_cols, cols, JNI_FALSE);
+        if (cols)
+            env->ReleasePrimitiveArrayCritical(obj_cols, (void*)cols, JNI_FALSE);;
         return _result;
     */
 
@@ -12594,41 +15066,53 @@ public final class ImPlot {
 
     private static native boolean nColormapSlider(String obj_label, float[] obj_t); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto t = obj_t == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);
+        auto t = obj_t == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);;
         auto _result = ImPlot::ColormapSlider(label, (t != NULL ? &t[0] : NULL), NULL);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (t != NULL) env->ReleasePrimitiveArrayCritical(obj_t, t, JNI_FALSE);
+        if (t)
+            env->ReleasePrimitiveArrayCritical(obj_t, (void*)t, JNI_FALSE);;
         return _result;
     */
 
     private static native boolean nColormapSlider(String obj_label, float[] obj_t, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto t = obj_t == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);
+        auto t = obj_t == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);;
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImPlot::ColormapSlider(label, (t != NULL ? &t[0] : NULL), NULL, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (t != NULL) env->ReleasePrimitiveArrayCritical(obj_t, t, JNI_FALSE);
+        if (t)
+            env->ReleasePrimitiveArrayCritical(obj_t, (void*)t, JNI_FALSE);;
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nColormapSlider(String obj_label, float[] obj_t, String obj_format, int cmap); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto t = obj_t == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);
+        auto t = obj_t == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);;
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImPlot::ColormapSlider(label, (t != NULL ? &t[0] : NULL), NULL, format, cmap);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (t != NULL) env->ReleasePrimitiveArrayCritical(obj_t, t, JNI_FALSE);
+        if (t)
+            env->ReleasePrimitiveArrayCritical(obj_t, (void*)t, JNI_FALSE);;
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nColormapSlider(String obj_label, float[] obj_t, int cmap); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto t = obj_t == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);
+        auto t = obj_t == NULL
+            ? nullptr
+            : (jfloat*)env->GetPrimitiveArrayCritical(obj_t, JNI_FALSE);;
         auto _result = ImPlot::ColormapSlider(label, (t != NULL ? &t[0] : NULL), NULL, "", cmap);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (t != NULL) env->ReleasePrimitiveArrayCritical(obj_t, t, JNI_FALSE);
+        if (t)
+            env->ReleasePrimitiveArrayCritical(obj_t, (void*)t, JNI_FALSE);;
         return _result;
     */
 
@@ -12979,9 +15463,19 @@ public final class ImPlot {
     */
 
     private static native void nShowMetricsWindow(boolean[] pOpen); /*MANUAL
-        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
+        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
+        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
+        bool pOpen[pOpenLength];;
+        if (_raw_pOpen) {
+            for (int i = 0; i < pOpenLength; ++i)
+                pOpen[i] = (_raw_pOpen[i] != 0);
+        };
         ImPlot::ShowMetricsWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
+        if (_raw_pOpen) {
+            for (int i = 0; i < pOpenLength; ++i)
+                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
+            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
+        };
     */
 
     //-----------------------------------------------------------------------------
@@ -13007,8 +15501,18 @@ public final class ImPlot {
     */
 
     private static native void nShowDemoWindow(boolean[] pOpen); /*MANUAL
-        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
+        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
+        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
+        bool pOpen[pOpenLength];;
+        if (_raw_pOpen) {
+            for (int i = 0; i < pOpenLength; ++i)
+                pOpen[i] = (_raw_pOpen[i] != 0);
+        };
         ImPlot::ShowDemoWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
+        if (_raw_pOpen) {
+            for (int i = 0; i < pOpenLength; ++i)
+                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
+            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
+        };
     */
 }

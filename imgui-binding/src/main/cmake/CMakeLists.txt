@@ -12,7 +12,7 @@ set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
 
 # Set compiler options
 set(C_CXX_FLAGS "${CMAKE_C_CXX_FLAGS} ")
-string(APPEND C_CXX_FLAGS "${ccxxAdd} -Wall -g -O0 -fmessage-length=0 -m64 -fPIC")
+string(APPEND C_CXX_FLAGS "${ccxxAdd} -g -O0 -fmessage-length=0 -m64 -fPIC") # -fsanitize=address -fno-omit-frame-pointer -static-libasan
 
 set(CMAKE_C_FLAGS "${C_CXX_FLAGS} ${cAdd}")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "${C_CXX_FLAGS} ")
 string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DIMGUI_TEST_ENGINE_ENABLE_COROUTINE_STDTHREAD_IMPL -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY")
 
 set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS} ")
-string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -m64")
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -m64") # -static-libasan
 
 
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
