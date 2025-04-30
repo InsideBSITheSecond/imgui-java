@@ -25,63 +25,97 @@ public class TestEngine extends ImGuiStruct {
 
         #define THIS ((ImGuiTestEngine*)STRUCT_PTR)
 
-        jobject jTmpCtx = NULL;
-    */
+        struct CallbackPair {
+            jobject guiCallback;
+            jobject testCallback;
+        };
 
-    public static void init() {
-        nInit(TMP_CTX);
-    }
-    private static native void nInit(TestContext ctx); /*
-        jTmpCtx = env->NewGlobalRef(ctx);
-    */
+        static std::mutex           g_cbMutex;
+        static std::unordered_map<ImGuiTest*, CallbackPair*>  g_callbacks;
 
+        void testStubGuiCallback(ImGuiTestContext* tc);
+        void testStubTestCallback(ImGuiTestContext* tc);
+    */
 
     /*JNI
-        jobject testGuiCallback = NULL;
         void testStubGuiCallback(ImGuiTestContext* tc) {
-            if (testGuiCallback != NULL) {
+            ImGuiTest* t = tc->Test;
+            CallbackPair* cp = nullptr;
+            {
+                std::lock_guard<std::mutex> lock(g_cbMutex);
+                auto it = g_callbacks.find(t);
+                if (it != g_callbacks.end())
+                    cp = it->second;
+            }
+            if (cp && cp->guiCallback) {
                 JNIEnv* env = Jni::GetEnv();
-                env->SetLongField(jTmpCtx, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
-                Jni::CallTestEngineGuiFun(env, testGuiCallback, jTmpCtx);
+                jclass ctxCls = env->FindClass("imgui/extension/testengine/TestContext");
+                jmethodID ctor = env->GetMethodID(ctxCls, "<init>", "(J)V");
+                if (!ctor)
+                    return;
+                jobject jCtx = env->NewObject(ctxCls, ctor, (jlong)(uintptr_t)tc);
+                Jni::CallTestEngineGuiFun(env, cp->guiCallback, jCtx);
+                env->DeleteLocalRef(jCtx);
             }
         }
 
-        jobject testTestCallback = NULL;
         void testStubTestCallback(ImGuiTestContext* tc) {
-            if (testTestCallback != NULL) {
+            ImGuiTest* t = tc->Test;
+            CallbackPair* cp = nullptr;
+            {
+                std::lock_guard<std::mutex> lock(g_cbMutex);
+                auto it = g_callbacks.find(t);
+                if (it != g_callbacks.end())
+                    cp = it->second;
+            }
+            if (cp && cp->testCallback) {
                 JNIEnv* env = Jni::GetEnv();
-                env->SetLongField(jTmpCtx, Jni::GetBindingStructPtrID(), (uintptr_t)tc);
-                Jni::CallTestEngineTestFun(env, testTestCallback, jTmpCtx);
+                jclass ctxCls = env->FindClass("imgui/extension/testengine/TestContext");
+                jmethodID ctor = env->GetMethodID(ctxCls, "<init>", "(J)V");
+                if (!ctor)
+                    return;
+                jobject jCtx = env->NewObject(ctxCls, ctor, (jlong)(uintptr_t)tc);
+                Jni::CallTestEngineTestFun(env, cp->testCallback, jCtx);
+                env->DeleteLocalRef(jCtx);
             }
         }
+
      */
 
-    /**
-     *  // . . U . .  // (Optional) Setup window transparency
-     */
     public native void registerTest(String category, String name, TestEngineGuiFun guiFunc, TestEngineTestFun testFunc); /*
         printf("Attempting to register test callback: %s - %s\n", category, name); fflush(stdout);
-        printf("Callbacks: %p - %p\n", guiFunc, testFunc); fflush(stdout);
-
-        if (testGuiCallback != NULL) {
-            env->DeleteGlobalRef(testGuiCallback); }
-        testGuiCallback = env->NewGlobalRef(guiFunc);
-
-        if (testTestCallback != NULL) {
-            env->DeleteGlobalRef(testTestCallback); }
-        testTestCallback = env->NewGlobalRef(testFunc);
+        printf("Callbacks: %d - %d\n",
+                env->CallIntMethod(guiFunc, env->GetMethodID(env->GetObjectClass(guiFunc), "hashCode", "()I")),
+                env->CallIntMethod(testFunc, env->GetMethodID(env->GetObjectClass(testFunc), "hashCode", "()I")));
+        fflush(stdout);
 
         // Copy the strings to persistent memory. (this isn't yet freed anywhere)
         char* persistentCategory = strdup(category);
         char* persistentName = strdup(name);
 
-        ImGuiTest* t = NULL;
-        t = IM_REGISTER_TEST(THIS, persistentCategory, persistentName);
-        t->GuiFunc = testStubGuiCallback; // called by main thread
-        t->TestFunc = testStubTestCallback; // called by coroutine thread
+        ImGuiTest* t = IM_REGISTER_TEST(THIS, persistentCategory, persistentName);
+        auto* cp = new CallbackPair{
+            env->NewGlobalRef(guiFunc),
+            env->NewGlobalRef(testFunc)
+        };
 
-        printf("btw uwu\n");
-        printf("Test %s - %s registered (uwu)\n", persistentCategory, persistentName); fflush(stdout);
+        {
+            std::lock_guard<std::mutex> lock(g_cbMutex);
+            // if someone re-registered the same test, clean up old refs
+            if (auto it = g_callbacks.find(t); it != g_callbacks.end()) {
+                env->DeleteGlobalRef(it->second->guiCallback);
+                env->DeleteGlobalRef(it->second->testCallback);
+                delete it->second;
+            }
+            g_callbacks[t] = cp;
+        }
+
+        // hook up our stubs
+        t->GuiFunc  = testStubGuiCallback;
+        t->TestFunc = testStubTestCallback;
+
+        printf("Test %s - %s registered (multiple ok)\n", persistentCategory, persistentName);
+        fflush(stdout);
     */
 
 

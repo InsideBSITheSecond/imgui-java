@@ -7,6 +7,8 @@ import imgui.app.Configuration;
 import imgui.extension.testengine.TestContext;
 import imgui.extension.testengine.TestEngine;
 import imgui.extension.testengine.TestEngineIO;
+import imgui.extension.testengine.callback.TestEngineGuiFun;
+import imgui.extension.testengine.callback.TestEngineTestFun;
 import imgui.extension.testengine.flag.TestVerboseLevel;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.flag.ImGuiInputTextFlags;
@@ -57,59 +59,84 @@ public class Main extends Application {
         TestEngine.Start(testEngine, ImGui.getCurrentContext());
 
         final ImBoolean b = new ImBoolean(false);
-        TestEngine.registerTest(testEngine, "demo_tests", "test1", contextPtr -> {
-            // GUI Function
-            ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
-            ImGui.text("Hello, automation world");
-            ImGui.button("Click Me");
-            if (ImGui.treeNode("Node")) {
-                ImGui.checkbox("Checkbox", b);
-                ImGui.treePop();
+        testEngine.registerTest("demo_tests", "test1", new TestEngineGuiFun() {
+            @Override
+            public void run(TestContext ctx) {
+                // GUI Function
+                ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
+                ImGui.text("Hello, automation world");
+                ImGui.button("Click Me");
+                if (ImGui.treeNode("Node")) {
+                    ImGui.checkbox("Checkbox", b);
+                    ImGui.treePop();
+                }
+                ImGui.end();
             }
-            ImGui.end();
-        }, contextPtr -> {
-            // Test Function
-            TestContext ctx = new TestContext(contextPtr);
-            ctx.setRef("Test Window");
-            ctx.itemClick("Click Me");
-            ctx.itemOpen("Node");
-            ctx.itemCheck("Node/Checkbox");
-            ctx.itemUncheck("Node/Checkbox");
-        });
+        }, new TestEngineTestFun() {
+            @Override
+            public void run(TestContext ctx) {
+                // Test Function
+                ctx.setRef("Test Window");
+                ctx.itemClick("Click Me");
+                ctx.itemOpen("Node");
+                ctx.itemCheck("Node/Checkbox");
+                ctx.itemUncheck("Node/Checkbox");
+            }
+        } );
 
         final int[] myInt = {42};
-        TestEngine.registerTest(testEngine, "demo_tests", "test2", contextPtr -> {
-            ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
-            ImGui.sliderInt("Slider", myInt, 0, 1000);
-        }, contextPtr -> {
-            TestContext ctx = new TestContext(contextPtr);
-            ctx.setRef("Test Window");
+        testEngine.registerTest("demo_tests", "test2", new TestEngineGuiFun() {
+            @Override
+            public void run(TestContext ctx) {
+                ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
+                ImGui.sliderInt("Slider", myInt, 0, 1000);
+            }
+        }, new TestEngineTestFun() {
+            @Override
+            public void run(TestContext ctx) {
+                ctx.setRef("Test Window");
 
-            TestEngine.checkEq(myInt[0], 42);
-            ctx.itemInputValue("Slider", 123);
-            TestEngine.checkEq(myInt[0], 123);
-        });
+                TestEngine.checkEq(myInt[0], 42);
+                ctx.itemInputValue("Slider", 123);
+                TestEngine.checkEq(myInt[0], 123);
+            }
+        } );
 
-        TestEngine.registerTest(testEngine, "demo_tests", "open_metrics", contextPtr -> {
+        testEngine.registerTest("demo_tests", "open_metrics", new TestEngineGuiFun() {
+            @Override
+            public void run(TestContext ctx) {
 
-        }, contextPtr -> {
-            TestContext ctx = new TestContext(contextPtr);
-            ctx.setRef("Dear ImGui Demo");
-            ctx.menuCheck("Tools/Metrics\\/Debugger");
-        });
+            }
+        }, new TestEngineTestFun() {
+            @Override
+            public void run(TestContext ctx) {
+                ctx.setRef("Dear ImGui Demo");
+                ctx.menuCheck("Tools/Metrics\\/Debugger");
+            }
+        } );
 
-        TestEngine.registerTest(testEngine, "demo_tests", "capture_screenshots", contextPtr -> {
+        testEngine.registerTest("demo_tests", "capture_screenshots", new TestEngineGuiFun() {
+            @Override
+            public void run(TestContext ctx) {
 
-        }, contextPtr -> {
-            TestContext ctx = new TestContext(contextPtr);
-            TestEngine.checkEq(42, 69);
-        });
+            }
+        }, new TestEngineTestFun() {
+            @Override
+            public void run(TestContext ctx) {
+                TestEngine.checkEq(42, 69);
+            }
+        } );
 
-        TestEngine.registerTest(testEngine, "demo_tests", "capture_video", contextPtr -> {
+        testEngine.registerTest("demo_tests", "capture_video", new TestEngineGuiFun() {
+            @Override
+            public void run(TestContext ctx) {
 
-        }, contextPtr -> {
-            TestContext ctx = new TestContext(contextPtr);
-            TestEngine.checkEq(42, 69);
+            }
+        }, new TestEngineTestFun() {
+            @Override
+            public void run(TestContext ctx) {
+                TestEngine.checkEq(69, 42);
+            }
         });
 
         //TestEngine.InstallDefaultCrashHandler();
