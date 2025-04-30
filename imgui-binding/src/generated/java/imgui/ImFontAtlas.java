@@ -116,25 +116,19 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
 
     private native long nAddFontFromFileTTF(String obj_filename, float sizePixels, long fontConfig, short[] obj_glyphRanges); /*MANUAL
         auto filename = obj_filename == NULL ? NULL : (char*)env->GetStringUTFChars(obj_filename, JNI_FALSE);
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);;
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromFileTTF(filename, sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig), (ImWchar*)&glyphRanges[0]);
         if (filename != NULL) env->ReleaseStringUTFChars(obj_filename, filename);
-        if (glyphRanges)
-            env->ReleasePrimitiveArrayCritical(obj_glyphRanges, (void*)glyphRanges, JNI_FALSE);;
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromFileTTF(String obj_filename, float sizePixels, short[] obj_glyphRanges); /*MANUAL
         auto filename = obj_filename == NULL ? NULL : (char*)env->GetStringUTFChars(obj_filename, JNI_FALSE);
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);;
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromFileTTF(filename, sizePixels, NULL, (ImWchar*)&glyphRanges[0]);
         if (filename != NULL) env->ReleaseStringUTFChars(obj_filename, filename);
-        if (glyphRanges)
-            env->ReleasePrimitiveArrayCritical(obj_glyphRanges, (void*)glyphRanges, JNI_FALSE);;
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
@@ -171,52 +165,34 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
     }
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, float sizePixels); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], (int)env->GetArrayLength(obj_fontData), sizePixels);
-        if (fontData)
-            env->ReleasePrimitiveArrayCritical(obj_fontData, (void*)fontData, JNI_FALSE);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, float sizePixels, long fontConfig); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], (int)env->GetArrayLength(obj_fontData), sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig));
-        if (fontData)
-            env->ReleasePrimitiveArrayCritical(obj_fontData, (void*)fontData, JNI_FALSE);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, float sizePixels, long fontConfig, short[] obj_glyphRanges); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_fontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], (int)env->GetArrayLength(obj_fontData), sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig), (ImWchar*)&glyphRanges[0]);
-        if (fontData)
-            env->ReleaseByteArrayElements(obj_fontData, fontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, float sizePixels, short[] obj_glyphRanges); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_fontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], (int)env->GetArrayLength(obj_fontData), sizePixels, NULL, (ImWchar*)&glyphRanges[0]);
-        if (fontData)
-            env->ReleaseByteArrayElements(obj_fontData, fontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
@@ -253,52 +229,34 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
     }
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, int fontSize, float sizePixels); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], fontSize, sizePixels);
-        if (fontData)
-            env->ReleasePrimitiveArrayCritical(obj_fontData, (void*)fontData, JNI_FALSE);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, int fontSize, float sizePixels, long fontConfig); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], fontSize, sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig));
-        if (fontData)
-            env->ReleasePrimitiveArrayCritical(obj_fontData, (void*)fontData, JNI_FALSE);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, int fontSize, float sizePixels, long fontConfig, short[] obj_glyphRanges); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_fontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], fontSize, sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig), (ImWchar*)&glyphRanges[0]);
-        if (fontData)
-            env->ReleaseByteArrayElements(obj_fontData, fontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryTTF(byte[] obj_fontData, int fontSize, float sizePixels, short[] obj_glyphRanges); /*MANUAL
-        auto fontData = obj_fontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_fontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto fontData = obj_fontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_fontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryTTF(&fontData[0], fontSize, sizePixels, NULL, (ImWchar*)&glyphRanges[0]);
-        if (fontData)
-            env->ReleaseByteArrayElements(obj_fontData, fontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (fontData != NULL) env->ReleasePrimitiveArrayCritical(obj_fontData, fontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
@@ -331,52 +289,34 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
     }
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, float sizePixels); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], (int)env->GetArrayLength(obj_compressedFontData), sizePixels);
-        if (compressedFontData)
-            env->ReleasePrimitiveArrayCritical(obj_compressedFontData, (void*)compressedFontData, JNI_FALSE);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, float sizePixels, long imFontConfig); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], (int)env->GetArrayLength(obj_compressedFontData), sizePixels, reinterpret_cast<ImFontConfig*>(imFontConfig));
-        if (compressedFontData)
-            env->ReleasePrimitiveArrayCritical(obj_compressedFontData, (void*)compressedFontData, JNI_FALSE);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, float sizePixels, long imFontConfig, short[] obj_glyphRanges); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_compressedFontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], (int)env->GetArrayLength(obj_compressedFontData), sizePixels, reinterpret_cast<ImFontConfig*>(imFontConfig), (ImWchar*)&glyphRanges[0]);
-        if (compressedFontData)
-            env->ReleaseByteArrayElements(obj_compressedFontData, compressedFontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, float sizePixels, short[] obj_glyphRanges); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_compressedFontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], (int)env->GetArrayLength(obj_compressedFontData), sizePixels, NULL, (ImWchar*)&glyphRanges[0]);
-        if (compressedFontData)
-            env->ReleaseByteArrayElements(obj_compressedFontData, compressedFontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
@@ -409,52 +349,34 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
     }
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, int compressedFontSize, float sizePixels); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], compressedFontSize, sizePixels);
-        if (compressedFontData)
-            env->ReleasePrimitiveArrayCritical(obj_compressedFontData, (void*)compressedFontData, JNI_FALSE);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, int compressedFontSize, float sizePixels, long imFontConfig); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], compressedFontSize, sizePixels, reinterpret_cast<ImFontConfig*>(imFontConfig));
-        if (compressedFontData)
-            env->ReleasePrimitiveArrayCritical(obj_compressedFontData, (void*)compressedFontData, JNI_FALSE);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, int compressedFontSize, float sizePixels, long imFontConfig, short[] obj_glyphRanges); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_compressedFontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], compressedFontSize, sizePixels, reinterpret_cast<ImFontConfig*>(imFontConfig), (ImWchar*)&glyphRanges[0]);
-        if (compressedFontData)
-            env->ReleaseByteArrayElements(obj_compressedFontData, compressedFontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
     private native long nAddFontFromMemoryCompressedTTF(byte[] obj_compressedFontData, int compressedFontSize, float sizePixels, short[] obj_glyphRanges); /*MANUAL
-        auto compressedFontData = obj_compressedFontData == NULL
-            ? nullptr
-            : (jbyte*)env->GetByteArrayElements(obj_compressedFontData, NULL);;
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetShortArrayElements(obj_glyphRanges, NULL);;
+        auto compressedFontData = obj_compressedFontData == NULL ? NULL : (char*)env->GetPrimitiveArrayCritical(obj_compressedFontData, JNI_FALSE);
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedTTF(&compressedFontData[0], compressedFontSize, sizePixels, NULL, (ImWchar*)&glyphRanges[0]);
-        if (compressedFontData)
-            env->ReleaseByteArrayElements(obj_compressedFontData, compressedFontData, 0);;
-        if (glyphRanges)
-            env->ReleaseShortArrayElements(obj_glyphRanges, glyphRanges, 0);;
+        if (compressedFontData != NULL) env->ReleasePrimitiveArrayCritical(obj_compressedFontData, compressedFontData, JNI_FALSE);
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 
@@ -481,13 +403,10 @@ public final class ImFontAtlas extends ImGuiStructDestroyable {
 
     private native long nAddFontFromMemoryCompressedBase85TTF(String obj_compressedFontDataBase85, float sizePixels, long fontConfig, short[] obj_glyphRanges); /*MANUAL
         auto compressedFontDataBase85 = obj_compressedFontDataBase85 == NULL ? NULL : (char*)env->GetStringUTFChars(obj_compressedFontDataBase85, JNI_FALSE);
-        auto glyphRanges = obj_glyphRanges == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);;
+        auto glyphRanges = obj_glyphRanges == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_glyphRanges, JNI_FALSE);
         auto _result = (uintptr_t)THIS->AddFontFromMemoryCompressedBase85TTF(compressedFontDataBase85, sizePixels, reinterpret_cast<ImFontConfig*>(fontConfig), (ImWchar*)&glyphRanges[0]);
         if (compressedFontDataBase85 != NULL) env->ReleaseStringUTFChars(obj_compressedFontDataBase85, compressedFontDataBase85);
-        if (glyphRanges)
-            env->ReleasePrimitiveArrayCritical(obj_glyphRanges, (void*)glyphRanges, JNI_FALSE);;
+        if (glyphRanges != NULL) env->ReleasePrimitiveArrayCritical(obj_glyphRanges, glyphRanges, JNI_FALSE);
         return _result;
     */
 

@@ -533,17 +533,11 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryNewLink(long[] obj_startId, long[] obj_endId); /*MANUAL
-        auto startId = obj_startId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startId, NULL);;
-        auto endId = obj_endId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_endId, NULL);;
+        auto startId = obj_startId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startId, JNI_FALSE);
+        auto endId = obj_endId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_endId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryNewLink(reinterpret_cast<ax::NodeEditor::PinId*>((startId != NULL ? &startId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((endId != NULL ? &endId[0] : NULL)));
-        if (startId)
-            env->ReleaseLongArrayElements(obj_startId, startId, 0);;
-        if (endId)
-            env->ReleaseLongArrayElements(obj_endId, endId, 0);;
+        if (startId != NULL) env->ReleasePrimitiveArrayCritical(obj_startId, startId, JNI_FALSE);
+        if (endId != NULL) env->ReleasePrimitiveArrayCritical(obj_endId, endId, JNI_FALSE);
         return _result;
     */
 
@@ -564,34 +558,22 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryNewLink(long[] obj_startId, long[] obj_endId, float colorX, float colorY, float colorZ, float colorW); /*MANUAL
-        auto startId = obj_startId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startId, NULL);;
-        auto endId = obj_endId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_endId, NULL);;
+        auto startId = obj_startId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startId, JNI_FALSE);
+        auto endId = obj_endId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_endId, JNI_FALSE);
         ImVec4 color = ImVec4(colorX, colorY, colorZ, colorW);
         auto _result = ax::NodeEditor::QueryNewLink(reinterpret_cast<ax::NodeEditor::PinId*>((startId != NULL ? &startId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((endId != NULL ? &endId[0] : NULL)), color);
-        if (startId)
-            env->ReleaseLongArrayElements(obj_startId, startId, 0);;
-        if (endId)
-            env->ReleaseLongArrayElements(obj_endId, endId, 0);;
+        if (startId != NULL) env->ReleasePrimitiveArrayCritical(obj_startId, startId, JNI_FALSE);
+        if (endId != NULL) env->ReleasePrimitiveArrayCritical(obj_endId, endId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nQueryNewLink(long[] obj_startId, long[] obj_endId, float colorX, float colorY, float colorZ, float colorW, float thickness); /*MANUAL
-        auto startId = obj_startId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startId, NULL);;
-        auto endId = obj_endId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_endId, NULL);;
+        auto startId = obj_startId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startId, JNI_FALSE);
+        auto endId = obj_endId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_endId, JNI_FALSE);
         ImVec4 color = ImVec4(colorX, colorY, colorZ, colorW);
         auto _result = ax::NodeEditor::QueryNewLink(reinterpret_cast<ax::NodeEditor::PinId*>((startId != NULL ? &startId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((endId != NULL ? &endId[0] : NULL)), color, thickness);
-        if (startId)
-            env->ReleaseLongArrayElements(obj_startId, startId, 0);;
-        if (endId)
-            env->ReleaseLongArrayElements(obj_endId, endId, 0);;
+        if (startId != NULL) env->ReleasePrimitiveArrayCritical(obj_startId, startId, JNI_FALSE);
+        if (endId != NULL) env->ReleasePrimitiveArrayCritical(obj_endId, endId, JNI_FALSE);
         return _result;
     */
 
@@ -600,12 +582,9 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryNewNode(long[] obj_pinId); /*MANUAL
-        auto pinId = obj_pinId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);;
+        auto pinId = obj_pinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryNewNode(reinterpret_cast<ax::NodeEditor::PinId*>((pinId != NULL ? &pinId[0] : NULL)));
-        if (pinId)
-            env->ReleasePrimitiveArrayCritical(obj_pinId, (void*)pinId, JNI_FALSE);;
+        if (pinId != NULL) env->ReleasePrimitiveArrayCritical(obj_pinId, pinId, JNI_FALSE);
         return _result;
     */
 
@@ -626,24 +605,18 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryNewNode(long[] obj_pinId, float colorX, float colorY, float colorZ, float colorW); /*MANUAL
-        auto pinId = obj_pinId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);;
+        auto pinId = obj_pinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);
         ImVec4 color = ImVec4(colorX, colorY, colorZ, colorW);
         auto _result = ax::NodeEditor::QueryNewNode(reinterpret_cast<ax::NodeEditor::PinId*>((pinId != NULL ? &pinId[0] : NULL)), color);
-        if (pinId)
-            env->ReleasePrimitiveArrayCritical(obj_pinId, (void*)pinId, JNI_FALSE);;
+        if (pinId != NULL) env->ReleasePrimitiveArrayCritical(obj_pinId, pinId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nQueryNewNode(long[] obj_pinId, float colorX, float colorY, float colorZ, float colorW, float thickness); /*MANUAL
-        auto pinId = obj_pinId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);;
+        auto pinId = obj_pinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);
         ImVec4 color = ImVec4(colorX, colorY, colorZ, colorW);
         auto _result = ax::NodeEditor::QueryNewNode(reinterpret_cast<ax::NodeEditor::PinId*>((pinId != NULL ? &pinId[0] : NULL)), color, thickness);
-        if (pinId)
-            env->ReleasePrimitiveArrayCritical(obj_pinId, (void*)pinId, JNI_FALSE);;
+        if (pinId != NULL) env->ReleasePrimitiveArrayCritical(obj_pinId, pinId, JNI_FALSE);
         return _result;
     */
 
@@ -746,47 +719,29 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryDeletedLink(long[] obj_linkId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);;
+        auto linkId = obj_linkId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryDeletedLink(reinterpret_cast<ax::NodeEditor::LinkId*>((linkId != NULL ? &linkId[0] : NULL)));
-        if (linkId)
-            env->ReleasePrimitiveArrayCritical(obj_linkId, (void*)linkId, JNI_FALSE);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nQueryDeletedLink(long[] obj_linkId, long[] obj_startId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_linkId, NULL);;
-        auto startId = obj_startId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startId, NULL);;
+        auto linkId = obj_linkId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
+        auto startId = obj_startId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryDeletedLink(reinterpret_cast<ax::NodeEditor::LinkId*>((linkId != NULL ? &linkId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((startId != NULL ? &startId[0] : NULL)));
-        if (linkId)
-            env->ReleaseLongArrayElements(obj_linkId, linkId, 0);;
-        if (startId)
-            env->ReleaseLongArrayElements(obj_startId, startId, 0);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
+        if (startId != NULL) env->ReleasePrimitiveArrayCritical(obj_startId, startId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nQueryDeletedLink(long[] obj_linkId, long[] obj_startId, long[] obj_endId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_linkId, NULL);;
-        auto startId = obj_startId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startId, NULL);;
-        auto endId = obj_endId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_endId, NULL);;
+        auto linkId = obj_linkId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
+        auto startId = obj_startId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startId, JNI_FALSE);
+        auto endId = obj_endId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_endId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryDeletedLink(reinterpret_cast<ax::NodeEditor::LinkId*>((linkId != NULL ? &linkId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((startId != NULL ? &startId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((endId != NULL ? &endId[0] : NULL)));
-        if (linkId)
-            env->ReleaseLongArrayElements(obj_linkId, linkId, 0);;
-        if (startId)
-            env->ReleaseLongArrayElements(obj_startId, startId, 0);;
-        if (endId)
-            env->ReleaseLongArrayElements(obj_endId, endId, 0);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
+        if (startId != NULL) env->ReleasePrimitiveArrayCritical(obj_startId, startId, JNI_FALSE);
+        if (endId != NULL) env->ReleasePrimitiveArrayCritical(obj_endId, endId, JNI_FALSE);
         return _result;
     */
 
@@ -795,12 +750,9 @@ public final class NodeEditor {
     }
 
     private static native boolean nQueryDeletedNode(long[] obj_nodeId); /*MANUAL
-        auto nodeId = obj_nodeId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);;
+        auto nodeId = obj_nodeId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);
         auto _result = ax::NodeEditor::QueryDeletedNode(reinterpret_cast<ax::NodeEditor::NodeId*>((nodeId != NULL ? &nodeId[0] : NULL)));
-        if (nodeId)
-            env->ReleasePrimitiveArrayCritical(obj_nodeId, (void*)nodeId, JNI_FALSE);;
+        if (nodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_nodeId, nodeId, JNI_FALSE);
         return _result;
     */
 
@@ -1007,12 +959,9 @@ public final class NodeEditor {
     }
 
     private static native int nGetSelectedNodes(long[] obj_nodes, int size); /*MANUAL
-        auto nodes = obj_nodes == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);;
+        auto nodes = obj_nodes == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);
         auto _result = ax::NodeEditor::GetSelectedNodes(reinterpret_cast<ax::NodeEditor::NodeId*>(&nodes[0]), size);
-        if (nodes)
-            env->ReleasePrimitiveArrayCritical(obj_nodes, (void*)nodes, JNI_FALSE);;
+        if (nodes != NULL) env->ReleasePrimitiveArrayCritical(obj_nodes, nodes, JNI_FALSE);
         return _result;
     */
 
@@ -1021,12 +970,9 @@ public final class NodeEditor {
     }
 
     private static native int nGetSelectedLinks(long[] obj_links, int size); /*MANUAL
-        auto links = obj_links == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_links, JNI_FALSE);;
+        auto links = obj_links == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_links, JNI_FALSE);
         auto _result = ax::NodeEditor::GetSelectedLinks(reinterpret_cast<ax::NodeEditor::LinkId*>(&links[0]), size);
-        if (links)
-            env->ReleasePrimitiveArrayCritical(obj_links, (void*)links, JNI_FALSE);;
+        if (links != NULL) env->ReleasePrimitiveArrayCritical(obj_links, links, JNI_FALSE);
         return _result;
     */
 
@@ -1203,12 +1149,9 @@ public final class NodeEditor {
     }
 
     private static native boolean nShowNodeContextMenu(long[] obj_nodeId); /*MANUAL
-        auto nodeId = obj_nodeId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);;
+        auto nodeId = obj_nodeId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);
         auto _result = ax::NodeEditor::ShowNodeContextMenu(reinterpret_cast<ax::NodeEditor::NodeId*>((nodeId != NULL ? &nodeId[0] : NULL)));
-        if (nodeId)
-            env->ReleasePrimitiveArrayCritical(obj_nodeId, (void*)nodeId, JNI_FALSE);;
+        if (nodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_nodeId, nodeId, JNI_FALSE);
         return _result;
     */
 
@@ -1217,12 +1160,9 @@ public final class NodeEditor {
     }
 
     private static native boolean nShowPinContextMenu(long[] obj_pinId); /*MANUAL
-        auto pinId = obj_pinId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);;
+        auto pinId = obj_pinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pinId, JNI_FALSE);
         auto _result = ax::NodeEditor::ShowPinContextMenu(reinterpret_cast<ax::NodeEditor::PinId*>((pinId != NULL ? &pinId[0] : NULL)));
-        if (pinId)
-            env->ReleasePrimitiveArrayCritical(obj_pinId, (void*)pinId, JNI_FALSE);;
+        if (pinId != NULL) env->ReleasePrimitiveArrayCritical(obj_pinId, pinId, JNI_FALSE);
         return _result;
     */
 
@@ -1231,12 +1171,9 @@ public final class NodeEditor {
     }
 
     private static native boolean nShowLinkContextMenu(long[] obj_linkId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);;
+        auto linkId = obj_linkId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
         auto _result = ax::NodeEditor::ShowLinkContextMenu(reinterpret_cast<ax::NodeEditor::LinkId*>((linkId != NULL ? &linkId[0] : NULL)));
-        if (linkId)
-            env->ReleasePrimitiveArrayCritical(obj_linkId, (void*)linkId, JNI_FALSE);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
         return _result;
     */
 
@@ -1340,12 +1277,9 @@ public final class NodeEditor {
     }
 
     private static native int nGetActionContextNodes(long[] obj_nodes, int size); /*MANUAL
-        auto nodes = obj_nodes == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);;
+        auto nodes = obj_nodes == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);
         auto _result = ax::NodeEditor::GetActionContextNodes(reinterpret_cast<ax::NodeEditor::NodeId*>(&nodes[0]), size);
-        if (nodes)
-            env->ReleasePrimitiveArrayCritical(obj_nodes, (void*)nodes, JNI_FALSE);;
+        if (nodes != NULL) env->ReleasePrimitiveArrayCritical(obj_nodes, nodes, JNI_FALSE);
         return _result;
     */
 
@@ -1354,12 +1288,9 @@ public final class NodeEditor {
     }
 
     private static native int nGetActionContextLinks(long[] obj_links, int size); /*MANUAL
-        auto links = obj_links == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_links, JNI_FALSE);;
+        auto links = obj_links == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_links, JNI_FALSE);
         auto _result = ax::NodeEditor::GetActionContextLinks(reinterpret_cast<ax::NodeEditor::LinkId*>(&links[0]), size);
-        if (links)
-            env->ReleasePrimitiveArrayCritical(obj_links, (void*)links, JNI_FALSE);;
+        if (links != NULL) env->ReleasePrimitiveArrayCritical(obj_links, links, JNI_FALSE);
         return _result;
     */
 
@@ -1448,17 +1379,11 @@ public final class NodeEditor {
     }
 
     private static native boolean nGetLinkPins(long linkId, long[] obj_startPinId, long[] obj_endPinId); /*MANUAL
-        auto startPinId = obj_startPinId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_startPinId, NULL);;
-        auto endPinId = obj_endPinId == NULL
-            ? nullptr
-            : (jlong*)env->GetLongArrayElements(obj_endPinId, NULL);;
+        auto startPinId = obj_startPinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_startPinId, JNI_FALSE);
+        auto endPinId = obj_endPinId == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_endPinId, JNI_FALSE);
         auto _result = ax::NodeEditor::GetLinkPins(static_cast<ax::NodeEditor::LinkId>(linkId), reinterpret_cast<ax::NodeEditor::PinId*>((startPinId != NULL ? &startPinId[0] : NULL)), reinterpret_cast<ax::NodeEditor::PinId*>((endPinId != NULL ? &endPinId[0] : NULL)));
-        if (startPinId)
-            env->ReleaseLongArrayElements(obj_startPinId, startPinId, 0);;
-        if (endPinId)
-            env->ReleaseLongArrayElements(obj_endPinId, endPinId, 0);;
+        if (startPinId != NULL) env->ReleasePrimitiveArrayCritical(obj_startPinId, startPinId, JNI_FALSE);
+        if (endPinId != NULL) env->ReleasePrimitiveArrayCritical(obj_endPinId, endPinId, JNI_FALSE);
         return _result;
     */
 
@@ -1603,12 +1528,9 @@ public final class NodeEditor {
     }
 
     private static native int nGetOrderedNodeIds(long[] obj_nodes, int size); /*MANUAL
-        auto nodes = obj_nodes == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);;
+        auto nodes = obj_nodes == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_nodes, JNI_FALSE);
         auto _result = ax::NodeEditor::GetOrderedNodeIds(reinterpret_cast<ax::NodeEditor::NodeId*>(&nodes[0]), size);
-        if (nodes)
-            env->ReleasePrimitiveArrayCritical(obj_nodes, (void*)nodes, JNI_FALSE);;
+        if (nodes != NULL) env->ReleasePrimitiveArrayCritical(obj_nodes, nodes, JNI_FALSE);
         return _result;
     */
 

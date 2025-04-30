@@ -698,12 +698,9 @@ public final class ImNodes {
     }
 
     private static native boolean nIsNodeHovered(int[] obj_nodeId); /*MANUAL
-        auto nodeId = obj_nodeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);;
+        auto nodeId = obj_nodeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_nodeId, JNI_FALSE);
         auto _result = ImNodes::IsNodeHovered((nodeId != NULL ? &nodeId[0] : NULL));
-        if (nodeId)
-            env->ReleasePrimitiveArrayCritical(obj_nodeId, (void*)nodeId, JNI_FALSE);;
+        if (nodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_nodeId, nodeId, JNI_FALSE);
         return _result;
     */
 
@@ -712,12 +709,9 @@ public final class ImNodes {
     }
 
     private static native boolean nIsLinkHovered(int[] obj_linkId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);;
+        auto linkId = obj_linkId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
         auto _result = ImNodes::IsLinkHovered((linkId != NULL ? &linkId[0] : NULL));
-        if (linkId)
-            env->ReleasePrimitiveArrayCritical(obj_linkId, (void*)linkId, JNI_FALSE);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
         return _result;
     */
 
@@ -726,12 +720,9 @@ public final class ImNodes {
     }
 
     private static native boolean nIsPinHovered(int[] obj_attributeId); /*MANUAL
-        auto attributeId = obj_attributeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_attributeId, JNI_FALSE);;
+        auto attributeId = obj_attributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_attributeId, JNI_FALSE);
         auto _result = ImNodes::IsPinHovered((attributeId != NULL ? &attributeId[0] : NULL));
-        if (attributeId)
-            env->ReleasePrimitiveArrayCritical(obj_attributeId, (void*)attributeId, JNI_FALSE);;
+        if (attributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_attributeId, attributeId, JNI_FALSE);
         return _result;
     */
 
@@ -796,12 +787,9 @@ public final class ImNodes {
     }
 
     private static native void nGetSelectedNodes(int[] nodeIds); /*MANUAL
-        auto nodeIds = obj_nodeIds == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_nodeIds, JNI_FALSE);;
+        auto nodeIds = obj_nodeIds == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_nodeIds, JNI_FALSE);
         ImNodes::GetSelectedNodes(&nodeIds[0]);
-        if (nodeIds)
-            env->ReleasePrimitiveArrayCritical(obj_nodeIds, (void*)nodeIds, JNI_FALSE);;
+        if (nodeIds != NULL) env->ReleasePrimitiveArrayCritical(obj_nodeIds, nodeIds, JNI_FALSE);
     */
 
     /**
@@ -814,12 +802,9 @@ public final class ImNodes {
     }
 
     private static native void nGetSelectedLinks(int[] linkIds); /*MANUAL
-        auto linkIds = obj_linkIds == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_linkIds, JNI_FALSE);;
+        auto linkIds = obj_linkIds == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_linkIds, JNI_FALSE);
         ImNodes::GetSelectedLinks(&linkIds[0]);
-        if (linkIds)
-            env->ReleasePrimitiveArrayCritical(obj_linkIds, (void*)linkIds, JNI_FALSE);;
+        if (linkIds != NULL) env->ReleasePrimitiveArrayCritical(obj_linkIds, linkIds, JNI_FALSE);
     */
 
     /**
@@ -920,12 +905,9 @@ public final class ImNodes {
     */
 
     private static native boolean nIsAnyAttributeActive(int[] obj_attributeId); /*MANUAL
-        auto attributeId = obj_attributeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_attributeId, JNI_FALSE);;
+        auto attributeId = obj_attributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_attributeId, JNI_FALSE);
         auto _result = ImNodes::IsAnyAttributeActive((attributeId != NULL ? &attributeId[0] : NULL));
-        if (attributeId)
-            env->ReleasePrimitiveArrayCritical(obj_attributeId, (void*)attributeId, JNI_FALSE);;
+        if (attributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_attributeId, attributeId, JNI_FALSE);
         return _result;
     */
 
@@ -950,12 +932,9 @@ public final class ImNodes {
     }
 
     private static native boolean nIsLinkStarted(int[] obj_startedAtAttributeId); /*MANUAL
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);;
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
         auto _result = ImNodes::IsLinkStarted((startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL));
-        if (startedAtAttributeId)
-            env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, (void*)startedAtAttributeId, JNI_FALSE);;
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
         return _result;
     */
 
@@ -1012,22 +991,16 @@ public final class ImNodes {
     */
 
     private static native boolean nIsLinkDropped(int[] obj_startedAtAttributeId); /*MANUAL
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);;
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
         auto _result = ImNodes::IsLinkDropped((startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL));
-        if (startedAtAttributeId)
-            env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, (void*)startedAtAttributeId, JNI_FALSE);;
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nIsLinkDropped(int[] obj_startedAtAttributeId, boolean includingDetachedLinks); /*MANUAL
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);;
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
         auto _result = ImNodes::IsLinkDropped((startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL), includingDetachedLinks);
-        if (startedAtAttributeId)
-            env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, (void*)startedAtAttributeId, JNI_FALSE);;
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
         return _result;
     */
 
@@ -1050,44 +1023,22 @@ public final class ImNodes {
     }
 
     private static native boolean nIsLinkCreated(int[] obj_startedAtAttributeId, int[] obj_endedAtAttributeId); /*MANUAL
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtAttributeId, NULL);;
-        auto endedAtAttributeId = obj_endedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtAttributeId, NULL);;
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
+        auto endedAtAttributeId = obj_endedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtAttributeId, JNI_FALSE);
         auto _result = ImNodes::IsLinkCreated((startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL), (endedAtAttributeId != NULL ? &endedAtAttributeId[0] : NULL));
-        if (startedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_startedAtAttributeId, startedAtAttributeId, 0);;
-        if (endedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_endedAtAttributeId, endedAtAttributeId, 0);;
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
+        if (endedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtAttributeId, endedAtAttributeId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nIsLinkCreated(int[] obj_startedAtAttributeId, int[] obj_endedAtAttributeId, boolean[] obj_createdFromSnap); /*MANUAL
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtAttributeId, NULL);;
-        auto endedAtAttributeId = obj_endedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtAttributeId, NULL);;
-        jsize createdFromSnapLength = obj_createdFromSnap == NULL ? 0 : env->GetArrayLength(obj_createdFromSnap);;
-        jboolean* _raw_createdFromSnap = obj_createdFromSnap == NULL ? nullptr : env->GetBooleanArrayElements(obj_createdFromSnap, NULL);;
-        bool createdFromSnap[createdFromSnapLength];;
-        if (_raw_createdFromSnap) {
-            for (int i = 0; i < createdFromSnapLength; ++i)
-                createdFromSnap[i] = (_raw_createdFromSnap[i] != 0);
-        };
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
+        auto endedAtAttributeId = obj_endedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtAttributeId, JNI_FALSE);
+        auto createdFromSnap = obj_createdFromSnap == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_createdFromSnap, JNI_FALSE);
         auto _result = ImNodes::IsLinkCreated((startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL), (endedAtAttributeId != NULL ? &endedAtAttributeId[0] : NULL), (createdFromSnap != NULL ? &createdFromSnap[0] : NULL));
-        if (startedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_startedAtAttributeId, startedAtAttributeId, 0);;
-        if (endedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_endedAtAttributeId, endedAtAttributeId, 0);;
-        if (_raw_createdFromSnap) {
-            for (int i = 0; i < createdFromSnapLength; ++i)
-                _raw_createdFromSnap[i] = createdFromSnap[i] ? 1 : 0;
-            env->ReleaseBooleanArrayElements(obj_createdFromSnap, _raw_createdFromSnap, 0);
-        };
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
+        if (endedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtAttributeId, endedAtAttributeId, JNI_FALSE);
+        if (createdFromSnap != NULL) env->ReleasePrimitiveArrayCritical(obj_createdFromSnap, createdFromSnap, JNI_FALSE);
         return _result;
     */
 
@@ -1106,64 +1057,30 @@ public final class ImNodes {
     }
 
     private static native boolean nIsLinkCreated(int[] obj_startedAtNodeId, int[] obj_startedAtAttributeId, int[] obj_endedAtNodeId, int[] obj_endedAtAttributeId); /*MANUAL
-        auto startedAtNodeId = obj_startedAtNodeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtNodeId, NULL);;
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtAttributeId, NULL);;
-        auto endedAtNodeId = obj_endedAtNodeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtNodeId, NULL);;
-        auto endedAtAttributeId = obj_endedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtAttributeId, NULL);;
+        auto startedAtNodeId = obj_startedAtNodeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtNodeId, JNI_FALSE);
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
+        auto endedAtNodeId = obj_endedAtNodeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtNodeId, JNI_FALSE);
+        auto endedAtAttributeId = obj_endedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtAttributeId, JNI_FALSE);
         auto _result = ImNodes::IsLinkCreated((startedAtNodeId != NULL ? &startedAtNodeId[0] : NULL), (startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL), (endedAtNodeId != NULL ? &endedAtNodeId[0] : NULL), (endedAtAttributeId != NULL ? &endedAtAttributeId[0] : NULL));
-        if (startedAtNodeId)
-            env->ReleaseIntArrayElements(obj_startedAtNodeId, startedAtNodeId, 0);;
-        if (startedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_startedAtAttributeId, startedAtAttributeId, 0);;
-        if (endedAtNodeId)
-            env->ReleaseIntArrayElements(obj_endedAtNodeId, endedAtNodeId, 0);;
-        if (endedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_endedAtAttributeId, endedAtAttributeId, 0);;
+        if (startedAtNodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtNodeId, startedAtNodeId, JNI_FALSE);
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
+        if (endedAtNodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtNodeId, endedAtNodeId, JNI_FALSE);
+        if (endedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtAttributeId, endedAtAttributeId, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nIsLinkCreated(int[] obj_startedAtNodeId, int[] obj_startedAtAttributeId, int[] obj_endedAtNodeId, int[] obj_endedAtAttributeId, boolean[] obj_createdFromSnap); /*MANUAL
-        auto startedAtNodeId = obj_startedAtNodeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtNodeId, NULL);;
-        auto startedAtAttributeId = obj_startedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_startedAtAttributeId, NULL);;
-        auto endedAtNodeId = obj_endedAtNodeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtNodeId, NULL);;
-        auto endedAtAttributeId = obj_endedAtAttributeId == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_endedAtAttributeId, NULL);;
-        jsize createdFromSnapLength = obj_createdFromSnap == NULL ? 0 : env->GetArrayLength(obj_createdFromSnap);;
-        jboolean* _raw_createdFromSnap = obj_createdFromSnap == NULL ? nullptr : env->GetBooleanArrayElements(obj_createdFromSnap, NULL);;
-        bool createdFromSnap[createdFromSnapLength];;
-        if (_raw_createdFromSnap) {
-            for (int i = 0; i < createdFromSnapLength; ++i)
-                createdFromSnap[i] = (_raw_createdFromSnap[i] != 0);
-        };
+        auto startedAtNodeId = obj_startedAtNodeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtNodeId, JNI_FALSE);
+        auto startedAtAttributeId = obj_startedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_startedAtAttributeId, JNI_FALSE);
+        auto endedAtNodeId = obj_endedAtNodeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtNodeId, JNI_FALSE);
+        auto endedAtAttributeId = obj_endedAtAttributeId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_endedAtAttributeId, JNI_FALSE);
+        auto createdFromSnap = obj_createdFromSnap == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_createdFromSnap, JNI_FALSE);
         auto _result = ImNodes::IsLinkCreated((startedAtNodeId != NULL ? &startedAtNodeId[0] : NULL), (startedAtAttributeId != NULL ? &startedAtAttributeId[0] : NULL), (endedAtNodeId != NULL ? &endedAtNodeId[0] : NULL), (endedAtAttributeId != NULL ? &endedAtAttributeId[0] : NULL), (createdFromSnap != NULL ? &createdFromSnap[0] : NULL));
-        if (startedAtNodeId)
-            env->ReleaseIntArrayElements(obj_startedAtNodeId, startedAtNodeId, 0);;
-        if (startedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_startedAtAttributeId, startedAtAttributeId, 0);;
-        if (endedAtNodeId)
-            env->ReleaseIntArrayElements(obj_endedAtNodeId, endedAtNodeId, 0);;
-        if (endedAtAttributeId)
-            env->ReleaseIntArrayElements(obj_endedAtAttributeId, endedAtAttributeId, 0);;
-        if (_raw_createdFromSnap) {
-            for (int i = 0; i < createdFromSnapLength; ++i)
-                _raw_createdFromSnap[i] = createdFromSnap[i] ? 1 : 0;
-            env->ReleaseBooleanArrayElements(obj_createdFromSnap, _raw_createdFromSnap, 0);
-        };
+        if (startedAtNodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtNodeId, startedAtNodeId, JNI_FALSE);
+        if (startedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_startedAtAttributeId, startedAtAttributeId, JNI_FALSE);
+        if (endedAtNodeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtNodeId, endedAtNodeId, JNI_FALSE);
+        if (endedAtAttributeId != NULL) env->ReleasePrimitiveArrayCritical(obj_endedAtAttributeId, endedAtAttributeId, JNI_FALSE);
+        if (createdFromSnap != NULL) env->ReleasePrimitiveArrayCritical(obj_createdFromSnap, createdFromSnap, JNI_FALSE);
         return _result;
     */
 
@@ -1176,12 +1093,9 @@ public final class ImNodes {
     }
 
     private static native boolean nIsLinkDestroyed(int[] obj_linkId); /*MANUAL
-        auto linkId = obj_linkId == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);;
+        auto linkId = obj_linkId == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_linkId, JNI_FALSE);
         auto _result = ImNodes::IsLinkDestroyed((linkId != NULL ? &linkId[0] : NULL));
-        if (linkId)
-            env->ReleasePrimitiveArrayCritical(obj_linkId, (void*)linkId, JNI_FALSE);;
+        if (linkId != NULL) env->ReleasePrimitiveArrayCritical(obj_linkId, linkId, JNI_FALSE);
         return _result;
     */
 

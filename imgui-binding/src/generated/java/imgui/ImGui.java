@@ -314,19 +314,9 @@ public class ImGui {
     */
 
     private static native void nShowDemoWindow(boolean[] pOpen); /*MANUAL
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         ImGui::ShowDemoWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
     /**
@@ -348,19 +338,9 @@ public class ImGui {
     */
 
     private static native void nShowMetricsWindow(boolean[] pOpen); /*MANUAL
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         ImGui::ShowMetricsWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
     /**
@@ -382,19 +362,9 @@ public class ImGui {
     */
 
     private static native void nShowDebugLogWindow(boolean[] pOpen); /*MANUAL
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         ImGui::ShowDebugLogWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
     /**
@@ -416,19 +386,9 @@ public class ImGui {
     */
 
     private static native void nShowIDStackToolWindow(boolean[] pOpen); /*MANUAL
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         ImGui::ShowIDStackToolWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
     /**
@@ -450,19 +410,9 @@ public class ImGui {
     */
 
     private static native void nShowAboutWindow(boolean[] pOpen); /*MANUAL
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         ImGui::ShowAboutWindow((pOpen != NULL ? &pOpen[0] : NULL));
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
     */
 
     /**
@@ -645,39 +595,19 @@ public class ImGui {
 
     private static native boolean nBegin(String obj_title, boolean[] obj_pOpen); /*MANUAL
         auto title = obj_title == NULL ? NULL : (char*)env->GetStringUTFChars(obj_title, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::Begin(title, (pOpen != NULL ? &pOpen[0] : NULL));
         if (title != NULL) env->ReleaseStringUTFChars(obj_title, title);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nBegin(String obj_title, boolean[] obj_pOpen, int imGuiWindowFlags); /*MANUAL
         auto title = obj_title == NULL ? NULL : (char*)env->GetStringUTFChars(obj_title, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::Begin(title, (pOpen != NULL ? &pOpen[0] : NULL), imGuiWindowFlags);
         if (title != NULL) env->ReleaseStringUTFChars(obj_title, title);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 
@@ -3138,20 +3068,10 @@ public class ImGui {
 
     private static native boolean nCheckbox(String obj_label, boolean[] obj_data); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize dataLength = obj_data == NULL ? 0 : env->GetArrayLength(obj_data);;
-        jboolean* _raw_data = obj_data == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_data, JNI_FALSE);;
-        bool data[dataLength];;
-        if (_raw_data) {
-            for (int i = 0; i < dataLength; ++i)
-                data[i] = (_raw_data[i] != 0);
-        };
+        auto data = obj_data == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_data, JNI_FALSE);
         auto _result = ImGui::Checkbox(label, (data != NULL ? &data[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_data) {
-            for (int i = 0; i < dataLength; ++i)
-                _raw_data[i] = data[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_data, (void*)_raw_data, JNI_FALSE);
-        };
+        if (data != NULL) env->ReleasePrimitiveArrayCritical(obj_data, data, JNI_FALSE);
         return _result;
     */
 
@@ -3161,13 +3081,10 @@ public class ImGui {
 
     private static native boolean nCheckboxFlags(String obj_label, int[] obj_flags, int flagsValue); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto flags = obj_flags == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_flags, JNI_FALSE);;
+        auto flags = obj_flags == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_flags, JNI_FALSE);
         auto _result = ImGui::CheckboxFlags(label, (flags != NULL ? &flags[0] : NULL), flagsValue);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (flags)
-            env->ReleasePrimitiveArrayCritical(obj_flags, (void*)flags, JNI_FALSE);;
+        if (flags != NULL) env->ReleasePrimitiveArrayCritical(obj_flags, flags, JNI_FALSE);
         return _result;
     */
 
@@ -3194,13 +3111,10 @@ public class ImGui {
 
     private static native boolean nRadioButton(String obj_label, int[] obj_v, int vButton); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::RadioButton(label, (v != NULL ? &v[0] : NULL), vButton);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -3312,9 +3226,7 @@ public class ImGui {
 
     private static native boolean nCombo(String obj_label, int[] obj_currentItem, String[] obj_items, int itemsCount); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         const char* items[itemsCount];
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
@@ -3323,8 +3235,7 @@ public class ImGui {
         };
         auto _result = ImGui::Combo(label, (currentItem != NULL ? &currentItem[0] : NULL), items, itemsCount);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
             env->ReleaseStringUTFChars(str, items[i]);
@@ -3334,9 +3245,7 @@ public class ImGui {
 
     private static native boolean nCombo(String obj_label, int[] obj_currentItem, String[] obj_items, int itemsCount, int popupMaxHeightInItems); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         const char* items[itemsCount];
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
@@ -3345,8 +3254,7 @@ public class ImGui {
         };
         auto _result = ImGui::Combo(label, (currentItem != NULL ? &currentItem[0] : NULL), items, itemsCount, popupMaxHeightInItems);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
             env->ReleaseStringUTFChars(str, items[i]);
@@ -3370,28 +3278,22 @@ public class ImGui {
 
     private static native boolean nCombo(String obj_label, int[] obj_currentItem, String obj_itemsSeparatedByZeros); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         auto itemsSeparatedByZeros = obj_itemsSeparatedByZeros == NULL ? NULL : (char*)env->GetStringUTFChars(obj_itemsSeparatedByZeros, JNI_FALSE);
         auto _result = ImGui::Combo(label, (currentItem != NULL ? &currentItem[0] : NULL), itemsSeparatedByZeros);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         if (itemsSeparatedByZeros != NULL) env->ReleaseStringUTFChars(obj_itemsSeparatedByZeros, itemsSeparatedByZeros);
         return _result;
     */
 
     private static native boolean nCombo(String obj_label, int[] obj_currentItem, String obj_itemsSeparatedByZeros, int popupMaxHeightInItems); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         auto itemsSeparatedByZeros = obj_itemsSeparatedByZeros == NULL ? NULL : (char*)env->GetStringUTFChars(obj_itemsSeparatedByZeros, JNI_FALSE);
         auto _result = ImGui::Combo(label, (currentItem != NULL ? &currentItem[0] : NULL), itemsSeparatedByZeros, popupMaxHeightInItems);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         if (itemsSeparatedByZeros != NULL) env->ReleaseStringUTFChars(obj_itemsSeparatedByZeros, itemsSeparatedByZeros);
         return _result;
     */
@@ -3460,89 +3362,68 @@ public class ImGui {
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed, float vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat(label, &v[0], vSpeed, vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -3576,89 +3457,68 @@ public class ImGui {
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed, float vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat2(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat2(label, &v[0], vSpeed, vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -3692,89 +3552,68 @@ public class ImGui {
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed, float vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat3(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat3(label, &v[0], vSpeed, vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -3808,89 +3647,68 @@ public class ImGui {
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed, float vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloat4(String obj_label, float[] obj_v, float vSpeed, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragFloat4(label, &v[0], vSpeed, vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -3920,90 +3738,60 @@ public class ImGui {
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed, float vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed, float vMin, float vMax, String obj_format, String obj_formatMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto formatMax = obj_formatMax == NULL ? NULL : (char*)env->GetStringUTFChars(obj_formatMax, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format, formatMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         if (formatMax != NULL) env->ReleaseStringUTFChars(obj_formatMax, formatMax);
         return _result;
@@ -4011,20 +3799,14 @@ public class ImGui {
 
     private static native boolean nDragFloatRange2(String obj_label, float[] obj_vCurrentMin, float[] obj_vCurrentMax, float vSpeed, float vMin, float vMax, String obj_format, String obj_formatMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto formatMax = obj_formatMax == NULL ? NULL : (char*)env->GetStringUTFChars(obj_formatMax, JNI_FALSE);
         auto _result = ImGui::DragFloatRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format, formatMax, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseFloatArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseFloatArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         if (formatMax != NULL) env->ReleaseStringUTFChars(obj_formatMax, formatMax);
         return _result;
@@ -4081,89 +3863,68 @@ public class ImGui {
 
     private static native boolean nDragInt(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed, int vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt(label, &v[0], vSpeed, vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -4197,89 +3958,68 @@ public class ImGui {
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed, int vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt2(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt2(label, &v[0], vSpeed, vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -4313,89 +4053,68 @@ public class ImGui {
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed, int vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt3(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt3(label, &v[0], vSpeed, vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -4429,89 +4148,68 @@ public class ImGui {
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed, int vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed, vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragInt4(String obj_label, int[] obj_v, float vSpeed, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::DragInt4(label, &v[0], vSpeed, vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -4545,107 +4243,71 @@ public class ImGui {
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed, int vMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed, int vMin, int vMax, String obj_format, String obj_formatMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto formatMax = obj_formatMax == NULL ? NULL : (char*)env->GetStringUTFChars(obj_formatMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format, formatMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         if (formatMax != NULL) env->ReleaseStringUTFChars(obj_formatMax, formatMax);
         return _result;
@@ -4653,20 +4315,14 @@ public class ImGui {
 
     private static native boolean nDragIntRange2(String obj_label, int[] obj_vCurrentMin, int[] obj_vCurrentMax, float vSpeed, int vMin, int vMax, String obj_format, String obj_formatMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vCurrentMin = obj_vCurrentMin == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMin, NULL);;
-        auto vCurrentMax = obj_vCurrentMax == NULL
-            ? nullptr
-            : (jint*)env->GetIntArrayElements(obj_vCurrentMax, NULL);;
+        auto vCurrentMin = obj_vCurrentMin == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMin, JNI_FALSE);
+        auto vCurrentMax = obj_vCurrentMax == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_vCurrentMax, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto formatMax = obj_formatMax == NULL ? NULL : (char*)env->GetStringUTFChars(obj_formatMax, JNI_FALSE);
         auto _result = ImGui::DragIntRange2(label, &vCurrentMin[0], &vCurrentMax[0], vSpeed, vMin, vMax, format, formatMax, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vCurrentMin)
-            env->ReleaseIntArrayElements(obj_vCurrentMin, vCurrentMin, 0);;
-        if (vCurrentMax)
-            env->ReleaseIntArrayElements(obj_vCurrentMax, vCurrentMax, 0);;
+        if (vCurrentMin != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMin, vCurrentMin, JNI_FALSE);
+        if (vCurrentMax != NULL) env->ReleasePrimitiveArrayCritical(obj_vCurrentMax, vCurrentMax, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         if (formatMax != NULL) env->ReleaseStringUTFChars(obj_formatMax, formatMax);
         return _result;
@@ -4698,76 +4354,58 @@ public class ImGui {
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData, float vSpeed, short pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0], vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData, float vSpeed, short pMin, short pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0], vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData, float vSpeed, short pMin, short pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0], vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, short[] obj_pData, float vSpeed, short pMin, short pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S16, &pData[0], vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -4798,76 +4436,58 @@ public class ImGui {
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData, float vSpeed, int pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0], vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData, float vSpeed, int pMin, int pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0], vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData, float vSpeed, int pMin, int pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0], vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, int[] obj_pData, float vSpeed, int pMin, int pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S32, &pData[0], vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -4898,76 +4518,58 @@ public class ImGui {
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData, float vSpeed, long pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0], vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData, float vSpeed, long pMin, long pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0], vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData, float vSpeed, long pMin, long pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0], vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, long[] obj_pData, float vSpeed, long pMin, long pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_S64, &pData[0], vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -4998,76 +4600,58 @@ public class ImGui {
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData, float vSpeed, float pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0], vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData, float vSpeed, float pMin, float pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0], vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData, float vSpeed, float pMin, float pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0], vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, float[] obj_pData, float vSpeed, float pMin, float pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Float, &pData[0], vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5098,76 +4682,58 @@ public class ImGui {
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0], vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData, float vSpeed, double pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0], vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData, float vSpeed, double pMin, double pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0], vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData, float vSpeed, double pMin, double pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0], vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalar(String obj_label, double[] obj_pData, float vSpeed, double pMin, double pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalar(label, ImGuiDataType_Double, &pData[0], vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5198,76 +4764,58 @@ public class ImGui {
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components, vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components, float vSpeed, short pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components, vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components, float vSpeed, short pMin, short pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components, vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components, float vSpeed, short pMin, short pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components, vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, short[] obj_pData, int components, float vSpeed, short pMin, short pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S16, &pData[0], components, vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5298,76 +4846,58 @@ public class ImGui {
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components, vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components, float vSpeed, int pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components, vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components, float vSpeed, int pMin, int pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components, vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components, float vSpeed, int pMin, int pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components, vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, int[] obj_pData, int components, float vSpeed, int pMin, int pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S32, &pData[0], components, vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5398,76 +4928,58 @@ public class ImGui {
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components, vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components, float vSpeed, long pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components, vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components, float vSpeed, long pMin, long pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components, vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components, float vSpeed, long pMin, long pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components, vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, long[] obj_pData, int components, float vSpeed, long pMin, long pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_S64, &pData[0], components, vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5498,76 +5010,58 @@ public class ImGui {
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components, vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components, float vSpeed, float pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components, vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components, float vSpeed, float pMin, float pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components, vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components, float vSpeed, float pMin, float pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components, vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, float[] obj_pData, int components, float vSpeed, float pMin, float pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Float, &pData[0], components, vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5598,76 +5092,58 @@ public class ImGui {
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components, float vSpeed); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components, vSpeed);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components, float vSpeed, double pMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components, vSpeed, &pMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components, float vSpeed, double pMin, double pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components, vSpeed, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components, float vSpeed, double pMin, double pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components, vSpeed, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nDragScalarN(String obj_label, double[] obj_pData, int components, float vSpeed, double pMin, double pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::DragScalarN(label, ImGuiDataType_Double, &pData[0], components, vSpeed, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -5709,53 +5185,41 @@ public class ImGui {
 
     private static native boolean nSliderFloat(String obj_label, float[] obj_v, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderFloat(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat(String obj_label, float[] obj_v, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat(label, &v[0], vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -5777,53 +5241,41 @@ public class ImGui {
 
     private static native boolean nSliderFloat2(String obj_label, float[] obj_v, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat2(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderFloat2(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat2(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat2(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat2(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat2(String obj_label, float[] obj_v, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat2(label, &v[0], vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -5845,53 +5297,41 @@ public class ImGui {
 
     private static native boolean nSliderFloat3(String obj_label, float[] obj_v, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat3(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderFloat3(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat3(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat3(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat3(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat3(String obj_label, float[] obj_v, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat3(label, &v[0], vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -5913,53 +5353,41 @@ public class ImGui {
 
     private static native boolean nSliderFloat4(String obj_label, float[] obj_v, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat4(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderFloat4(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat4(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat4(String obj_label, float[] obj_v, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderFloat4(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderFloat4(String obj_label, float[] obj_v, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderFloat4(label, &v[0], vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -5989,77 +5417,59 @@ public class ImGui {
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad, float vDegreesMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0], vDegreesMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad, float vDegreesMin, float vDegreesMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0], vDegreesMin, vDegreesMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad, float vDegreesMin, float vDegreesMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0], vDegreesMin, vDegreesMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad, float vDegreesMin, float vDegreesMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0], vDegreesMin, vDegreesMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderAngle(String obj_label, float[] obj_vRad, float vDegreesMin, float vDegreesMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto vRad = obj_vRad == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);;
+        auto vRad = obj_vRad == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_vRad, JNI_FALSE);
         auto _result = ImGui::SliderAngle(label, &vRad[0], vDegreesMin, vDegreesMax, "%.0f deg", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (vRad)
-            env->ReleasePrimitiveArrayCritical(obj_vRad, (void*)vRad, JNI_FALSE);;
+        if (vRad != NULL) env->ReleasePrimitiveArrayCritical(obj_vRad, vRad, JNI_FALSE);
         return _result;
     */
 
@@ -6081,53 +5491,41 @@ public class ImGui {
 
     private static native boolean nSliderInt(String obj_label, int[] obj_v, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderInt(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt(String obj_label, int[] obj_v, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt(label, &v[0], vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -6149,53 +5547,41 @@ public class ImGui {
 
     private static native boolean nSliderInt2(String obj_label, int[] obj_v, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt2(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderInt2(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt2(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt2(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt2(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt2(String obj_label, int[] obj_v, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt2(label, &v[0], vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -6217,53 +5603,41 @@ public class ImGui {
 
     private static native boolean nSliderInt3(String obj_label, int[] obj_v, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt3(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderInt3(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt3(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt3(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt3(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt3(String obj_label, int[] obj_v, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt3(label, &v[0], vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -6285,53 +5659,41 @@ public class ImGui {
 
     private static native boolean nSliderInt4(String obj_label, int[] obj_v, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt4(label, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderInt4(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt4(label, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt4(String obj_label, int[] obj_v, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderInt4(label, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderInt4(String obj_label, int[] obj_v, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::SliderInt4(label, &v[0], vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -6349,40 +5711,31 @@ public class ImGui {
 
     private static native boolean nSliderScalar(String obj_label, short[] obj_pData, short pMin, short pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S16, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, short[] obj_pData, short pMin, short pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S16, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, short[] obj_pData, short pMin, short pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S16, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6401,40 +5754,31 @@ public class ImGui {
 
     private static native boolean nSliderScalar(String obj_label, int[] obj_pData, int pMin, int pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S32, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, int[] obj_pData, int pMin, int pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S32, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, int[] obj_pData, int pMin, int pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S32, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6453,40 +5797,31 @@ public class ImGui {
 
     private static native boolean nSliderScalar(String obj_label, long[] obj_pData, long pMin, long pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S64, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, long[] obj_pData, long pMin, long pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S64, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, long[] obj_pData, long pMin, long pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_S64, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6505,40 +5840,31 @@ public class ImGui {
 
     private static native boolean nSliderScalar(String obj_label, float[] obj_pData, float pMin, float pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Float, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, float[] obj_pData, float pMin, float pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Float, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, float[] obj_pData, float pMin, float pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Float, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6557,40 +5883,31 @@ public class ImGui {
 
     private static native boolean nSliderScalar(String obj_label, double[] obj_pData, double pMin, double pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Double, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, double[] obj_pData, double pMin, double pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Double, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalar(String obj_label, double[] obj_pData, double pMin, double pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalar(label, ImGuiDataType_Double, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6609,40 +5926,31 @@ public class ImGui {
 
     private static native boolean nSliderScalarN(String obj_label, short[] obj_pData, int components, short pMin, short pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S16, &pData[0], components, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, short[] obj_pData, int components, short pMin, short pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S16, &pData[0], components, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, short[] obj_pData, int components, short pMin, short pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S16, &pData[0], components, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6661,40 +5969,31 @@ public class ImGui {
 
     private static native boolean nSliderScalarN(String obj_label, int[] obj_pData, int components, int pMin, int pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S32, &pData[0], components, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, int[] obj_pData, int components, int pMin, int pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S32, &pData[0], components, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, int[] obj_pData, int components, int pMin, int pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S32, &pData[0], components, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6713,40 +6012,31 @@ public class ImGui {
 
     private static native boolean nSliderScalarN(String obj_label, long[] obj_pData, int components, long pMin, long pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S64, &pData[0], components, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, long[] obj_pData, int components, long pMin, long pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S64, &pData[0], components, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, long[] obj_pData, int components, long pMin, long pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_S64, &pData[0], components, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6765,40 +6055,31 @@ public class ImGui {
 
     private static native boolean nSliderScalarN(String obj_label, float[] obj_pData, int components, float pMin, float pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Float, &pData[0], components, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, float[] obj_pData, int components, float pMin, float pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Float, &pData[0], components, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, float[] obj_pData, int components, float pMin, float pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Float, &pData[0], components, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6817,40 +6098,31 @@ public class ImGui {
 
     private static native boolean nSliderScalarN(String obj_label, double[] obj_pData, int components, double pMin, double pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Double, &pData[0], components, &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, double[] obj_pData, int components, double pMin, double pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Double, &pData[0], components, &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nSliderScalarN(String obj_label, double[] obj_pData, int components, double pMin, double pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::SliderScalarN(label, ImGuiDataType_Double, &pData[0], components, &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -6889,57 +6161,45 @@ public class ImGui {
 
     private static native boolean nVSliderFloat(String obj_label, float sizeX, float sizeY, float[] obj_v, float vMin, float vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderFloat(label, size, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderFloat(String obj_label, float sizeX, float sizeY, float[] obj_v, float vMin, float vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderFloat(label, size, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderFloat(String obj_label, float sizeX, float sizeY, float[] obj_v, float vMin, float vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderFloat(label, size, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderFloat(String obj_label, float sizeX, float sizeY, float[] obj_v, float vMin, float vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderFloat(label, size, &v[0], vMin, vMax, "%.3f", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -6977,57 +6237,45 @@ public class ImGui {
 
     private static native boolean nVSliderInt(String obj_label, float sizeX, float sizeY, int[] obj_v, int vMin, int vMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderInt(label, size, &v[0], vMin, vMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderInt(String obj_label, float sizeX, float sizeY, int[] obj_v, int vMin, int vMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderInt(label, size, &v[0], vMin, vMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderInt(String obj_label, float sizeX, float sizeY, int[] obj_v, int vMin, int vMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderInt(label, size, &v[0], vMin, vMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderInt(String obj_label, float sizeX, float sizeY, int[] obj_v, int vMin, int vMax, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderInt(label, size, &v[0], vMin, vMax, "%d", imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7057,43 +6305,34 @@ public class ImGui {
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, short[] obj_pData, short pMin, short pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S16, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, short[] obj_pData, short pMin, short pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S16, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, short[] obj_pData, short pMin, short pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S16, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -7124,43 +6363,34 @@ public class ImGui {
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, int[] obj_pData, int pMin, int pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S32, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, int[] obj_pData, int pMin, int pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S32, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, int[] obj_pData, int pMin, int pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S32, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -7191,43 +6421,34 @@ public class ImGui {
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, long[] obj_pData, long pMin, long pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S64, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, long[] obj_pData, long pMin, long pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S64, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, long[] obj_pData, long pMin, long pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_S64, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -7258,43 +6479,34 @@ public class ImGui {
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, float[] obj_pData, float pMin, float pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Float, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, float[] obj_pData, float pMin, float pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Float, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, float[] obj_pData, float pMin, float pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Float, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -7325,43 +6537,34 @@ public class ImGui {
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, double[] obj_pData, double pMin, double pMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Double, &pData[0], &pMin, &pMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, double[] obj_pData, double pMin, double pMax, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Double, &pData[0], &pMin, &pMax, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nVSliderScalar(String obj_label, float sizeX, float sizeY, double[] obj_pData, double pMin, double pMax, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::VSliderScalar(label, size, ImGuiDataType_Double, &pData[0], &pMin, &pMax, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -7614,77 +6817,59 @@ public class ImGui {
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v, float step); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL), step);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v, float step, float stepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL), step, stepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v, float step, float stepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL), step, stepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v, float step, float stepFast, String obj_format, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL), step, stepFast, format, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat(String obj_label, float[] obj_v, float step, float stepFast, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat(label, (v != NULL ? &v[0] : NULL), step, stepFast, "%.3f", imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7706,53 +6891,41 @@ public class ImGui {
 
     private static native boolean nInputFloat2(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat2(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat2(String obj_label, float[] obj_v, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat2(label, &v[0], format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat2(String obj_label, float[] obj_v, String obj_format, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat2(label, &v[0], format, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat2(String obj_label, float[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat2(label, &v[0], "%.3f", imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7774,53 +6947,41 @@ public class ImGui {
 
     private static native boolean nInputFloat3(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat3(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat3(String obj_label, float[] obj_v, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat3(label, &v[0], format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat3(String obj_label, float[] obj_v, String obj_format, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat3(label, &v[0], format, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat3(String obj_label, float[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat3(label, &v[0], "%.3f", imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7842,53 +7003,41 @@ public class ImGui {
 
     private static native boolean nInputFloat4(String obj_label, float[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat4(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputFloat4(String obj_label, float[] obj_v, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat4(label, &v[0], format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat4(String obj_label, float[] obj_v, String obj_format, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputFloat4(label, &v[0], format, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputFloat4(String obj_label, float[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputFloat4(label, &v[0], "%.3f", imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7910,49 +7059,37 @@ public class ImGui {
 
     private static native boolean nInputInt(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt(label, (v != NULL ? &v[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt(String obj_label, int[] obj_v, int step); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt(label, (v != NULL ? &v[0] : NULL), step);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt(String obj_label, int[] obj_v, int step, int stepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt(label, (v != NULL ? &v[0] : NULL), step, stepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt(String obj_label, int[] obj_v, int step, int stepFast, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt(label, (v != NULL ? &v[0] : NULL), step, stepFast, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7966,25 +7103,19 @@ public class ImGui {
 
     private static native boolean nInputInt2(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt2(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt2(String obj_label, int[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt2(label, &v[0], imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -7998,25 +7129,19 @@ public class ImGui {
 
     private static native boolean nInputInt3(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt3(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt3(String obj_label, int[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt3(label, &v[0], imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -8030,25 +7155,19 @@ public class ImGui {
 
     private static native boolean nInputInt4(String obj_label, int[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt4(label, &v[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputInt4(String obj_label, int[] obj_v, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputInt4(label, &v[0], imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -8078,77 +7197,59 @@ public class ImGui {
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v, double step); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL), step);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v, double step, double stepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL), step, stepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v, double step, double stepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL), step, stepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v, double step, double stepFast, String obj_format, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL), step, stepFast, format, imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputDouble(String obj_label, double[] obj_v, double step, double stepFast, int imGuiInputTextFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto v = obj_v == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);;
+        auto v = obj_v == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_v, JNI_FALSE);
         auto _result = ImGui::InputDouble(label, (v != NULL ? &v[0] : NULL), step, stepFast, "%.6f", imGuiInputTextFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (v)
-            env->ReleasePrimitiveArrayCritical(obj_v, (void*)v, JNI_FALSE);;
+        if (v != NULL) env->ReleasePrimitiveArrayCritical(obj_v, v, JNI_FALSE);
         return _result;
     */
 
@@ -8174,64 +7275,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, short[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S16, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, short[] obj_pData, short pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S16, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, short[] obj_pData, short pStep, short pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S16, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, short[] obj_pData, short pStep, short pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S16, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, short[] obj_pData, short pStep, short pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S16, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8258,64 +7344,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S32, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int[] obj_pData, int pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S32, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int[] obj_pData, int pStep, int pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S32, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int[] obj_pData, int pStep, int pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S32, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int[] obj_pData, int pStep, int pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S32, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8342,64 +7413,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, long[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S64, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, long[] obj_pData, long pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S64, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, long[] obj_pData, long pStep, long pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S64, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, long[] obj_pData, long pStep, long pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S64, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, long[] obj_pData, long pStep, long pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_S64, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8426,64 +7482,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, float[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Float, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, float[] obj_pData, float pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Float, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, float[] obj_pData, float pStep, float pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Float, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, float[] obj_pData, float pStep, float pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Float, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, float[] obj_pData, float pStep, float pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Float, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8510,64 +7551,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, double[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Double, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, double[] obj_pData, double pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Double, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, double[] obj_pData, double pStep, double pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Double, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, double[] obj_pData, double pStep, double pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Double, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, double[] obj_pData, double pStep, double pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, ImGuiDataType_Double, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8594,64 +7620,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int dataType, short[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, short[] obj_pData, short pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, short[] obj_pData, short pStep, short pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, short[] obj_pData, short pStep, short pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, short[] obj_pData, short pStep, short pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8678,64 +7689,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int dataType, int[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, int[] obj_pData, int pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, int[] obj_pData, int pStep, int pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, int[] obj_pData, int pStep, int pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, int[] obj_pData, int pStep, int pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8762,64 +7758,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int dataType, long[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, long[] obj_pData, long pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, long[] obj_pData, long pStep, long pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, long[] obj_pData, long pStep, long pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, long[] obj_pData, long pStep, long pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8846,64 +7827,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int dataType, float[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, float[] obj_pData, float pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, float[] obj_pData, float pStep, float pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, float[] obj_pData, float pStep, float pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, float[] obj_pData, float pStep, float pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -8930,64 +7896,49 @@ public class ImGui {
 
     private static native boolean nInputScalar(String obj_label, int dataType, double[] obj_pData); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, double[] obj_pData, double pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, double[] obj_pData, double pStep, double pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, double[] obj_pData, double pStep, double pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalar(String obj_label, int dataType, double[] obj_pData, double pStep, double pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalar(label, dataType, (pData != NULL ? &pData[0] : NULL), &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9014,64 +7965,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, short[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S16, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, short[] obj_pData, int components, short pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S16, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, short[] obj_pData, int components, short pStep, short pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S16, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, short[] obj_pData, int components, short pStep, short pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S16, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, short[] obj_pData, int components, short pStep, short pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S16, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9098,64 +8034,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S32, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int[] obj_pData, int components, int pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S32, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int[] obj_pData, int components, int pStep, int pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S32, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int[] obj_pData, int components, int pStep, int pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S32, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int[] obj_pData, int components, int pStep, int pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S32, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9182,64 +8103,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, long[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S64, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, long[] obj_pData, int components, long pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S64, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, long[] obj_pData, int components, long pStep, long pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S64, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, long[] obj_pData, int components, long pStep, long pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S64, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, long[] obj_pData, int components, long pStep, long pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_S64, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9266,64 +8172,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, float[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Float, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, float[] obj_pData, int components, float pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Float, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, float[] obj_pData, int components, float pStep, float pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Float, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, float[] obj_pData, int components, float pStep, float pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Float, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, float[] obj_pData, int components, float pStep, float pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Float, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9350,64 +8241,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, double[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Double, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, double[] obj_pData, int components, double pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Double, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, double[] obj_pData, int components, double pStep, double pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Double, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, double[] obj_pData, int components, double pStep, double pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Double, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, double[] obj_pData, int components, double pStep, double pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, ImGuiDataType_Double, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9434,64 +8310,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int dataType, short[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, short[] obj_pData, int components, short pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, short[] obj_pData, int components, short pStep, short pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, short[] obj_pData, int components, short pStep, short pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, short[] obj_pData, int components, short pStep, short pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jshort*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (short*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9518,64 +8379,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int dataType, int[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, int[] obj_pData, int components, int pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, int[] obj_pData, int components, int pStep, int pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, int[] obj_pData, int components, int pStep, int pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, int[] obj_pData, int components, int pStep, int pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9602,64 +8448,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int dataType, long[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, long[] obj_pData, int components, long pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, long[] obj_pData, int components, long pStep, long pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, long[] obj_pData, int components, long pStep, long pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, long[] obj_pData, int components, long pStep, long pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jlong*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (long*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9686,64 +8517,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int dataType, float[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, float[] obj_pData, int components, float pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, float[] obj_pData, int components, float pStep, float pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, float[] obj_pData, int components, float pStep, float pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, float[] obj_pData, int components, float pStep, float pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9770,64 +8586,49 @@ public class ImGui {
 
     private static native boolean nInputScalarN(String obj_label, int dataType, double[] obj_pData, int components); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, double[] obj_pData, int components, double pStep); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, double[] obj_pData, int components, double pStep, double pStepFast); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, double[] obj_pData, int components, double pStep, double pStepFast, String obj_format); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
 
     private static native boolean nInputScalarN(String obj_label, int dataType, double[] obj_pData, int components, double pStep, double pStepFast, String obj_format, int imGuiSliderFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto pData = obj_pData == NULL
-            ? nullptr
-            : (jdouble*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);;
+        auto pData = obj_pData == NULL ? NULL : (double*)env->GetPrimitiveArrayCritical(obj_pData, JNI_FALSE);
         auto format = obj_format == NULL ? NULL : (char*)env->GetStringUTFChars(obj_format, JNI_FALSE);
         auto _result = ImGui::InputScalarN(label, dataType, &pData[0], components, &pStep, &pStepFast, format, imGuiSliderFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (pData)
-            env->ReleasePrimitiveArrayCritical(obj_pData, (void*)pData, JNI_FALSE);;
+        if (pData != NULL) env->ReleasePrimitiveArrayCritical(obj_pData, pData, JNI_FALSE);
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
         return _result;
     */
@@ -9846,25 +8647,19 @@ public class ImGui {
 
     private static native boolean nColorEdit3(String obj_label, float[] obj_col); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorEdit3(label, &col[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorEdit3(String obj_label, float[] obj_col, int imGuiColorEditFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorEdit3(label, &col[0], imGuiColorEditFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
@@ -9878,25 +8673,19 @@ public class ImGui {
 
     private static native boolean nColorEdit4(String obj_label, float[] obj_col); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorEdit4(label, &col[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorEdit4(String obj_label, float[] obj_col, int imGuiColorEditFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorEdit4(label, &col[0], imGuiColorEditFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
@@ -9910,25 +8699,19 @@ public class ImGui {
 
     private static native boolean nColorPicker3(String obj_label, float[] obj_col); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorPicker3(label, &col[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorPicker3(String obj_label, float[] obj_col, int imGuiColorEditFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorPicker3(label, &col[0], imGuiColorEditFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
@@ -9950,59 +8733,41 @@ public class ImGui {
 
     private static native boolean nColorPicker4(String obj_label, float[] obj_col); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorPicker4(label, &col[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorPicker4(String obj_label, float[] obj_col, int imGuiColorEditFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorPicker4(label, &col[0], imGuiColorEditFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorPicker4(String obj_label, float[] obj_col, int imGuiColorEditFlags, float[] obj_refCol); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_col, NULL);;
-        auto refCol = obj_refCol == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_refCol, NULL);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
+        auto refCol = obj_refCol == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_refCol, JNI_FALSE);
         auto _result = ImGui::ColorPicker4(label, &col[0], imGuiColorEditFlags, &refCol[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleaseFloatArrayElements(obj_col, col, 0);;
-        if (refCol)
-            env->ReleaseFloatArrayElements(obj_refCol, refCol, 0);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
+        if (refCol != NULL) env->ReleasePrimitiveArrayCritical(obj_refCol, refCol, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorPicker4(String obj_label, float[] obj_col, float[] obj_refCol); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_col, NULL);;
-        auto refCol = obj_refCol == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_refCol, NULL);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
+        auto refCol = obj_refCol == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_refCol, JNI_FALSE);
         auto _result = ImGui::ColorPicker4(label, &col[0], 0, &refCol[0]);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (col)
-            env->ReleaseFloatArrayElements(obj_col, col, 0);;
-        if (refCol)
-            env->ReleaseFloatArrayElements(obj_refCol, refCol, 0);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
+        if (refCol != NULL) env->ReleasePrimitiveArrayCritical(obj_refCol, refCol, JNI_FALSE);
         return _result;
     */
 
@@ -10158,51 +8923,39 @@ public class ImGui {
 
     private static native boolean nColorButton(String obj_descId, float[] obj_col); /*MANUAL
         auto descId = obj_descId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_descId, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorButton(descId, ImVec4(col[0], col[1], col[2], col[3]));
         if (descId != NULL) env->ReleaseStringUTFChars(obj_descId, descId);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorButton(String obj_descId, float[] obj_col, int imGuiColorEditFlags); /*MANUAL
         auto descId = obj_descId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_descId, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         auto _result = ImGui::ColorButton(descId, ImVec4(col[0], col[1], col[2], col[3]), imGuiColorEditFlags);
         if (descId != NULL) env->ReleaseStringUTFChars(obj_descId, descId);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorButton(String obj_descId, float[] obj_col, int imGuiColorEditFlags, float sizeX, float sizeY); /*MANUAL
         auto descId = obj_descId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_descId, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::ColorButton(descId, ImVec4(col[0], col[1], col[2], col[3]), imGuiColorEditFlags, size);
         if (descId != NULL) env->ReleaseStringUTFChars(obj_descId, descId);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nColorButton(String obj_descId, float[] obj_col, float sizeX, float sizeY); /*MANUAL
         auto descId = obj_descId == NULL ? NULL : (char*)env->GetStringUTFChars(obj_descId, JNI_FALSE);
-        auto col = obj_col == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);;
+        auto col = obj_col == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_col, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::ColorButton(descId, ImVec4(col[0], col[1], col[2], col[3]), 0, size);
         if (descId != NULL) env->ReleaseStringUTFChars(obj_descId, descId);
-        if (col)
-            env->ReleasePrimitiveArrayCritical(obj_col, (void*)col, JNI_FALSE);;
+        if (col != NULL) env->ReleasePrimitiveArrayCritical(obj_col, col, JNI_FALSE);
         return _result;
     */
 
@@ -10398,39 +9151,19 @@ public class ImGui {
 
     private static native boolean nCollapsingHeader(String obj_label, boolean[] obj_pVisible); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pVisibleLength = obj_pVisible == NULL ? 0 : env->GetArrayLength(obj_pVisible);;
-        jboolean* _raw_pVisible = obj_pVisible == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pVisible, JNI_FALSE);;
-        bool pVisible[pVisibleLength];;
-        if (_raw_pVisible) {
-            for (int i = 0; i < pVisibleLength; ++i)
-                pVisible[i] = (_raw_pVisible[i] != 0);
-        };
+        auto pVisible = obj_pVisible == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pVisible, JNI_FALSE);
         auto _result = ImGui::CollapsingHeader(label, (pVisible != NULL ? &pVisible[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pVisible) {
-            for (int i = 0; i < pVisibleLength; ++i)
-                _raw_pVisible[i] = pVisible[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pVisible, (void*)_raw_pVisible, JNI_FALSE);
-        };
+        if (pVisible != NULL) env->ReleasePrimitiveArrayCritical(obj_pVisible, pVisible, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nCollapsingHeader(String obj_label, boolean[] obj_pVisible, int imGuiTreeNodeFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pVisibleLength = obj_pVisible == NULL ? 0 : env->GetArrayLength(obj_pVisible);;
-        jboolean* _raw_pVisible = obj_pVisible == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pVisible, JNI_FALSE);;
-        bool pVisible[pVisibleLength];;
-        if (_raw_pVisible) {
-            for (int i = 0; i < pVisibleLength; ++i)
-                pVisible[i] = (_raw_pVisible[i] != 0);
-        };
+        auto pVisible = obj_pVisible == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pVisible, JNI_FALSE);
         auto _result = ImGui::CollapsingHeader(label, (pVisible != NULL ? &pVisible[0] : NULL), imGuiTreeNodeFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pVisible) {
-            for (int i = 0; i < pVisibleLength; ++i)
-                _raw_pVisible[i] = pVisible[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pVisible, (void*)_raw_pVisible, JNI_FALSE);
-        };
+        if (pVisible != NULL) env->ReleasePrimitiveArrayCritical(obj_pVisible, pVisible, JNI_FALSE);
         return _result;
     */
 
@@ -10583,79 +9316,39 @@ public class ImGui {
 
     private static native boolean nSelectable(String obj_label, boolean[] obj_pSelected); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         auto _result = ImGui::Selectable(label, (pSelected != NULL ? &pSelected[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSelectable(String obj_label, boolean[] obj_pSelected, int imGuiSelectableFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         auto _result = ImGui::Selectable(label, (pSelected != NULL ? &pSelected[0] : NULL), imGuiSelectableFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSelectable(String obj_label, boolean[] obj_pSelected, int imGuiSelectableFlags, float sizeX, float sizeY); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::Selectable(label, (pSelected != NULL ? &pSelected[0] : NULL), imGuiSelectableFlags, size);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nSelectable(String obj_label, boolean[] obj_pSelected, float sizeX, float sizeY); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         ImVec2 size = ImVec2(sizeX, sizeY);
         auto _result = ImGui::Selectable(label, (pSelected != NULL ? &pSelected[0] : NULL), 0, size);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
@@ -10723,9 +9416,7 @@ public class ImGui {
 
     private static native void nListBox(String label, int[] currentItem, String[] obj_items, int itemsCount); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         const char* items[itemsCount];
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
@@ -10734,8 +9425,7 @@ public class ImGui {
         };
         ImGui::ListBox(label, (currentItem != NULL ? &currentItem[0] : NULL), items, itemsCount);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
             env->ReleaseStringUTFChars(str, items[i]);
@@ -10744,9 +9434,7 @@ public class ImGui {
 
     private static native void nListBox(String label, int[] currentItem, String[] obj_items, int itemsCount, int heightInItems); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto currentItem = obj_currentItem == NULL
-            ? nullptr
-            : (jint*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);;
+        auto currentItem = obj_currentItem == NULL ? NULL : (int*)env->GetPrimitiveArrayCritical(obj_currentItem, JNI_FALSE);
         const char* items[itemsCount];
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
@@ -10755,8 +9443,7 @@ public class ImGui {
         };
         ImGui::ListBox(label, (currentItem != NULL ? &currentItem[0] : NULL), items, itemsCount, heightInItems);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (currentItem)
-            env->ReleasePrimitiveArrayCritical(obj_currentItem, (void*)currentItem, JNI_FALSE);;
+        if (currentItem != NULL) env->ReleasePrimitiveArrayCritical(obj_currentItem, currentItem, JNI_FALSE);
         for (int i = 0; i < itemsCount; i++) {
             const jstring str = (jstring)env->GetObjectArrayElement(obj_items, i);
             env->ReleaseStringUTFChars(str, items[i]);
@@ -10832,141 +9519,108 @@ public class ImGui {
 
     private static native void nPlotLines(String label, float[] values, int valuesCount); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotLines(label, &values[0], valuesCount, 0, overlayText, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotLines(label, &values[0], valuesCount, 0, NULL, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, NULL, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotLines(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotLines(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, ImVec2(0,0), stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
@@ -11036,141 +9690,108 @@ public class ImGui {
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, String overlayText, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotHistogram(label, &values[0], valuesCount, 0, overlayText, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotHistogram(label, &values[0], valuesCount, 0, NULL, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, float graphSizeX, float graphSizeY, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         ImVec2 graphSize = ImVec2(graphSizeX, graphSizeY);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, NULL, scaleMin, scaleMax, graphSize, stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
     private static native void nPlotHistogram(String label, float[] values, int valuesCount, int valuesOffset, String overlayText, float scaleMin, float scaleMax, int stride); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        auto values = obj_values == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);;
+        auto values = obj_values == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_values, JNI_FALSE);
         auto overlayText = obj_overlayText == NULL ? NULL : (char*)env->GetStringUTFChars(obj_overlayText, JNI_FALSE);
         ImGui::PlotHistogram(label, &values[0], valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, ImVec2(0,0), stride);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (values)
-            env->ReleasePrimitiveArrayCritical(obj_values, (void*)values, JNI_FALSE);;
+        if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
         if (overlayText != NULL) env->ReleaseStringUTFChars(obj_overlayText, overlayText);
     */
 
@@ -11384,42 +10005,22 @@ public class ImGui {
     private static native boolean nMenuItem(String obj_label, String obj_shortcut, boolean[] obj_pSelected); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
         auto shortcut = obj_shortcut == NULL ? NULL : (char*)env->GetStringUTFChars(obj_shortcut, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         auto _result = ImGui::MenuItem(label, shortcut, (pSelected != NULL ? &pSelected[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
         if (shortcut != NULL) env->ReleaseStringUTFChars(obj_shortcut, shortcut);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nMenuItem(String obj_label, String obj_shortcut, boolean[] obj_pSelected, boolean enabled); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
         auto shortcut = obj_shortcut == NULL ? NULL : (char*)env->GetStringUTFChars(obj_shortcut, JNI_FALSE);
-        jsize pSelectedLength = obj_pSelected == NULL ? 0 : env->GetArrayLength(obj_pSelected);;
-        jboolean* _raw_pSelected = obj_pSelected == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);;
-        bool pSelected[pSelectedLength];;
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                pSelected[i] = (_raw_pSelected[i] != 0);
-        };
+        auto pSelected = obj_pSelected == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pSelected, JNI_FALSE);
         auto _result = ImGui::MenuItem(label, shortcut, (pSelected != NULL ? &pSelected[0] : NULL), enabled);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
         if (shortcut != NULL) env->ReleaseStringUTFChars(obj_shortcut, shortcut);
-        if (_raw_pSelected) {
-            for (int i = 0; i < pSelectedLength; ++i)
-                _raw_pSelected[i] = pSelected[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pSelected, (void*)_raw_pSelected, JNI_FALSE);
-        };
+        if (pSelected != NULL) env->ReleasePrimitiveArrayCritical(obj_pSelected, pSelected, JNI_FALSE);
         return _result;
     */
 
@@ -11535,39 +10136,19 @@ public class ImGui {
 
     private static native boolean nBeginPopupModal(String obj_name, boolean[] obj_pOpen); /*MANUAL
         auto name = obj_name == NULL ? NULL : (char*)env->GetStringUTFChars(obj_name, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::BeginPopupModal(name, (pOpen != NULL ? &pOpen[0] : NULL));
         if (name != NULL) env->ReleaseStringUTFChars(obj_name, name);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nBeginPopupModal(String obj_name, boolean[] obj_pOpen, int imGuiWindowFlags); /*MANUAL
         auto name = obj_name == NULL ? NULL : (char*)env->GetStringUTFChars(obj_name, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::BeginPopupModal(name, (pOpen != NULL ? &pOpen[0] : NULL), imGuiWindowFlags);
         if (name != NULL) env->ReleaseStringUTFChars(obj_name, name);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 
@@ -12567,39 +11148,19 @@ public class ImGui {
 
     private static native boolean nBeginTabItem(String obj_label, boolean[] obj_pOpen); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::BeginTabItem(label, (pOpen != NULL ? &pOpen[0] : NULL));
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 
     private static native boolean nBeginTabItem(String obj_label, boolean[] obj_pOpen, int imGuiTabItemFlags); /*MANUAL
         auto label = obj_label == NULL ? NULL : (char*)env->GetStringUTFChars(obj_label, JNI_FALSE);
-        jsize pOpenLength = obj_pOpen == NULL ? 0 : env->GetArrayLength(obj_pOpen);;
-        jboolean* _raw_pOpen = obj_pOpen == NULL ? nullptr : (jboolean*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);;
-        bool pOpen[pOpenLength];;
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                pOpen[i] = (_raw_pOpen[i] != 0);
-        };
+        auto pOpen = obj_pOpen == NULL ? NULL : (bool*)env->GetPrimitiveArrayCritical(obj_pOpen, JNI_FALSE);
         auto _result = ImGui::BeginTabItem(label, (pOpen != NULL ? &pOpen[0] : NULL), imGuiTabItemFlags);
         if (label != NULL) env->ReleaseStringUTFChars(obj_label, label);
-        if (_raw_pOpen) {
-            for (int i = 0; i < pOpenLength; ++i)
-                _raw_pOpen[i] = pOpen[i] ? 1 : 0;
-            env->ReleasePrimitiveArrayCritical(obj_pOpen, (void*)_raw_pOpen, JNI_FALSE);
-        };
+        if (pOpen != NULL) env->ReleasePrimitiveArrayCritical(obj_pOpen, pOpen, JNI_FALSE);
         return _result;
     */
 

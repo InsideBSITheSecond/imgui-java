@@ -115,27 +115,15 @@ public final class ImGuizmo {
     }
 
     private static native void nDecomposeMatrixToComponents(float[] matrix, float[] translation, float[] rotation, float[] scale); /*MANUAL
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
-        auto translation = obj_translation == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_translation, NULL);;
-        auto rotation = obj_rotation == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_rotation, NULL);;
-        auto scale = obj_scale == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_scale, NULL);;
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
+        auto translation = obj_translation == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_translation, JNI_FALSE);
+        auto rotation = obj_rotation == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_rotation, JNI_FALSE);
+        auto scale = obj_scale == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_scale, JNI_FALSE);
         ImGuizmo::DecomposeMatrixToComponents(&matrix[0], &translation[0], &rotation[0], &scale[0]);
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
-        if (translation)
-            env->ReleaseFloatArrayElements(obj_translation, translation, 0);;
-        if (rotation)
-            env->ReleaseFloatArrayElements(obj_rotation, rotation, 0);;
-        if (scale)
-            env->ReleaseFloatArrayElements(obj_scale, scale, 0);;
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
+        if (translation != NULL) env->ReleasePrimitiveArrayCritical(obj_translation, translation, JNI_FALSE);
+        if (rotation != NULL) env->ReleasePrimitiveArrayCritical(obj_rotation, rotation, JNI_FALSE);
+        if (scale != NULL) env->ReleasePrimitiveArrayCritical(obj_scale, scale, JNI_FALSE);
     */
 
     /**
@@ -158,27 +146,15 @@ public final class ImGuizmo {
     }
 
     private static native void nRecomposeMatrixFromComponents(float[] translation, float[] rotation, float[] scale, float[] matrix); /*MANUAL
-        auto translation = obj_translation == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_translation, NULL);;
-        auto rotation = obj_rotation == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_rotation, NULL);;
-        auto scale = obj_scale == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_scale, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
+        auto translation = obj_translation == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_translation, JNI_FALSE);
+        auto rotation = obj_rotation == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_rotation, JNI_FALSE);
+        auto scale = obj_scale == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_scale, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
         ImGuizmo::RecomposeMatrixFromComponents(&translation[0], &rotation[0], &scale[0], &matrix[0]);
-        if (translation)
-            env->ReleaseFloatArrayElements(obj_translation, translation, 0);;
-        if (rotation)
-            env->ReleaseFloatArrayElements(obj_rotation, rotation, 0);;
-        if (scale)
-            env->ReleaseFloatArrayElements(obj_scale, scale, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
+        if (translation != NULL) env->ReleasePrimitiveArrayCritical(obj_translation, translation, JNI_FALSE);
+        if (rotation != NULL) env->ReleasePrimitiveArrayCritical(obj_rotation, rotation, JNI_FALSE);
+        if (scale != NULL) env->ReleasePrimitiveArrayCritical(obj_scale, scale, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
     */
 
     /**
@@ -227,22 +203,13 @@ public final class ImGuizmo {
     }
 
     private static native void nDrawCubes(float[] view, float[] projection, float[] matrices); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrices = obj_matrices == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrices, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrices = obj_matrices == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrices, JNI_FALSE);
         ImGuizmo::DrawCubes(&view[0], &projection[0], &matrices[0], (int)(env->GetArrayLength(obj_matrices)/16));
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrices)
-            env->ReleaseFloatArrayElements(obj_matrices, matrices, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrices != NULL) env->ReleasePrimitiveArrayCritical(obj_matrices, matrices, JNI_FALSE);
     */
 
     /**
@@ -262,22 +229,13 @@ public final class ImGuizmo {
     }
 
     private static native void nDrawCubes(float[] view, float[] projection, float[] matrices, int matrixCount); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrices = obj_matrices == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrices, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrices = obj_matrices == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrices, JNI_FALSE);
         ImGuizmo::DrawCubes(&view[0], &projection[0], &matrices[0], matrixCount);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrices)
-            env->ReleaseFloatArrayElements(obj_matrices, matrices, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrices != NULL) env->ReleasePrimitiveArrayCritical(obj_matrices, matrices, JNI_FALSE);
     */
 
     /**
@@ -318,22 +276,13 @@ public final class ImGuizmo {
     }
 
     private static native void nDrawGrid(float[] view, float[] projection, float[] matrix, float gridSize); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
         ImGuizmo::DrawGrid(&view[0], &projection[0], &matrix[0], gridSize);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
     */
 
     /**
@@ -447,148 +396,73 @@ public final class ImGuizmo {
     }
 
     private static native void nManipulate(float[] view, float[] projection, int operation, int mode, float[] matrix); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
         ImGuizmo::Manipulate(&view[0], &projection[0], static_cast<ImGuizmo::OPERATION>(operation), static_cast<ImGuizmo::MODE>(mode), &matrix[0]);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
     */
 
     private static native void nManipulate(float[] view, float[] projection, int operation, int mode, float[] matrix, float[] deltaMatrix); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
-        auto deltaMatrix = obj_deltaMatrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_deltaMatrix, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
+        auto deltaMatrix = obj_deltaMatrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_deltaMatrix, JNI_FALSE);
         ImGuizmo::Manipulate(&view[0], &projection[0], static_cast<ImGuizmo::OPERATION>(operation), static_cast<ImGuizmo::MODE>(mode), &matrix[0], &deltaMatrix[0]);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
-        if (deltaMatrix)
-            env->ReleaseFloatArrayElements(obj_deltaMatrix, deltaMatrix, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
+        if (deltaMatrix != NULL) env->ReleasePrimitiveArrayCritical(obj_deltaMatrix, deltaMatrix, JNI_FALSE);
     */
 
     private static native void nManipulate(float[] view, float[] projection, int operation, int mode, float[] matrix, float[] deltaMatrix, float[] snap); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
-        auto deltaMatrix = obj_deltaMatrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_deltaMatrix, NULL);;
-        auto snap = obj_snap == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_snap, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
+        auto deltaMatrix = obj_deltaMatrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_deltaMatrix, JNI_FALSE);
+        auto snap = obj_snap == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_snap, JNI_FALSE);
         ImGuizmo::Manipulate(&view[0], &projection[0], static_cast<ImGuizmo::OPERATION>(operation), static_cast<ImGuizmo::MODE>(mode), &matrix[0], &deltaMatrix[0], &snap[0]);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
-        if (deltaMatrix)
-            env->ReleaseFloatArrayElements(obj_deltaMatrix, deltaMatrix, 0);;
-        if (snap)
-            env->ReleaseFloatArrayElements(obj_snap, snap, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
+        if (deltaMatrix != NULL) env->ReleasePrimitiveArrayCritical(obj_deltaMatrix, deltaMatrix, JNI_FALSE);
+        if (snap != NULL) env->ReleasePrimitiveArrayCritical(obj_snap, snap, JNI_FALSE);
     */
 
     private static native void nManipulate(float[] view, float[] projection, int operation, int mode, float[] matrix, float[] deltaMatrix, float[] snap, float[] localBounds); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
-        auto deltaMatrix = obj_deltaMatrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_deltaMatrix, NULL);;
-        auto snap = obj_snap == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_snap, NULL);;
-        auto localBounds = obj_localBounds == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_localBounds, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
+        auto deltaMatrix = obj_deltaMatrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_deltaMatrix, JNI_FALSE);
+        auto snap = obj_snap == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_snap, JNI_FALSE);
+        auto localBounds = obj_localBounds == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_localBounds, JNI_FALSE);
         ImGuizmo::Manipulate(&view[0], &projection[0], static_cast<ImGuizmo::OPERATION>(operation), static_cast<ImGuizmo::MODE>(mode), &matrix[0], &deltaMatrix[0], &snap[0], &localBounds[0]);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
-        if (deltaMatrix)
-            env->ReleaseFloatArrayElements(obj_deltaMatrix, deltaMatrix, 0);;
-        if (snap)
-            env->ReleaseFloatArrayElements(obj_snap, snap, 0);;
-        if (localBounds)
-            env->ReleaseFloatArrayElements(obj_localBounds, localBounds, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
+        if (deltaMatrix != NULL) env->ReleasePrimitiveArrayCritical(obj_deltaMatrix, deltaMatrix, JNI_FALSE);
+        if (snap != NULL) env->ReleasePrimitiveArrayCritical(obj_snap, snap, JNI_FALSE);
+        if (localBounds != NULL) env->ReleasePrimitiveArrayCritical(obj_localBounds, localBounds, JNI_FALSE);
     */
 
     private static native void nManipulate(float[] view, float[] projection, int operation, int mode, float[] matrix, float[] deltaMatrix, float[] snap, float[] localBounds, float[] boundsSnap); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_view, NULL);;
-        auto projection = obj_projection == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_projection, NULL);;
-        auto matrix = obj_matrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_matrix, NULL);;
-        auto deltaMatrix = obj_deltaMatrix == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_deltaMatrix, NULL);;
-        auto snap = obj_snap == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_snap, NULL);;
-        auto localBounds = obj_localBounds == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_localBounds, NULL);;
-        auto boundsSnap = obj_boundsSnap == NULL
-            ? nullptr
-            : (jfloat*)env->GetFloatArrayElements(obj_boundsSnap, NULL);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
+        auto projection = obj_projection == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_projection, JNI_FALSE);
+        auto matrix = obj_matrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_matrix, JNI_FALSE);
+        auto deltaMatrix = obj_deltaMatrix == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_deltaMatrix, JNI_FALSE);
+        auto snap = obj_snap == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_snap, JNI_FALSE);
+        auto localBounds = obj_localBounds == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_localBounds, JNI_FALSE);
+        auto boundsSnap = obj_boundsSnap == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_boundsSnap, JNI_FALSE);
         ImGuizmo::Manipulate(&view[0], &projection[0], static_cast<ImGuizmo::OPERATION>(operation), static_cast<ImGuizmo::MODE>(mode), &matrix[0], &deltaMatrix[0], &snap[0], &localBounds[0], &boundsSnap[0]);
-        if (view)
-            env->ReleaseFloatArrayElements(obj_view, view, 0);;
-        if (projection)
-            env->ReleaseFloatArrayElements(obj_projection, projection, 0);;
-        if (matrix)
-            env->ReleaseFloatArrayElements(obj_matrix, matrix, 0);;
-        if (deltaMatrix)
-            env->ReleaseFloatArrayElements(obj_deltaMatrix, deltaMatrix, 0);;
-        if (snap)
-            env->ReleaseFloatArrayElements(obj_snap, snap, 0);;
-        if (localBounds)
-            env->ReleaseFloatArrayElements(obj_localBounds, localBounds, 0);;
-        if (boundsSnap)
-            env->ReleaseFloatArrayElements(obj_boundsSnap, boundsSnap, 0);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
+        if (projection != NULL) env->ReleasePrimitiveArrayCritical(obj_projection, projection, JNI_FALSE);
+        if (matrix != NULL) env->ReleasePrimitiveArrayCritical(obj_matrix, matrix, JNI_FALSE);
+        if (deltaMatrix != NULL) env->ReleasePrimitiveArrayCritical(obj_deltaMatrix, deltaMatrix, JNI_FALSE);
+        if (snap != NULL) env->ReleasePrimitiveArrayCritical(obj_snap, snap, JNI_FALSE);
+        if (localBounds != NULL) env->ReleasePrimitiveArrayCritical(obj_localBounds, localBounds, JNI_FALSE);
+        if (boundsSnap != NULL) env->ReleasePrimitiveArrayCritical(obj_boundsSnap, boundsSnap, JNI_FALSE);
     */
 
     /**
@@ -616,14 +490,11 @@ public final class ImGuizmo {
     }
 
     private static native void nViewManipulate(float[] view, float length, float positionX, float positionY, float sizeX, float sizeY, int backgroundColor); /*MANUAL
-        auto view = obj_view == NULL
-            ? nullptr
-            : (jfloat*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);;
+        auto view = obj_view == NULL ? NULL : (float*)env->GetPrimitiveArrayCritical(obj_view, JNI_FALSE);
         ImVec2 position = ImVec2(positionX, positionY);
         ImVec2 size = ImVec2(sizeX, sizeY);
         ImGuizmo::ViewManipulate(&view[0], length, position, size, backgroundColor);
-        if (view)
-            env->ReleasePrimitiveArrayCritical(obj_view, (void*)view, JNI_FALSE);;
+        if (view != NULL) env->ReleasePrimitiveArrayCritical(obj_view, view, JNI_FALSE);
     */
 
     /**
