@@ -155,9 +155,13 @@ public class Main extends Application {
         if (ImGui.begin("Demo", ImGuiWindowFlags.AlwaysAutoResize)) {
             ImGui.text("OS: [" + System.getProperty("os.name") + "] Arch: [" + System.getProperty("os.arch") + "]");
             ImGui.text("Hello, World! " + FontAwesomeIcons.Smile);
+
             if (ImGui.button(FontAwesomeIcons.Save + " Save")) {
-                count++;
-            }
+                count++; } ImGui.sameLine();
+
+            if (ImGui.button("GC now")) {
+                System.gc(); }
+
             ImGui.sameLine();
             ImGui.text(String.valueOf(count));
             ImGui.inputText("string", str, ImGuiInputTextFlags.CallbackResize);

@@ -12,6 +12,8 @@ ext.configurePublishing = { packageName, packageDesc, packageVersion ->
 
     publishing {
         repositories {
+            mavenLocal()
+
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/InsideBSITheSecond/imgui-java")

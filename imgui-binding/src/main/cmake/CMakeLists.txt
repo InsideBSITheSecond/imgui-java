@@ -12,15 +12,15 @@ set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
 
 # Set compiler options
 set(C_CXX_FLAGS "${CMAKE_C_CXX_FLAGS} ")
-string(APPEND C_CXX_FLAGS "${ccxxAdd} -Wall -g -O0 -fmessage-length=0 -m64 -fPIC")
+string(APPEND C_CXX_FLAGS "${ccxxAdd} -fPIC -Wall -g -fsanitize=address -fno-omit-frame-pointer -O0 -no-pie")
 
 set(CMAKE_C_FLAGS "${C_CXX_FLAGS} ${cAdd}")
 
 set(CMAKE_CXX_FLAGS "${C_CXX_FLAGS} ")
-string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DIMGUI_TEST_ENGINE_ENABLE_COROUTINE_STDTHREAD_IMPL -DIMGUI_ENABLE_TEST_ENGINE -DFT2_BUILD_LIBRARY")
+string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DFT2_BUILD_LIBRARY -DIMGUI_TEST_ENGINE_ENABLE_COROUTINE_STDTHREAD_IMPL") #
 
 set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS} ")
-string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -m64")
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -Wl,-Bdynamic -lasan")
 
 
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
@@ -69,9 +69,9 @@ if (freetype)
 endif()
 
 # Strip debug symbols in Release mode
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_custom_command(TARGET imgui-java64 POST_BUILD COMMAND strip --strip-unneeded "$<TARGET_FILE:imgui-java64>")
-endif()
+#if(CMAKE_BUILD_TYPE STREQUAL "Release")
+#    add_custom_command(TARGET imgui-java64 POST_BUILD COMMAND strip --strip-unneeded "$<TARGET_FILE:imgui-java64>")
+#endif()
 
 # Build with Ninja
 set(CMAKE_GENERATOR "Ninja" CACHE STRING "Generator to use" FORCE)
