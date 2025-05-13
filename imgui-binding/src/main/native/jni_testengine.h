@@ -11,6 +11,9 @@
 #include "imgui_te_utils.h"
 #include "imgui_te_internal.h"
 
+#include <mutex>
+#include <unordered_map>
+
 namespace Jni
 {
     //void RegisterTest(JNIEnv* env, ImGuiTestEngine* e, char* category, char* name, jobject* guiFunc, jobject* testFunc);

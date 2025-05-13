@@ -104,16 +104,32 @@ namespace Jni
     }
 
     void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx) {
-        printf("Attempting to call java callback %p\n", jTestEngineGuiFunMID); fflush(stdout);
-        printf("Debug print %p\n", jImGuiFileDialogPaneFunMID); fflush(stdout);
+        if (func == nullptr)
+            return;
+
+        printf("Calling GUI callback object %p via methodID %p\n", func, jTestEngineGuiFunMID);
+        fflush(stdout);
+
         env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
+
+        if (env->ExceptionCheck()) {
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
     }
 
     void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
-        printf("Attempting to call java callback %p\n", jTestEngineTestFunMID); fflush(stdout);
+        if (func == nullptr)
+            return;
+
+        printf("Calling Test callback object %p via methodID %p\n", func, jTestEngineTestFunMID);
+        fflush(stdout);
+
         env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
+
         if (env->ExceptionCheck()) {
             env->ExceptionDescribe();
+            env->ExceptionClear();
         }
     }
 }
