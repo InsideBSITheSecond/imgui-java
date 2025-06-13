@@ -1,7 +1,7 @@
 package imgui.extension.testengine.callback;
 
-import imgui.extension.testengine.TestContext;
+import imgui.extension.testengine.ImGuiTestContext;
 
 public abstract class TestEngineGuiFun {
-    public abstract void run(TestContext ctx);
+    public abstract void run(ImGuiTestContext ctx);
 }

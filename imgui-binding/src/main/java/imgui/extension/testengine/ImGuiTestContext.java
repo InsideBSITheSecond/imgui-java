@@ -2,17 +2,13 @@ package imgui.extension.testengine;
 
 import imgui.ImVec2;
 import imgui.binding.ImGuiStruct;
-import imgui.binding.annotation.ArgValue;
 import imgui.binding.annotation.BindingMethod;
 import imgui.binding.annotation.BindingSource;
 import imgui.binding.annotation.OptArg;
-import imgui.extension.testengine.flag.TestOpFlags;
-import imgui.flag.ImGuiMouseButton;
-import imgui.internal.ImGuiWindow;
 
 @BindingSource
-public final class TestContext extends ImGuiStruct {
-    public TestContext(long ptr) {
+public final class ImGuiTestContext extends ImGuiStruct {
+    public ImGuiTestContext(long ptr) {
         super(ptr);
     }
 
@@ -264,4 +260,8 @@ public final class TestContext extends ImGuiStruct {
 //    void                        TableSetColumnEnabled(ImGuiTestRef ref, const char* label, bool enabled);
 //    void                        TableResizeColumn(ImGuiTestRef ref, int column_n, float width);
 //    const ImGuiTableSortSpecs*  TableGetSortSpecs(ImGuiTestRef ref);
+
+    /*JNI
+        #undef THIS
+     */
 }

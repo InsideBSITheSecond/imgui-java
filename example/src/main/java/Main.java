@@ -4,9 +4,9 @@ import imgui.ImGui;
 import imgui.ImGuiIO;
 import imgui.app.Application;
 import imgui.app.Configuration;
-import imgui.extension.testengine.TestContext;
-import imgui.extension.testengine.TestEngine;
-import imgui.extension.testengine.TestEngineIO;
+import imgui.extension.testengine.ImGuiTestContext;
+import imgui.extension.testengine.ImGuiTestEngine;
+import imgui.extension.testengine.ImGuiTestEngineIO;
 import imgui.extension.testengine.callback.TestEngineGuiFun;
 import imgui.extension.testengine.callback.TestEngineTestFun;
 import imgui.extension.testengine.flag.TestVerboseLevel;
@@ -14,7 +14,6 @@ import imgui.flag.ImGuiConfigFlags;
 import imgui.flag.ImGuiInputTextFlags;
 import imgui.flag.ImGuiWindowFlags;
 import imgui.type.ImBoolean;
-import imgui.type.ImInt;
 import imgui.type.ImString;
 
 import java.io.IOException;
@@ -45,23 +44,23 @@ public class Main extends Application {
 
         initFonts(io);
 
-        final TestEngineIO testIo = testEngine.getIO();
+        final ImGuiTestEngineIO testIo = testEngine.getIO();
         //final TestEngineIO testIo = ImTestEngine.GetIO(testEngine);
-        System.out.println(testIo.getConfigVerboseLevel());
+        /*System.out.println(testIo.getConfigVerboseLevel());
         testIo.setConfigVerboseLevel(TestVerboseLevel.Info);
         System.out.println(testIo.getConfigVerboseLevel());
 
         System.out.println(testIo.getConfigVerboseLevelOnError());
         testIo.setConfigVerboseLevelOnError(TestVerboseLevel.Debug);
-        System.out.println(testIo.getConfigVerboseLevelOnError());
+        System.out.println(testIo.getConfigVerboseLevelOnError());*/
 
         System.out.println(Long.toHexString(testEngine.ptr));
-        TestEngine.Start(testEngine, ImGui.getCurrentContext());
+        testEngine.Start(ImGui.getCurrentContext().ptr);
 
         final ImBoolean b = new ImBoolean(false);
-        testEngine.registerTest("demo_tests", "test1", new TestEngineGuiFun() {
+        testEngine.registerTest("demo_tests", "test1"/*, new TestEngineGuiFun() {
             @Override
-            public void run(TestContext ctx) {
+            public void run(ImGuiTestContext ctx) {
                 // GUI Function
                 ImGui.begin("Test Window", null, ImGuiWindowFlags.NoSavedSettings);
                 ImGui.text("Hello, automation world");
@@ -74,7 +73,7 @@ public class Main extends Application {
             }
         }, new TestEngineTestFun() {
             @Override
-            public void run(TestContext ctx) {
+            public void run(ImGuiTestContext ctx) {
                 // Test Function
                 ctx.setRef("Test Window");
                 ctx.itemClick("Click Me");
@@ -82,9 +81,9 @@ public class Main extends Application {
                 ctx.itemCheck("Node/Checkbox");
                 ctx.itemUncheck("Node/Checkbox");
             }
-        } );
+        }*/ );
 
-        final int[] myInt = {42};
+        /*final int[] myInt = {42};
         testEngine.registerTest("demo_tests", "test2", new TestEngineGuiFun() {
             @Override
             public void run(TestContext ctx) {
@@ -137,9 +136,9 @@ public class Main extends Application {
             public void run(TestContext ctx) {
                 TestEngine.checkEq(69, 42);
             }
-        });
+        });*/
 
-        //TestEngine.InstallDefaultCrashHandler();
+        //ImGuiTestEngine.InstallDefaultCrashHandler();
     }
 
     /**
@@ -187,7 +186,10 @@ public class Main extends Application {
                 count++; } ImGui.sameLine();
 
             if (ImGui.button("GC now")) {
-                System.gc(); }
+                System.gc(); } ImGui.sameLine();
+
+            if (ImGui.button("Exit")) {
+                System.exit(0); } ImGui.sameLine();
 
             ImGui.sameLine();
             ImGui.text(String.valueOf(count));

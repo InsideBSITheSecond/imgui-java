@@ -5,8 +5,8 @@ import imgui.binding.annotation.BindingSource;
 import imgui.extension.testengine.flag.TestVerboseLevel;
 
 @BindingSource
-public class TestEngineIO extends ImGuiStruct {
-    public TestEngineIO(long ptr) { super(ptr); }
+public class ImGuiTestEngineIO extends ImGuiStruct {
+    public ImGuiTestEngineIO(long ptr) { super(ptr); }
 
     /*JNI
         #include "_common.h"
@@ -41,4 +41,8 @@ public class TestEngineIO extends ImGuiStruct {
     private native int nGetConfigVerboseLevelOnError(); /*
         return THIS->ConfigVerboseLevelOnError;
     */
+
+    /*JNI
+        #undef THIS
+     */
 }

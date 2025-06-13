@@ -907,6 +907,10 @@ public class ImGuiImplGlfw {
         for (int n = 0; n < platformIO.getViewportsSize(); n++) {
             final ImGuiViewport viewport = platformIO.getViewports(n);
             final long window = viewport.getPlatformHandle();
+            if (window == 0) {
+                System.out.println("THIS NOT GOOD");
+                continue;
+            }
             final boolean isWindowFocused = glfwGetWindowAttrib(window, GLFW_FOCUSED) != 0;
 
             if (isWindowFocused) {
@@ -974,15 +978,16 @@ public class ImGuiImplGlfw {
 
         for (int n = 0; n < platformIO.getViewportsSize(); n++) {
             final long windowPtr = platformIO.getViewports(n).getPlatformHandle();
-
-            if (imguiCursor == ImGuiMouseCursor.None || io.getMouseDrawCursor()) {
-                // Hide OS mouse cursor if imgui is drawing it or if it wants no cursor
-                glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-            } else {
-                // Show OS mouse cursor
-                // FIXME-PLATFORM: Unfocused windows seems to fail changing the mouse cursor with GLFW 3.2, but 3.3 works here.
-                glfwSetCursor(windowPtr, data.mouseCursors[imguiCursor] != 0 ? data.mouseCursors[imguiCursor] : data.mouseCursors[ImGuiMouseCursor.Arrow]);
-                glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            if (windowPtr != 0) {
+                if (imguiCursor == ImGuiMouseCursor.None || io.getMouseDrawCursor()) {
+                    // Hide OS mouse cursor if imgui is drawing it or if it wants no cursor
+                    glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+                } else {
+                    // Show OS mouse cursor
+                    // FIXME-PLATFORM: Unfocused windows seems to fail changing the mouse cursor with GLFW 3.2, but 3.3 works here.
+                    glfwSetCursor(windowPtr, data.mouseCursors[imguiCursor] != 0 ? data.mouseCursors[imguiCursor] : data.mouseCursors[ImGuiMouseCursor.Arrow]);
+                    glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+                }
             }
         }
     }

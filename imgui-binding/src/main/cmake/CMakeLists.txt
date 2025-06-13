@@ -12,7 +12,7 @@ set(OUT_DIR "${CMAKE_SOURCE_DIR}/${libDir}")
 
 # Set compiler options
 set(C_CXX_FLAGS "${CMAKE_C_CXX_FLAGS} ")
-string(APPEND C_CXX_FLAGS "${ccxxAdd} -fPIC -Wall -g -fsanitize=address -fno-omit-frame-pointer -O0 -no-pie")
+string(APPEND C_CXX_FLAGS "${ccxxAdd} -fPIC -Wall -g -O0 -no-pie") # -fsanitize=address -fno-omit-frame-pointer
 
 set(CMAKE_C_FLAGS "${C_CXX_FLAGS} ${cAdd}")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "${C_CXX_FLAGS} ")
 string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DFT2_BUILD_LIBRARY -DIMGUI_TEST_ENGINE_ENABLE_COROUTINE_STDTHREAD_IMPL") #
 
 set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS} ")
-string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -Wl,-Bdynamic -lasan")
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared -Wl,-Bdynamic") # -lasan
 
 
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")

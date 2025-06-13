@@ -1,7 +1,7 @@
 package imgui.app;
 
 import imgui.ImGui;
-import imgui.extension.testengine.TestEngine;
+import imgui.extension.testengine.ImGuiTestEngine;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
@@ -28,7 +28,7 @@ public abstract class Window {
     protected ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
     protected ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
 
-    protected TestEngine testEngine;
+    protected ImGuiTestEngine testEngine;
 
     private String glslVersion = null;
 
@@ -148,7 +148,7 @@ public abstract class Window {
      */
     protected void initImGui(final Configuration config) {
         ImGui.createContext();
-        testEngine = TestEngine.CreateContext();
+        testEngine = new ImGuiTestEngine();
         System.out.println(Long.toHexString(testEngine.ptr)); // uwu
     }
 
@@ -207,7 +207,7 @@ public abstract class Window {
         imGuiGlfw.newFrame();
         ImGui.newFrame();
 
-        TestEngine.ShowTestEngineWindows(testEngine);
+        ImGuiTestEngine.ShowTestEngineWindows(testEngine);
     }
 
     /**
@@ -231,7 +231,7 @@ public abstract class Window {
         renderBuffer();
 
         // Post-swap handler is REQUIRED in order to support screen capture
-        TestEngine.PostSwap(testEngine);
+        ImGuiTestEngine.PostSwap(testEngine);
     }
 
     /**
@@ -246,9 +246,9 @@ public abstract class Window {
      * Method to destroy Dear ImGui context.
      */
     protected void disposeImGui() {
-        TestEngine.Stop(testEngine);
+        ImGuiTestEngine.Stop(testEngine);
         ImGui.destroyContext();
-        TestEngine.DestroyContext(testEngine);
+        ImGuiTestEngine.DestroyContext(testEngine);
     }
 
     /**

@@ -13,4 +13,8 @@ public class ImGuiTestRef extends ImGuiStruct {
 
         #define THIS ((ImGuiTestRef*)STRUCT_PTR)
      */
+
+    /*JNI
+        #undef THIS
+     */
 }

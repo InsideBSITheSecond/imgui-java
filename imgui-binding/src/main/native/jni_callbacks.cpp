@@ -13,8 +13,8 @@ jmethodID jImPlatformFuncViewportSuppImVec2GetMID;
 jmethodID jImPlatformFuncViewportSuppBooleanGetMID;
 jmethodID jImPlatformFuncViewportSuppFloatGetMID;
 jmethodID jImGuiFileDialogPaneFunMID;
-jmethodID jTestEngineGuiFunMID;
-jmethodID jTestEngineTestFunMID;
+//jmethodID jTestEngineGuiFunMID;
+//jmethodID jTestEngineTestFunMID;
 
 namespace Jni
 {
@@ -52,11 +52,11 @@ namespace Jni
         jclass jImGuiFileDialogPaneFun = env->FindClass("imgui/extension/imguifiledialog/callback/ImGuiFileDialogPaneFun");
         jImGuiFileDialogPaneFunMID = env->GetMethodID(jImGuiFileDialogPaneFun, "accept", "(Ljava/lang/String;JZ)V");
 
-        jclass jTestEngineGuiFun = env->FindClass("imgui/extension/testengine/callback/TestEngineGuiFun");
-        jTestEngineGuiFunMID = env->GetMethodID(jTestEngineGuiFun, "run", "(Limgui/extension/testengine/TestContext;)V");
-
-        jclass jTestEngineTestFun = env->FindClass("imgui/extension/testengine/callback/TestEngineTestFun");
-        jTestEngineTestFunMID = env->GetMethodID(jTestEngineTestFun, "run", "(Limgui/extension/testengine/TestContext;)V");
+//        jclass jTestEngineGuiFun = env->FindClass("imgui/extension/testengine/callback/TestEngineGuiFun");
+//        jTestEngineGuiFunMID = env->GetMethodID(jTestEngineGuiFun, "run", "(Limgui/extension/testengine/TestContext;)V");
+//
+//        jclass jTestEngineTestFun = env->FindClass("imgui/extension/testengine/callback/TestEngineTestFun");
+//        jTestEngineTestFunMID = env->GetMethodID(jTestEngineTestFun, "run", "(Limgui/extension/testengine/TestContext;)V");
     }
 
     void CallImListClipperCallback(JNIEnv* env, jobject consumer, int index) {
@@ -103,33 +103,33 @@ namespace Jni
         env->CallVoidMethod(func, jImGuiFileDialogPaneFunMID, env->NewStringUTF(filter), user_datas, canWeContinue);
     }
 
-    void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx) {
-        if (func == nullptr)
-            return;
-
-        printf("Calling GUI callback object %p via methodID %p\n", func, jTestEngineGuiFunMID);
-        fflush(stdout);
-
-        env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
-
-        if (env->ExceptionCheck()) {
-            env->ExceptionDescribe();
-            env->ExceptionClear();
-        }
-    }
-
-    void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
-        if (func == nullptr)
-            return;
-
-        printf("Calling Test callback object %p via methodID %p\n", func, jTestEngineTestFunMID);
-        fflush(stdout);
-
-        env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
-
-        if (env->ExceptionCheck()) {
-            env->ExceptionDescribe();
-            env->ExceptionClear();
-        }
-    }
+//    void CallTestEngineGuiFun(JNIEnv* env, jobject func, jobject ctx) {
+//        if (func == nullptr)
+//            return;
+//
+//        printf("Calling GUI callback object %p via methodID %p\n", func, jTestEngineGuiFunMID);
+//        fflush(stdout);
+//
+//        env->CallVoidMethod(func, jTestEngineGuiFunMID, ctx);
+//
+//        if (env->ExceptionCheck()) {
+//            env->ExceptionDescribe();
+//            env->ExceptionClear();
+//        }
+//    }
+//
+//    void CallTestEngineTestFun(JNIEnv* env, jobject func, jobject ctx) {
+//        if (func == nullptr)
+//            return;
+//
+//        printf("Calling Test callback object %p via methodID %p\n", func, jTestEngineTestFunMID);
+//        fflush(stdout);
+//
+//        env->CallVoidMethod(func, jTestEngineTestFunMID, ctx);
+//
+//        if (env->ExceptionCheck()) {
+//            env->ExceptionDescribe();
+//            env->ExceptionClear();
+//        }
+//    }
 }
