@@ -1,4 +1,4 @@
-e855d96957542d63bc04700b679c753ce4b3c3fd  imgui-binding/src/main/cmake/CMakeLists.txt
+469883e2b901166e7902777eebab8a90d84b6dd4  imgui-binding/src/main/cmake/CMakeLists.txt
 620c5ed77f893193c1381fe2855a595ea977d56b  imgui-binding/src/main/cmake/LinuxX64-TC.cmake
 fe1bf6848a7c7cb0f4ac3106d78f3f8cc1f8603e  imgui-binding/src/main/cmake/MacOSX64-TC.cmake
 2d8bf95cdc901a4af71811ecea996d187cb3a2ef  imgui-binding/src/main/cmake/WindowsX64-TC.cmake
@@ -10,7 +10,7 @@ ff72284146695db7974502ed3031d4bb33e0cfa2  imgui-binding/src/main/java/imgui/ImFo
 abc010a40ea86462d327b5375934b5c51df56629  imgui-binding/src/main/java/imgui/ImFontConfig.java
 9323e8a1ca7496bee6c7aa7dc16272fe81c9f411  imgui-binding/src/main/java/imgui/ImFontGlyph.java
 02db135a54b6e95dfc7494d68af20cd4bd1010e9  imgui-binding/src/main/java/imgui/ImFontGlyphRangesBuilder.java
-92a8a0985da76166b0bd10ef797a2795f41637c1  imgui-binding/src/main/java/imgui/ImGui.java
+38a0a025f6765a6c824ceccb257acc6ced889e91  imgui-binding/src/main/java/imgui/ImGui.java
 ad7b5c2e35e566ed7bf34b3788352be1b254f649  imgui-binding/src/main/java/imgui/ImGuiIO.java
 a40ac8c3174ad46c9dd45c788da4b2365a010470  imgui-binding/src/main/java/imgui/ImGuiInputTextCallbackData.java
 c9b5993ec7a3b69b3e513559483c028cf0e0e66c  imgui-binding/src/main/java/imgui/ImGuiKeyData.java
@@ -192,7 +192,7 @@ cf5e3a1e1f69ca16f7a2a653baffc515042bfa2f  imgui-binding/src/main/native/_memedit
 a15e0de96eb1fa3f2efe3732a4ea369bd4d42b29  imgui-binding/src/main/native/_nodeeditor.h
 40043e21af2a41a97790a4e5b65eef06798d11a9  imgui-binding/src/main/native/_testengine.h
 d23ee9baa061292dd8445f3f1da185e824de7764  imgui-binding/src/main/native/_texteditor.h
-571c792f111c9ed7fddd64eda1d2491679db78df  imgui-binding/src/main/native/imconfig.h
+bab98e2a3eb9d20baa4b5c7eea98805723a4643f  imgui-binding/src/main/native/imconfig.h
 f2db8453ac6843e846822b878c52bb31e2d336b9  imgui-binding/src/main/native/jni_assertion.cpp
 957ce75266115c2c0b2bef67941bdf454befcd6c  imgui-binding/src/main/native/jni_assertion.h
 ef606408ac1c27bdf9048daa121e457acc587543  imgui-binding/src/main/native/jni_binding_struct.cpp
@@ -220,7 +220,7 @@ ebace827fbb626d7626d31205c728c3d1db5a975  imgui-binding/src/generated/java/imgui
 d686c5af2505f179a40c823bb67acc87cbb9bda9  imgui-binding/src/generated/java/imgui/ImFontConfig.java
 d5bd63c69c13066e97ad5dc9c4359f8f2f7d315a  imgui-binding/src/generated/java/imgui/ImFontGlyph.java
 02db135a54b6e95dfc7494d68af20cd4bd1010e9  imgui-binding/src/generated/java/imgui/ImFontGlyphRangesBuilder.java
-bb064bac113cd0ce68bc08ec028e841f6b3f99be  imgui-binding/src/generated/java/imgui/ImGui.java
+345298490dce8fc6a5a13b28da81b3d8b0787c59  imgui-binding/src/generated/java/imgui/ImGui.java
 e040239ce835d2d036564ccfb57b4fbb16592479  imgui-binding/src/generated/java/imgui/ImGuiIO.java
 df76ae75df82be697adaf040165c3dbe55d24c42  imgui-binding/src/generated/java/imgui/ImGuiInputTextCallbackData.java
 4e99a91b6e46f7e800424dc6bf98fa9ce7d0b135  imgui-binding/src/generated/java/imgui/ImGuiKeyData.java
