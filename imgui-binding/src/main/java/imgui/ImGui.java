@@ -42,19 +42,25 @@ public class ImGui {
         final String libName = System.getProperty(LIB_NAME_PROP, LIB_NAME_DEFAULT);
         final String fullLibName = resolveFullLibName();
 
+        System.out.printf("RECEIVED IMGUI PATH: %s%n", libPath);
+        System.out.printf("RECEIVED IMGUI NAME: %s%n", libName);
+
         if (libPath != null) {
+            System.out.printf("Attempting loading from path 1%n");
             System.load(Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString());
-            System.out.println(String.format("1 - loaded imgui library from %s", Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString()));
+            System.out.printf("1 - loaded imgui library from %s%n", Paths.get(libPath).resolve(fullLibName).toAbsolutePath().toString());
         } else {
             try {
+                System.out.printf("Attempting loading from path 2%n");
                 System.loadLibrary(libName);
-                System.out.println(String.format("2 - loaded imgui library from %s", libName));
+                System.out.printf("2 - loaded imgui library from %s%n", libName);
             } catch (Exception | Error e) {
                 final String extractedLibAbsPath = tryLoadFromClasspath(fullLibName);
                 System.out.println(e.toString());
                 if (extractedLibAbsPath != null) {
+                    System.out.printf("Attempting loading from path 3%n");
                     System.load(extractedLibAbsPath);
-                    System.out.println(String.format("3 - loaded imgui library from %s", extractedLibAbsPath));
+                    System.out.printf("3 - loaded imgui library from %s%n", extractedLibAbsPath);
                 } else {
                     throw e;
                 }
