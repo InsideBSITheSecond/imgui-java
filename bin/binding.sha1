@@ -10,7 +10,7 @@ ff72284146695db7974502ed3031d4bb33e0cfa2  imgui-binding/src/main/java/imgui/ImFo
 abc010a40ea86462d327b5375934b5c51df56629  imgui-binding/src/main/java/imgui/ImFontConfig.java
 9323e8a1ca7496bee6c7aa7dc16272fe81c9f411  imgui-binding/src/main/java/imgui/ImFontGlyph.java
 02db135a54b6e95dfc7494d68af20cd4bd1010e9  imgui-binding/src/main/java/imgui/ImFontGlyphRangesBuilder.java
-38a0a025f6765a6c824ceccb257acc6ced889e91  imgui-binding/src/main/java/imgui/ImGui.java
+f047e6809dcbe98fb62dfa0538d785e77e9123d9  imgui-binding/src/main/java/imgui/ImGui.java
 ad7b5c2e35e566ed7bf34b3788352be1b254f649  imgui-binding/src/main/java/imgui/ImGuiIO.java
 a40ac8c3174ad46c9dd45c788da4b2365a010470  imgui-binding/src/main/java/imgui/ImGuiInputTextCallbackData.java
 c9b5993ec7a3b69b3e513559483c028cf0e0e66c  imgui-binding/src/main/java/imgui/ImGuiKeyData.java
@@ -53,7 +53,7 @@ da23c429ca5d187d897254dbfa8667a7bc42f03f  imgui-binding/src/main/java/imgui/call
 edf6350a062c899e4eea0b1e5cf40fc31b208265  imgui-binding/src/main/java/imgui/callback/ImStrConsumer.java
 ae803d26bd4c8c5a57460147014c96013e8a77a6  imgui-binding/src/main/java/imgui/callback/ImStrSupplier.java
 c7ebbcd2a175693e4c23be8984ce84c9fea96635  imgui-binding/src/main/java/imgui/extension/imguifiledialog/FileDialogConfig.java
-04e85ec23ea1893fd6a9050b0c09f5569b17ecbd  imgui-binding/src/main/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
+983da7c487cadeeeaaf7f3fe383298e4e2400da0  imgui-binding/src/main/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
 958e9003cd64d812ee782b396214f53e34079c78  imgui-binding/src/main/java/imgui/extension/imguifiledialog/callback/ImGuiFileDialogPaneFun.java
 5a8665f49ea213b910c4de1f562bd8ef84f1efcb  imgui-binding/src/main/java/imgui/extension/imguifiledialog/flag/ImGuiFileDialogFlags.java
 0878ea44efdc9a1aef2e122bba5d20721a593b39  imgui-binding/src/main/java/imgui/extension/imguiknobs/ImGuiKnobs.java
