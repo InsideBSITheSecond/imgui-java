@@ -1,7 +1,7 @@
 469883e2b901166e7902777eebab8a90d84b6dd4  imgui-binding/src/main/cmake/CMakeLists.txt
 620c5ed77f893193c1381fe2855a595ea977d56b  imgui-binding/src/main/cmake/LinuxX64-TC.cmake
 fe1bf6848a7c7cb0f4ac3106d78f3f8cc1f8603e  imgui-binding/src/main/cmake/MacOSX64-TC.cmake
-203834fd101d689144f828bc946a7aaacb07c2bf  imgui-binding/src/main/cmake/WindowsX64-TC.cmake
+b4b3e293fb1af1b35edb9e308e8f3f48a5ab1461  imgui-binding/src/main/cmake/WindowsX64-TC.cmake
 b282da90ccdd5e1eb36cebc86e0fcedc05d9b6b2  imgui-binding/src/main/java/imgui/ImColor.java
 aedb1b8c068d8dc3ba64f04e5ff699a3813baadc  imgui-binding/src/main/java/imgui/ImDrawData.java
 1a425f0a613efdebc3df60aed46dd4bdcecd09ac  imgui-binding/src/main/java/imgui/ImDrawList.java
