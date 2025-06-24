@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "${C_CXX_FLAGS} ")
 string(APPEND CMAKE_CXX_FLAGS "${cxxAdd} -DFT2_BUILD_LIBRARY -DIMGUI_TEST_ENGINE_ENABLE_COROUTINE_STDTHREAD_IMPL") #
 
 set(CMAKE_SHARED_LINKER_FLAGS "${LINKER_FLAGS} ")
-string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -shared") # -lasan
+string(APPEND CMAKE_SHARED_LINKER_FLAGS "${lAdd} -static-libgcc -static-libstdc++ -Wl,-Bstatic -lwinpthread -Wl,-Bdynamic") # -lasan
 
 
 message("ROOT DIRECTORY: ${CMAKE_SOURCE_DIR}")
