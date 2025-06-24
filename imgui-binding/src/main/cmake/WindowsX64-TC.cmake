@@ -7,9 +7,6 @@ set(CMAKE_C_COMPILER /usr/bin/x86_64-w64-mingw32-gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/x86_64-w64-mingw32-g++)
 set(CMAKE_RC_COMPILER /usr/bin/x86_64-w64-mingw32-windres)
 
-# Append to existing shared linker flags
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -static-libgcc -static-libstdc++ -Wl,-Bstatic -lwinpthread -Wl,-Bdynamic")
-
 # Define sysroot (optional)
 #set(CMAKE_SYSROOT /path/to/sysroot)
 

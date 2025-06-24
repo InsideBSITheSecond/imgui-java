@@ -146,7 +146,7 @@ class GenerateLibs extends DefaultTask {
             libPath += "windows64"
             toolChain = "-DCMAKE_TOOLCHAIN_FILE=WindowsX64-TC.cmake"
             cArgs = "-DccxxAdd=-pthread -mfpmath=sse -msse"
-            lArgs = "-DlAdd=--no-pie -lpthread"
+            lArgs = "-DlAdd=--no-pie -static-libgcc -static-libstdc++ -Wl,-Bstatic -lwinpthread -Wl,-Bdynamic"
             buildTargets += win64
         }
 
