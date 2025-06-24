@@ -1,6 +1,10 @@
 package imgui;
 
 import imgui.binding.ImGuiStructDestroyable;
+
+
+
+
 import imgui.flag.ImGuiDir;
 
 /**
@@ -8,6 +12,7 @@ import imgui.flag.ImGuiDir;
  * During the frame, use ImGui::PushStyleVar(ImGuiStyleVar_XXXX)/PopStyleVar() to alter the main style values,
  * and ImGui::PushStyleColor(ImGuiCol_XXX)/PopStyleColor() for colors.
  */
+
 public final class ImGuiStyle extends ImGuiStructDestroyable {
     public ImGuiStyle() {
         super();
@@ -31,7 +36,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         return (uintptr_t)(new ImGuiStyle());
     */
 
-    /**
+     /**
      * Global alpha applies to everything in Dear ImGui.
      */
     public float getAlpha() {
@@ -53,7 +58,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->Alpha = value;
     */
 
-    /**
+     /**
      * Additional alpha multiplier applied by BeginDisabled(). Multiply over current value of Alpha.
      */
     public float getDisabledAlpha() {
@@ -75,7 +80,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->DisabledAlpha = value;
     */
 
-    /**
+     /**
      * Padding within a window.
      */
     public ImVec2 getWindowPadding() {
@@ -136,7 +141,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowPadding = value;
     */
 
-    /**
+     /**
      * Radius of window corners rounding. Set to 0.0f to have rectangular windows.
      * Large values tend to lead to variety of artifacts and are not recommended.
      */
@@ -160,7 +165,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowRounding = value;
     */
 
-    /**
+     /**
      * Thickness of border around windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
      */
     public float getWindowBorderSize() {
@@ -182,7 +187,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowBorderSize = value;
     */
 
-    /**
+     /**
      * Minimum window size. This is a global setting. If you want to constraint individual windows, use SetNextWindowSizeConstraints().
      */
     public ImVec2 getWindowMinSize() {
@@ -243,7 +248,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowMinSize = value;
     */
 
-    /**
+     /**
      * Alignment for title bar text. Defaults to (0.0f,0.5f) for left-aligned,vertically centered.
      */
     public ImVec2 getWindowTitleAlign() {
@@ -304,7 +309,8 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->WindowTitleAlign = value;
     */
 
-    // FIXME
+     // FIXME
+
     //public int WindowMenuButtonPosition;
 
     /**
@@ -332,7 +338,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ChildRounding = value;
     */
 
-    /**
+     /**
      * Thickness of border around child windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
      */
     public float getChildBorderSize() {
@@ -354,7 +360,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ChildBorderSize = value;
     */
 
-    /**
+     /**
      * Radius of popup window corners rounding. (Note that tooltip windows use WindowRounding)
      */
     public float getPopupRounding() {
@@ -376,7 +382,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->PopupRounding = value;
     */
 
-    /**
+     /**
      * Thickness of border around popup/tooltip windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
      */
     public float getPopupBorderSize() {
@@ -398,7 +404,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->PopupBorderSize = value;
     */
 
-    /**
+     /**
      * Padding within a framed rectangle (used by most widgets).
      */
     public ImVec2 getFramePadding() {
@@ -459,7 +465,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->FramePadding = value;
     */
 
-    /**
+     /**
      * Radius of frame corners rounding. Set to 0.0f to have rectangular frame (used by most widgets).
      */
     public float getFrameRounding() {
@@ -481,7 +487,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->FrameRounding = value;
     */
 
-    /**
+     /**
      * Thickness of border around frames. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
      */
     public float getFrameBorderSize() {
@@ -503,7 +509,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->FrameBorderSize = value;
     */
 
-    /**
+     /**
      * Horizontal and vertical spacing between widgets/lines.
      */
     public ImVec2 getItemSpacing() {
@@ -564,7 +570,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ItemSpacing = value;
     */
 
-    /**
+     /**
      * Horizontal and vertical spacing between within elements of a composed widget (e.g. a slider and its label).
      */
     public ImVec2 getItemInnerSpacing() {
@@ -625,7 +631,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ItemInnerSpacing = value;
     */
 
-    /**
+     /**
      * Padding within a table cell.
      */
     public ImVec2 getCellPadding() {
@@ -686,7 +692,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->CellPadding = value;
     */
 
-    /**
+     /**
      * Expand reactive bounding box for touch-based system where touch position is not accurate enough.
      * Unfortunately we don't sort widgets so priority on overlap will always be given to the first widget. So don't grow this too much!
      */
@@ -753,7 +759,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->TouchExtraPadding = value;
     */
 
-    /**
+     /**
      * Horizontal indentation when e.g. entering a tree node. Generally == (FontSize + FramePadding.x*2).
      */
     public float getIndentSpacing() {
@@ -775,7 +781,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->IndentSpacing = value;
     */
 
-    /**
+     /**
      * Minimum horizontal spacing between two columns. Preferably {@code >} (FramePadding.x + 1).
      */
     public float getColumnsMinSpacing() {
@@ -797,7 +803,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ColumnsMinSpacing = value;
     */
 
-    /**
+     /**
      * Width of the vertical scrollbar, Height of the horizontal scrollbar.
      */
     public float getScrollbarSize() {
@@ -819,7 +825,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ScrollbarSize = value;
     */
 
-    /**
+     /**
      * Radius of grab corners for scrollbar.
      */
     public float getScrollbarRounding() {
@@ -841,7 +847,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ScrollbarRounding = value;
     */
 
-    /**
+     /**
      * Minimum width/height of a grab box for slider/scrollbar.
      */
     public float getGrabMinSize() {
@@ -863,7 +869,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->GrabMinSize = value;
     */
 
-    /**
+     /**
      * Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
      */
     public float getGrabRounding() {
@@ -885,7 +891,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->GrabRounding = value;
     */
 
-    /**
+     /**
      * The size in pixels of the dead-zone around zero on logarithmic sliders that cross zero.
      */
     public float getLogSliderDeadzone() {
@@ -907,7 +913,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->LogSliderDeadzone = value;
     */
 
-    /**
+     /**
      * Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.
      */
     public float getTabRounding() {
@@ -929,7 +935,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->TabRounding = value;
     */
 
-    /**
+     /**
      * Thickness of border around tabs.
      */
     public float getTabBorderSize() {
@@ -951,7 +957,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->TabBorderSize = value;
     */
 
-    /**
+     /**
      * Minimum width for close button to appears on an unselected tab when hovered.
      * Set to 0.0f to always show when hovering, set to FLT_MAX to never show close button unless selected.
      */
@@ -975,7 +981,8 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->TabMinWidthForCloseButton = value;
     */
 
-    // FIXME
+     // FIXME
+
     //public int ColorButtonPosition;
 
     /**
@@ -1042,7 +1049,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->ButtonTextAlign = value;
     */
 
-    /**
+     /**
      * Alignment of selectable text. Defaults to (0.0f, 0.0f) (top-left aligned).
      * It's generally important to keep this left-aligned if you want to lay multiple items on a same line.
      */
@@ -1109,7 +1116,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->SelectableTextAlign = value;
     */
 
-    /**
+     /**
      * Window position are clamped to be visible within the display area by at least this amount. Only applies to regular windows.
      */
     public ImVec2 getDisplayWindowPadding() {
@@ -1170,7 +1177,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->DisplayWindowPadding = value;
     */
 
-    /**
+     /**
      * If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding.
      * Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!
      */
@@ -1237,7 +1244,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->DisplaySafeAreaPadding = value;
     */
 
-    /**
+     /**
      * Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). May be removed later.
      */
     public float getMouseCursorScale() {
@@ -1259,7 +1266,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->MouseCursorScale = value;
     */
 
-    /**
+     /**
      * Enable anti-aliased lines/borders. Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
      */
     public boolean getAntiAliasedLines() {
@@ -1281,7 +1288,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->AntiAliasedLines = value;
     */
 
-    /**
+     /**
      * Enable anti-aliased lines/borders using textures where possible.
      * Require backend to render with bilinear filtering (NOT point/nearest filtering).
      * Latched at the beginning of the frame (copied to ImDrawList).
@@ -1307,7 +1314,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->AntiAliasedLinesUseTex = value;
     */
 
-    /**
+     /**
      * Enable anti-aliased edges around filled shapes (rounded rectangles, circles, etc.).
      * Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
      */
@@ -1331,7 +1338,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->AntiAliasedFill = value;
     */
 
-    /**
+     /**
      * Tessellation tolerance when using PathBezierCurveTo() without a specific number of segments.
      * Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.
      */
@@ -1355,7 +1362,7 @@ public final class ImGuiStyle extends ImGuiStructDestroyable {
         THIS->CurveTessellationTol = value;
     */
 
-    /**
+     /**
      * Maximum error (in pixels) allowed when using AddCircle()/AddCircleFilled() or drawing rounded corner rectangles with no explicit segment count specified.
      * Decrease for higher quality but more geometry.
      */

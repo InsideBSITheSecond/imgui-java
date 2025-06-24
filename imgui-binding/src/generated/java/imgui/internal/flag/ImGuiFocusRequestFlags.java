@@ -1,6 +1,9 @@
 package imgui.internal.flag;
 
 
+
+
+
 public class ImGuiFocusRequestFlags {
     private ImGuiFocusRequestFlags() {
     }

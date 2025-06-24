@@ -1,6 +1,8 @@
 package imgui.flag;
 
 
+
+
 /**
  * Gamepad/Keyboard directional navigation
  * Since {@code >=1.87} backends you generally don't need to care about this enum since io.NavInputs[] is setup automatically. This might become private/internal some day.
@@ -11,6 +13,7 @@ package imgui.flag;
  * Note that io.NavInputs[] is cleared by EndFrame().
  * Read instructions in imgui.cpp for more details. Download PNG/PSD at http://dearimgui.org/controls_sheets.
  */
+
 public final class ImGuiNavInput {
     private ImGuiNavInput() {
     }
