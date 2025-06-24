@@ -7,6 +7,8 @@ set(CMAKE_C_COMPILER /usr/bin/x86_64-w64-mingw32-gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/x86_64-w64-mingw32-g++)
 set(CMAKE_RC_COMPILER /usr/bin/x86_64-w64-mingw32-windres)
 
+#fake push
+
 # Define sysroot (optional)
 #set(CMAKE_SYSROOT /path/to/sysroot)
 
