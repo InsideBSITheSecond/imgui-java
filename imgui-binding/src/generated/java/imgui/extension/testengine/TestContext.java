@@ -2,14 +2,9 @@ package imgui.extension.testengine;
 
 import imgui.ImVec2;
 import imgui.binding.ImGuiStruct;
-
-
-
-
 import imgui.extension.testengine.flag.TestOpFlags;
 import imgui.flag.ImGuiMouseButton;
 import imgui.internal.ImGuiWindow;
-
 
 public final class TestContext extends ImGuiStruct {
     public TestContext(long ptr) {
@@ -41,7 +36,6 @@ public final class TestContext extends ImGuiStruct {
         THIS->SetRef(window);
         if (window != NULL) env->ReleaseStringUTFChars(obj_window, window);
     */
-
 
     //public native int GetRef();
 

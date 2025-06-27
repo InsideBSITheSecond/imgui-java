@@ -2,9 +2,6 @@ package imgui;
 
 import imgui.binding.ImGuiStruct;
 
-
-
-
 /**
  * Shared state of InputText(), passed as an argument to your callback when a ImGuiInputTextFlags_Callback* flag is used.<p>
  * The callback function should return 0 by default.<p>
@@ -16,7 +13,6 @@ import imgui.binding.ImGuiStruct;
  * - ImGuiInputTextFlags_CallbackCharFilter:  Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.<p>
  * - ImGuiInputTextFlags_CallbackResize:      Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow.<p>
  */
-
 public class ImGuiInputTextCallbackData extends ImGuiStruct {
     public ImGuiInputTextCallbackData(final long ptr) {
         super(ptr);
@@ -27,7 +23,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         #define THIS ((ImGuiInputTextCallbackData*)STRUCT_PTR)
      */
 
-     /**
+    /**
      * One ImGuiInputTextFlags_Callback*
      */
     public int getEventFlag() {
@@ -45,7 +41,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         return THIS->EventFlag;
     */
 
-     /**
+    /**
      * What user passed to InputText()
      */
     public int getFlags() {
@@ -65,7 +61,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
 
     // TODO: UserData
 
-     /**
+    /**
      * [CharFilter] Replace character with another one, or set to zero to drop. return 1 is equivalent to setting EventChar=0;
      */
     public int getEventChar() {
@@ -87,7 +83,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->EventChar = value;
     */
 
-     /**
+    /**
      * [Completion,History]
      */
     public int getEventKey() {
@@ -98,7 +94,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         return THIS->EventKey;
     */
 
-     /**
+    /**
      * [Resize] Can replace pointer <p>
      * [Completion,History,Always] Only write to pointed data, don't replace the actual pointer!
      */
@@ -124,7 +120,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         if (value != NULL) env->ReleaseStringUTFChars(obj_value, value);
     */
 
-     /**
+    /**
      * [Resize,Completion,History,Always] Exclude zero-terminator storage. In C land: == strlen(some_text), in C++ land: string.length()
      */
     public int getBufTextLen() {
@@ -146,7 +142,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->BufTextLen = value;
     */
 
-     /**
+    /**
      * Set if you modify Buf/BufTextLen!
      */
     public boolean getBufDirty() {
@@ -168,7 +164,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->BufDirty = value;
     */
 
-     /**
+    /**
      * Current cursor position
      */
     public int getCursorPos() {
@@ -190,7 +186,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->CursorPos = value;
     */
 
-     /**
+    /**
      * Selection Start
      */
     public int getSelectionStart() {
@@ -212,7 +208,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->SelectionStart = value;
     */
 
-     /**
+    /**
      * Selection End
      */
     public int getSelectionEnd() {
@@ -234,7 +230,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->SelectionEnd = value;
     */
 
-     /**
+    /**
      * Delete Chars
      *
      * @param pos
@@ -250,7 +246,7 @@ public class ImGuiInputTextCallbackData extends ImGuiStruct {
         THIS->DeleteChars(pos, bytesCount);
     */
 
-     /**
+    /**
      * Insert Chars
      *
      * @param pos

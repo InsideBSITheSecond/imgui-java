@@ -1,9 +1,7 @@
 package imgui.extension.testengine;
 
 import imgui.binding.ImGuiStruct;
-
 import imgui.extension.testengine.flag.TestVerboseLevel;
-
 
 public class TestEngineIO extends ImGuiStruct {
     public TestEngineIO(long ptr) { super(ptr); }

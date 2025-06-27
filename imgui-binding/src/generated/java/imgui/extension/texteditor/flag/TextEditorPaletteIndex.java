@@ -1,9 +1,6 @@
 package imgui.extension.texteditor.flag;
 
 
-
-
-
 public final class TextEditorPaletteIndex {
     private TextEditorPaletteIndex() {
     }

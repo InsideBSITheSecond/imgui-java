@@ -3,12 +3,6 @@ package imgui.extension.implot;
 import imgui.ImDrawList;
 import imgui.ImVec2;
 import imgui.ImVec4;
-
-
-
-
-
-
 import imgui.extension.implot.flag.ImPlotColormapScaleFlags;
 import imgui.extension.implot.flag.ImPlotHistogramFlags;
 import imgui.extension.implot.flag.ImPlotTextFlags;
@@ -16,7 +10,6 @@ import imgui.internal.ImGuiContext;
 import imgui.type.ImBoolean;
 import imgui.type.ImDouble;
 import imgui.type.ImFloat;
-
 
 public final class ImPlot {
     private ImPlot() {
@@ -30,7 +23,7 @@ public final class ImPlot {
     // [SECTION] Contexts
     //-----------------------------------------------------------------------------
 
-     /**
+    /**
      * Creates a new ImPlot context. Call this after ImGui.createContext().
      */
     public static ImPlotContext createContext() {
@@ -41,7 +34,7 @@ public final class ImPlot {
         return (uintptr_t)ImPlot::CreateContext();
     */
 
-     /**
+    /**
      * Destroys an ImPlot context. Call this before ImGui.destroyContext(). NULL = destroy current context.
      */
     public static void destroyContext() {
@@ -63,7 +56,7 @@ public final class ImPlot {
         ImPlot::DestroyContext(reinterpret_cast<ImPlotContext*>(ctx));
     */
 
-     /**
+    /**
      * Returns the current ImPlot context. NULL if no context has ben set.
      */
     public static ImPlotContext getCurrentContext() {
@@ -74,7 +67,7 @@ public final class ImPlot {
         return (uintptr_t)ImPlot::GetCurrentContext();
     */
 
-     /**
+    /**
      * Sets the current ImPlot context.
      */
     public static void setCurrentContext(final ImPlotContext ctx) {
@@ -168,7 +161,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Only call EndPlot() if beginPlot() returns true! Typically called at the end
      * of an if statement conditioned on BeginPlot(). See example in beginPlot().
      */
@@ -320,7 +313,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Only call EndSubplots() if BeginSubplots() returns true! Typically called at the end
      * of an if statement conditioned on BeginSublots(). See example above.
      */
@@ -361,7 +354,7 @@ public final class ImPlot {
     //   call it yourself, then the first subsequent plotting or utility function will
     //   call it for you.
 
-     /**
+    /**
      * Enables an axis or sets the label and/or flags for an existing axis.
      * Leave `label` as NULL for no label.
      */
@@ -413,7 +406,7 @@ public final class ImPlot {
         ImPlot::SetupAxis(axis, NULL, flags);
     */
 
-     /**
+    /**
      * Sets an axis range limits. If ImPlotCond_Always is used, the axes limits will be locked.
      */
     public static void setupAxisLimits(final int axis, final double vMin, final double vMax) {
@@ -435,7 +428,7 @@ public final class ImPlot {
         ImPlot::SetupAxisLimits(axis, vMin, vMax, cond);
     */
 
-     /**
+    /**
      * Links an axis range limits to external values. Set to NULL for no linkage.
      * The pointer data must remain valid until EndPlot.
      */
@@ -451,7 +444,7 @@ public final class ImPlot {
         if (linkMax != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMax, linkMax, JNI_FALSE);
     */
 
-     /**
+    /**
      * Sets the format of numeric axis labels via formatter specifier (default="%g").
      * Formatted values will be double (i.e. use %f).
      */
@@ -467,7 +460,7 @@ public final class ImPlot {
 
     // TODO: support ImPlotFormatter
 
-     /**
+    /**
      * Sets an axis' ticks and optionally the labels. To keep the default ticks,
      * set `keepDefault=true`.
      */
@@ -543,7 +536,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Sets an axis' ticks and optionally the labels for the next plot.
      * To keep the default ticks, set `keepDefault=true`.
      */
@@ -611,7 +604,7 @@ public final class ImPlot {
         ImPlot::SetupAxisTicks(axis, vMin, vMax, nTicks, NULL, keepDefault);
     */
 
-     /**
+    /**
      * Sets the label and/or flags for primary X and Y axes (shorthand for two calls to SetupAxis).
      */
     public static void setupAxes(final String xLabel, final String yLabel) {
@@ -656,7 +649,7 @@ public final class ImPlot {
         if (yLabel != NULL) env->ReleaseStringUTFChars(obj_yLabel, yLabel);
     */
 
-     /**
+    /**
      * Sets the primary X and Y axes range limits. If ImPlotCond_Always is used,
      * the axes limits will be locked (shorthand for two calls to SetupAxisLimits).
      */
@@ -680,7 +673,7 @@ public final class ImPlot {
         ImPlot::SetupAxesLimits(xMin, xMax, yMin, yMax, cond);
     */
 
-     /**
+    /**
      * Sets up the plot legend.
      */
     public static void setupLegend(final int location) {
@@ -702,7 +695,7 @@ public final class ImPlot {
         ImPlot::SetupLegend(location, flags);
     */
 
-     /**
+    /**
      * Sets the location of the current plot's mouse position text (default = South|East).
      */
     public static void setupMouseText(final int location) {
@@ -724,7 +717,7 @@ public final class ImPlot {
         ImPlot::SetupMouseText(location, flags);
     */
 
-     /**
+    /**
      * Explicitly finalize plot setup. Once you call this, you cannot make any more
      * Setup calls for the current plot! Note that calling this function is OPTIONAL;
      * it will be called by the first subsequent setup-locking API call.
@@ -760,7 +753,7 @@ public final class ImPlot {
     // - You must still enable non-default axes with SetupAxis for these functions
     //   to work properly.
 
-     /**
+    /**
      * Sets an upcoming axis range limits. If ImPlotCond_Always is used, the axes limits will be locked.
      */
     public static void setNextAxisLimits(final int axis, final double vMin, final double vMax) {
@@ -782,7 +775,7 @@ public final class ImPlot {
         ImPlot::SetNextAxisLimits(axis, vMin, vMax, cond);
     */
 
-     /**
+    /**
      * Links an upcoming axis range limits to external values. Set to NULL for no linkage.
      * The pointer data must remain valid until EndPlot!
      */
@@ -798,7 +791,7 @@ public final class ImPlot {
         if (linkMax != NULL) env->ReleasePrimitiveArrayCritical(obj_linkMax, linkMax, JNI_FALSE);
     */
 
-     /**
+    /**
      * Set an upcoming axis to auto fit to its data.
      */
     public static void setNextAxisToFit(final int axis) {
@@ -809,7 +802,7 @@ public final class ImPlot {
         ImPlot::SetNextAxisToFit(axis);
     */
 
-     /**
+    /**
      * Sets the upcoming primary X and Y axes range limits. If ImPlotCond_Always is used,
      * the axes limits will be locked (shorthand for two calls to SetupAxisLimits).
      */
@@ -833,7 +826,7 @@ public final class ImPlot {
         ImPlot::SetNextAxesLimits(xMin, xMax, yMin, yMax, cond);
     */
 
-     /**
+    /**
      * Sets all upcoming axes to auto fit to their data.
      */
     public static void setNextAxesToFit() {
@@ -904,7 +897,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots a standard 2D line plot.
      */
     public static void plotLine(final String labelId, final short[] values) {
@@ -1204,7 +1197,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a standard 2D line plot.
      */
     public static void plotLine(final String labelId, final short[] values, final int count) {
@@ -1506,7 +1499,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots a standard 2D line plot.
      */
     public static void plotLine(final String labelId, final short[] xs, final short[] ys) {
@@ -1591,7 +1584,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a standard 2D line plot.
      */
     public static void plotLine(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -1763,7 +1756,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots a standard 2D scatter plot. Default marker is ImPlotMarker_Circle.
      */
     public static void plotScatter(final String labelId, final short[] values) {
@@ -2063,7 +2056,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a standard 2D scatter plot. Default marker is ImPlotMarker_Circle.
      */
     public static void plotScatter(final String labelId, final short[] values, final int count) {
@@ -2365,7 +2358,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots a standard 2D scatter plot. Default marker is ImPlotMarker_Circle.
      */
     public static void plotScatter(final String labelId, final short[] xs, final short[] ys) {
@@ -2450,7 +2443,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a standard 2D scatter plot. Default marker is ImPlotMarker_Circle.
      */
     public static void plotScatter(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -2622,7 +2615,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots a stairstep graph. The y value is continued constantly from every x position, i.e. the interval [x[i], x[i+1]) has the value y[i].
      */
     public static void plotStairs(final String labelId, final short[] values) {
@@ -2922,7 +2915,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a stairstep graph. The y value is continued constantly from every x position, i.e. the interval [x[i], x[i+1]) has the value y[i].
      */
     public static void plotStairs(final String labelId, final short[] values, final int count) {
@@ -3224,7 +3217,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots a stairstep graph. The y value is continued constantly from every x position, i.e. the interval [x[i], x[i+1]) has the value y[i].
      */
     public static void plotStairs(final String labelId, final short[] xs, final short[] ys) {
@@ -3309,7 +3302,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a stairstep graph. The y value is continued constantly from every x position, i.e. the interval [x[i], x[i+1]) has the value y[i].
      */
     public static void plotStairs(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -3481,7 +3474,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] values) {
@@ -3856,7 +3849,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] values, final int count) {
@@ -4233,7 +4226,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] xs, final short[] ys) {
@@ -4488,7 +4481,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -4745,7 +4738,7 @@ public final class ImPlot {
 
     // xs,ys1,ys2
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] xs, final short[] ys1, final short[] ys2) {
@@ -4840,7 +4833,7 @@ public final class ImPlot {
         if (ys2 != NULL) env->ReleasePrimitiveArrayCritical(obj_ys2, ys2, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a shaded (filled) region between two lines, or a line and a horizontal reference. Set y_ref to +/-INFINITY for infinite fill extents.
      */
     public static void plotShaded(final String labelId, final short[] xs, final short[] ys1, final short[] ys2, final int count) {
@@ -5032,7 +5025,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots a vertical bar graph. #bar_width and #x0 are in X units.
      */
     public static void plotBars(final String labelId, final short[] values) {
@@ -5332,7 +5325,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a vertical bar graph. #bar_width and #x0 are in X units.
      */
     public static void plotBars(final String labelId, final short[] values, final int count) {
@@ -5634,7 +5627,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots a vertical bar graph. #bar_width and #x0 are in X units.
      */
     public static void plotBars(final String labelId, final short[] xs, final short[] ys) {
@@ -5804,7 +5797,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a vertical bar graph. #bar_width and #x0 are in X units.
      */
     public static void plotBars(final String labelId, final short[] xs, final short[] ys, final double barWidth) {
@@ -5974,7 +5967,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a vertical bar graph. #bar_width and #x0 are in X units.
      */
     public static void plotBars(final String labelId, final short[] xs, final short[] ys, final int count, final double barWidth) {
@@ -6144,7 +6137,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a group of vertical bars. #values is a row-major matrix with #item_count rows and #group_count cols. #label_ids should have #item_count elements.
      */
     public static void plotBarGroups(final String[] labelIds, final short[] values, final int itemCount, final int groupCount) {
@@ -6604,7 +6597,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical error bar. The label_id should be the same as the label_id of the associated line or bar plot.
      */
     public static void plotErrorBars(final String labelId, final short[] xs, final short[] ys, final short[] err) {
@@ -6699,7 +6692,7 @@ public final class ImPlot {
         if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical error bar. The label_id should be the same as the label_id of the associated line or bar plot.
      */
     public static void plotErrorBars(final String labelId, final short[] xs, final short[] ys, final short[] err, final int count) {
@@ -6889,7 +6882,7 @@ public final class ImPlot {
         if (err != NULL) env->ReleasePrimitiveArrayCritical(obj_err, err, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical error bar. The label_id should be the same as the label_id of the associated line or bar plot.
      */
     public static void plotErrorBars(final String labelId, final short[] xs, final short[] ys, final short[] neg, final short[] pos) {
@@ -6994,7 +6987,7 @@ public final class ImPlot {
         if (pos != NULL) env->ReleasePrimitiveArrayCritical(obj_pos, pos, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical error bar. The label_id should be the same as the label_id of the associated line or bar plot.
      */
     public static void plotErrorBars(final String labelId, final short[] xs, final short[] ys, final short[] neg, final short[] pos, final int count) {
@@ -7206,7 +7199,7 @@ public final class ImPlot {
 
     // values
 
-     /**
+    /**
      * Plots vertical stems.
      */
     public static void plotStems(final String labelId, final short[] values) {
@@ -7581,7 +7574,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical stems.
      */
     public static void plotStems(final String labelId, final short[] values, final int count) {
@@ -7958,7 +7951,7 @@ public final class ImPlot {
 
     // xs,ys
 
-     /**
+    /**
      * Plots vertical stems.
      */
     public static void plotStems(final String labelId, final short[] xs, final short[] ys) {
@@ -8213,7 +8206,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots vertical stems.
      */
     public static void plotStems(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -8468,7 +8461,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots infinite vertical or horizontal lines (e.g. for references or asymptotes).
      */
     public static void plotInfLines(final String labelId, final short[] values, final int count, final int flags, final int offset, final int stride) {
@@ -8546,18 +8539,12 @@ public final class ImPlot {
     //
     // Plots a pie chart. If the sum of values{@code >}1 or normalize is true, each value will be normalized. Center and radius are in plot units. #label_fmt can be set to NULL for no labels.
     //
-
 //    public static native void PlotPieChart(String[] labelIds,
-
-
 //                                           double x,
 //                                           double y,
 //                                           double radius,
 
-
-
-
-     /**
+    /**
      * Plots a 2D heatmap chart. Values are expected to be in row-major order. Leave #scale_min and scale_max both at 0 for automatic color scaling, or set them to a predefined range. #label_fmt can be set to NULL for no labels.
      */
     public static void plotHeatmap(final String labelId, final short[] values, final int rows, final int cols) {
@@ -9217,7 +9204,7 @@ public final class ImPlot {
         if (values != NULL) env->ReleasePrimitiveArrayCritical(obj_values, values, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots a horizontal histogram. #bins can be a positive integer or an ImPlotBin_ method. If #cumulative is true, each bin contains its count plus the counts of all previous bins.
      * If #density is true, the PDF is visualized. If both are true, the CDF is visualized. If #range is left unspecified, the min/max of #values will be used as the range.
      * If #range is specified, outlier values outside of the range are not binned. However, outliers still count toward normalizing and cumulative counts unless #outliers is false. The largest bin count or density is returned.
@@ -9352,7 +9339,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Plots two dimensional, bivariate histogram as a heatmap. #x_bins and #y_bins can be a positive integer or an ImPlotBin. If #density is true, the PDF is visualized.
      * If #range is left unspecified, the min/max of #xs an #ys will be used as the ranges. If #range is specified, outlier values outside of range are not binned.
      * However, outliers still count toward the normalizing count for density plots unless #outliers is false. The largest bin count or density is returned.
@@ -9497,7 +9484,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Plots digital data. Digital plots do not respond to y drag or zoom, and are always referenced to the bottom of the plot.
      */
     public static void plotDigital(final String labelId, final short[] xs, final short[] ys) {
@@ -9582,7 +9569,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots digital data. Digital plots do not respond to y drag or zoom, and are always referenced to the bottom of the plot.
      */
     public static void plotDigital(final String labelId, final short[] xs, final short[] ys, final int count) {
@@ -9752,7 +9739,7 @@ public final class ImPlot {
         if (ys != NULL) env->ReleasePrimitiveArrayCritical(obj_ys, ys, JNI_FALSE);
     */
 
-     /**
+    /**
      * Plots an axis-aligned image. #bounds_min/bounds_max are in plot coordinates (y-up) and #uv0/uv1 are in texture coordinates (y-down).
      */
     public static void plotImage(final String labelId, final long userTextureId, final ImPlotPoint boundsMin, final ImPlotPoint boundsMax) {
@@ -9859,7 +9846,7 @@ public final class ImPlot {
         if (labelId != NULL) env->ReleaseStringUTFChars(obj_labelId, labelId);
     */
 
-     /**
+    /**
      * Plots a centered text label at point x,y with an optional pixel offset. Text color can be changed with ImPlot::PushStyleColor(ImPlotCol_InlayText, ...).
      */
     public static void plotText(final String text, final double x, final double y, final ImVec2 pixOffset, final ImPlotTextFlags flags) {
@@ -9880,7 +9867,7 @@ public final class ImPlot {
         if (text != NULL) env->ReleaseStringUTFChars(obj_text, text);
     */
 
-     /**
+    /**
      * Plots a dummy item (i.e. adds a legend entry colored by ImPlotCol_Line)
      */
     public static void plotDummy(final String labelID) {
@@ -9906,7 +9893,7 @@ public final class ImPlot {
     // Like the item plotting functions above, they apply to the current x and y
     // axes, which can be changed with `SetAxis/SetAxes`.
 
-     /**
+    /**
      * Shows a draggable point at x, y. `col` defaults to ImGuiCol_Text.
      */
     public static boolean dragPoint(final int id, final ImDouble x, final ImDouble y, final ImVec4 col) {
@@ -10002,7 +9989,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows a draggable vertical guide line at an x-value. `col` defaults to ImGuiCol_Text.
      */
     public static boolean dragLineX(final int id, final ImDouble x, final ImVec4 col) {
@@ -10090,7 +10077,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows a draggable horizontal guide line at a y-value. `col` defaults to ImGuiCol_Text.
      */
     public static boolean dragLineY(final int id, final ImDouble y, final ImVec4 col) {
@@ -10178,7 +10165,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows a draggable and resizeable rectangle.
      */
     public static boolean dragRect(final int id, final ImDouble xMin, final ImDouble yMin, final ImDouble xMax, final ImDouble yMax, final ImVec4 col) {
@@ -10234,7 +10221,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows an annotation callout at a chosen point. Clamping keeps annotations in the plot area.
      * Annotations are always rendered on top.
      */
@@ -10278,7 +10265,7 @@ public final class ImPlot {
         ImPlot::Annotation(x, y, color, pixOffset, clamp, round);
     */
 
-     /**
+    /**
      * Shows an annotation callout at a chosen point with formatted text.
      * Clamping keeps annotations in the plot area. Annotations are always rendered on top.
      */
@@ -10302,7 +10289,7 @@ public final class ImPlot {
         if (fmt != NULL) env->ReleaseStringUTFChars(obj_fmt, fmt);
     */
 
-     /**
+    /**
      * Shows a x-axis tag at the specified coordinate value.
      */
     public static void tagX(final double x, final ImVec4 color) {
@@ -10340,7 +10327,7 @@ public final class ImPlot {
         ImPlot::TagX(x, color, round);
     */
 
-     /**
+    /**
      * Shows a x-axis tag at the specified coordinate value with formatted text.
      */
     public static void tagX(final double x, final ImVec4 color, final String fmt) {
@@ -10361,7 +10348,7 @@ public final class ImPlot {
         if (fmt != NULL) env->ReleaseStringUTFChars(obj_fmt, fmt);
     */
 
-     /**
+    /**
      * Shows a y-axis tag at the specified coordinate value.
      */
     public static void tagY(final double y, final ImVec4 color) {
@@ -10399,7 +10386,7 @@ public final class ImPlot {
         ImPlot::TagY(y, color, round);
     */
 
-     /**
+    /**
      * Shows a y-axis tag at the specified coordinate value with formatted text.
      */
     public static void tagY(final double y, final ImVec4 color, final String fmt) {
@@ -10424,7 +10411,7 @@ public final class ImPlot {
     // [SECTION] Plot Utils
     //-----------------------------------------------------------------------------
 
-     /**
+    /**
      * Selects which axis will be used for subsequent plot elements.
      */
     public static void setAxis(final int axis) {
@@ -10435,7 +10422,7 @@ public final class ImPlot {
         ImPlot::SetAxis(axis);
     */
 
-     /**
+    /**
      * Selects which axes will be used for subsequent plot elements.
      */
     public static void setAxes(final int xAxis, final int yAxis) {
@@ -10446,7 +10433,7 @@ public final class ImPlot {
         ImPlot::SetAxes(xAxis, yAxis);
     */
 
-     /**
+    /**
      * Converts pixels to a position in the current plot's coordinate system.
      * Passing IMPLOT_AUTO uses the current axes.
      */
@@ -10569,7 +10556,7 @@ public final class ImPlot {
         Jni::ImPlotPointCpy(env, ImPlot::PixelsToPlot(pix, xAxis, yAxis), dst);
     */
 
-     /**
+    /**
      * Converts a position in the current plot's coordinate system to pixels.
      * Passing IMPLOT_AUTO uses the current axes.
      */
@@ -10761,7 +10748,7 @@ public final class ImPlot {
         return ImPlot::PlotToPixels(ImPlotPoint(pltX, pltY), xAxis, yAxis).y;
     */
 
-     /**
+    /**
      * Gets the current Plot position (top-left) in pixels.
      */
     public static ImVec2 getPlotPos() {
@@ -10803,7 +10790,7 @@ public final class ImPlot {
         return ImPlot::GetPlotPos().y;
     */
 
-     /**
+    /**
      * Gets the current Plot size in pixels.
      */
     public static ImVec2 getPlotSize() {
@@ -10845,7 +10832,7 @@ public final class ImPlot {
         return ImPlot::GetPlotSize().y;
     */
 
-     /**
+    /**
      * Returns the mouse position in x, y coordinates of the current plot.
      * Passing IMPLOT_AUTO uses the current axes.
      */
@@ -10911,7 +10898,7 @@ public final class ImPlot {
         Jni::ImPlotPointCpy(env, ImPlot::GetPlotMousePos(xAxis, yAxis), dst);
     */
 
-     /**
+    /**
      * Returns the current plot axis range.
      */
     public static ImPlotRect getPlotLimits() {
@@ -10971,7 +10958,7 @@ public final class ImPlot {
         Jni::ImPlotRectCpy(env, ImPlot::GetPlotLimits(xAxis, yAxis), dst);
     */
 
-     /**
+    /**
      * Returns true if the plot area in the current plot is hovered.
      */
     public static boolean isPlotHovered() {
@@ -10982,7 +10969,7 @@ public final class ImPlot {
         return ImPlot::IsPlotHovered();
     */
 
-     /**
+    /**
      * Returns true if the axis label area in the current plot is hovered.
      */
     public static boolean isAxisHovered(final int axis) {
@@ -10993,7 +10980,7 @@ public final class ImPlot {
         return ImPlot::IsAxisHovered(axis);
     */
 
-     /**
+    /**
      * Returns true if the bounding frame of a subplot is hovered.
      */
     public static boolean isSubplotsHovered() {
@@ -11004,7 +10991,7 @@ public final class ImPlot {
         return ImPlot::IsSubplotsHovered();
     */
 
-     /**
+    /**
      * Returns true if the current plot is being box selected.
      */
     public static boolean isPlotSelected() {
@@ -11015,7 +11002,7 @@ public final class ImPlot {
         return ImPlot::IsPlotSelected();
     */
 
-     /**
+    /**
      * Returns the current plot box selection bounds.
      * Passing IMPLOT_AUTO uses the current axes.
      */
@@ -11081,7 +11068,7 @@ public final class ImPlot {
         Jni::ImPlotRectCpy(env, ImPlot::GetPlotSelection(xAxis, yAxis), dst);
     */
 
-     /**
+    /**
      * Cancels the current plot box selection.
      */
     public static void cancelPlotSelection() {
@@ -11092,7 +11079,7 @@ public final class ImPlot {
         ImPlot::CancelPlotSelection();
     */
 
-     /**
+    /**
      * Hides or shows the next plot item (i.e. as if it were toggled from the legend).
      * Use ImPlotCond_Always if you need to forcefully set this every frame.
      */
@@ -11145,7 +11132,7 @@ public final class ImPlot {
     // accomplish the same behaviour by default. The functions below offer lower
     // level control of plot alignment.
 
-     /**
+    /**
      * Aligns axis padding over multiple plots in a single row or column.
      * `group_id` must be unique. If this function returns true, EndAlignedPlots() must be called.
      */
@@ -11175,7 +11162,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Ends aligned plots. Only call EndAlignedPlots() if BeginAlignedPlots() returns true.
      */
     public static void endAlignedPlots() {
@@ -11190,7 +11177,7 @@ public final class ImPlot {
     // [SECTION] Legend Utils
     //-----------------------------------------------------------------------------
 
-     /**
+    /**
      * Begins a popup for a legend entry.
      */
     public static boolean beginLegendPopup(final String labelId) {
@@ -11218,7 +11205,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Ends a popup for a legend entry.
      */
     public static void endLegendPopup() {
@@ -11229,7 +11216,7 @@ public final class ImPlot {
         ImPlot::EndLegendPopup();
     */
 
-     /**
+    /**
      * Returns true if a plot item legend entry is hovered.
      */
     public static boolean isLegendEntryHovered(final String labelId) {
@@ -11247,7 +11234,7 @@ public final class ImPlot {
     // [SECTION] Drag and Drop
     //-----------------------------------------------------------------------------
 
-     /**
+    /**
      * Turns the current plot's plotting area into a drag and drop target.
      * Don't forget to call EndDragDropTarget!
      */
@@ -11259,7 +11246,7 @@ public final class ImPlot {
         return ImPlot::BeginDragDropTargetPlot();
     */
 
-     /**
+    /**
      * Turns the current plot's X-axis into a drag and drop target.
      * Don't forget to call EndDragDropTarget!
      */
@@ -11271,7 +11258,7 @@ public final class ImPlot {
         return ImPlot::BeginDragDropTargetAxis(axis);
     */
 
-     /**
+    /**
      * Turns the current plot's legend into a drag and drop target.
      * Don't forget to call EndDragDropTarget!
      */
@@ -11283,7 +11270,7 @@ public final class ImPlot {
         return ImPlot::BeginDragDropTargetLegend();
     */
 
-     /**
+    /**
      * Ends a drag and drop target (currently just an alias for ImGui::EndDragDropTarget).
      */
     public static void endDragDropTarget() {
@@ -11297,7 +11284,7 @@ public final class ImPlot {
     // NB: By default, plot and axes drag and drop *sources* require holding the Ctrl modifier to initiate the drag.
     // You can change the modifier if desired. If ImGuiKeyModFlags_None is provided, the axes will be locked from panning.
 
-     /**
+    /**
      * Turns the current plot's plotting area into a drag and drop source.
      * You must hold Ctrl. Don't forget to call EndDragDropSource!
      */
@@ -11321,7 +11308,7 @@ public final class ImPlot {
         return ImPlot::BeginDragDropSourcePlot(flags);
     */
 
-     /**
+    /**
      * Turns the current plot's X-axis into a drag and drop source.
      * You must hold Ctrl. Don't forget to call EndDragDropSource!
      */
@@ -11345,7 +11332,7 @@ public final class ImPlot {
         return ImPlot::BeginDragDropSourceAxis(axis, flags);
     */
 
-     /**
+    /**
      * Turns an item in the current plot's legend into a drag and drop source.
      * Don't forget to call EndDragDropSource!
      */
@@ -11375,7 +11362,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Ends a drag and drop source (currently just an alias for ImGui::EndDragDropSource).
      */
     public static void endDragDropSource() {
@@ -11419,7 +11406,7 @@ public final class ImPlot {
     //        manually set these colors to whatever you like, and further can Push/Pop
     //        them around individual plots for plot-specific styling (e.g. coloring axes).
 
-     private static final ImPlotStyle _GETSTYLE_1 = new ImPlotStyle(0);
+    private static final ImPlotStyle _GETSTYLE_1 = new ImPlotStyle(0);
 
     /**
      * Provides access to plot style structure for permanant modifications to colors, sizes, etc.
@@ -11433,7 +11420,7 @@ public final class ImPlot {
         return (uintptr_t)&ImPlot::GetStyle();
     */
 
-     /**
+    /**
      * Style plot colors for current ImGui style (default).
      */
     public static void styleColorsAuto() {
@@ -11455,7 +11442,7 @@ public final class ImPlot {
         ImPlot::StyleColorsAuto(reinterpret_cast<ImPlotStyle*>(dst));
     */
 
-     /**
+    /**
      * Style plot colors for ImGui "Classic".
      */
     public static void styleColorsClassic() {
@@ -11477,7 +11464,7 @@ public final class ImPlot {
         ImPlot::StyleColorsClassic(reinterpret_cast<ImPlotStyle*>(dst));
     */
 
-     /**
+    /**
      * Style plot colors for ImGui "Dark".
      */
     public static void styleColorsDark() {
@@ -11499,7 +11486,7 @@ public final class ImPlot {
         ImPlot::StyleColorsDark(reinterpret_cast<ImPlotStyle*>(dst));
     */
 
-     /**
+    /**
      * Style plot colors for ImGui "Light".
      */
     public static void styleColorsLight() {
@@ -11532,7 +11519,7 @@ public final class ImPlot {
         ImPlot::PushStyleColor(idx, col);
     */
 
-     /**
+    /**
      * Temporarily modify a style color. Don't forget to call PopStyleColor!
      */
     public static void pushStyleColor(final int idx, final int col) {
@@ -11543,7 +11530,7 @@ public final class ImPlot {
         ImPlot::PushStyleColor(idx, static_cast<ImU32>(col));
     */
 
-     /**
+    /**
      * Temporarily modify a style color. Don't forget to call PopStyleColor!
      */
     public static void pushStyleColor(final int idx, final ImVec4 col) {
@@ -11578,7 +11565,7 @@ public final class ImPlot {
         ImPlot::PopStyleColor(count);
     */
 
-     /**
+    /**
      * Temporarily modify a style variable of float type. Don't forget to call PopStyleVar!
      */
     public static void pushStyleVar(final int idx, final float val) {
@@ -11589,7 +11576,7 @@ public final class ImPlot {
         ImPlot::PushStyleVar(idx, static_cast<float>(val));
     */
 
-     /**
+    /**
      * Temporarily modify a style variable of int type. Don't forget to call PopStyleVar!
      */
     public static void pushStyleVar(final int idx, final int val) {
@@ -11600,7 +11587,7 @@ public final class ImPlot {
         ImPlot::PushStyleVar(idx, static_cast<int>(val));
     */
 
-     /**
+    /**
      * Temporarily modify a style variable of ImVec2 type. Don't forget to call PopStyleVar!
      */
     public static void pushStyleVar(final int idx, final ImVec2 val) {
@@ -11618,7 +11605,7 @@ public final class ImPlot {
         ImVec2 val = ImVec2(valX, valY);
         ImPlot::PushStyleVar(idx, val);
     */
-     /**
+    /**
      * Undo temporary style variable modification(s). Undo multiple pushes at once by increasing count.
      */
     public static void popStyleVar() {
@@ -11640,7 +11627,7 @@ public final class ImPlot {
         ImPlot::PopStyleVar(count);
     */
 
-     /**
+    /**
      * Set the line color and weight for the next item only.
      */
     public static void setNextLineStyle() {
@@ -11700,7 +11687,7 @@ public final class ImPlot {
         ImPlot::SetNextLineStyle(IMPLOT_AUTO_COL, weight);
     */
 
-     /**
+    /**
      * Set the fill color for the next item only.
      */
     public static void setNextFillStyle() {
@@ -11760,7 +11747,7 @@ public final class ImPlot {
         ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, alphaMod);
     */
 
-     /**
+    /**
      * Set the marker style for the next item only.
      */
     public static void setNextMarkerStyle() {
@@ -11871,7 +11858,7 @@ public final class ImPlot {
         ImPlot::SetNextMarkerStyle(marker, size, fill, IMPLOT_AUTO, outline);
     */
 
-     /**
+    /**
      * Set the error bar style for the next item only.
      */
     public static void setNextErrorBarStyle() {
@@ -11950,7 +11937,7 @@ public final class ImPlot {
         ImPlot::SetNextErrorBarStyle(IMPLOT_AUTO_COL, size, weight);
     */
 
-     /**
+    /**
      * Gets the last item primary color (i.e. its legend icon color)
      */
     public static ImVec4 getLastItemColor() {
@@ -12014,7 +12001,7 @@ public final class ImPlot {
         return ImPlot::GetLastItemColor().w;
     */
 
-     /**
+    /**
      * Returns the string name for an ImPlotCol.
      */
     public static String getStyleColorName(final int idx) {
@@ -12025,7 +12012,7 @@ public final class ImPlot {
         return env->NewStringUTF(ImPlot::GetStyleColorName(idx));
     */
 
-     /**
+    /**
      * Returns the null terminated string name for an ImPlotMarker.
      */
     public static String getMarkerName(final int idx) {
@@ -12120,7 +12107,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Returns the number of available colormaps (i.e. the built-in + user-added count).
      */
     public static int getColormapCount() {
@@ -12131,7 +12118,7 @@ public final class ImPlot {
         return ImPlot::GetColormapCount();
     */
 
-     /**
+    /**
      * Returns a string name for a colormap given an index.
      */
     public static String getColormapName(final int cmap) {
@@ -12142,7 +12129,7 @@ public final class ImPlot {
         return env->NewStringUTF(ImPlot::GetColormapName(cmap));
     */
 
-     /**
+    /**
      * Returns an index number for a colormap given a valid string name. Returns -1 if the name is invalid.
      */
     public static int getColormapIndex(final String name) {
@@ -12156,7 +12143,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Temporarily switch to one of the built-in (i.e. ImPlotColormap_XXX) or user-added colormaps (i.e. a return value of AddColormap). Don't forget to call PopColormap!
      */
     public static void pushColormap(final int cmap) {
@@ -12167,7 +12154,7 @@ public final class ImPlot {
         ImPlot::PushColormap(cmap);
     */
 
-     /**
+    /**
      * Push a colormap by string name. Use built-in names such as "Default", "Deep", "Jet", etc. or a string you provided to AddColormap. Don't forget to call PopColormap!
      */
     public static void pushColormap(final String name) {
@@ -12180,7 +12167,7 @@ public final class ImPlot {
         if (name != NULL) env->ReleaseStringUTFChars(obj_name, name);
     */
 
-     /**
+    /**
      * Undo temporary colormap modification(s). Undo multiple pushes at once by increasing count.
      */
     public static void popColormap() {
@@ -12202,7 +12189,7 @@ public final class ImPlot {
         ImPlot::PopColormap(count);
     */
 
-     /**
+    /**
      * Returns the next color from the current colormap and advances the colormap for the current plot.
      * Can also be used with no return value to skip colors if desired. You need to call this between Begin/EndPlot!
      */
@@ -12272,7 +12259,7 @@ public final class ImPlot {
         return ImPlot::NextColormapColor().w;
     */
 
-     /**
+    /**
      * Returns the size of a colormap.
      */
     public static int getColormapSize() {
@@ -12294,7 +12281,7 @@ public final class ImPlot {
         return ImPlot::GetColormapSize(cmap);
     */
 
-     /**
+    /**
      * Returns a color from a colormap given an index {@code >=} 0 (modulo will be performed).
      */
     public static ImVec4 getColormapColor(final int idx) {
@@ -12422,7 +12409,7 @@ public final class ImPlot {
         return ImPlot::GetColormapColor(idx, cmap).w;
     */
 
-     /**
+    /**
      * Sample a color from a colormap given t between 0 and 1
      */
     public static ImVec4 sampleColormap(final float t) {
@@ -12550,7 +12537,7 @@ public final class ImPlot {
         return ImPlot::SampleColormap(t, cmap).w;
     */
 
-     /**
+    /**
      * Shows a vertical color scale with linear spaced ticks using the specified color map. Use double hashes to hide label (e.g. "##NoLabel").
      */
     public static void colormapScale(final String label, final double scaleMin, final double scaleMax, final ImVec2 size, final String format, final ImPlotColormapScaleFlags flags, final int cmap) {
@@ -12573,7 +12560,7 @@ public final class ImPlot {
         if (format != NULL) env->ReleaseStringUTFChars(obj_format, format);
     */
 
-     /**
+    /**
      * Shows a horizontal slider with a colormap gradient background.
      * TODO: support our argument
      */
@@ -12645,7 +12632,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows a button with a colormap gradient brackground.
      */
     public static boolean colormapButton(final String label) {
@@ -12717,7 +12704,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * When items in a plot sample their color from a colormap, the color is cached and does not change
      * unless explicitly overriden. Therefore, if you change the colormap after the item has already been plotted,
      * item colors will NOT update. If you need item colors to resample the new colormap, then use this
@@ -12757,7 +12744,7 @@ public final class ImPlot {
     // [SECTION] Input Mapping
     //-----------------------------------------------------------------------------
 
-     private static final ImPlotInputMap _GETINPUTMAP_1 = new ImPlotInputMap(0);
+    private static final ImPlotInputMap _GETINPUTMAP_1 = new ImPlotInputMap(0);
 
     /**
      * Provides access to the input mapping structure for permanent modifications to controls for pan, select, etc.
@@ -12771,7 +12758,7 @@ public final class ImPlot {
         return (uintptr_t)&ImPlot::GetInputMap();
     */
 
-     /**
+    /**
      * Default input mapping: pan = LMB drag, box select = RMB drag,
      * fit = LMB double click, context menu = RMB click, zoom = scroll.
      */
@@ -12795,7 +12782,7 @@ public final class ImPlot {
         ImPlot::MapInputDefault(reinterpret_cast<ImPlotInputMap*>(dst));
     */
 
-     /**
+    /**
      * Reverse input mapping: pan = RMB drag, box select = LMB drag,
      * fit = LMB double click, context menu = RMB click, zoom = scroll.
      */
@@ -12854,7 +12841,7 @@ public final class ImPlot {
         ImPlot::ColormapIcon(cmap);
     */
 
-     /**
+    /**
      * Get the plot draw list for custom rendering to the current plot area. Call between Begin/EndPlot.
      */
     public static ImDrawList getPlotDrawList() {
@@ -12865,7 +12852,7 @@ public final class ImPlot {
         return (uintptr_t)ImPlot::GetPlotDrawList();
     */
 
-     /**
+    /**
      * Push clip rect for rendering to current plot area. The rect can be expanded or contracted by #expand pixels. Call between Begin/EndPlot.
      */
     public static void pushPlotClipRect() {
@@ -12887,7 +12874,7 @@ public final class ImPlot {
         ImPlot::PushPlotClipRect(expand);
     */
 
-     /**
+    /**
      * Pop plot clip rect. Call between Begin/EndPlot.
      */
     public static void popPlotClipRect() {
@@ -12898,7 +12885,7 @@ public final class ImPlot {
         ImPlot::PopPlotClipRect();
     */
 
-     /**
+    /**
      * Shows ImPlot style selector dropdown menu.
      */
     public static boolean showStyleSelector(final String label) {
@@ -12912,7 +12899,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows ImPlot colormap selector dropdown menu.
      */
     public static boolean showColormapSelector(final String label) {
@@ -12926,7 +12913,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows ImPlot input map selector dropdown menu.
      */
     public static boolean showInputMapSelector(final String label) {
@@ -12940,7 +12927,7 @@ public final class ImPlot {
         return _result;
     */
 
-     /**
+    /**
      * Shows ImPlot style editor block (not a window).
      */
     public static void showStyleEditor() {
@@ -12962,7 +12949,7 @@ public final class ImPlot {
         ImPlot::ShowStyleEditor(reinterpret_cast<ImPlotStyle*>(ref));
     */
 
-     /**
+    /**
      * Add basic help/info block for end users (not a window).
      */
     public static void showUserGuide() {
@@ -12973,7 +12960,7 @@ public final class ImPlot {
         ImPlot::ShowUserGuide();
     */
 
-     /**
+    /**
      * Shows ImPlot metrics/debug information window.
      */
     public static void showMetricsWindow() {
@@ -13001,7 +12988,7 @@ public final class ImPlot {
     // [SECTION] Demo
     //-----------------------------------------------------------------------------
 
-     /**
+    /**
      * Shows the ImPlot demo window.
      */
     public static void showDemoWindow() {

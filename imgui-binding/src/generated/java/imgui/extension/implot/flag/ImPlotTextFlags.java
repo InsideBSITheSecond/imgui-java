@@ -1,9 +1,6 @@
 package imgui.extension.implot.flag;
 
 
-
-
-
 public class ImPlotTextFlags {
     private ImPlotTextFlags() {
     }

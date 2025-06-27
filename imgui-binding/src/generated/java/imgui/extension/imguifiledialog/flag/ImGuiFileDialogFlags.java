@@ -1,9 +1,6 @@
 package imgui.extension.imguifiledialog.flag;
 
 
-
-
-
 public final class ImGuiFileDialogFlags {
     private ImGuiFileDialogFlags() {
     }

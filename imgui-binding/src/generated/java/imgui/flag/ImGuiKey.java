@@ -1,12 +1,9 @@
 package imgui.flag;
 
 
-
-
 /**
  * User fill ImGuiIO.KeyMap[] array with indices into the ImGuiIO.KeysDown[512] array
  */
-
 public final class ImGuiKey {
     private ImGuiKey() {
     }

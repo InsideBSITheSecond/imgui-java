@@ -1,11 +1,6 @@
 package imgui.extension.imguifiledialog;
 
 import imgui.ImVec2;
-
-
-
-
-
 import imgui.extension.imguifiledialog.callback.ImGuiFileDialogPaneFun;
 
 import java.util.HashMap;
@@ -14,7 +9,6 @@ import java.util.HashMap;
  * ImGuiFileDialog extension for ImGui
  * Repo: <a href="https://github.com/aiekick/ImGuiFileDialog">https://github.com/aiekick/ImGuiFileDialog</a>
  */
-
 public final class ImGuiFileDialog {
     private ImGuiFileDialog() {
     }
@@ -36,7 +30,7 @@ public final class ImGuiFileDialog {
         }
     */
 
-     /**
+    /**
      * Open simple dialog (path and fileName can be specified)
      *
      * @param vKey
@@ -71,8 +65,6 @@ public final class ImGuiFileDialog {
 //     * @param vUserDatas         user datas (can be retrieved in pane)
 //     * @param vFlags             ImGuiFileDialogFlags
 //     */
-
-
 //
 //    /**
 //     * Open dialog with custom right pane (path and fileName can be specified)
@@ -87,8 +79,6 @@ public final class ImGuiFileDialog {
 //     * @param vUserDatas         user datas (can be retrieved in pane)
 //     * @param vFlags             ImGuiFileDialogFlags
 //     */
-
-
 //
 //    /**
 //     * Open dialog with custom right pane (path and filename are obtained from filePathName)
@@ -104,8 +94,6 @@ public final class ImGuiFileDialog {
 //     */
 
 
-
-
 //    /**
 //     * Open simple modal (path and fileName can be specified)
 //     *
@@ -114,10 +102,9 @@ public final class ImGuiFileDialog {
 //     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
 //     * @param vConfig            config
 //     */
-
 //    public static native void OpenModal(String vKey, String vTitle, String vFilters, FileDialogConfig vConfig);
 
-     /**
+    /**
      * Display / Close dialog form
      * Display the dialog. return true if a result was obtained (Ok or not)
      *
@@ -227,7 +214,7 @@ public final class ImGuiFileDialog {
     */
 
 
-     /**
+    /**
      * Close dialog
      */
     public static void close() {
@@ -239,7 +226,7 @@ public final class ImGuiFileDialog {
     */
 
 
-     /**
+    /**
      * Say if the dialog key was already opened this frame
      *
      * @return if the dialog key was already opened this frame
@@ -270,7 +257,7 @@ public final class ImGuiFileDialog {
         return _result;
     */
 
-     /**
+    /**
      * Say if the key is opened
      *
      * @return if the key is opened
@@ -301,7 +288,7 @@ public final class ImGuiFileDialog {
         return _result;
     */
 
-     /**
+    /**
      * Return the dialog key who is opened, return nothing if not opened
      *
      * @return the dialog key who is opened or nothing is not opened
@@ -315,7 +302,7 @@ public final class ImGuiFileDialog {
     */
 
 
-     /**
+    /**
      * true: Dialog Closed with Ok result / false: Dialog closed with cancel result
      *
      * @return True if the dialog closed with Ok result, or false with cancel result
@@ -367,7 +354,7 @@ public final class ImGuiFileDialog {
     */
 
 
-     /**
+    /**
      * Save File behavior : will always return the content of the field with current filter extention and current path
      */
     public static String getFilePathName() {
@@ -378,7 +365,7 @@ public final class ImGuiFileDialog {
         return env->NewStringUTF(ImGuiFileDialog::Instance()->GetFilePathName().c_str());
     */
 
-     /**
+    /**
      * Save File behavior : will always return the content of the field with current filter extension
      *
      * @return the content of the field with current filter extension
@@ -391,7 +378,7 @@ public final class ImGuiFileDialog {
         return env->NewStringUTF(ImGuiFileDialog::Instance()->GetCurrentFileName().c_str());
     */
 
-     /**
+    /**
      * Will return current path
      *
      * @return the current path
@@ -404,7 +391,7 @@ public final class ImGuiFileDialog {
         return env->NewStringUTF(ImGuiFileDialog::Instance()->GetCurrentPath().c_str());
     */
 
-     /**
+    /**
      * Will return selected filter
      *
      * @return the selected filter
@@ -418,7 +405,7 @@ public final class ImGuiFileDialog {
     */
 
 
-     /**
+    /**
      * Will return user datas sent with Open Dialog/Modal
      * <p>
      * Can be used to pass a long value to the dialog and get the value back.

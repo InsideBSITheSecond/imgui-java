@@ -4,13 +4,9 @@ import imgui.ImGuiPlatformMonitor;
 import imgui.ImGuiViewport;
 import imgui.ImVec2;
 import imgui.binding.ImGuiStruct;
-
-
-
 import imgui.extension.testengine.callback.TestEngineGuiFun;
 import imgui.extension.testengine.callback.TestEngineTestFun;
 import imgui.internal.ImGuiContext;
-
 
 public class TestEngine extends ImGuiStruct {
     private static final TestContext TMP_CTX = new TestContext(0);
