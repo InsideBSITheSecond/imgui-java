@@ -20,7 +20,7 @@ ext.configurePublishing = { packageName, packageDesc, packageVersion ->
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
                     password = System.getenv("GITHUB_TOKEN")
-                    //println "GitHubPackages build.gradle\n\tusername=$username\n\ttoken=$password"
+                    ///println "GitHubPackages build.gradle\n\tusername=$username\n\ttoken=$password"
                 }
             }
         }
