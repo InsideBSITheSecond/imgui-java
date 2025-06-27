@@ -28,8 +28,8 @@ run {
         jvmArgs += ['-XstartOnFirstThread', '-Djava.awt.headless=true']
     }
     jvmArgs += ["-XX:+PrintGC"/*, "-Dorg.lwjgl.system.allocator=jemalloc"*/]
-    environment("LD_PRELOAD", "/usr/lib/clang/19/lib/linux/libclang_rt.asan-x86_64.so")
+    //environment("LD_PRELOAD", "/usr/lib/clang/19/lib/linux/libclang_rt.asan-x86_64.so")
     //environment("ASAN_OPTIONS", "detect_leaks=1:abort_on_error=1:alloc_dealloc_mismatch=1:malloc_context_size=20")
-    environment("ASAN_OPTIONS", "protect_shadow_gap=0:verbosity=2")
+    //environment("ASAN_OPTIONS", "protect_shadow_gap=0:verbosity=2")
     //environment("ASAN_SYMBOLIZER_PATH", "/usr/bin/llvm-symbolizer")
 }
