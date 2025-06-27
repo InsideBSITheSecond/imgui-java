@@ -3,7 +3,7 @@
     "source" : "include/ImGuiColorTextEdit/TextEditor.h",
     "hash" : "8bb1fc2bb714e2368c7190695ef1bf94",
     "url" : "https://github.com/InsideBSITheSecond/ImGuiColorTextEdit",
-    "revision" : "7479aaaeca5869ae0455ba2d67e6892b1a9b7f6a"
+    "revision" : "ac4cf1a5670b99462eb9d1f2363062cb63d6c51d"
   },
   "decls" : [ {
     "@type" : "AstRecordDecl",
