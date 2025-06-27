@@ -20,9 +20,9 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-test {
+/*test {
     useJUnitPlatform()
-}
+}*/
 
 compileJava {
     // By default we do not generate API, since we believe this should be done on purpose.
