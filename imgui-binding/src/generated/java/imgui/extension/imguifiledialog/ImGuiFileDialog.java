@@ -37,6 +37,8 @@ public final class ImGuiFileDialog {
      * 		key dialog
      * @param vFilters
      * 		filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
+     * @param config
+     * 		FileDialogConfig object
      */
     public static void openDialog(final String vKey, final String vTitle, final String vFilters, final FileDialogConfig config) {
         nOpenDialog(vKey, vTitle, vFilters, config.ptr);

@@ -42,7 +42,7 @@ public final class ImGuiFileDialog {
      * @param vKey               key dialog
      * @param vTitle             title
      * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param config             configs
+     * @param config             FileDialogConfig object
      */
     @BindingMethod
     public static native void OpenDialog(String vKey, String vTitle, String vFilters, @ArgValue(callValue = "*reinterpret_cast<IGFD::FileDialogConfig*>(config)") FileDialogConfig config);
