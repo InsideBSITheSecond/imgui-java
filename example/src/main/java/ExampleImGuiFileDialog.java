@@ -1,3 +1,4 @@
+import imgui.extension.imguifiledialog.FileDialogConfig;
 import imgui.extension.imguifiledialog.ImGuiFileDialog;
 import imgui.extension.imguifiledialog.callback.ImGuiFileDialogPaneFun;
 import imgui.extension.imguifiledialog.flag.ImGuiFileDialogFlags;
@@ -39,8 +40,10 @@ public class ExampleImGuiFileDialog {
             }
 
             if (ImGui.button("Browse File")) {
-                // FIXME
-                //ImGuiFileDialog.openModal("browse-key", "Choose File", ".java", ".", callback, 250, 1, 42, ImGuiFileDialogFlags.None);
+                FileDialogConfig config = new FileDialogConfig();
+                config.setpath("/home/insidebsi");
+                config.setcountSelectionMax(69);
+                ImGuiFileDialog.openDialog("browse-key", "Choose File", ".java", config);
             }
 
             if (ImGuiFileDialog.display("browse-key", ImGuiFileDialogFlags.None, 200, 400, 800, 600)) {
@@ -52,7 +55,10 @@ public class ExampleImGuiFileDialog {
             }
 
             if (ImGui.button("Browse Folder")) {
-                ImGuiFileDialog.openDialog("browse-folder-key", "Choose Folder", null, 0);
+                FileDialogConfig config = new FileDialogConfig();
+                config.setpath("/home/insidebsi");
+                config.setcountSelectionMax(69);
+                ImGuiFileDialog.openDialog("browse-folder-key", "Choose Folder", null, config);
             }
 
             if (ImGuiFileDialog.display("browse-folder-key", ImGuiFileDialogFlags.None, 200, 400, 800, 600)) {
