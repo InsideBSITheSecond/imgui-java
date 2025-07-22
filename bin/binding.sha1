@@ -52,8 +52,8 @@ da23c429ca5d187d897254dbfa8667a7bc42f03f  imgui-binding/src/main/java/imgui/call
 5e85edbef6ed664a5c3d1c012fccc394a11a4db5  imgui-binding/src/main/java/imgui/callback/ImPlatformFuncViewportSuppImVec2.java
 edf6350a062c899e4eea0b1e5cf40fc31b208265  imgui-binding/src/main/java/imgui/callback/ImStrConsumer.java
 ae803d26bd4c8c5a57460147014c96013e8a77a6  imgui-binding/src/main/java/imgui/callback/ImStrSupplier.java
-c7ebbcd2a175693e4c23be8984ce84c9fea96635  imgui-binding/src/main/java/imgui/extension/imguifiledialog/FileDialogConfig.java
-983da7c487cadeeeaaf7f3fe383298e4e2400da0  imgui-binding/src/main/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
+3b1944e7f213506f1d3be86c504e01d0a29aa933  imgui-binding/src/main/java/imgui/extension/imguifiledialog/FileDialogConfig.java
+bff03d27cdd691a7698097309bd89ec37df3f7ef  imgui-binding/src/main/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
 958e9003cd64d812ee782b396214f53e34079c78  imgui-binding/src/main/java/imgui/extension/imguifiledialog/callback/ImGuiFileDialogPaneFun.java
 5a8665f49ea213b910c4de1f562bd8ef84f1efcb  imgui-binding/src/main/java/imgui/extension/imguifiledialog/flag/ImGuiFileDialogFlags.java
 0878ea44efdc9a1aef2e122bba5d20721a593b39  imgui-binding/src/main/java/imgui/extension/imguiknobs/ImGuiKnobs.java
@@ -251,8 +251,8 @@ da23c429ca5d187d897254dbfa8667a7bc42f03f  imgui-binding/src/generated/java/imgui
 5e85edbef6ed664a5c3d1c012fccc394a11a4db5  imgui-binding/src/generated/java/imgui/callback/ImPlatformFuncViewportSuppImVec2.java
 edf6350a062c899e4eea0b1e5cf40fc31b208265  imgui-binding/src/generated/java/imgui/callback/ImStrConsumer.java
 ae803d26bd4c8c5a57460147014c96013e8a77a6  imgui-binding/src/generated/java/imgui/callback/ImStrSupplier.java
-13bf6bb312d13d227974d0d5d67ea0c1c99779c5  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/FileDialogConfig.java
-e1f2ff7b3d7dc328d43f78e4ac79e2b2e948e875  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
+44f7cf52d49dccd135b293e0cf3cc456d0bdbb29  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/FileDialogConfig.java
+e57cf61d0370a93c6b50a2b78e12455f985319d9  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/ImGuiFileDialog.java
 958e9003cd64d812ee782b396214f53e34079c78  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/callback/ImGuiFileDialogPaneFun.java
 a20c6af817ed32e55f89e5935ccded08732d4b21  imgui-binding/src/generated/java/imgui/extension/imguifiledialog/flag/ImGuiFileDialogFlags.java
 1f8b2381c537f8fcaf08bc160ad1b6b248de33e9  imgui-binding/src/generated/java/imgui/extension/imguiknobs/ImGuiKnobs.java
