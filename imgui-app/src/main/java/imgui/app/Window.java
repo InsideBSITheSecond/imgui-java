@@ -28,7 +28,7 @@ public abstract class Window {
     protected ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
     protected ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
 
-    protected TestEngine testEngine;
+    public TestEngine testEngine;
 
     private String glslVersion = null;
 
@@ -206,8 +206,6 @@ public abstract class Window {
         imGuiGl3.newFrame();
         imGuiGlfw.newFrame();
         ImGui.newFrame();
-
-        TestEngine.ShowTestEngineWindows(testEngine);
     }
 
     /**

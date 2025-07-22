@@ -1,9 +1,11 @@
 import imgui.ImGui;
 import imgui.ImVec2;
 import imgui.app.Application;
+import imgui.extension.testengine.TestEngine;
 import imgui.type.ImBoolean;
 
 public class Extra {
+    private static final ImBoolean SHOW_TEST_ENGINE_WINDOW = new ImBoolean(false);
     private static final ImBoolean SHOW_DEMO_WINDOW = new ImBoolean(false);
     private static final ImBoolean SHOW_IMNODES_DEMO_WINDOW = new ImBoolean(false);
     private static final ImBoolean SHOW_IMGUI_NODE_EDITOR_DEMO_WINDOW = new ImBoolean(false);
@@ -33,6 +35,7 @@ public class Extra {
 
         //ImGui.textUnformatted("uwu");
 
+        ImGui.checkbox("Show Test Engine Window", SHOW_TEST_ENGINE_WINDOW);
         ImGui.checkbox("Show Demo Window", SHOW_DEMO_WINDOW);
         ImGui.checkbox("Show ImNodes Demo Window", SHOW_IMNODES_DEMO_WINDOW);
         ImGui.checkbox("Show imgui-node-editor Demo Window", SHOW_IMGUI_NODE_EDITOR_DEMO_WINDOW);
@@ -45,6 +48,10 @@ public class Extra {
         ImGui.checkbox("Show ImGui Canvas Demo Window", SHOW_IMGUI_CANVAS_EDITOR_WINDOW);
         ImGui.checkbox("Show Imgui InputText Callback Window", SHOW_IMGUI_INPUT_CALLBACK_WINDOW);
         ImGui.checkbox("Show Imgui Knobs Demo", SHOW_IMGUI_KNOBS_DEMO);
+
+        if (SHOW_TEST_ENGINE_WINDOW.get()) {
+            TestEngine.ShowTestEngineWindows(app.testEngine);
+        }
 
         if (SHOW_DEMO_WINDOW.get()) {
             ImGui.showDemoWindow(SHOW_DEMO_WINDOW);
