@@ -37,72 +37,20 @@ public final class ImGuiFileDialog {
      * 		key dialog
      * @param vFilters
      * 		filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-     * @param vUserDatas
-     * 		user datas (can be retrieved in pane)
      */
-    public static void openDialog(final String vKey, final String vTitle, final String vFilters, final long vUserDatas) {
-        nOpenDialog(vKey, vTitle, vFilters, vUserDatas);
+    public static void openDialog(final String vKey, final String vTitle, final String vFilters, final FileDialogConfig config) {
+        nOpenDialog(vKey, vTitle, vFilters, config.ptr);
     }
 
-    private static native void nOpenDialog(String vKey, String vTitle, String vFilters, long vUserDatas); /*MANUAL
+    private static native void nOpenDialog(String vKey, String vTitle, String vFilters, long config); /*MANUAL
         auto vKey = obj_vKey == NULL ? NULL : (char*)env->GetStringUTFChars(obj_vKey, JNI_FALSE);
         auto vTitle = obj_vTitle == NULL ? NULL : (char*)env->GetStringUTFChars(obj_vTitle, JNI_FALSE);
         auto vFilters = obj_vFilters == NULL ? NULL : (char*)env->GetStringUTFChars(obj_vFilters, JNI_FALSE);
-        ImGuiFileDialog::Instance()->OpenDialog(vKey, vTitle, vFilters, reinterpret_cast<const IGFD::FileDialogConfig&>(vUserDatas));
+        ImGuiFileDialog::Instance()->OpenDialog(vKey, vTitle, vFilters, *reinterpret_cast<IGFD::FileDialogConfig*>(config));
         if (vKey != NULL) env->ReleaseStringUTFChars(obj_vKey, vKey);
         if (vTitle != NULL) env->ReleaseStringUTFChars(obj_vTitle, vTitle);
         if (vFilters != NULL) env->ReleaseStringUTFChars(obj_vFilters, vFilters);
     */
-
-//    /**
-//     * Open simple dialog (path and filename are obtained from filePathName)
-//     *
-//     * @param vKey               key dialog
-//     * @param vTitle             title
-//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-//     * @param vFilePathName      file path name (will be decompsoed in path and fileName)
-//     * @param vCountSelectionMax count selection max
-//     * @param vUserDatas         user datas (can be retrieved in pane)
-//     * @param vFlags             ImGuiFileDialogFlags
-//     */
-//
-//    /**
-//     * Open dialog with custom right pane (path and fileName can be specified)
-//     *
-//     * @param vKey               key dialog
-//     * @param vTitle             title
-//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-//     * @param vPath              path
-//     * @param vFileName          default file name
-//     * @param vSidePane          side pane
-//     * @param vCountSelectionMax count selection max
-//     * @param vUserDatas         user datas (can be retrieved in pane)
-//     * @param vFlags             ImGuiFileDialogFlags
-//     */
-//
-//    /**
-//     * Open dialog with custom right pane (path and filename are obtained from filePathName)
-//     *
-//     * @param vKey               key dialog
-//     * @param vTitle             title
-//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-//     * @param vFilePathName      file path name (will be decompsoed in path and fileName)
-//     * @param vSidePane          side pane
-//     * @param vCountSelectionMax count selection max
-//     * @param vUserDatas         user datas (can be retrieved in pane)
-//     * @param vFlags             ImGuiFileDialogFlags
-//     */
-
-
-//    /**
-//     * Open simple modal (path and fileName can be specified)
-//     *
-//     * @param vKey               key dialog
-//     * @param vTitle             title
-//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
-//     * @param vConfig            config
-//     */
-//    public static native void OpenModal(String vKey, String vTitle, String vFilters, FileDialogConfig vConfig);
 
     /**
      * Display / Close dialog form
@@ -421,3 +369,54 @@ public final class ImGuiFileDialog {
         return (uintptr_t)ImGuiFileDialog::Instance()->GetUserDatas();
     */
 }
+
+
+//    /**
+//     * Open simple dialog (path and filename are obtained from filePathName)
+//     *
+//     * @param vKey               key dialog
+//     * @param vTitle             title
+//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
+//     * @param vFilePathName      file path name (will be decompsoed in path and fileName)
+//     * @param vCountSelectionMax count selection max
+//     * @param vUserDatas         user datas (can be retrieved in pane)
+//     * @param vFlags             ImGuiFileDialogFlags
+//     */
+//
+//    /**
+//     * Open dialog with custom right pane (path and fileName can be specified)
+//     *
+//     * @param vKey               key dialog
+//     * @param vTitle             title
+//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
+//     * @param vPath              path
+//     * @param vFileName          default file name
+//     * @param vSidePane          side pane
+//     * @param vCountSelectionMax count selection max
+//     * @param vUserDatas         user datas (can be retrieved in pane)
+//     * @param vFlags             ImGuiFileDialogFlags
+//     */
+//
+//    /**
+//     * Open dialog with custom right pane (path and filename are obtained from filePathName)
+//     *
+//     * @param vKey               key dialog
+//     * @param vTitle             title
+//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
+//     * @param vFilePathName      file path name (will be decompsoed in path and fileName)
+//     * @param vSidePane          side pane
+//     * @param vCountSelectionMax count selection max
+//     * @param vUserDatas         user datas (can be retrieved in pane)
+//     * @param vFlags             ImGuiFileDialogFlags
+//     */
+
+
+//    /**
+//     * Open simple modal (path and fileName can be specified)
+//     *
+//     * @param vKey               key dialog
+//     * @param vTitle             title
+//     * @param vFilters           filters (in comma separated form i.e. ".png,.jpg" or ".*") or null for directories
+//     * @param vConfig            config
+//     */
+//    public static native void OpenModal(String vKey, String vTitle, String vFilters, FileDialogConfig vConfig);
