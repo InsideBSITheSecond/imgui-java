@@ -364,6 +364,14 @@ public final class ImDrawData extends ImGuiStruct {
         THIS->ScaleClipRects(fbScale);
     */
 
+    /**
+     * Number of indices (multiple of 3) to be rendered as triangles.
+     * Vertices are stored in the callee ImDrawList's vtx_buffer[] array, indices in idx_buffer[].
+     */
+    public native String getCmdListOwnerName(int cmdListIdx); /*
+        return env->NewStringUTF(THIS->CmdLists[cmdListIdx]->_OwnerName);
+    */
+
     /*JNI
         #undef THIS
      */
