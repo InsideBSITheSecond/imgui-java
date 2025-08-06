@@ -3,7 +3,7 @@
 fe1bf6848a7c7cb0f4ac3106d78f3f8cc1f8603e  imgui-binding/src/main/cmake/MacOSX64-TC.cmake
 d9d8ab7ee1a256e6f35e54db63c0cf8564c92e17  imgui-binding/src/main/cmake/WindowsX64-TC.cmake
 b282da90ccdd5e1eb36cebc86e0fcedc05d9b6b2  imgui-binding/src/main/java/imgui/ImColor.java
-aedb1b8c068d8dc3ba64f04e5ff699a3813baadc  imgui-binding/src/main/java/imgui/ImDrawData.java
+28330509d00a88a2f31d5d26e5de50b397066b78  imgui-binding/src/main/java/imgui/ImDrawData.java
 1a425f0a613efdebc3df60aed46dd4bdcecd09ac  imgui-binding/src/main/java/imgui/ImDrawList.java
 ae06100e73437ae403e0f1bf44b4c86c69e4314f  imgui-binding/src/main/java/imgui/ImFont.java
 ff72284146695db7974502ed3031d4bb33e0cfa2  imgui-binding/src/main/java/imgui/ImFontAtlas.java
@@ -14,7 +14,7 @@ f047e6809dcbe98fb62dfa0538d785e77e9123d9  imgui-binding/src/main/java/imgui/ImGu
 ad7b5c2e35e566ed7bf34b3788352be1b254f649  imgui-binding/src/main/java/imgui/ImGuiIO.java
 a40ac8c3174ad46c9dd45c788da4b2365a010470  imgui-binding/src/main/java/imgui/ImGuiInputTextCallbackData.java
 c9b5993ec7a3b69b3e513559483c028cf0e0e66c  imgui-binding/src/main/java/imgui/ImGuiKeyData.java
-8f13cd9a050fdd5cbbf46d0c535dc87e6f949293  imgui-binding/src/main/java/imgui/ImGuiListClipper.java
+7140005e77cc6d243b5c5c06015428b1cb297ac1  imgui-binding/src/main/java/imgui/ImGuiListClipper.java
 0f6062ee6b95efc6e7ffe8530b8d3f06ec36182f  imgui-binding/src/main/java/imgui/ImGuiOnceUponAFrame.java
 8baadebc53190f1fbfe3d6329c56b4c733d2e2d0  imgui-binding/src/main/java/imgui/ImGuiPlatformIO.java
 8b9097117bb8cbd3e1a45188189e9b8303d34315  imgui-binding/src/main/java/imgui/ImGuiPlatformMonitor.java
@@ -213,7 +213,7 @@ b58c7f90e986033d181a140d688f5e7e2307b1ca  imgui-binding/src/main/native/jni_test
 9d13e0ed0754904ce42b19db661bf3d20d9060c0  imgui-binding/src/main/native/jni_texteditor.h
 04ec5e3baeaea3d37cd56849c706802ed6768a19  imgui-binding/src/main/resources/imgui/imgui-java.properties
 b282da90ccdd5e1eb36cebc86e0fcedc05d9b6b2  imgui-binding/src/generated/java/imgui/ImColor.java
-428cf605a53835fdb7d362625705844270a43caf  imgui-binding/src/generated/java/imgui/ImDrawData.java
+db4290bd1eb87038411bf6ae1c28df789887ee0a  imgui-binding/src/generated/java/imgui/ImDrawData.java
 b7a7a1842898eed22971f9f5337c2fe5f4cb401e  imgui-binding/src/generated/java/imgui/ImDrawList.java
 ebace827fbb626d7626d31205c728c3d1db5a975  imgui-binding/src/generated/java/imgui/ImFont.java
 6a31a1de7c38057514b2bb854b6de36c1e860482  imgui-binding/src/generated/java/imgui/ImFontAtlas.java
@@ -224,7 +224,7 @@ d5bd63c69c13066e97ad5dc9c4359f8f2f7d315a  imgui-binding/src/generated/java/imgui
 e040239ce835d2d036564ccfb57b4fbb16592479  imgui-binding/src/generated/java/imgui/ImGuiIO.java
 df76ae75df82be697adaf040165c3dbe55d24c42  imgui-binding/src/generated/java/imgui/ImGuiInputTextCallbackData.java
 4e99a91b6e46f7e800424dc6bf98fa9ce7d0b135  imgui-binding/src/generated/java/imgui/ImGuiKeyData.java
-8f13cd9a050fdd5cbbf46d0c535dc87e6f949293  imgui-binding/src/generated/java/imgui/ImGuiListClipper.java
+c82b8b15b02a17d9ed1e1a987c4be9a2aa3d03c3  imgui-binding/src/generated/java/imgui/ImGuiListClipper.java
 0f6062ee6b95efc6e7ffe8530b8d3f06ec36182f  imgui-binding/src/generated/java/imgui/ImGuiOnceUponAFrame.java
 8baadebc53190f1fbfe3d6329c56b4c733d2e2d0  imgui-binding/src/generated/java/imgui/ImGuiPlatformIO.java
 a595e351de2582039c38a721b7f7c96cac28f8d0  imgui-binding/src/generated/java/imgui/ImGuiPlatformMonitor.java
